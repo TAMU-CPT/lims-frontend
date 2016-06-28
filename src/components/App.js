@@ -12,16 +12,16 @@ import {
     cyan500, cyan700,
     pinkA200,
     grey100, grey300, grey400, grey500,
-    white, darkBlack, fullBlack,
+    white, darkBlack, fullBlack
 } from 'material-ui/styles/colors';
 
 // import { ServerUrl } from '../../conf.json';
 const muiTheme = getMuiTheme({
-    palette: {
-        primary1Color: '#2C3143',
-        secondaryColor: '#d0bd2a',
-        accent1Color: pinkA200,
-    }
+  palette: {
+    primary1Color: '#2C3143',
+    secondaryColor: '#d0bd2a',
+    accent1Color: pinkA200
+  }
 });
 
 import AppBar from 'material-ui/AppBar';
@@ -30,9 +30,9 @@ const App = ({ children }) => (
   <MuiThemeProvider muiTheme={muiTheme}>
     <div>
         <AppBar
-            title="Galaxy Reports"
+          title="Galaxy Reports"
             // TODO: custom icon
-            iconElementLeft={<Link to="/overview"><IconButton><ActionHome color={muiTheme.palette.secondaryColor}/></IconButton></Link>}
+          iconElementLeft={<Link to="/overview"><IconButton><ActionHome color={muiTheme.palette.secondaryColor} /></IconButton></Link>}
         />
         <section>
           {children}

@@ -1,6 +1,7 @@
 {
   "extends": "airbnb",
   "rules": {
+    "max-len": ["warn", 120, 4],
     "comma-dangle": [2, "never"]
   }
 }

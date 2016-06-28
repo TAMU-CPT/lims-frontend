@@ -1,63 +1,64 @@
 import React from 'react';
 import { ServerUrl } from '../../conf.json';
 import $ from 'jquery';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import moment from 'moment';
 
 
 var UserDetail = React.createClass({
-    getInitialState: function() {
-        return {
-            user: {}
-        }
-    },
+  getInitialState() {
+    return {
+      user: {}
+    };
+  },
 
-    loadDataFromServer: function(){
-        this.serverRequest = $.ajax({
-            url: ServerUrl + "/api/users/" + this.props.params.id,
-            dataType: 'json',
-            cache: false,
-            success: function(data) {
-                this.setState({
-                    user: data,
-                });
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
+  loadDataFromServer() {
+    this.serverRequest = $.ajax({
+      url: ServerUrl + '/api/users/' + this.props.params.id,
+      dataType: 'json',
+      cache: false,
+      success: function (data) {
+        this.setState({
+          user: data
         });
-    },
+      }.bind(this),
+      error: function (xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
 
-    componentDidMount: function() {
-        this.loadDataFromServer();
-    },
+  componentDidMount() {
+    this.loadDataFromServer();
+  },
 
-    render: function () {
-        console.log(this.state.user);
-        return (
+  render() {
+    console.log(this.state.user);
+    return (
             <div>
                 <h1>User {this.state.user.username}</h1>
                 <h3><a href="mailto:{this.state.user.email}">{this.state.user.email}</a></h3>
                 <Table>
                     <TableBody
-                        showRowHover={true}
-                        stripedRows={true}
-                        displayRowCheckbox={false}>
+                      showRowHover
+                      stripedRows
+                      displayRowCheckbox={false}
+                    >
                         <TableRow>
                             <TableRowColumn>ID</TableRowColumn>
                             <TableRowColumn>{this.state.user.id}</TableRowColumn>
                         </TableRow>
                         <TableRow>
                             <TableRowColumn>Active</TableRowColumn>
-                            <TableRowColumn>{this.state.user.active ? "True" : "False"}</TableRowColumn>
+                            <TableRowColumn>{this.state.user.active ? 'True' : 'False'}</TableRowColumn>
                         </TableRow>
                         <TableRow>
                             <TableRowColumn>Deleted</TableRowColumn>
-                            <TableRowColumn>{this.state.user.deleted ? "True" : "False"}</TableRowColumn>
+                            <TableRowColumn>{this.state.user.deleted ? 'True' : 'False'}</TableRowColumn>
                         </TableRow>
                         <TableRow>
                             <TableRowColumn>External</TableRowColumn>
-                            <TableRowColumn>{this.state.user.external ? "True" : "False"}</TableRowColumn>
+                            <TableRowColumn>{this.state.user.external ? 'True' : 'False'}</TableRowColumn>
                         </TableRow>
 
                         <TableRow>
@@ -67,8 +68,8 @@ var UserDetail = React.createClass({
                     </TableBody>
                 </Table>
             </div>
-        )
-    }
+        );
+  }
 });
 
 export default UserDetail;
