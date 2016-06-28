@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import TrueFalse from './TrueFalse';
 var Breadcrumbs = require('react-breadcrumbs');
 /* eslint-enable no-unused-vars */
 import {ServerUrl} from '../../conf.json';
@@ -54,17 +55,16 @@ var UserDetail = React.createClass({
                         </TableRow>
                         <TableRow>
                             <TableRowColumn>Active</TableRowColumn>
-                            <TableRowColumn>{this.state.user.active ? 'True' : 'False'}</TableRowColumn>
+                            <TableRowColumn><TrueFalse checked={this.state.user.active} /></TableRowColumn>
                         </TableRow>
                         <TableRow>
                             <TableRowColumn>Deleted</TableRowColumn>
-                            <TableRowColumn>{this.state.user.deleted ? 'True' : 'False'}</TableRowColumn>
+                            <TableRowColumn><TrueFalse checked={this.state.user.deleted} /></TableRowColumn>
                         </TableRow>
                         <TableRow>
                             <TableRowColumn>External</TableRowColumn>
-                            <TableRowColumn>{this.state.user.external ? 'True' : 'False'}</TableRowColumn>
+                            <TableRowColumn><TrueFalse checked={this.state.user.external} /></TableRowColumn>
                         </TableRow>
-
                         <TableRow>
                             <TableRowColumn>Disk Usage</TableRowColumn>
                             <TableRowColumn>{this.state.user.disk_usage}</TableRowColumn>

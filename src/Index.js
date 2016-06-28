@@ -7,7 +7,6 @@ import App from './components/App';
 // import Overview from './components/Overview';
 import Users from './components/Users';
 import UserDetail from './components/UserDetail';
-
 /* eslint-disable no-undef */
 window.React = React;
 /* eslint-enable no-undef */

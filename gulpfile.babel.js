@@ -8,6 +8,7 @@ import eslint from 'gulp-eslint';
 import babelify from 'babelify';
 import uglify from 'gulp-uglify';
 import rimraf from 'rimraf';
+import notify from 'gulp-notify';
 import browserSync, { reload } from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
 import postcss from 'gulp-postcss';
@@ -25,7 +26,7 @@ import runSequence from 'run-sequence';
 const paths = {
   bundle: 'app.js',
   entry: 'src/Index.js',
-  srcCss: ['src/**/*.scss'],
+  srcCss: ['src/**/*.scss', 'node_modules/fixed-data-table/dist/fixed-data-table.css'],
   srcImg: 'src/images/**',
   srcLint: ['src/**/*.js', 'test/**/*.js'],
   dist: 'dist',
@@ -60,6 +61,7 @@ gulp.task('watchify', () => {
 
   function rebundle() {
     return bundler.bundle()
+      .on('error', notify.onError())
       .pipe(source(paths.bundle))
       .pipe(buffer())
       .pipe(sourcemaps.init({ loadMaps: true }))

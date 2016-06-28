@@ -1,13 +1,34 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import {Link} from 'react-router';
 var Breadcrumbs = require('react-breadcrumbs');
+import {Table, Column, Cell} from 'fixed-data-table';
+import Avatr from 'react-avatr';
 /* eslint-enable no-unused-vars */
 import {ServerUrl} from '../../conf.json';
 /* global fetch */
 import 'whatwg-fetch';
 import moment from 'moment';
+
+const DateCell = ({rowIndex, data, col}) => (
+  <Cell>
+    {data.getObjectAt(rowIndex)[col].toLocaleString()}
+  </Cell>
+);
+
+const ImageCell = ({rowIndex, data, col}) => (
+  <Cell>
+    {data[rowIndex][col]}
+  </Cell>
+);
+
+const TextCell = ({rowIndex, data, col}) => (
+  <Cell>
+    {data.getObjectAt(rowIndex)[col]}
+  </Cell>
+);
+
+
 
 var Users = React.createClass({
     getInitialState() {
@@ -34,19 +55,6 @@ var Users = React.createClass({
     },
 
     render() {
-        var windowTitles = this.state.users.map(function(item, index) {
-            var created = moment.unix(item[0]).format();
-            var lastack = moment.unix(item[3]).format();
-            return (
-                <TableRow key={index}>
-                    <TableRowColumn><Link to={"/users/" + item[2]}>{item[1]}</Link></TableRowColumn>
-                    <TableRowColumn>{item[2]}</TableRowColumn>
-                    <TableRowColumn>{created}</TableRowColumn>
-                    <TableRowColumn>{lastack}</TableRowColumn>
-                </TableRow>
-            );
-        });
-
         return (
             <div>
                 <div>
@@ -56,27 +64,61 @@ var Users = React.createClass({
                     />
                 </div>
                 <h1>Users</h1>
-                <Table>
-                    <TableHeader
-                      displaySelectAll={false}
-                      adjustForCheckbox={false}
-                      enableSelectAll={false}
-                    >
+                <Table
+                    rowHeight={50}
+                    rowsCount={this.state.users.length}
+                    width={1200}
+                    height={400}
+                    headerHeight={50}>
+                <Column
+                    cell={({rowIndex}) => (
+                        <Avatr
+                            size={50}
+                            round={false}
+                            email={this.state.users[rowIndex][2]}
+                            />
+                    )}
+                    width={50}
+                    />
 
-                        <TableRow>
-                            <TableHeaderColumn>Username</TableHeaderColumn>
-                            <TableHeaderColumn>Email</TableHeaderColumn>
-                            <TableHeaderColumn>Created</TableHeaderColumn>
-                            <TableHeaderColumn>Last Access</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody
-                      showRowHover
-                      stripedRows
-                      displayRowCheckbox={false}
-                    >
-                        {windowTitles}
-                    </TableBody>
+                <Column
+                    header={<Cell>ID</Cell>}
+                    cell={({rowIndex}) => (
+                        <Cell>
+                            <Link to={"/users/" + this.state.users[rowIndex][2]}>
+                            {this.state.users[rowIndex][1]}
+                            </Link>
+                        </Cell>
+                    )}
+                    width={250}
+                    />
+                <Column
+                    header={<Cell>Email</Cell>}
+                    cell={({rowIndex}) => (
+                        <Cell>
+                            {this.state.users[rowIndex][2]}
+                        </Cell>
+                    )}
+                    width={450}
+                    />
+                <Column
+                    header={<Cell>Created</Cell>}
+                    cell={({rowIndex}) => (
+                        <Cell>
+                            {moment.unix(this.state.users[rowIndex][0]).format()}
+                        </Cell>
+                    )}
+                    width={250}
+                    />
+                <Column
+                    header={<Cell>Last Login</Cell>}
+                    cell={({rowIndex}) => (
+                        <Cell>
+                            {moment.unix(this.state.users[rowIndex][3]).format()}
+                        </Cell>
+                    )}
+                    width={250}
+                    />
                 </Table>
             </div>
         );
