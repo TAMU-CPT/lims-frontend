@@ -5,6 +5,7 @@ import {Link} from 'react-router';
 var Breadcrumbs = require('react-breadcrumbs');
 /* eslint-enable no-unused-vars */
 import {ServerUrl} from '../../conf.json';
+/* global fetch */
 import 'whatwg-fetch';
 import moment from 'moment';
 
