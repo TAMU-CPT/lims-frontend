@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
+/* eslint-enable no-unused-vars */
 
 var Overview = React.createClass({
   getInitialState() {
@@ -9,9 +11,9 @@ var Overview = React.createClass({
 
   render() {
     return (
-            <div>
-            </div>
-        );
+        <div>
+        </div>
+    );
   }
 });
 

@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { ServerUrl } from '../../conf.json';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+/* eslint-enable no-unused-vars */
+import {ServerUrl} from '../../conf.json';
 import $ from 'jquery';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
-import moment from 'moment';
-
 
 var UserDetail = React.createClass({
   getInitialState() {
@@ -17,12 +17,12 @@ var UserDetail = React.createClass({
       url: ServerUrl + '/api/users/' + this.props.params.id,
       dataType: 'json',
       cache: false,
-      success: function (data) {
+      success: function(data) {
         this.setState({
           user: data
         });
       }.bind(this),
-      error: function (xhr, status, err) {
+      error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });

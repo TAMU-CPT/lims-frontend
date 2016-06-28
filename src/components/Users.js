@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { ServerUrl } from '../../conf.json';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+/* eslint-enable no-unused-vars */
+import {ServerUrl} from '../../conf.json';
 import $ from 'jquery';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import moment from 'moment';
-
 
 var Users = React.createClass({
   getInitialState() {
@@ -17,12 +18,12 @@ var Users = React.createClass({
       url: ServerUrl + '/api/users',
       dataType: 'json',
       cache: false,
-      success: function (data) {
+      success: function(data) {
         this.setState({
           users: data
         });
       }.bind(this),
-      error: function (xhr, status, err) {
+      error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
@@ -33,7 +34,7 @@ var Users = React.createClass({
   },
 
   render() {
-    var windowTitles = this.state.users.map(function (item, index) {
+    var windowTitles = this.state.users.map(function(item, index) {
       var created = moment.unix(item[0]).format();
       var lastack = moment.unix(item[3]).format();
       return (

@@ -1,19 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router';
-import { version } from '../../package.json';
+import {Link} from 'react-router';
 import IconButton from 'material-ui/IconButton';
 import ActionHome from 'material-ui/svg-icons/action/home';
-import RaisedButton from 'material-ui/RaisedButton';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {
-    cyan500, cyan700,
-    pinkA200,
-    grey100, grey300, grey400, grey500,
-    white, darkBlack, fullBlack
-} from 'material-ui/styles/colors';
+import {pinkA200} from 'material-ui/styles/colors';
+import AppBar from 'material-ui/AppBar';
+/* eslint-enable no-unused-vars */
 
 // import { ServerUrl } from '../../conf.json';
 const muiTheme = getMuiTheme({
@@ -24,9 +18,7 @@ const muiTheme = getMuiTheme({
   }
 });
 
-import AppBar from 'material-ui/AppBar';
-
-const App = ({ children }) => (
+const App = ({children}) => (
   <MuiThemeProvider muiTheme={muiTheme}>
     <div>
         <AppBar
@@ -41,6 +33,6 @@ const App = ({ children }) => (
   </MuiThemeProvider>
 );
 
-App.propTypes = { children: React.PropTypes.object };
+App.propTypes = {children: React.PropTypes.object};
 
 export default App;

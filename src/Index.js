@@ -1,12 +1,16 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { render } from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import {Router, Route, hashHistory} from 'react-router';
+/* eslint-enable no-unused-vars */
+import {render} from 'react-dom';
 import App from './components/App';
 import Overview from './components/Overview';
 import Users from './components/Users';
 import UserDetail from './components/UserDetail';
 
+/* eslint-disable no-undef */
 window.React = React;
+/* eslint-enable no-undef */
 
 render(
     (
@@ -18,5 +22,7 @@ render(
             </Route>
         </Router>
     ),
+    /* eslint-disable no-undef */
     document.getElementById('content')
+    /* eslint-enable no-undef */
 );

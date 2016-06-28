@@ -1,7 +1,9 @@
 import test from 'ava';
-import React from 'react';
 import TestUtils from 'react-addons-test-utils';
+/* eslint-disable no-unused-vars */
+import React from 'react';
 import About from '../../src/components/About';
+/* eslint-enable no-unused-vars */
 
 const shallowRenderer = TestUtils.createRenderer();
 shallowRenderer.render(<About />);
