@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import {Router, Route, hashHistory} from 'react-router';
+import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 /* eslint-enable no-unused-vars */
 import {render} from 'react-dom';
 import App from './components/App';
-import Overview from './components/Overview';
+// import Overview from './components/Overview';
 import Users from './components/Users';
 import UserDetail from './components/UserDetail';
 
@@ -15,10 +15,11 @@ window.React = React;
 render(
     (
         <Router history={hashHistory}>
-            <Route path="/" component={App}>
-                <Route path="/overview" component={Overview} />
-                <Route path="/users" component={Users} />
-                <Route path="/users/:id" component={UserDetail} />
+            <Route path="/" component={App} name="Home">
+                <Route path="/users" name="Users">
+                    <IndexRoute component={Users} />
+                    <Route path="/users/:id" component={UserDetail} />
+                </Route>
             </Route>
         </Router>
     ),

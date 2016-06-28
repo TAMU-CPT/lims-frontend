@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import {Link} from 'react-router';
+var Breadcrumbs = require('react-breadcrumbs');
 /* eslint-enable no-unused-vars */
 import {ServerUrl} from '../../conf.json';
 import $ from 'jquery';
@@ -39,7 +41,7 @@ var Users = React.createClass({
       var lastack = moment.unix(item[3]).format();
       return (
                 <TableRow key={index}>
-                    <TableRowColumn>{item[1]}</TableRowColumn>
+                    <TableRowColumn><Link to={"/users/" + item[2]}>{item[1]}</Link></TableRowColumn>
                     <TableRowColumn>{item[2]}</TableRowColumn>
                     <TableRowColumn>{created}</TableRowColumn>
                     <TableRowColumn>{lastack}</TableRowColumn>
@@ -50,6 +52,12 @@ var Users = React.createClass({
 
     return (
             <div>
+                <div>
+                    <Breadcrumbs
+                        routes={this.props.routes}
+                        params={this.props.params}
+                    />
+                </div>
                 <h1>Users</h1>
                 <Table>
                     <TableHeader

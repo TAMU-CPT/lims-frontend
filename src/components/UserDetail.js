@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+var Breadcrumbs = require('react-breadcrumbs');
 /* eslint-enable no-unused-vars */
 import {ServerUrl} from '../../conf.json';
 import $ from 'jquery';
@@ -36,6 +37,12 @@ var UserDetail = React.createClass({
     console.log(this.state.user);
     return (
             <div>
+                <div>
+                    <Breadcrumbs
+                        routes={this.props.routes}
+                        params={this.props.params}
+                    />
+                </div>
                 <h1>User {this.state.user.username}</h1>
                 <h3><a href="mailto:{this.state.user.email}">{this.state.user.email}</a></h3>
                 <Table>
