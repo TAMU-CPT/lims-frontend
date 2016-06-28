@@ -4,38 +4,34 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 var Breadcrumbs = require('react-breadcrumbs');
 /* eslint-enable no-unused-vars */
 import {ServerUrl} from '../../conf.json';
-import $ from 'jquery';
+import 'whatwg-fetch';
 
 var UserDetail = React.createClass({
-  getInitialState() {
-    return {
-      user: {}
-    };
-  },
+    getInitialState() {
+        return {
+            user: {}
+        };
+    },
 
-  loadDataFromServer() {
-    this.serverRequest = $.ajax({
-      url: ServerUrl + '/api/users/' + this.props.params.id,
-      dataType: 'json',
-      cache: false,
-      success: function(data) {
-        this.setState({
-          user: data
-        });
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-  },
+    loadDataFromServer() {
+        fetch(ServerUrl + '/api/users/' + this.props.params.id)
+            .then(function(response) {
+                return response.json();
+            }).then(function(json) {
+                this.setState({
+                    user: json
+                });
+            }.bind(this)).catch(function(ex) {
+                console.log('parsing failed', ex);
+            });
+    },
 
-  componentDidMount() {
-    this.loadDataFromServer();
-  },
+    componentDidMount() {
+        this.loadDataFromServer();
+    },
 
-  render() {
-    console.log(this.state.user);
-    return (
+    render() {
+        return (
             <div>
                 <div>
                     <Breadcrumbs
@@ -76,7 +72,7 @@ var UserDetail = React.createClass({
                 </Table>
             </div>
         );
-  }
+    }
 });
 
 export default UserDetail;

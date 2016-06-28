@@ -5,41 +5,38 @@ import {Link} from 'react-router';
 var Breadcrumbs = require('react-breadcrumbs');
 /* eslint-enable no-unused-vars */
 import {ServerUrl} from '../../conf.json';
-import $ from 'jquery';
+import 'whatwg-fetch';
 import moment from 'moment';
 
 var Users = React.createClass({
-  getInitialState() {
-    return {
-      users: []
-    };
-  },
+    getInitialState() {
+        return {
+            users: []
+        };
+    },
 
-  loadDataFromServer() {
-    this.serverRequest = $.ajax({
-      url: ServerUrl + '/api/users',
-      dataType: 'json',
-      cache: false,
-      success: function(data) {
-        this.setState({
-          users: data
-        });
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-  },
+    loadDataFromServer() {
+        fetch(ServerUrl + '/api/users')
+            .then(function(response) {
+                return response.json();
+            }).then(function(json) {
+                this.setState({
+                    users: json
+                });
+            }.bind(this)).catch(function(ex) {
+                console.log('parsing failed', ex);
+            });
+    },
 
-  componentDidMount() {
-    this.loadDataFromServer();
-  },
+    componentDidMount() {
+        this.loadDataFromServer();
+    },
 
-  render() {
-    var windowTitles = this.state.users.map(function(item, index) {
-      var created = moment.unix(item[0]).format();
-      var lastack = moment.unix(item[3]).format();
-      return (
+    render() {
+        var windowTitles = this.state.users.map(function(item, index) {
+            var created = moment.unix(item[0]).format();
+            var lastack = moment.unix(item[3]).format();
+            return (
                 <TableRow key={index}>
                     <TableRowColumn><Link to={"/users/" + item[2]}>{item[1]}</Link></TableRowColumn>
                     <TableRowColumn>{item[2]}</TableRowColumn>
@@ -47,10 +44,9 @@ var Users = React.createClass({
                     <TableRowColumn>{lastack}</TableRowColumn>
                 </TableRow>
             );
-    });
-    console.log(windowTitles);
+        });
 
-    return (
+        return (
             <div>
                 <div>
                     <Breadcrumbs
@@ -83,7 +79,7 @@ var Users = React.createClass({
                 </Table>
             </div>
         );
-  }
+    }
 });
 
 export default Users;

@@ -10,13 +10,13 @@ shallowRenderer.render(<About />);
 const about = shallowRenderer.getRenderOutput();
 
 test('should have a div as container', t => {
-  t.is(about.type, 'div');
+    t.is(about.type, 'div');
 });
 
 test('should contains an H2', t => {
-  t.is(about.props.children[0].type, 'h2');
+    t.is(about.props.children[0].type, 'h2');
 });
 
 test('should have an h2 tag containing the text "About"', t => {
-  t.is(about.props.children[0].props.children, 'About');
+    t.is(about.props.children[0].props.children, 'About');
 });

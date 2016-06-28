@@ -3,8 +3,8 @@ import React from 'react';
 /* eslint-enable no-unused-vars */
 
 var About = React.createClass({
-  render() {
-    return (
+    render() {
+        return (
             <div>
                 <h2>About</h2>
                 <p>
@@ -12,7 +12,7 @@ var About = React.createClass({
                 </p>
             </div>
         );
-  }
+    }
 });
 
 export default About;
