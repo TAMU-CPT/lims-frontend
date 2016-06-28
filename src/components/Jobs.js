@@ -1,6 +1,4 @@
 import React from 'react';
-import InlineEdit from 'react-edit-inline';
-import { ServerUrl, ApiKey } from '../../conf.json';
 import $ from 'jquery';
 
 var Jobs = React.createClass({
@@ -13,7 +11,7 @@ var Jobs = React.createClass({
     dataChanged: function(newValue) {
         $.ajax({
             type: "POST",
-            url: ServerUrl + "/api/blog",
+            url: ServerUrl + "/api/jobs",
             dataType: 'json',
             headers: {
                 "Authorization": ApiKey,

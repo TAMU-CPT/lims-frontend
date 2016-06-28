@@ -1,5 +1,7 @@
 # Galaxy Reports WebApp
 
+[![Build Status](https://travis-ci.org/erasche/galaxy-reports.svg?branch=master)](https://travis-ci.org/erasche/galaxy-reports)
+
 A minimal React JS application to replace Galaxy's sluggish reports page
 
 ## Usage

@@ -8,7 +8,6 @@ import eslint from 'gulp-eslint';
 import babelify from 'babelify';
 import uglify from 'gulp-uglify';
 import rimraf from 'rimraf';
-import notify from 'gulp-notify';
 import browserSync, { reload } from 'browser-sync';
 import sourcemaps from 'gulp-sourcemaps';
 import postcss from 'gulp-postcss';
@@ -21,7 +20,7 @@ import htmlReplace from 'gulp-html-replace';
 import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
 import runSequence from 'run-sequence';
-import ghPages from 'gulp-gh-pages';
+//import ghPages from 'gulp-gh-pages';
 
 const paths = {
   bundle: 'app.js',
@@ -61,7 +60,6 @@ gulp.task('watchify', () => {
 
   function rebundle() {
     return bundler.bundle()
-      .on('error', notify.onError())
       .pipe(source(paths.bundle))
       .pipe(buffer())
       .pipe(sourcemaps.init({ loadMaps: true }))
@@ -124,10 +122,10 @@ gulp.task('watchTask', () => {
   //gulp.watch(paths.srcLint, ['lint']);
 });
 
-gulp.task('deploy', () => {
-  gulp.src(paths.distDeploy)
-    .pipe(ghPages());
-});
+//gulp.task('deploy', () => {
+  //gulp.src(paths.distDeploy)
+    //.pipe(ghPages());
+//});
 
 gulp.task('watch', cb => {
   runSequence('clean', ['browserSync', 'watchTask', 'watchify', 'styles',  'images'], cb);

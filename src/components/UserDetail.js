@@ -1,6 +1,5 @@
 import React from 'react';
-import InlineEdit from 'react-edit-inline';
-import { ServerUrl, ApiKey } from '../../conf.json';
+import { ServerUrl } from '../../conf.json';
 import $ from 'jquery';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import moment from 'moment';
