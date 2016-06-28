@@ -16,11 +16,11 @@ __Test:__
 
 __Development mode with livereload:__
 
-`npm run watch` or just `npm start`
+`gulp watch`
 
 __When you are done, create a production ready version of the JS bundle:__
 
-`npm run build`
+`gulp build`
 
 ## License
 
