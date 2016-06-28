@@ -25,3 +25,9 @@ __When you are done, create a production ready version of the JS bundle:__
 ## License
 
 [AGPL-3.0](http://opensource.org/licenses/AGPL-3.0)
+
+## Screenshot
+
+**IN DEVELOPMENT**
+
+![](./media/screenshot.png)
