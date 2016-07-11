@@ -33,8 +33,29 @@ const TextCell = ({rowIndex, data, col}) => (
 var Users = React.createClass({
     getInitialState() {
         return {
-            users: []
+            users: [],
+            filteredUsers: [],
         };
+    },
+
+    onFilterChange(e){
+        if(!e.target.value || e.target.value.length == 0){
+            this.setState({
+                users: this.state.users,
+                filteredUsers: this.state.users,
+            })
+        }
+
+
+        var filterBy = e.target.value.toLowerCase();
+        var newFilteredUsers = this.state.users.filter(function(value, index){
+            return value[1].toLowerCase().indexOf(filterBy) !== -1;
+        })
+
+        this.setState({
+            users: this.state.users,
+            filteredUsers: newFilteredUsers,
+        })
     },
 
     loadDataFromServer() {
@@ -43,7 +64,8 @@ var Users = React.createClass({
                 return response.json();
             }).then(function(json) {
                 this.setState({
-                    users: json
+                    users: json,
+                    filteredUsers: json,
                 });
             }.bind(this)).catch(function(ex) {
                 console.log('parsing failed', ex);
@@ -64,9 +86,11 @@ var Users = React.createClass({
                     />
                 </div>
                 <h1>Users</h1>
+                <input onChange={this.onFilterChange} placeholder="Filter by name" />
+
                 <Table
                     rowHeight={50}
-                    rowsCount={this.state.users.length}
+                    rowsCount={this.state.filteredUsers.length}
                     width={1200}
                     height={400}
                     headerHeight={50}>
@@ -75,7 +99,7 @@ var Users = React.createClass({
                         <Avatr
                             size={50}
                             round={false}
-                            email={this.state.users[rowIndex][2]}
+                            email={this.state.filteredUsers[rowIndex][2]}
                             />
                     )}
                     width={50}
@@ -85,8 +109,8 @@ var Users = React.createClass({
                     header={<Cell>ID</Cell>}
                     cell={({rowIndex}) => (
                         <Cell>
-                            <Link to={"/users/" + this.state.users[rowIndex][2]}>
-                            {this.state.users[rowIndex][1]}
+                            <Link to={"/users/" + this.state.filteredUsers[rowIndex][2]}>
+                            {this.state.filteredUsers[rowIndex][1]}
                             </Link>
                         </Cell>
                     )}
@@ -96,7 +120,7 @@ var Users = React.createClass({
                     header={<Cell>Email</Cell>}
                     cell={({rowIndex}) => (
                         <Cell>
-                            {this.state.users[rowIndex][2]}
+                            {this.state.filteredUsers[rowIndex][2]}
                         </Cell>
                     )}
                     width={450}
@@ -105,7 +129,7 @@ var Users = React.createClass({
                     header={<Cell>Created</Cell>}
                     cell={({rowIndex}) => (
                         <Cell>
-                            {moment.unix(this.state.users[rowIndex][0]).format()}
+                            {moment.unix(this.state.filteredUsers[rowIndex][0]).format()}
                         </Cell>
                     )}
                     width={250}
@@ -114,7 +138,7 @@ var Users = React.createClass({
                     header={<Cell>Last Login</Cell>}
                     cell={({rowIndex}) => (
                         <Cell>
-                            {moment.unix(this.state.users[rowIndex][3]).format()}
+                            {moment.unix(this.state.filteredUsers[rowIndex][3]).format()}
                         </Cell>
                     )}
                     width={250}
