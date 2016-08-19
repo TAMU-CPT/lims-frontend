@@ -1,7 +1,7 @@
 {
-  "name": "galaxy-reports",
+  "name": "cpt-lims",
   "version": "0.1.0",
-  "description": "React JS application for Galaxy Reports",
+  "description": "React JS application for CPT LIMS",
   "main": "app.js",
   "repository": {
     "type": "git",
