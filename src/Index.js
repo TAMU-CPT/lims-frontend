@@ -12,17 +12,17 @@ window.React = React;
 /* eslint-enable no-undef */
 
 render(
-    (
-        <Router history={hashHistory}>
-            <Route path="/" component={App} name="Home">
-                <Route path="/users" name="Users">
-                    <IndexRoute component={Users} />
-                    <Route path="/users/:id" component={UserDetail} />
-                </Route>
-            </Route>
-        </Router>
-    ),
-    /* eslint-disable no-undef */
-    document.getElementById('content')
-    /* eslint-enable no-undef */
+	(
+		<Router history={hashHistory}>
+			<Route path="/" component={App} name="Home">
+				<Route path="/users" name="Users">
+					<IndexRoute component={Users} />
+					<Route path="/users/:id" component={UserDetail} />
+				</Route>
+			</Route>
+		</Router>
+	),
+	/* eslint-disable no-undef */
+	document.getElementById('content')
+	/* eslint-enable no-undef */
 );

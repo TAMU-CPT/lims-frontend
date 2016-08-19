@@ -11,26 +11,26 @@ import AppBar from 'material-ui/AppBar';
 
 // import { ServerUrl } from '../../conf.json';
 const muiTheme = getMuiTheme({
-    palette: {
-        primary1Color: '#2C3143',
-        secondaryColor: '#d0bd2a',
-        accent1Color: pinkA200
-    }
+	palette: {
+		primary1Color: '#2C3143',
+		secondaryColor: '#d0bd2a',
+		accent1Color: pinkA200
+	}
 });
 
 const App = ({children}) => (
-    <MuiThemeProvider muiTheme={muiTheme}>
-        <div>
-            <AppBar
-                title="Galaxy Reports"
-                // TODO: custom icon
-                iconElementLeft={<Link to="/overview"><IconButton><ActionHome color={muiTheme.palette.secondaryColor} /></IconButton></Link>}
-            />
-            <section>
-                {children}
-            </section>
-        </div>
-    </MuiThemeProvider>
+	<MuiThemeProvider muiTheme={muiTheme}>
+		<div>
+			<AppBar
+				title="Galaxy Reports"
+				// TODO: custom icon
+				iconElementLeft={<Link to="/overview"><IconButton><ActionHome color={muiTheme.palette.secondaryColor} /></IconButton></Link>}
+			/>
+			<section>
+				{children}
+			</section>
+		</div>
+	</MuiThemeProvider>
 );
 
 App.propTypes = {children: React.PropTypes.object};

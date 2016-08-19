@@ -3,18 +3,18 @@ import React from 'react';
 /* eslint-enable no-unused-vars */
 
 var Overview = React.createClass({
-    getInitialState() {
-        return {
-            contents: null
-        };
-    },
+	getInitialState() {
+		return {
+			contents: null
+		};
+	},
 
-    render() {
-        return (
-            <div>
-            </div>
-        );
-    }
+	render() {
+		return (
+			<div>
+			</div>
+		);
+	}
 });
 
 export default Overview;
