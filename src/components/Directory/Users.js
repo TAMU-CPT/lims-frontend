@@ -45,6 +45,31 @@ var UserListItem = React.createClass({
 	}
 })
 
+var BaseUserList = React.createClass({
+	render() {
+		if(!this.props || !this.props.users){
+			return (
+				<div>
+					No users
+				</div>
+			)
+		}
+		var users = this.props.users.map(function(item, index){
+			return (
+				<UserListItem key={`user${index}`} user={item} />
+			)
+		});
+
+		return (
+			<div>
+				<List>
+				{users}
+				</List>
+			</div>
+		);
+	}
+});
+
 var UserList = React.createClass({
 	getInitialState() {
 		return {
@@ -70,18 +95,8 @@ var UserList = React.createClass({
 	},
 
 	render() {
-		var users = this.state.users.map(function(item, index){
-			return (
-				<UserListItem key={`user${index}`} user={item} />
-			)
-		});
-
 		return (
-			<div>
-				<List>
-				{users}
-				</List>
-			</div>
+			<BaseUserList users={this.state.users} />
 		);
 	}
 });
@@ -166,4 +181,4 @@ var UserDetail = React.createClass({
 	}
 });
 
-export {UserList, UserDetail};
+export {UserList, UserDetail, BaseUserList};

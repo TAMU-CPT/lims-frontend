@@ -13,6 +13,7 @@ import {Phone} from './DirectoryUtils';
 import {List, ListItem} from 'material-ui/List';
 import {ServerUrl} from '../../../conf.json';
 import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
+import {BaseUserList} from './Users';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 /* global fetch */
 import 'whatwg-fetch';
@@ -120,7 +121,7 @@ var OrgDetail = React.createClass({
 							<a href={`mailto:${this.state.org.emails}`}>{this.state.org.emails}</a>
 						</Col>
 						<Col xs={12} md={8}>
-						Testing
+							<BaseUserList users={this.state.org.users} />
 						</Col>
 					</Row>
 				</Grid>

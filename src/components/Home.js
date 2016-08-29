@@ -3,7 +3,7 @@ import React from 'react';
 import {Link} from 'react-router';
 var Breadcrumbs = require('react-breadcrumbs');
 /* eslint-enable no-unused-vars */
-import {ServerUrl} from '../../conf.json';
+import Conf from '../../conf.json';
 import HomeApp from './HomeApp.js';
 import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
 /* global fetch */
@@ -18,7 +18,7 @@ var Home = React.createClass({
 	},
 
 	loadDataFromServer() {
-		fetch(ServerUrl + '/api/apps')
+		fetch(Conf.ServerUrl + '/api/apps/')
 			.then(function(response) {
 				return response.json();
 			}).then(function(json) {

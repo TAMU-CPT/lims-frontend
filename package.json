@@ -82,6 +82,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.4",
     "imagemin-pngquant": "^5.0.0",
+    "json-loader": "^0.5.4",
     "lodash": "^4.13.1",
     "node-sass": "^3.8.0",
     "postcss-nested": "^1.0.0",
