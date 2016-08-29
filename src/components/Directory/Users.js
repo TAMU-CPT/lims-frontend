@@ -12,7 +12,7 @@ import SvgIconDomain from 'material-ui/svg-icons/social/domain';
 
 import {List, ListItem} from 'material-ui/List';
 import {ServerUrl} from '../../../conf.json';
-//import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
+import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 /* global fetch */
 import 'whatwg-fetch';

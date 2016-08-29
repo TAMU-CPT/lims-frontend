@@ -5,7 +5,7 @@ var Breadcrumbs = require('react-breadcrumbs');
 /* eslint-enable no-unused-vars */
 import {ServerUrl} from '../../conf.json';
 import HomeApp from './HomeApp.js';
-//import {Grid, Row, Col} from 'react-flexbox-grid';
+import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
 /* global fetch */
 import 'whatwg-fetch';
 import moment from 'moment';

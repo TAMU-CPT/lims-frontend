@@ -1,3 +1,5 @@
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
