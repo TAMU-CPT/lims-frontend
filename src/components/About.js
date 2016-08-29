@@ -8,7 +8,7 @@ var About = React.createClass({
 			<div>
 				<h2>About</h2>
 				<p>
-					ReactJS application to replace Galaxy Reports
+					CPT LIMS
 				</p>
 			</div>
 		);

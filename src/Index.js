@@ -5,7 +5,7 @@ import React from 'react';
 import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 /* eslint-enable no-unused-vars */
 import {render} from 'react-dom';
-import App from './components/App';
+import App from './App';
  //import Overview from './components/Overview';
 //
 import Directory from './components/Directory/Index';

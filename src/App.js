@@ -20,18 +20,25 @@ const muiTheme = getMuiTheme({
 
 var App = React.createClass({
 	render(children){
+		// We don't want to show crumbs on the home page.
+		var conditional_crumbs;
+		if(this.props.routes[1].name){
+			conditional_crumbs = (
+				<section>
+					<Breadcrumbs
+						routes={this.props.routes}
+						params={this.props.params}
+					/>
+				</section>
+			)
+		}
 		return (
 			<MuiThemeProvider muiTheme={muiTheme}>
 				<div>
 					<AppBar
 						title="CPT LIMS"
 					/>
-					<section>
-					<Breadcrumbs
-						routes={this.props.routes}
-						params={this.props.params}
-					/>
-					</section>
+					{conditional_crumbs}
 					<section>
 						{this.props.children}
 					</section>
@@ -40,7 +47,6 @@ var App = React.createClass({
 		)
 	}
 })
-//const App = ({children}) => ;
 
 App.propTypes = {children: React.PropTypes.object};
 
