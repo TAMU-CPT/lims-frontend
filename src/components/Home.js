@@ -5,7 +5,7 @@ var Breadcrumbs = require('react-breadcrumbs');
 /* eslint-enable no-unused-vars */
 import {ServerUrl} from '../../conf.json';
 import HomeApp from './HomeApp.js';
-import {Grid, Cell} from 'rgx'
+//import {Grid, Row, Col} from 'react-flexbox-grid';
 /* global fetch */
 import 'whatwg-fetch';
 import moment from 'moment';
@@ -38,17 +38,19 @@ var Home = React.createClass({
 
 		var apps = this.state.apps.map(function(item, index){
 			return (
-				<Cell min={64}>
+				<Col xs={12} sm={6} md={4}>
 					<HomeApp item={item} key={index}/>
-				</Cell>
+				</Col>
 			)
 		});
 
 		return (
 			<div>
 				<h1>Home</h1>
-				<Grid gutter={8}>
-				{apps}
+				<Grid>
+					<Row>
+					{apps}
+					</Row>
 				</Grid>
 			</div>
 		);

@@ -9,6 +9,7 @@ import App from './components/App';
 import Directory from './components/Directory/Index';
 import {UserList,UserDetail} from './components/Directory/Users';
 import {OrgList,OrgDetail} from './components/Directory/Orgs';
+import error404 from './components/errors/404';
 //import {OrganisationList,OrganisationDetail} from './components/Directory/Organisations';
 
 import Home from './components/Home';
@@ -33,6 +34,7 @@ render(
 					</Route>
 				</Route>
 			</Route>
+			<Route path="*" component={error404} />
 		</Router>
 	),
 	/* eslint-disable no-undef */

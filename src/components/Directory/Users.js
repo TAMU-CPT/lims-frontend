@@ -12,7 +12,7 @@ import SvgIconDomain from 'material-ui/svg-icons/social/domain';
 
 import {List, ListItem} from 'material-ui/List';
 import {ServerUrl} from '../../../conf.json';
-import {Grid, Cell} from 'rgx'
+//import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 /* global fetch */
 import 'whatwg-fetch';
@@ -123,12 +123,13 @@ var UserDetail = React.createClass({
 		return (
 		<div>
 			<h2>{this.state.user.name}</h2>
-			<Grid gutter={8}>
-				<Cell min={128}>
+			<Grid>
+				<Row>
+				<Col xs={12} md={4}>
 					<Gravatar md5={this.state.user.gravatar_email} size={256} />
 					{orgs}
-				</Cell>
-				<Cell min={256}>
+				</Col>
+				<Col xs={12} md={8}>
 					<Table selectable={false}>
 						<TableBody displayRowCheckbox={false}>
 						<TableRow>
@@ -157,7 +158,8 @@ var UserDetail = React.createClass({
 						</TableRow>
 						</TableBody>
 					</Table>
-				</Cell>
+				</Col>
+				</Row>
 			</Grid>
 		</div>
 		);

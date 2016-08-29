@@ -26,7 +26,7 @@ import runSequence from 'run-sequence';
 const paths = {
   bundle: 'app.js',
   entry: 'src/Index.js',
-  srcCss: ['src/**/*.scss', 'node_modules/fixed-data-table/dist/fixed-data-table.css'],
+  srcCss: ['src/**/*.scss', 'node_modules/fixed-data-table/dist/fixed-data-table.css', 'node_modules/flexboxgrid/dist/flexboxgrid.css'],
   srcImg: 'src/images/**',
   srcLint: ['src/**/*.js', 'test/**/*.js'],
   dist: 'dist',
