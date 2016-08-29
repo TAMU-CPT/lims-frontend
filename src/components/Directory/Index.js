@@ -18,7 +18,9 @@ var Directory = React.createClass({
 						</Link>
 					</li>
 					<li>
-					Organisations
+						<Link to={'/directory/orgs'}>
+						Organisations
+						</Link>
 					</li>
 				</ul>
 			</div>

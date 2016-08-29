@@ -7,6 +7,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {pink500, grey800} from 'material-ui/styles/colors';
 import AppBar from 'material-ui/AppBar';
+var Breadcrumbs = require('react-breadcrumbs');
 /* eslint-enable no-unused-vars */
 
 // import { ServerUrl } from '../../conf.json';
@@ -17,18 +18,29 @@ const muiTheme = getMuiTheme({
 	}
 });
 
-const App = ({children}) => (
-	<MuiThemeProvider muiTheme={muiTheme}>
-		<div>
-			<AppBar
-				title="CPT LIMS"
-			/>
-			<section>
-				{children}
-			</section>
-		</div>
-	</MuiThemeProvider>
-);
+var App = React.createClass({
+	render(children){
+		return (
+			<MuiThemeProvider muiTheme={muiTheme}>
+				<div>
+					<AppBar
+						title="CPT LIMS"
+					/>
+					<section>
+					<Breadcrumbs
+						routes={this.props.routes}
+						params={this.props.params}
+					/>
+					</section>
+					<section>
+						{this.props.children}
+					</section>
+				</div>
+			</MuiThemeProvider>
+		)
+	}
+})
+//const App = ({children}) => ;
 
 App.propTypes = {children: React.PropTypes.object};
 

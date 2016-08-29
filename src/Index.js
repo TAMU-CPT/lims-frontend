@@ -8,6 +8,7 @@ import App from './components/App';
 //
 import Directory from './components/Directory/Index';
 import {UserList,UserDetail} from './components/Directory/Users';
+import {OrgList,OrgDetail} from './components/Directory/Orgs';
 //import {OrganisationList,OrganisationDetail} from './components/Directory/Organisations';
 
 import Home from './components/Home';
@@ -25,6 +26,10 @@ render(
 					<Route path="/directory/users" name="Users">
 						<IndexRoute component={UserList} />
 						<Route path="/directory/users/:id" component={UserDetail} />
+					</Route>
+					<Route path="/directory/orgs" name="Orgs">
+						<IndexRoute component={OrgList} />
+						<Route path="/directory/orgs/:id" component={OrgDetail} />
 					</Route>
 				</Route>
 			</Route>
