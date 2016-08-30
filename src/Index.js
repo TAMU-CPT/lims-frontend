@@ -9,6 +9,8 @@ import App from './App';
  //import Overview from './components/Overview';
 //
 import Directory from './components/Directory/Index';
+import {FreezerList,FreezerDetail} from './components/LIMS/Freezers';
+import {BoxDetail} from './components/LIMS/Boxes';
 import {UserList,UserDetail} from './components/Directory/Users';
 import {OrgList,OrgDetail} from './components/Directory/Orgs';
 import error404 from './components/errors/404';
@@ -35,6 +37,15 @@ render(
 						<Route path="/directory/orgs/:id" component={OrgDetail} />
 					</Route>
 				</Route>
+
+				<Route path="/lims" name="LIMS">
+					<IndexRoute component={FreezerList} />
+					<Route path="/lims/:freezerId/" name="Freezer">
+						<IndexRoute component={FreezerDetail} />
+						<Route path="/lims/:freezerId/:boxId" component={BoxDetail} />
+					</Route>
+				</Route>
+
 			</Route>
 			<Route path="*" component={error404} />
 		</Router>

@@ -89,6 +89,7 @@
     "postcss-simple-extend": "^1.0.0",
     "postcss-simple-vars": "^3.0.0",
     "react-addons-test-utils": "^15.1.0",
+    "react-barcode": "^1.0.8",
     "react-flexbox-grid": "^0.10.2",
     "react-tap-event-plugin": "^1.0.0",
     "run-sequence": "^1.2.1",
