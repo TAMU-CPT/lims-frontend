@@ -15,7 +15,7 @@ var BaseFreezerDetail = React.createClass({
 				return (
 					<TableRow key={`box${index}`}>
 						<TableRowColumn>
-							<Link to={`/lims/${rthis.props.freezer.id}/${item.id}`}>
+							<Link to={`/lims/storage/${rthis.props.freezer.id}/${item.id}`}>
 								{item.name}
 							</Link>
 						</TableRowColumn>
@@ -92,7 +92,7 @@ var BaseFreezerList = React.createClass({
 			return (
 				<TableRow key={`storage${index}`}>
 					<TableRowColumn>
-						<Link to={`/lims/${item.id}/`}>
+						<Link to={`/lims/storage/${item.id}/`}>
 							{item.name}
 						</Link>
 					</TableRowColumn>

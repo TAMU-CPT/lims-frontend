@@ -23,11 +23,8 @@
     "babel": "inherit"
   },
   "scripts": {
-    "start": "npm run watch",
-    "watch": "gulp watch",
-    "build": "gulp build",
-    "deploy": "gulp deploy",
-    "test": "ava --tap | tap-nyan"
+    "watch": "webpack-dev-server --watch  --progress --colors",
+    "build": "webpack -p"
   },
   "author": "Eric Rasche",
   "license": "AGPL-3.0",
@@ -40,6 +37,7 @@
     "flexboxgrid": "^6.3.1",
     "gulp-notify": "^2.2.0",
     "jquery": "^3.0.0",
+    "leaflet": "^0.7.7",
     "material-ui": "^0.15.1",
     "moment": "^2.13.0",
     "react": "^15.3.0",
@@ -91,6 +89,7 @@
     "react-addons-test-utils": "^15.1.0",
     "react-barcode": "^1.0.8",
     "react-flexbox-grid": "^0.10.2",
+    "react-leaflet": "^0.12.1",
     "react-tap-event-plugin": "^1.0.0",
     "run-sequence": "^1.2.1",
     "sass-loader": "^4.0.0",

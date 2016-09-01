@@ -38,7 +38,7 @@ var Home = React.createClass({
 
 		var apps = this.state.apps.map(function(item, index){
 			return (
-				<Col xs={12} sm={6} md={4}>
+				<Col xs={12} sm={6} md={4} key={index}>
 					<HomeApp item={item} key={index}/>
 				</Col>
 			)

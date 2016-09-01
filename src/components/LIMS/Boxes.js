@@ -6,20 +6,8 @@ import {Link} from 'react-router'
 import {ServerUrl} from '../../../conf.json';
 import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import Barcode from 'react-barcode';
+import {CPTBarcode} from '../Util/Barcode';
 /* eslint-enable no-unused-vars */
-
-var CPTBarcode = React.createClass({
-	render(){
-		return (
-			<Barcode
-				displayValue={false}
-				height={this.props.height || 30}
-				value={`cpt:${this.props.ns}:${this.props.id}`}
-				/>
-		)
-	}
-})
 
 var BaseBoxDetail = React.createClass({
 	render(){
@@ -85,7 +73,7 @@ var BaseBoxDetail = React.createClass({
 				return (
 					<TableRow key={`env${index}`}>
 						<TableRowColumn>
-							<Link to={`/`}>
+							<Link to={`/lims/env_sample/${item.tube.id}/`}>
 								{item.tube.name}
 							</Link>
 						</TableRowColumn>

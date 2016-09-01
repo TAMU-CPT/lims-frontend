@@ -11,6 +11,7 @@ import App from './App';
 import Directory from './components/Directory/Index';
 import {FreezerList,FreezerDetail} from './components/LIMS/Freezers';
 import {BoxDetail} from './components/LIMS/Boxes';
+import {EnvSampleDetail} from './components/LIMS/Tubes';
 import {UserList,UserDetail} from './components/Directory/Users';
 import {OrgList,OrgDetail} from './components/Directory/Orgs';
 import error404 from './components/errors/404';
@@ -40,9 +41,12 @@ render(
 
 				<Route path="/lims" name="LIMS">
 					<IndexRoute component={FreezerList} />
-					<Route path="/lims/:freezerId/" name="Freezer">
+					<Route path="/lims/storage/:freezerId/" name="Freezer">
 						<IndexRoute component={FreezerDetail} />
-						<Route path="/lims/:freezerId/:boxId" component={BoxDetail} />
+						<Route path="/lims/storage/:freezerId/:boxId" component={BoxDetail} name="Box"/>
+					</Route>
+					<Route path="/lims/env_sample/" name="Environmental Samples">
+						<Route path="/lims/env_sample/:sampleId/" component={EnvSampleDetail} name="Sample"/>
 					</Route>
 				</Route>
 

@@ -3,7 +3,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var FileLoader = require('file-loader');
 
 module.exports = {
-	entry: ["./src/Index.js", "./src/styles/main.scss"],
+	entry: "./src/Index.js",
 	output: {
 		path: path.join(__dirname, 'build'),
 		filename: 'main.js',
