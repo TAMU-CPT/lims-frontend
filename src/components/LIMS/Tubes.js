@@ -175,6 +175,47 @@ var BaseLysateDetail = React.createClass({
 	}
 });
 
+var BaseDnaprepDetail = React.createClass({
+	render(){
+		var lysate;
+		if(this.props.data.lysate){
+			lysate = (
+				<Link to={`/lims/lysate/${this.props.data.lysate.id}/`}>
+					{this.props.data.lysate ? this.props.data.lysate.name : "Unknown"}
+				</Link>
+			)
+		}
+		return (
+			<Table selectable={false}>
+				<TableHeader enableSelectAll={false} displaySelectAll={false} adjustForCheckbox={false}>
+					<TableRow>
+						<TableHeaderColumn colSpan="2">
+							<h2>DNA Prep Phage Morphology: {this.props.data.morphology}</h2>
+						</TableHeaderColumn>
+					</TableRow>
+
+				</TableHeader>
+				<TableBody displayRowCheckbox={false}>
+					<TableRow>
+						<TableRowColumn style={{width: '20em'}}>Lysate</TableRowColumn>
+						<TableRowColumn>{lysate}</TableRowColumn>
+					</TableRow>
+					<TableRow>
+						<TableRowColumn>Morphology</TableRowColumn>
+						<TableRowColumn>{this.props.data.morphology}</TableRowColumn>
+					</TableRow>
+					<TableRow>
+						<TableRowColumn>Storage Location</TableRowColumn>
+						<TableRowColumn>
+							<StorageLocationLink location={this.props.data.tube ? this.props.data.tube.location : null} />
+						</TableRowColumn>
+					</TableRow>
+				</TableBody>
+			</Table>
+		);
+	}
+});
+
 class EnvSampleDetail extends GenericApiClass {
 	constructor(props){
 		super(props);
@@ -211,4 +252,22 @@ class LysateDetail extends GenericApiClass {
 	}
 }
 
-export {EnvSampleDetail, LysateDetail};
+class DnaprepDetail extends GenericApiClass {
+	constructor(props){
+		super(props);
+	}
+
+	componentDidMount() {
+		this.loadDataFromServer(
+			`/api/web/phagednaprep/${this.props.params.sampleId}/`
+		);
+	}
+
+	render() {
+		return (
+			<BaseDnaprepDetail data={this.state.data} />
+		)
+	}
+}
+
+export {EnvSampleDetail, LysateDetail, DnaprepDetail};

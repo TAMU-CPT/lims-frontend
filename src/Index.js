@@ -10,7 +10,7 @@ import App from './App';
 import Directory from './components/Directory/Index';
 import {FreezerList,FreezerDetail} from './components/LIMS/Freezers';
 import {BoxDetail} from './components/LIMS/Boxes';
-import {EnvSampleDetail, LysateDetail} from './components/LIMS/Tubes';
+import {EnvSampleDetail, LysateDetail, DnaprepDetail} from './components/LIMS/Tubes';
 import {UserList,UserDetail} from './components/Directory/Users';
 import {OrgList,OrgDetail} from './components/Directory/Orgs';
 import error404 from './components/errors/404';
@@ -49,6 +49,9 @@ render(
 					</Route>
 					<Route path="/lims/lysate/" name="Lysate">
 						<Route path="/lims/lysate/:sampleId/" component={LysateDetail} name="Sample"/>
+					</Route>
+					<Route path="/lims/dnaprep/" name="DNA Prep">
+						<Route path="/lims/dnaprep/:sampleId/" component={DnaprepDetail} name="Sample"/>
 					</Route>
 				</Route>
 

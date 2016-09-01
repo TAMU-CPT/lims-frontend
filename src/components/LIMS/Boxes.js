@@ -29,17 +29,17 @@ var BaseBoxDetail = React.createClass({
 		if(this.props.box && this.props.box.dna_prep){
 			var dna_prep = this.props.box.dna_prep.map(function(item, index){
 				return (
-					<TableRow key={`lys${index}`}>
+					<TableRow key={`dna${index}`}>
 						<TableRowColumn>
-							<Link to={`/`}>
+						Phage DNA Preparation
+						</TableRowColumn>
+						<TableRowColumn>
+							<Link to={`/lims/dnaprep/${item.id}/`}>
 								{item.tube.name}
 							</Link>
 						</TableRowColumn>
 						<TableRowColumn>
-							<CPTBarcode ns={"D"} id={item.tube.id} />
-						</TableRowColumn>
-						<TableRowColumn>
-						Phage DNA Preparation
+							<CPTBarcode ns={"D"} id={item.id} />
 						</TableRowColumn>
 					</TableRow>
 				)
@@ -52,15 +52,15 @@ var BaseBoxDetail = React.createClass({
 				return (
 					<TableRow key={`lys${index}`}>
 						<TableRowColumn>
+						Lysate
+						</TableRowColumn>
+						<TableRowColumn>
 							<Link to={`/lims/lysate/${item.id}/`}>
 								{item.tube.name}
 							</Link>
 						</TableRowColumn>
 						<TableRowColumn>
 							<CPTBarcode ns={"L"} id={item.id} />
-						</TableRowColumn>
-						<TableRowColumn>
-						Lysate
 						</TableRowColumn>
 					</TableRow>
 				)
@@ -73,15 +73,15 @@ var BaseBoxDetail = React.createClass({
 				return (
 					<TableRow key={`env${index}`}>
 						<TableRowColumn>
+							Environmental Sample
+						</TableRowColumn>
+						<TableRowColumn>
 							<Link to={`/lims/env_sample/${item.id}/`}>
 								{item.tube.name}
 							</Link>
 						</TableRowColumn>
 						<TableRowColumn>
-							<CPTBarcode ns={"E"} id={item.tube.id} />
-						</TableRowColumn>
-						<TableRowColumn>
-							Environmental Sample
+							<CPTBarcode ns={"E"} id={item.id} />
 						</TableRowColumn>
 					</TableRow>
 				)
@@ -99,9 +99,9 @@ var BaseBoxDetail = React.createClass({
 							</TableHeaderColumn>
 						</TableRow>
 						<TableRow>
+							<TableHeaderColumn>Sample Type</TableHeaderColumn>
 							<TableHeaderColumn>Name</TableHeaderColumn>
 							<TableHeaderColumn>Barcode</TableHeaderColumn>
-							<TableHeaderColumn>Sample Type</TableHeaderColumn>
 						</TableRow>
 					</TableHeader>
 					<TableBody displayRowCheckbox={false}>
