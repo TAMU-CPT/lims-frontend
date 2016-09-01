@@ -52,12 +52,12 @@ var BaseBoxDetail = React.createClass({
 				return (
 					<TableRow key={`lys${index}`}>
 						<TableRowColumn>
-							<Link to={`/`}>
+							<Link to={`/lims/lysate/${item.id}/`}>
 								{item.tube.name}
 							</Link>
 						</TableRowColumn>
 						<TableRowColumn>
-							<CPTBarcode ns={"L"} id={item.tube.id} />
+							<CPTBarcode ns={"L"} id={item.id} />
 						</TableRowColumn>
 						<TableRowColumn>
 						Lysate
@@ -73,7 +73,7 @@ var BaseBoxDetail = React.createClass({
 				return (
 					<TableRow key={`env${index}`}>
 						<TableRowColumn>
-							<Link to={`/lims/env_sample/${item.tube.id}/`}>
+							<Link to={`/lims/env_sample/${item.id}/`}>
 								{item.tube.name}
 							</Link>
 						</TableRowColumn>

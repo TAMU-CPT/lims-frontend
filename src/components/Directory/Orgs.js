@@ -8,8 +8,7 @@ import {Link} from 'react-router'
 import Gravatar from 'react-gravatar'
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
-import SvgIconDomain from 'material-ui/svg-icons/social/domain';
-import {Phone} from './DirectoryUtils';
+import {PhoneLink} from './DirectoryUtils';
 import {List, ListItem} from 'material-ui/List';
 import {ServerUrl} from '../../../conf.json';
 import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
@@ -112,7 +111,7 @@ var OrgDetail = React.createClass({
 						<Col xs={12} md={4}>
 							<h3>Info</h3>
 							{addr}
-							<Phone number={this.state.org.phone_number} />
+							<PhoneLink number={this.state.org.phone_number} />
 
 							<h3>Website</h3>
 							<a href={this.state.org.website}>{this.state.org.website}</a>

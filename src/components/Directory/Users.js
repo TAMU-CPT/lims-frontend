@@ -13,21 +13,9 @@ import {List, ListItem} from 'material-ui/List';
 import {ServerUrl} from '../../../conf.json';
 import {Grid, Row, Col} from 'react-flexbox-grid/lib/index';
 import {Table, TableBody, TableRow, TableRowColumn} from 'material-ui/Table';
+import {UserChip, OrgChip} from '../Util/Chip';
 /* global fetch */
 import 'whatwg-fetch';
-
-var OrgChip = React.createClass({
-	render() {
-		return (
-			<Link to={`/directory/orgs/${this.props.org.id}`}>
-				<Chip>
-					<Avatar icon={<SvgIconDomain />} />
-					{this.props.org.name}
-				</Chip>
-			</Link>
-		)
-	}
-})
 
 var UserListItem = React.createClass({
 	render() {

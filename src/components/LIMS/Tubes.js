@@ -8,6 +8,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import Barcode from 'react-barcode';
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import {GenericApiClass} from '../Util/Api';
+import {UserChip} from '../Util/Chip';
 var tubeStyle = require('./Tubes.scss');
 /* eslint-enable no-unused-vars */
 
@@ -18,13 +19,13 @@ var StorageLocationLink = React.createClass({
 		}
 
 		var storage = (
-			<Link to={`/lims/storage/${this.props.location.storage_id}`}>
+			<Link to={`/lims/storage/${this.props.location.storage_id}/`}>
 				{this.props.location.storage_name}
 			</Link>
 		);
 
 		var box = (
-			<Link to={`/lims/storage/${this.props.location.storage_id}/${this.props.location.box_id}`}>
+			<Link to={`/lims/storage/${this.props.location.storage_id}/${this.props.location.box_id}/`}>
 				{this.props.location.box_name}
 			</Link>
 		);
@@ -129,7 +130,6 @@ var BaseLysateDetail = React.createClass({
 			});
 		}
 
-
 		return (
 			<Table selectable={false}>
 				<TableHeader enableSelectAll={false} displaySelectAll={false} adjustForCheckbox={false}>
@@ -159,7 +159,9 @@ var BaseLysateDetail = React.createClass({
 					</TableRow>
 					<TableRow>
 						<TableRowColumn>Owner / Source</TableRowColumn>
-						<TableRowColumn></TableRowColumn>
+						<TableRowColumn>
+							<UserChip person={this.props.data.owner}/>
+						</TableRowColumn>
 					</TableRow>
 					<TableRow>
 						<TableRowColumn>Storage Location</TableRowColumn>
