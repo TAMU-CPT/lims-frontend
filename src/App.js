@@ -10,7 +10,6 @@ import {pink500, grey800} from 'material-ui/styles/colors';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
 
 var Breadcrumbs = require('react-breadcrumbs');
 require('./styles/main.scss');
@@ -44,16 +43,13 @@ var App = React.createClass({
 					<AppBar
 						title={"CPT LIMS"}
 						iconElementLeft={
-							<IconButton
+							<IconButton>
 								<NavigationMenu />
 							</IconButton>
 						}
 					/>
 					<section>
 						{conditional_crumbs}
-						<RaisedButton
-							label="Toggle Drawer"
-							/>
 						{this.props.children}
 					</section>
 				</div>

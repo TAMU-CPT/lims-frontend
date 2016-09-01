@@ -7,11 +7,10 @@ import {Router, Route, hashHistory, IndexRoute} from 'react-router';
 import {render} from 'react-dom';
 import App from './App';
  //import Overview from './components/Overview';
-//
 import Directory from './components/Directory/Index';
 import {FreezerList,FreezerDetail} from './components/LIMS/Freezers';
 import {BoxDetail} from './components/LIMS/Boxes';
-import {EnvSampleDetail} from './components/LIMS/Tubes';
+import {EnvSampleDetail, LysateDetail} from './components/LIMS/Tubes';
 import {UserList,UserDetail} from './components/Directory/Users';
 import {OrgList,OrgDetail} from './components/Directory/Orgs';
 import error404 from './components/errors/404';
@@ -48,12 +47,17 @@ render(
 					<Route path="/lims/env_sample/" name="Environmental Samples">
 						<Route path="/lims/env_sample/:sampleId/" component={EnvSampleDetail} name="Sample"/>
 					</Route>
+					<Route path="/lims/lysate/" name="Lysate">
+						<Route path="/lims/lysate/:sampleId/" component={LysateDetail} name="Sample"/>
+					</Route>
 				</Route>
 
 			</Route>
 			<Route path="*" component={error404} />
 		</Router>
 	),
+	/*
+	*/
 	/* eslint-disable no-undef */
 	document.getElementById('content')
 	/* eslint-enable no-undef */
