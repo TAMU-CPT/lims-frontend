@@ -29,7 +29,6 @@ const HomeIcon = function(props){
 	const LogoStyle = {
 		fill: '#ffffff',
 		fillOpacity: '1',
-		stroke: '1'
 	}
 
 	return (
