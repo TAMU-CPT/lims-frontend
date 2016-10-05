@@ -1,11 +1,164 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import {Link} from 'react-router'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import {ServerUrl} from '../../../conf.json';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import Dialog from 'material-ui/Dialog';
+import TextField from 'material-ui/TextField';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import Snackbar from 'material-ui/Snackbar';
 /* eslint-enable no-unused-vars */
+
+function checkStatus(response) {
+	if (response.status >= 200 && response.status < 300) {
+		return response
+	} else {
+		var error = new Error(response.statusText)
+		error.response = response
+		throw error
+	}
+}
+
+function parseJSON(response) {
+	return response.json()
+}
+
+
+var FreezerCreationDialog = React.createClass({
+	getInitialState() {
+		return {
+			open: false,
+			location: "",
+			name: "",
+
+			ajaxToastOpen: false,
+			ajaxToastMessage: "Success",
+		};
+	},
+
+	handleToastClose() {
+		this.setState({
+			ajaxToastOpen: false,
+		});
+	},
+
+	handleOpen() {
+		this.setState({open: true});
+	},
+
+	handleClose() {
+		this.setState({open: false});
+	},
+
+	handleLocationChange: function(e) {
+		this.setState({location: e.target.value});
+	},
+
+	handleNameChange: function(e){
+		this.setState({name: e.target.value});
+	},
+
+	handleClear() {
+		this.setState({
+			name: "",
+			location: "",
+		})
+	},
+
+	// TODO: https://facebook.github.io/react/docs/tutorial.html#optimization-optimistic-updates
+	handleSubmit() {
+		fetch(ServerUrl + '/api/web/storagelocation/', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				name: this.state.name,
+				location: this.state.location,
+				box_set: [],
+				container_type: "Freezer",
+			}),
+		})
+			.then(checkStatus)
+			.then(parseJSON)
+			.then(function(json) {
+				this.setState({
+					ajaxToastMessage: "Success!",
+					ajaxToastOpen: true,
+				})
+				this.handleClear();
+				this.handleClose();
+			}.bind(this)).catch(function(ex) {
+				// TODO: sentry
+				this.setState({
+					ajaxToastMessage: "Error: Could not register storage location",
+					ajaxToastOpen: true,
+				})
+				console.log('parsing failed', ex);
+			}.bind(this));
+	},
+
+	render() {
+		const actions = [
+			<FlatButton
+				label="Clear"
+				secondary={true}
+				onTouchTap={this.handleClear}
+			/>,
+			<FlatButton
+				label="Cancel"
+				primary={true}
+				onTouchTap={this.handleClose}
+			/>,
+			<RaisedButton
+				label="Create"
+				primary={true}
+				onTouchTap={this.handleSubmit}
+			/>,
+		];
+
+		return (
+			<span style={{marginLeft: '1em'}}>
+				<FloatingActionButton mini={true} onTouchTap={this.handleOpen}>
+					<ContentAdd />
+				</FloatingActionButton>
+				<Dialog
+					title="Register a New Freezer"
+					actions={actions}
+					modal={false}
+					open={this.state.open}
+					onRequestClose={this.handleClose}
+				>
+					This will register a new freezer with the CPT LIMS System. Freezer contain boxes.
+					<TextField
+						floatingLabelText="Name"
+						onChange={this.handleNameChange}
+						value={this.state.name}
+						/>
+					<br />
+					<TextField
+						floatingLabelText="Location"
+						onChange={this.handleLocationChange}
+						value={this.state.location}
+						/>
+				</Dialog>
+				<Snackbar
+					open={this.state.ajaxToastOpen}
+					message={this.state.ajaxToastMessage}
+					//action={this.props.undo ? "undo" : ""}
+					autoHideDuration={4000}
+					onActionTouchTap={this.handleToastClose}
+					onRequestClose={this.handleToastClose}
+					/>
+			</span>
+		);
+	}
+})
 
 var BaseFreezerDetail = React.createClass({
 	render(){
@@ -84,6 +237,10 @@ var FreezerDetail = React.createClass({
 });
 
 var BaseFreezerList = React.createClass({
+	onChange(evt){
+		console.log("BaseFreezerList evt ", evt);
+	},
+
 	//NameLocationTypeActions
 	//-80 Freezer3rd floor Cold roomfreezer
 	//
@@ -109,7 +266,10 @@ var BaseFreezerList = React.createClass({
 					<TableHeader enableSelectAll={false} displaySelectAll={false} adjustForCheckbox={false}>
 						<TableRow>
 							<TableHeaderColumn colSpan="4">
-								<h2>Freezers</h2>
+								<h2>
+									Freezers
+									<FreezerCreationDialog />
+								</h2>
 							</TableHeaderColumn>
 						</TableRow>
 						<TableRow>
@@ -129,6 +289,10 @@ var BaseFreezerList = React.createClass({
 });
 
 var FreezerList = React.createClass({
+	onChange(evt){
+		console.log("FreezerList evt ", evt);
+	},
+
 	getInitialState() {
 		return {
 			data: []
