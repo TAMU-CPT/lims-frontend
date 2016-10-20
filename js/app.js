@@ -41,6 +41,190 @@ base.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarS
             .primaryPalette('blue')
             .accentPalette('pink');
         $routeProvider.
+            when('/editingroleusers', {
+                templateUrl: 'partials/editingroleuser-list.html',
+                controller: 'EditingRoleUserListCtrl'
+            }).
+            when('/editingroleusers/:editingroleuserID', {
+                templateUrl: 'partials/editingroleuser-detail.html',
+                controller: 'EditingRoleUserDetailCtrl'
+            }).
+            when('/editingrolegroups', {
+                templateUrl: 'partials/editingrolegroup-list.html',
+                controller: 'EditingRoleGroupListCtrl'
+            }).
+            when('/editingrolegroups/:editingrolegroupID', {
+                templateUrl: 'partials/editingrolegroup-detail.html',
+                controller: 'EditingRoleGroupDetailCtrl'
+            }).
+            when('/bioprojects', {
+                templateUrl: 'partials/bioproject-list.html',
+                controller: 'BioprojectListCtrl'
+            }).
+            when('/bioprojects/:bioprojectID', {
+                templateUrl: 'partials/bioproject-detail.html',
+                controller: 'BioprojectDetailCtrl'
+            }).
+            when('/persontags', {
+                templateUrl: 'partials/persontag-list.html',
+                controller: 'PersonTagListCtrl'
+            }).
+            when('/persontags/:persontagID', {
+                templateUrl: 'partials/persontag-detail.html',
+                controller: 'PersonTagDetailCtrl'
+            }).
+            when('/organisations', {
+                templateUrl: 'partials/organisation-list.html',
+                controller: 'OrganisationListCtrl'
+            }).
+            when('/organisations/:organisationID', {
+                templateUrl: 'partials/organisation-detail.html',
+                controller: 'OrganisationDetailCtrl'
+            }).
+            when('/boxs', {
+                templateUrl: 'partials/box-list.html',
+                controller: 'BoxListCtrl'
+            }).
+            when('/boxs/:boxID', {
+                templateUrl: 'partials/box-detail.html',
+                controller: 'BoxDetailCtrl'
+            }).
+            when('/storagelocations', {
+                templateUrl: 'partials/storagelocation-list.html',
+                controller: 'StorageLocationListCtrl'
+            }).
+            when('/storagelocations/:storagelocationID', {
+                templateUrl: 'partials/storagelocation-detail.html',
+                controller: 'StorageLocationDetailCtrl'
+            }).
+            when('/assemblys', {
+                templateUrl: 'partials/assembly-list.html',
+                controller: 'AssemblyListCtrl'
+            }).
+            when('/assemblys/:assemblyID', {
+                templateUrl: 'partials/assembly-detail.html',
+                controller: 'AssemblyDetailCtrl'
+            }).
+            when('/tubetypes', {
+                templateUrl: 'partials/tubetype-list.html',
+                controller: 'TubeTypeListCtrl'
+            }).
+            when('/tubetypes/:tubetypeID', {
+                templateUrl: 'partials/tubetype-detail.html',
+                controller: 'TubeTypeDetailCtrl'
+            }).
+            when('/experimentalresults', {
+                templateUrl: 'partials/experimentalresult-list.html',
+                controller: 'ExperimentalResultListCtrl'
+            }).
+            when('/experimentalresults/:experimentalresultID', {
+                templateUrl: 'partials/experimentalresult-detail.html',
+                controller: 'ExperimentalResultDetailCtrl'
+            }).
+            when('/sequencingruns', {
+                templateUrl: 'partials/sequencingrun-list.html',
+                controller: 'SequencingRunListCtrl'
+            }).
+            when('/sequencingruns/:sequencingrunID', {
+                templateUrl: 'partials/sequencingrun-detail.html',
+                controller: 'SequencingRunDetailCtrl'
+            }).
+            when('/tubes', {
+                templateUrl: 'partials/tube-list.html',
+                controller: 'TubeListCtrl'
+            }).
+            when('/tubes/:tubeID', {
+                templateUrl: 'partials/tube-detail.html',
+                controller: 'TubeDetailCtrl'
+            }).
+            when('/sampletypes', {
+                templateUrl: 'partials/sampletype-list.html',
+                controller: 'SampleTypeListCtrl'
+            }).
+            when('/sampletypes/:sampletypeID', {
+                templateUrl: 'partials/sampletype-detail.html',
+                controller: 'SampleTypeDetailCtrl'
+            }).
+            when('/experiments', {
+                templateUrl: 'partials/experiment-list.html',
+                controller: 'ExperimentListCtrl'
+            }).
+            when('/experiments/:experimentID', {
+                templateUrl: 'partials/experiment-detail.html',
+                controller: 'ExperimentDetailCtrl'
+            }).
+            when('/phages', {
+                templateUrl: 'partials/phage-list.html',
+                controller: 'PhageListCtrl'
+            }).
+            when('/phages/:phageID', {
+                templateUrl: 'partials/phage-detail.html',
+                controller: 'PhageDetailCtrl'
+            }).
+            when('/phagednapreps', {
+                templateUrl: 'partials/phagednaprep-list.html',
+                controller: 'PhageDNAPrepListCtrl'
+            }).
+            when('/phagednapreps/:phagednaprepID', {
+                templateUrl: 'partials/phagednaprep-detail.html',
+                controller: 'PhageDNAPrepDetailCtrl'
+            }).
+            when('/sequencingrunpools', {
+                templateUrl: 'partials/sequencingrunpool-list.html',
+                controller: 'SequencingRunPoolListCtrl'
+            }).
+            when('/sequencingrunpools/:sequencingrunpoolID', {
+                templateUrl: 'partials/sequencingrunpool-detail.html',
+                controller: 'SequencingRunPoolDetailCtrl'
+            }).
+            when('/sequencingrunpoolitems', {
+                templateUrl: 'partials/sequencingrunpoolitem-list.html',
+                controller: 'SequencingRunPoolItemListCtrl'
+            }).
+            when('/sequencingrunpoolitems/:sequencingrunpoolitemID', {
+                templateUrl: 'partials/sequencingrunpoolitem-detail.html',
+                controller: 'SequencingRunPoolItemDetailCtrl'
+            }).
+            when('/containertypes', {
+                templateUrl: 'partials/containertype-list.html',
+                controller: 'ContainerTypeListCtrl'
+            }).
+            when('/containertypes/:containertypeID', {
+                templateUrl: 'partials/containertype-detail.html',
+                controller: 'ContainerTypeDetailCtrl'
+            }).
+            when('/environmentalsamples', {
+                templateUrl: 'partials/environmentalsample-list.html',
+                controller: 'EnvironmentalSampleListCtrl'
+            }).
+            when('/environmentalsamples/:environmentalsampleID', {
+                templateUrl: 'partials/environmentalsample-detail.html',
+                controller: 'EnvironmentalSampleDetailCtrl'
+            }).
+            when('/lysates', {
+                templateUrl: 'partials/lysate-list.html',
+                controller: 'LysateListCtrl'
+            }).
+            when('/lysates/:lysateID', {
+                templateUrl: 'partials/lysate-detail.html',
+                controller: 'LysateDetailCtrl'
+            }).
+            when('/bacterias', {
+                templateUrl: 'partials/bacteria-list.html',
+                controller: 'BacteriaListCtrl'
+            }).
+            when('/bacterias/:bacteriaID', {
+                templateUrl: 'partials/bacteria-detail.html',
+                controller: 'BacteriaDetailCtrl'
+            }).
+            when('/apps', {
+                templateUrl: 'partials/app-list.html',
+                controller: 'AppListCtrl'
+            }).
+            when('/apps/:appID', {
+                templateUrl: 'partials/app-detail.html',
+                controller: 'AppDetailCtrl'
+            }).
 // LOAD ROUTES
             when('/login', {
                 templateUrl: 'partials/login.html',
@@ -116,4 +300,50 @@ require('./ctrl/home.js')(base);
 require('./ctrl/nav.js')(base);
 require('./ctrl/login.js')(base);
 require('./ctrl/logout.js')(base);
+require('./ctrl/editingroleuser/list.js')(base);
+require('./ctrl/editingroleuser/detail.js')(base);
+require('./ctrl/editingrolegroup/list.js')(base);
+require('./ctrl/editingrolegroup/detail.js')(base);
+require('./ctrl/bioproject/list.js')(base);
+require('./ctrl/bioproject/detail.js')(base);
+require('./ctrl/persontag/list.js')(base);
+require('./ctrl/persontag/detail.js')(base);
+require('./ctrl/organisation/list.js')(base);
+require('./ctrl/organisation/detail.js')(base);
+require('./ctrl/box/list.js')(base);
+require('./ctrl/box/detail.js')(base);
+require('./ctrl/storagelocation/list.js')(base);
+require('./ctrl/storagelocation/detail.js')(base);
+require('./ctrl/assembly/list.js')(base);
+require('./ctrl/assembly/detail.js')(base);
+require('./ctrl/tubetype/list.js')(base);
+require('./ctrl/tubetype/detail.js')(base);
+require('./ctrl/experimentalresult/list.js')(base);
+require('./ctrl/experimentalresult/detail.js')(base);
+require('./ctrl/sequencingrun/list.js')(base);
+require('./ctrl/sequencingrun/detail.js')(base);
+require('./ctrl/tube/list.js')(base);
+require('./ctrl/tube/detail.js')(base);
+require('./ctrl/sampletype/list.js')(base);
+require('./ctrl/sampletype/detail.js')(base);
+require('./ctrl/experiment/list.js')(base);
+require('./ctrl/experiment/detail.js')(base);
+require('./ctrl/phage/list.js')(base);
+require('./ctrl/phage/detail.js')(base);
+require('./ctrl/phagednaprep/list.js')(base);
+require('./ctrl/phagednaprep/detail.js')(base);
+require('./ctrl/sequencingrunpool/list.js')(base);
+require('./ctrl/sequencingrunpool/detail.js')(base);
+require('./ctrl/sequencingrunpoolitem/list.js')(base);
+require('./ctrl/sequencingrunpoolitem/detail.js')(base);
+require('./ctrl/containertype/list.js')(base);
+require('./ctrl/containertype/detail.js')(base);
+require('./ctrl/environmentalsample/list.js')(base);
+require('./ctrl/environmentalsample/detail.js')(base);
+require('./ctrl/lysate/list.js')(base);
+require('./ctrl/lysate/detail.js')(base);
+require('./ctrl/bacteria/list.js')(base);
+require('./ctrl/bacteria/detail.js')(base);
+require('./ctrl/app/list.js')(base);
+require('./ctrl/app/detail.js')(base);
 // REQUIRE
