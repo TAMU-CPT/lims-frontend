@@ -1,0 +1,26 @@
+<div layout="row" layout-align="center center">
+    <md-card>
+        <md-card-header>
+            <md-card-header-text>
+                <span class="md-title">PhageDNAPrep</span>
+                <span flex class="md-subhead">{{phagednaprep.id}}</span>
+            </md-card-header-text>
+        </md-card-header>
+        <md-card-content>
+            <div layout="column">
+                <md-input-container flex>
+                    <label>morphology</label>
+                    <input disabled ng-model="phagednaprep.morphology">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>lysate</label>
+                    <input disabled ng-model="phagednaprep.lysate">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>tube</label>
+                    <input disabled ng-model="phagednaprep.tube">
+                </md-input-container>
+            </div>
+        </md-card-content>
+    </md-card>
+</div>

@@ -1,26 +1,27 @@
-const path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var FileLoader = require('file-loader');
 
 module.exports = {
-	entry: "./src/Index.js",
-	output: {
-		path: path.join(__dirname, 'build'),
-		filename: 'main.js',
-		publicPath: '/'
-	},
-	module: {
-		loaders: [
-			{ test: /\.json$/, loader: 'json'  },
-			{ test: /\.(css|scss)$/, loader: ExtractTextPlugin.extract('css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass?sourceMap') },
-			{ test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: 'babel',   query: {presets: ['es2015']}},
-			{ test: /\.html$/, loader: 'html' },
-			{ test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000'}
-		]
-	},
-	plugins: [
-		new ExtractTextPlugin('[name].css', {
-			allChunks: true
-		})
-	]
+    entry: ["./js/app.js", "./css/main.scss"],
+    output: {
+        path: __dirname + "/build",
+        filename: "app.js",
+        publicPath: "/build"
+    },
+    module: {
+        loaders: [
+            { test: /\.(png|gif|ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader : 'file-loader' },
+            { test: /\.css$/, loader: "style!css" },
+            { test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: 'babel' },
+            { test: /node_modules[\\\/]admin-config[\\\/].*\.jsx?$/, loader: 'babel' },
+            { test: /\.html$/, loader: 'html' },
+            { test: /\.css$/, loader: ExtractTextPlugin.extract('css') },
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass') }
+        ]
+    },
+    plugins: [
+        new ExtractTextPlugin('[name].css', {
+            allChunks: true
+        })
+    ]
 };

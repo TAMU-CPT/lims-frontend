@@ -1,25 +1,17 @@
-# CPT LIMS Frontend
+# frontend-test
+An AngularJS frontend.
 
-A minimal React JS application to replace our awful Django LIMS
+## Startup
+Run the script to populate template:
+```console
+$ python script.py
+```
 
-## Usage
+Install requirements and run:
+```console
+$ npm install
+$ make run
+```
 
-__Install the dependencies:__
-
-`npm install`
-
-__Test:__
-
-`npm test`
-
-__Development mode with livereload:__
-
-`gulp watch`
-
-__When you are done, create a production ready version of the JS bundle:__
-
-`gulp build`
-
-## License
-
-[AGPL-3.0](http://opensource.org/licenses/AGPL-3.0)
+That's it! By default, your server will be running on port 10000 and pointing at
+port 8000 for the backend.
