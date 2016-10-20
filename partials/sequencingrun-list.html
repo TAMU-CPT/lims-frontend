@@ -1,57 +1,57 @@
 <style>
-    tbody .md-row:hover {
-        background-color: #fafafa;
-    }
-    tbody .md-row:focus {
-        outline:none;
-    }
-    [ng-click],
-    [data-ng-click],
-    [x-ng-click] {
-        cursor: pointer;
-    }
+	tbody .md-row:hover {
+	    background-color: #fafafa;
+	}
+	tbody .md-row:focus {
+	    outline:none;
+	}
+	[ng-click],
+	[data-ng-click],
+	[x-ng-click] {
+	    cursor: pointer;
+	}
 </style>
 <div class="container-fluid" layout="row" layout-align="center">
-    <md-card flex="50" flex-xs="100" flex-sm="75">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">SequencingRuns<span>
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-            <md-table-container>
-                <table md-table md-progress="promise">
-                    <thead md-head md-order="ordering" md-on-reorder="updateData">
-                        <tr md-row>
-                            <th md-column><span>methods</span></th>
-                            <th md-column><span>bioanalyzer_qc</span></th>
-                            <th md-column><span>date</span></th>
-                            <th md-column><span>galaxy_history</span></th>
-                            <th md-column><span>run_prep_spreadsheet</span></th>
-                            <th md-column><span>id</span></th>
-                            <th md-column><span>name</span></th>
-                        </tr>
-                    </thead>
-                    <tbody md-body>
-                        <tr md-row ng-repeat="sequencingrun in data" ng-click="go(sequencingrun.id)">
-                            <td md-cell>{{sequencingrun.methods}}</td>
-                            <td md-cell>{{sequencingrun.bioanalyzer_qc}}</td>
-                            <td md-cell>{{sequencingrun.date}}</td>
-                            <td md-cell>{{sequencingrun.galaxy_history}}</td>
-                            <td md-cell>{{sequencingrun.run_prep_spreadsheet}}</td>
-                            <td md-cell>{{sequencingrun.id}}</td>
-                            <td md-cell>{{sequencingrun.name}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </md-table-container>
-            <md-table-pagination
-                md-limit="query.limit"
-                md-page="query.page"
-                md-total="{{data.meta.count}}"
-                md-page-select="options.pageSelect"
-                md-on-paginate="updateData">
-            </md-table-pagination>
-        </md-card-content>
-    </md-card>
+	<md-card flex="50" flex-xs="100" flex-sm="75">
+	    <md-card-title>
+	        <md-card-title-text>
+	            <span class="md-headline">SequencingRuns<span>
+	        </md-card-title-text>
+	    </md-card-title>
+	    <md-card-content>
+	        <md-table-container>
+	            <table md-table md-progress="promise">
+	                <thead md-head md-order="ordering" md-on-reorder="updateData">
+	                    <tr md-row>
+	                        <th md-column><span>methods</span></th>
+	                        <th md-column><span>bioanalyzer_qc</span></th>
+	                        <th md-column><span>date</span></th>
+	                        <th md-column><span>galaxy_history</span></th>
+	                        <th md-column><span>run_prep_spreadsheet</span></th>
+	                        <th md-column><span>id</span></th>
+	                        <th md-column><span>name</span></th>
+	                    </tr>
+	                </thead>
+	                <tbody md-body>
+	                    <tr md-row ng-repeat="sequencingrun in data" ng-click="go(sequencingrun.id)">
+	                        <td md-cell>{{sequencingrun.methods}}</td>
+	                        <td md-cell>{{sequencingrun.bioanalyzer_qc}}</td>
+	                        <td md-cell>{{sequencingrun.date}}</td>
+	                        <td md-cell>{{sequencingrun.galaxy_history}}</td>
+	                        <td md-cell>{{sequencingrun.run_prep_spreadsheet}}</td>
+	                        <td md-cell>{{sequencingrun.id}}</td>
+	                        <td md-cell>{{sequencingrun.name}}</td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </md-table-container>
+	        <md-table-pagination
+	            md-limit="query.limit"
+	            md-page="query.page"
+	            md-total="{{data.meta.count}}"
+	            md-page-select="options.pageSelect"
+	            md-on-paginate="updateData">
+	        </md-table-pagination>
+	    </md-card-content>
+	</md-card>
 </div>
