@@ -8,7 +8,10 @@ import {render} from 'react-dom';
 import App from './App';
  //import Overview from './components/Overview';
 import Directory from './components/Directory/Index';
-import {FreezerList,FreezerDetail} from './components/LIMS/Freezers';
+
+import FreezerList from './components/LIMS/Freezer/List';
+import FreezerDetail from './components/LIMS/Freezer/Detail';
+
 import {BoxDetail} from './components/LIMS/Boxes';
 import {EnvSampleDetail, LysateDetail, DnaprepDetail} from './components/LIMS/Tubes';
 import {UserList,UserDetail} from './components/Directory/Users';

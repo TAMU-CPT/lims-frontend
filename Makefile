@@ -7,5 +7,5 @@ build:
 	./node_modules/.bin/webpack  --progress --colors
 
 run:
-	@echo "http://localhost:10000/webpack-dev-server/"
-	./node_modules/.bin/webpack-dev-server --progress --colors --devtool cheap-module-inline-source-map --hot --inline --host 0.0.0.0 --port 10000
+	@echo "http://localhost:10000/"
+	./node_modules/.bin/webpack-dev-server --progress --colors --devtool cheap-module-inline-source-map --hot --debug --inline --host 0.0.0.0 --port 10000
