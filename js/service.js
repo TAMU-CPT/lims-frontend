@@ -4,9 +4,9 @@ export default function(base) {
 			show: function(content) {
 			return $mdToast.show(
 			  $mdToast.simple()
-			    .content(content)
-			    .position('top right')
-			    .hideDelay(2000)
+				.content(content)
+				.position('top right')
+				.hideDelay(2000)
 			)}
 		};
 	});

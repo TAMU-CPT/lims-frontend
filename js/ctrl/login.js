@@ -6,22 +6,22 @@ export default function(base) {
 			$scope.userData = {};
 
 			$scope.saveData = function() {
-			    if ($scope.loginForm.$valid) {
-			        $http.post(DRF_URL + 'api-token-auth/', $scope.userData)
-			            .success(function(data) {
-			                $localStorage.jwtToken = data.token;
-			                $localStorage.jwtData = jwt_decode(data.token);
-			                $scope.nav.userData = $localStorage.jwtData;
-			                $mdLoginToast.show('Success');
-			                $location.path('/');
-			            })
-			            .error(function() {
-			                $mdLoginToast.show('Invalid Login');
-			            });
-			    }
-			    if ($scope.loginForm.$invalid) {
-			         console.log("invalid");
-			    }
+				if ($scope.loginForm.$valid) {
+					$http.post(DRF_URL + 'api-token-auth/', $scope.userData)
+						.success(function(data) {
+							$localStorage.jwtToken = data.token;
+							$localStorage.jwtData = jwt_decode(data.token);
+							$scope.nav.userData = $localStorage.jwtData;
+							$mdLoginToast.show('Success');
+							$location.path('/');
+						})
+						.error(function() {
+							$mdLoginToast.show('Invalid Login');
+						});
+				}
+				if ($scope.loginForm.$invalid) {
+					 console.log("invalid");
+				}
 			};
 	}]);
 }
