@@ -94,6 +94,34 @@ export default function(base) {
                     title: "Apps",
                     url: "#/apps",
                 },
+                {
+                    title: "Accounts",
+                    url: "#/accounts",
+                },
+                {
+                    title: "EmailConfirmations",
+                    url: "#/emailconfirmations",
+                },
+                {
+                    title: "SignupCodeResults",
+                    url: "#/signupcoderesults",
+                },
+                {
+                    title: "SignupCodes",
+                    url: "#/signupcodes",
+                },
+                {
+                    title: "EmailAddresses",
+                    url: "#/emailaddresses",
+                },
+                {
+                    title: "AccountDeletions",
+                    url: "#/accountdeletions",
+                },
+                {
+                    title: "AnonymousAccounts",
+                    url: "#/anonymousaccounts",
+                },
 // LOAD HOMEITEMS
             ];
     }]);

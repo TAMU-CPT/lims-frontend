@@ -43,7 +43,7 @@ def template_ctrl(model, c_type, app_name, path, plural):
                                " "*4 + "%s" % app_name + ".controller('%s', ['$scope','$location','$routeParams', 'Restangular'," % controller_name,
                                " "*8 + "function($scope, $location, $routeParams, Restangular) {"]))
 
-    with open('%s-template.js' % c_type.lower(), 'r') as template:
+    with open('templates/%s-template.js' % c_type.lower(), 'r') as template:
         content = template.read()
         content = content.replace('&app&', os.path.basename(os.path.dirname(os.path.expanduser(path))))
         content = content.replace('&l&', model.lower())
@@ -63,7 +63,15 @@ def parse_models(path):
                 models[i.name] = {}
                 for x in i.body:
                     if type(x) == _ast.Assign:
-                        models[i.name][x.targets[0].id] = x.value.func.attr
+                        var_name = x.targets[0].id
+
+                        func_name = None
+                        try:
+                            func_name = x.value.func.attr
+                        except Exception:
+                            func_name = x.value.func.id
+
+                        models[i.name][var_name] = func_name
     return models
 
 # modify app.js and create controllers and templates for list/detail views
@@ -109,7 +117,7 @@ def write_files(models, path):
                 detail_ctrl.write(template_ctrl(model, "Detail", app_name, path, plural))
 
             # create list and detail templates for each model
-            with open('list-template.html', 'r') as template:
+            with open('templates/list-template.html', 'r') as template:
                 with open('partials/%s-list.html' % model.lower(), 'w') as partial:
                     content = template.read()
                     content = content.replace('&c&', model)
@@ -119,7 +127,7 @@ def write_files(models, path):
                     content = content.replace('&rows&', write_rows(model))
                     partial.write(content)
 
-            with open('detail-template.html', 'r') as template:
+            with open('templates/detail-template.html', 'r') as template:
                 with open('partials/%s-detail.html' % model.lower(), 'w') as partial:
                     content = template.read()
                     content = content.replace('&c&', model)

@@ -4,6 +4,5 @@ export default function(base) {
             Restangular.one('bioproject/bioprojects', $routeParams.bioprojectID).get().then(function(data) {
                 $scope.bioproject = data;
             });
-
     }]);
 }

@@ -15,7 +15,7 @@
     <md-card flex="50" flex-xs="100" flex-sm="75">
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">EditingRoleGroups<span>
+                <span class="md-headline">EmailConfirmations<span>
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
@@ -23,16 +23,20 @@
                 <table md-table md-progress="promise">
                     <thead md-head md-order="ordering" md-on-reorder="updateData">
                         <tr md-row>
-                            <th md-column><span>role</span></th>
-                            <th md-column><span>group</span></th>
-                            <th md-column><span>bioproject</span></th>
+                            <th md-column><span>objects</span></th>
+                            <th md-column><span>email_address</span></th>
+                            <th md-column><span>key</span></th>
+                            <th md-column><span>sent</span></th>
+                            <th md-column><span>created</span></th>
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row ng-repeat="editingrolegroup in data" ng-click="go(editingrolegroup.id)">
-                            <td md-cell>{{editingrolegroup.role}}</td>
-                            <td md-cell>{{editingrolegroup.group}}</td>
-                            <td md-cell>{{editingrolegroup.bioproject}}</td>
+                        <tr md-row ng-repeat="emailconfirmation in data" ng-click="go(emailconfirmation.id)">
+                            <td md-cell>{{emailconfirmation.objects}}</td>
+                            <td md-cell>{{emailconfirmation.email_address}}</td>
+                            <td md-cell>{{emailconfirmation.key}}</td>
+                            <td md-cell>{{emailconfirmation.sent}}</td>
+                            <td md-cell>{{emailconfirmation.created}}</td>
                         </tr>
                     </tbody>
                 </table>

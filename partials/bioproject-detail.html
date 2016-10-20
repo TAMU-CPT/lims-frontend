@@ -1,26 +1,26 @@
 <div layout="row" layout-align="center center">
-    <md-card>
-        <md-card-header>
-            <md-card-header-text>
-                <span class="md-title">Bioproject</span>
-                <span flex class="md-subhead">{{bioproject.id}}</span>
-            </md-card-header-text>
-        </md-card-header>
-        <md-card-content>
-            <div layout="column">
-                <md-input-container flex>
-                    <label>name</label>
-                    <input disabled ng-model="bioproject.name">
-                </md-input-container>
-                <md-input-container flex>
-                    <label>date</label>
-                    <input disabled ng-model="bioproject.date">
-                </md-input-container>
-                <md-input-container flex>
-                    <label>description</label>
-                    <input disabled ng-model="bioproject.description">
-                </md-input-container>
-            </div>
-        </md-card-content>
-    </md-card>
+	<md-card flex=40>
+		<md-card-header>
+			<md-card-header-text>
+				<span class="md-title">{{ bioproject.name }}</span>
+				<span flex class="md-subhead">Created {{bioproject.date}}</span>
+			</md-card-header-text>
+		</md-card-header>
+		<md-card-content>
+			<div layout="column">
+				<md-input-container flex>
+					<label>name</label>
+					<input disabled ng-model="bioproject.name">
+				</md-input-container>
+				<md-input-container flex>
+					<label>date</label>
+					<input disabled ng-model="bioproject.date">
+				</md-input-container>
+				<md-input-container flex>
+					<label>description</label>
+					<input disabled ng-model="bioproject.description">
+				</md-input-container>
+			</div>
+		</md-card-content>
+	</md-card>
 </div>

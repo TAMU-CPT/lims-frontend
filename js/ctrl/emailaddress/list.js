@@ -1,8 +1,8 @@
 export default function(base) {
-    base.controller('EditingRoleGroupListCtrl', ['$scope','$location','$routeParams', 'Restangular',
+    base.controller('EmailAddressListCtrl', ['$scope','$location','$routeParams', 'Restangular',
         function($scope, $location, $routeParams, Restangular) {
             $scope.go = function(id) {
-                $location.path('/editingrolegroups/' + id);;
+                $location.path('/emailaddresses/' + id);;
             };
 
             //uncomment if ordering filter is implemented in backend
@@ -14,7 +14,7 @@ export default function(base) {
                 }
                 //uncomment if ordering filter is implemented in backend
                 //$scope.query.ordering = $scope.ordering;
-                $scope.promise = Restangular.all('bioproject/editingrolegroups').getList($scope.query).then(function(data) {
+                $scope.promise = Restangular.all('account/emailaddresses').getList($scope.query).then(function(data) {
                     $scope.data = data;
                 });
             };

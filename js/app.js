@@ -33,30 +33,14 @@ base.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarS
     function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider, DRF_URL) {
         gravatarServiceProvider.defaults = {
           size     : 100,
-          "default": 'mm'  // Mystery man as default for missing avatars
+          "default": 'mm'  // Mystery (wo)man as default for missing avatars
         };
         gravatarServiceProvider.secure = true;
         gravatarServiceProvider.protocol = 'my-protocol';
         $mdThemingProvider.theme('default')
-            .primaryPalette('blue')
-            .accentPalette('pink');
+            .primaryPalette('pink')
+            .accentPalette('grey');
         $routeProvider.
-            when('/editingroleusers', {
-                templateUrl: 'partials/editingroleuser-list.html',
-                controller: 'EditingRoleUserListCtrl'
-            }).
-            when('/editingroleusers/:editingroleuserID', {
-                templateUrl: 'partials/editingroleuser-detail.html',
-                controller: 'EditingRoleUserDetailCtrl'
-            }).
-            when('/editingrolegroups', {
-                templateUrl: 'partials/editingrolegroup-list.html',
-                controller: 'EditingRoleGroupListCtrl'
-            }).
-            when('/editingrolegroups/:editingrolegroupID', {
-                templateUrl: 'partials/editingrolegroup-detail.html',
-                controller: 'EditingRoleGroupDetailCtrl'
-            }).
             when('/bioprojects', {
                 templateUrl: 'partials/bioproject-list.html',
                 controller: 'BioprojectListCtrl'
@@ -65,6 +49,7 @@ base.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarS
                 templateUrl: 'partials/bioproject-detail.html',
                 controller: 'BioprojectDetailCtrl'
             }).
+
             when('/persontags', {
                 templateUrl: 'partials/persontag-list.html',
                 controller: 'PersonTagListCtrl'
@@ -225,6 +210,62 @@ base.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarS
                 templateUrl: 'partials/app-detail.html',
                 controller: 'AppDetailCtrl'
             }).
+            when('/accounts', {
+                templateUrl: 'partials/account-list.html',
+                controller: 'AccountListCtrl'
+            }).
+            when('/accounts/:accountID', {
+                templateUrl: 'partials/account-detail.html',
+                controller: 'AccountDetailCtrl'
+            }).
+            when('/emailconfirmations', {
+                templateUrl: 'partials/emailconfirmation-list.html',
+                controller: 'EmailConfirmationListCtrl'
+            }).
+            when('/emailconfirmations/:emailconfirmationID', {
+                templateUrl: 'partials/emailconfirmation-detail.html',
+                controller: 'EmailConfirmationDetailCtrl'
+            }).
+            when('/signupcoderesults', {
+                templateUrl: 'partials/signupcoderesult-list.html',
+                controller: 'SignupCodeResultListCtrl'
+            }).
+            when('/signupcoderesults/:signupcoderesultID', {
+                templateUrl: 'partials/signupcoderesult-detail.html',
+                controller: 'SignupCodeResultDetailCtrl'
+            }).
+            when('/signupcodes', {
+                templateUrl: 'partials/signupcode-list.html',
+                controller: 'SignupCodeListCtrl'
+            }).
+            when('/signupcodes/:signupcodeID', {
+                templateUrl: 'partials/signupcode-detail.html',
+                controller: 'SignupCodeDetailCtrl'
+            }).
+            when('/emailaddresses', {
+                templateUrl: 'partials/emailaddress-list.html',
+                controller: 'EmailAddressListCtrl'
+            }).
+            when('/emailaddresses/:emailaddressID', {
+                templateUrl: 'partials/emailaddress-detail.html',
+                controller: 'EmailAddressDetailCtrl'
+            }).
+            when('/accountdeletions', {
+                templateUrl: 'partials/accountdeletion-list.html',
+                controller: 'AccountDeletionListCtrl'
+            }).
+            when('/accountdeletions/:accountdeletionID', {
+                templateUrl: 'partials/accountdeletion-detail.html',
+                controller: 'AccountDeletionDetailCtrl'
+            }).
+            when('/anonymousaccounts', {
+                templateUrl: 'partials/anonymousaccount-list.html',
+                controller: 'AnonymousAccountListCtrl'
+            }).
+            when('/anonymousaccounts/:anonymousaccountID', {
+                templateUrl: 'partials/anonymousaccount-detail.html',
+                controller: 'AnonymousAccountDetailCtrl'
+            }).
 // LOAD ROUTES
             when('/login', {
                 templateUrl: 'partials/login.html',
@@ -300,10 +341,6 @@ require('./ctrl/home.js')(base);
 require('./ctrl/nav.js')(base);
 require('./ctrl/login.js')(base);
 require('./ctrl/logout.js')(base);
-require('./ctrl/editingroleuser/list.js')(base);
-require('./ctrl/editingroleuser/detail.js')(base);
-require('./ctrl/editingrolegroup/list.js')(base);
-require('./ctrl/editingrolegroup/detail.js')(base);
 require('./ctrl/bioproject/list.js')(base);
 require('./ctrl/bioproject/detail.js')(base);
 require('./ctrl/persontag/list.js')(base);
@@ -346,4 +383,18 @@ require('./ctrl/bacteria/list.js')(base);
 require('./ctrl/bacteria/detail.js')(base);
 require('./ctrl/app/list.js')(base);
 require('./ctrl/app/detail.js')(base);
+require('./ctrl/account/list.js')(base);
+require('./ctrl/account/detail.js')(base);
+require('./ctrl/emailconfirmation/list.js')(base);
+require('./ctrl/emailconfirmation/detail.js')(base);
+require('./ctrl/signupcoderesult/list.js')(base);
+require('./ctrl/signupcoderesult/detail.js')(base);
+require('./ctrl/signupcode/list.js')(base);
+require('./ctrl/signupcode/detail.js')(base);
+require('./ctrl/emailaddress/list.js')(base);
+require('./ctrl/emailaddress/detail.js')(base);
+require('./ctrl/accountdeletion/list.js')(base);
+require('./ctrl/accountdeletion/detail.js')(base);
+require('./ctrl/anonymousaccount/list.js')(base);
+require('./ctrl/anonymousaccount/detail.js')(base);
 // REQUIRE

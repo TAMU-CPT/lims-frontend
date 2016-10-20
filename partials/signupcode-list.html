@@ -1,0 +1,61 @@
+<style>
+    tbody .md-row:hover {
+        background-color: #fafafa;
+    }
+    tbody .md-row:focus {
+        outline:none;
+    }
+    [ng-click],
+    [data-ng-click],
+    [x-ng-click] {
+        cursor: pointer;
+    }
+</style>
+<div class="container-fluid" layout="row" layout-align="center">
+    <md-card flex="50" flex-xs="100" flex-sm="75">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">SignupCodes<span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <md-table-container>
+                <table md-table md-progress="promise">
+                    <thead md-head md-order="ordering" md-on-reorder="updateData">
+                        <tr md-row>
+                            <th md-column><span>code</span></th>
+                            <th md-column><span>created</span></th>
+                            <th md-column><span>notes</span></th>
+                            <th md-column><span>expiry</span></th>
+                            <th md-column><span>use_count</span></th>
+                            <th md-column><span>max_uses</span></th>
+                            <th md-column><span>inviter</span></th>
+                            <th md-column><span>email</span></th>
+                            <th md-column><span>sent</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row ng-repeat="signupcode in data" ng-click="go(signupcode.id)">
+                            <td md-cell>{{signupcode.code}}</td>
+                            <td md-cell>{{signupcode.created}}</td>
+                            <td md-cell>{{signupcode.notes}}</td>
+                            <td md-cell>{{signupcode.expiry}}</td>
+                            <td md-cell>{{signupcode.use_count}}</td>
+                            <td md-cell>{{signupcode.max_uses}}</td>
+                            <td md-cell>{{signupcode.inviter}}</td>
+                            <td md-cell>{{signupcode.email}}</td>
+                            <td md-cell>{{signupcode.sent}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination
+                md-limit="query.limit"
+                md-page="query.page"
+                md-total="{{data.meta.count}}"
+                md-page-select="options.pageSelect"
+                md-on-paginate="updateData">
+            </md-table-pagination>
+        </md-card-content>
+    </md-card>
+</div>
