@@ -13,7 +13,6 @@ require('angular-animate');
 require('jquery');
 require('ngstorage');
 require('angular-jwt');
-require('ns-popover');
 var moment = require('moment');
 
 var base = angular.module('base', [
@@ -25,7 +24,6 @@ var base = angular.module('base', [
 	'ngMessages',
 	'ngAnimate',
 	'md.data.table',
-	'nsPopover',
 	'ngStorage' // https://github.com/gsklee/ngStorage
 ]);
 
