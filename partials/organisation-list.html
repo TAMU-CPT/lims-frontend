@@ -10,6 +10,9 @@
 	[x-ng-click] {
 		cursor: pointer;
 	}
+	.md-chips md-chip {
+		padding: 0px;
+	}
 </style>
 <div class="container-fluid" layout="row" layout-align="center">
 	<md-card flex="50" flex-xs="100" flex-sm="75">
@@ -23,22 +26,28 @@
 				<table md-table md-progress="promise">
 					<thead md-head md-order="ordering" md-on-reorder="updateData">
 						<tr md-row>
-							<th md-column><span>phone_number</span></th>
-							<th md-column><span>website</span></th>
-							<th md-column><span>name</span></th>
-							<th md-column><span>fax_number</span></th>
-							<th md-column><span>emails</span></th>
-							<th md-column><span>street_address</span></th>
+							<th md-column><span>Name</span></th>
+							<th md-column><span>Members</span></th>
 						</tr>
 					</thead>
 					<tbody md-body>
-						<tr md-row ng-repeat="organisation in data" ng-click="go(organisation.id)">
-							<td md-cell>{{organisation.phone_number}}</td>
-							<td md-cell>{{organisation.website}}</td>
-							<td md-cell>{{organisation.name}}</td>
-							<td md-cell>{{organisation.fax_number}}</td>
-							<td md-cell>{{organisation.emails}}</td>
-							<td md-cell>{{organisation.street_address}}</td>
+						<tr md-row ng-repeat="org in data" ng-click="go(org.id)">
+							<td md-cell>{{org.name}}</td>
+							<td md-cell>
+								<md-chips ng-model="org.members" readonly="true">
+									<md-chip-template>
+										<span ng-if="!$chip.extra">
+											<img gravatar-src="$chip.email" gravatar-size="32" style="border-radius: 50%">
+											<md-tooltip>
+												{{ $chip.name }}
+											</md-tooltip>
+										</span>
+										<span ng-if="$chip.extra" style="padding: 0 12px 0 12px">
+											{{ $chip.extra }}
+										</span>
+									</md-chip-template>
+								</md-chips>
+							</td>
 						</tr>
 					</tbody>
 				</table>

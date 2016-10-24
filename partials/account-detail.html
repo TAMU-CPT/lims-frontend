@@ -1,62 +1,123 @@
-<div layout="row" layout-align="center center">
-	<md-card>
-		<md-card-header>
-			<md-card-header-text>
-				<span class="md-title">Account</span>
-				<span flex class="md-subhead">{{account.id}}</span>
-			</md-card-header-text>
-		</md-card-header>
+<div layout="row" layout-align="center" flex>
+	<md-card flex="30">
+		<md-toolbar layout="row" class="md-hue-2">
+			<div class="md-toolbar-tools" flex>
+				<span>{{ account.name }}</span>
+				<span flex></span>
+				<!-- TODO: Show if user -->
+				<md-button class="md-icon-button" aria-label="Edit User Information" ng-click="edit_user()" ng-if="disabled">
+					<ng-md-icon icon="edit"></ng-md-icon>
+				</md-button>
+				<md-button class="md-icon-button" aria-label="Save Changes" ng-click="edit_user_save()" ng-if="!disabled">
+					<ng-md-icon icon="save"></ng-md-icon>
+				</md-button>
+				<md-button class="md-icon-button" aria-label="Cancel Changes" ng-click="edit_user_cancel()" ng-if="!disabled">
+					<ng-md-icon icon="cancel"></ng-md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
 		<md-card-content>
 			<div layout="column">
-				<md-input-container flex>
-					<label>phone_number</label>
-					<input disabled ng-model="account.phone_number">
-				</md-input-container>
-				<md-input-container flex>
-					<label>name</label>
-					<input disabled ng-model="account.name">
-				</md-input-container>
-				<md-input-container flex>
-					<label>language</label>
-					<input disabled ng-model="account.language">
-				</md-input-container>
-				<md-input-container flex>
-					<label>netid</label>
-					<input disabled ng-model="account.netid">
-				</md-input-container>
-				<md-input-container flex>
-					<label>tags</label>
-					<input disabled ng-model="account.tags">
-				</md-input-container>
-				<md-input-container flex>
-					<label>theme</label>
-					<input disabled ng-model="account.theme">
-				</md-input-container>
-				<md-input-container flex>
-					<label>original_id</label>
-					<input disabled ng-model="account.original_id">
-				</md-input-container>
-				<md-input-container flex>
-					<label>user</label>
-					<input disabled ng-model="account.user">
-				</md-input-container>
-				<md-input-container flex>
-					<label>orcid</label>
-					<input disabled ng-model="account.orcid">
-				</md-input-container>
-				<md-input-container flex>
-					<label>timezone</label>
-					<input disabled ng-model="account.timezone">
-				</md-input-container>
-				<md-input-container flex>
-					<label>nickname</label>
-					<input disabled ng-model="account.nickname">
-				</md-input-container>
-				<md-input-container flex>
-					<label>initials</label>
-					<input disabled ng-model="account.initials">
-				</md-input-container>
+				<img gravatar-src="account.email" gravatar-size="128" width=128 height=128>
+				<h3>Information</h3>
+				<div ng-if="disabled">
+					<table>
+						<tbody>
+							<tr>
+								<td><b>Name:</b></td>
+								<td>{{ account.name }}</td>
+							</tr>
+							<tr>
+								<td><b>Phone:</b></td>
+								<td>
+									<a href="tel:{{ account.phone_number }}">
+									{{ account.phone_number }}
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Email:</b></td>
+								<td>
+									<a href="mailto:{{ account.netid }}@tamu.edu">
+									{{ account.netid }}@tamu.edu
+									</a>
+								</td>
+							</tr>
+							<tr ng-if="account.orcid">
+								<td><b>ORCID:</b></td>
+								<td>
+									<a href="https://orcid.org/{{ account.orcid }}">
+										{{ account.orcid }}
+									</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div ng-if="!disabled">
+					<md-input-container flex>
+						<label>name</label>
+						<input ng-disabled="disabled" ng-model="account.name">
+					</md-input-container>
+					<md-input-container flex>
+						<label>phone_number</label>
+						<input ng-disabled="disabled" ng-model="account.phone_number">
+					</md-input-container>
+					<md-input-container flex>
+						<label>netid</label>
+						<input ng-disabled="disabled" ng-model="account.netid">
+					</md-input-container>
+					<md-input-container flex>
+						<label>orcid</label>
+						<input ng-disabled="disabled" ng-model="account.orcid">
+					</md-input-container>
+					<md-input-container flex>
+						<label>Preferred Name</label>
+						<input ng-disabled="disabled" ng-model="account.nickname">
+					</md-input-container>
+					<md-input-container flex>
+						<label>Initials</label>
+						<input md-maxlength="16" required ng-disabled="disabled" ng-model="account.initials" />
+						<div>
+							Must be in PubMed style, i.e. First initial + Middle Initials, do not include initials for last name, no periods.
+						</div>
+					</md-input-container>
+
+					<h3>Personalisation</h3>
+					<md-input-container flex ng-if="self">
+						<label>language</label>
+						<input ng-disabled="disabled" ng-model="account.language">
+					</md-input-container>
+
+					<md-input-container flex>
+						<label>theme</label>
+						<input ng-disabled="disabled" ng-model="account.theme">
+					</md-input-container>
+					<md-input-container flex>
+						<label>timezone</label>
+						<input ng-disabled="disabled" ng-model="account.timezone">
+					</md-input-container>
+				</div>
+				<h3>Organizations</h3>
+				<md-list flex>
+					<md-list-item ng-repeat="org in account.orgs" ng-href="#/organisations/{{org.id}}">
+						<ng-md-icon icon="domain"></ng-md-icon>
+						<p style="padding-left:1em">{{ org.name }}</p>
+						<md-divider ng-if="!$last"></md-divider>
+					</md-list-item>
+				</md-list>
+
 			</div>
+		</md-card-content>
+	</md-card>
+	<md-card flex="70">
+		<md-toolbar layout="row" class="md-hue-3">
+			<div class="md-toolbar-tools" flex>
+				<span>Activity</span>
+			</div>
+		</md-toolbar>
+		<md-card-content>
+			asdf
 		</md-card-content>
 	</md-card>
 </div>

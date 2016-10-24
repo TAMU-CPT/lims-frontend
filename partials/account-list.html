@@ -23,34 +23,12 @@
 				<table md-table md-progress="promise">
 					<thead md-head md-order="ordering" md-on-reorder="updateData">
 						<tr md-row>
-							<th md-column><span>phone_number</span></th>
-							<th md-column><span>name</span></th>
-							<th md-column><span>language</span></th>
-							<th md-column><span>netid</span></th>
-							<th md-column><span>tags</span></th>
-							<th md-column><span>theme</span></th>
-							<th md-column><span>original_id</span></th>
-							<th md-column><span>user</span></th>
-							<th md-column><span>orcid</span></th>
-							<th md-column><span>timezone</span></th>
-							<th md-column><span>nickname</span></th>
-							<th md-column><span>initials</span></th>
+							<th md-column><span>Name</span></th>
 						</tr>
 					</thead>
 					<tbody md-body>
 						<tr md-row ng-repeat="account in data" ng-click="go(account.id)">
-							<td md-cell>{{account.phone_number}}</td>
 							<td md-cell>{{account.name}}</td>
-							<td md-cell>{{account.language}}</td>
-							<td md-cell>{{account.netid}}</td>
-							<td md-cell>{{account.tags}}</td>
-							<td md-cell>{{account.theme}}</td>
-							<td md-cell>{{account.original_id}}</td>
-							<td md-cell>{{account.user}}</td>
-							<td md-cell>{{account.orcid}}</td>
-							<td md-cell>{{account.timezone}}</td>
-							<td md-cell>{{account.nickname}}</td>
-							<td md-cell>{{account.initials}}</td>
 						</tr>
 					</tbody>
 				</table>

@@ -15,7 +15,14 @@ export default function(base) {
 				//uncomment if ordering filter is implemented in backend
 				//$scope.query.ordering = $scope.ordering;
 				$scope.promise = Restangular.all('directory/organisations').getList($scope.query).then(function(data) {
-					$scope.data = data;
+					$scope.data = data.map(function(obj, idx){
+						if(obj.members_size > obj.members.length){
+							obj.members.push({
+								extra: '+' + (obj.members_size - obj.members.length)
+							});
+						}
+						return obj;
+					});
 				});
 			};
 

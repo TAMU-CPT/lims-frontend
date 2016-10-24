@@ -3,13 +3,31 @@ export default function(base) {
 		function($scope, $location) {
 			$scope.home = [
 				{
-					title: "Bioprojects",
-					url: "#/bioprojects",
+					hue: 3,
+					name: "Biological Data",
+					routes: [
+						{
+							title: "Bioprojects",
+							url: "#/bioprojects",
+						},
+					]
 				},
-				//{
-					//title: "Organisations",
-					//url: "#/organisations",
-				//},
+				{
+					hue: 2,
+					name: "Directory Services",
+					routes: [
+						{
+							title: "Organizations",
+							url: "#/organisations",
+						},
+						{
+							title: "People",
+							url: "#/accounts",
+						},
+					]
+				}
+			];
+			//$scope.home = [
 				//{
 					//title: "Boxs",
 					//url: "#/boxs",
@@ -110,6 +128,6 @@ export default function(base) {
 					//title: "AnonymousAccounts",
 					//url: "#/anonymousaccounts",
 				//},
-			];
+			//];
 	}]);
 }
