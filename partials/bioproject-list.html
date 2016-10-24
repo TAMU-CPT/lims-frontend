@@ -15,7 +15,15 @@
 	<md-card flex="50" flex-xs="100" flex-sm="75">
 		<md-card-title>
 			<md-card-title-text>
-				<span class="md-headline">Bioprojects<span>
+				<div layout="row">
+					<span class="md-headline">BioProjects</span>
+					<span flex></span>
+					<span>
+						<md-button class="md-icon-button" aria-label="Add BioProject" ng-click="choice_popup()">
+							<ng-md-icon icon="add" "fill: white" ></ng-md-icon>
+						</md-button>
+					</span>
+				</div>
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
@@ -46,4 +54,44 @@
 			</md-table-pagination>
 		</md-card-content>
 	</md-card>
+</div>
+
+<div style="visibility: hidden">
+	<div class="md-dialog-container" id="create">
+		<md-dialog>
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<span class="md-headline">Create a BioProject</span>
+					<span flex></span>
+					<md-button ng-click="cancel()" aria-label="close" class="md-icon-button">
+						<ng-md-icon icon="close" "fill: white" ></ng-md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+			<md-card style="margin:0">
+				<md-card-content layout="column">
+					<form name="createBioProjectForm">
+						<md-input-container class="md-block">
+							<label>Name</label>
+							<input md-maxlength="32" required name="name" ng-model="createData.name">
+							<div ng-messages="createBioProjectForm.description.$error">
+								<div ng-message="required">This is required.</div>
+								<div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+							</div>
+						</md-input-container>
+
+						<md-input-container class="md-block">
+							<label>Description</label>
+							<textarea name="description" ng-model="createData.description"></textarea>
+						</md-input-container>
+
+						<div>
+							<md-button class="md-primary"           ng-click="cancel()">Cancel</md-button>
+							<md-button class="md-primary md-raised" ng-click="create()">Create</md-button>
+						</div>
+					</form>
+				</md-card-content>
+			</md-card>
+		</md-dialog>
+	</div>
 </div>
