@@ -27,8 +27,9 @@ var base = angular.module('base', [
 	'ngStorage' // https://github.com/gsklee/ngStorage
 ]);
 
-base.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarServiceProvider', 'RestangularProvider', 'DRF_URL',
-	function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider, DRF_URL) {
+base.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarServiceProvider', 'RestangularProvider', 'DRF_URL', '$compileProvider',
+	function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider, DRF_URL, $compileProvider) {
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftps?|sftp|http|mailto|fax|tel):/);
 		gravatarServiceProvider.defaults = {
 		  size	 : 100,
 		  "default": 'mm'  // Mystery (wo)man as default for missing avatars
