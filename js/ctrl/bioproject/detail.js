@@ -69,7 +69,24 @@ export default function(base) {
 				$mdDialog.cancel();
 			};
 
-
+			// TODO: Implementing searching
+			// ShareData
+			$scope.share = {
+				shareWith: [],
+				searchText: "",
+				querySearchUser: function(queryString){
+					return Restangular.all("account").customGET("accounts", {name: queryString}).then(function(data){
+						console.log(data.results);
+						return data.results
+					});
+				},
+				querySearchGroup: function(queryString){
+					return Restangular.all("directory").customGET("groups", {name: queryString}).then(function(data){
+						console.log(data.results);
+						return data.results
+					});
+				}
+			};
 
 			$scope.go_user = function(id){
 				$location.path('/accounts/' + id);

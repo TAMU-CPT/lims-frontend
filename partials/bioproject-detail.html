@@ -132,29 +132,52 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 		<md-dialog>
 			<md-toolbar>
 				<div class="md-toolbar-tools">
-					<span class="md-headline">Create a BioProject</span>
+					<span class="md-headline">Share</span>
 					<span flex></span>
-					<md-button ng-click="cancel()" aria-label="close" class="md-icon-button">
-						<ng-md-icon icon="close" "fill: white" ></ng-md-icon>
+					<md-button ng-click="popup_cancel()" aria-label="close" class="md-icon-button">
+						<ng-md-icon icon="close"></ng-md-icon>
 					</md-button>
 				</div>
 			</md-toolbar>
 			<md-card style="margin:0">
 				<md-card-content layout="column">
-					<form name="createBioProjectForm">
-						<md-input-container class="md-block">
-							<label>Name</label>
-							<input md-maxlength="32" required name="name" ng-model="createData.name">
-							<div ng-messages="createBioProjectForm.description.$error">
-								<div ng-message="required">This is required.</div>
-								<div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
-							</div>
-						</md-input-container>
+					<form name="shareForm">
+<pre>
+{{ share | json }}
+</pre>
 
-						<md-input-container class="md-block">
-							<label>Description</label>
-							<textarea name="description" ng-model="createData.description"></textarea>
-						</md-input-container>
+<!--md-autocomplete-snap="" md-transform-chip="ctrl.transformChip($chip)" -->
+
+						<md-chips ng-model="share.shareWith" md-require-match="true">
+							<md-autocomplete
+									md-selected-item="share.selectedItem"
+									md-search-text="share.searchText"
+									md-items="item in share.querySearchGroup(share.searchText)"
+									md-item-text="item.name" placeholder="Search for a user or group">
+								<span md-highlight-text="share.searchText">{{item.name}}</span>
+							</md-autocomplete>
+							<md-chip-template>
+								<span>
+									<strong>{{$chip.name}}</strong>
+								</span>
+							</md-chip-template>
+						</md-chips>
+
+
+
+						<!--<md-input-container class="md-block">-->
+							<!--<label>Name</label>-->
+							<!--<input md-maxlength="32" required name="name" ng-model="createData.name">-->
+							<!--<div ng-messages="createBioProjectForm.description.$error">-->
+								<!--<div ng-message="required">This is required.</div>-->
+								<!--<div ng-message="md-maxlength">The description must be less than 30 characters long.</div>-->
+							<!--</div>-->
+						<!--</md-input-container>-->
+
+						<!--<md-input-container class="md-block">-->
+							<!--<label>Description</label>-->
+							<!--<textarea name="description" ng-model="createData.description"></textarea>-->
+						<!--</md-input-container>-->
 
 						<div>
 							<md-button class="md-primary"           ng-click="popup_cancel()">

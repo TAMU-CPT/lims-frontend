@@ -10,12 +10,27 @@
 	[x-ng-click] {
 		cursor: pointer;
 	}
+
+md-card-title md-input-container {
+	margin: 0px
+}
+
+md-card-title md-input-container input {
+	margin-left: 0px;
+	padding-left: 36px !important;
+}
 </style>
 <div class="container-fluid" layout="row" layout-align="center">
 	<md-card flex="50" flex-xs="100" flex-sm="75">
 		<md-card-title>
-			<md-card-title-text>
-				<span class="md-headline">Phages<span>
+			<md-card-title-text flex layout="row">
+				<span class="md-headline">Phages</span>
+				<span flex></span>
+				<md-input-container md-no-float>
+					<ng-md-icon icon="search"></ng-md-icon>
+					<input style=""
+					ng-model="search_input"  placeholder="Search" ng-change="updateData(search_input)" ng-model-options="{debounce: 500}">
+				</md-input-container>
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
@@ -23,14 +38,16 @@
 				<table md-table md-progress="promise">
 					<thead md-head md-order="ordering" md-on-reorder="updateData">
 						<tr md-row>
-							<th md-column><span>historical_names</span></th>
-							<th md-column><span>primary_name</span></th>
+							<th md-column><span>ID</span></th>
+							<th md-column><span>Name</span></th>
+							<th md-column><span>Historical names</span></th>
 						</tr>
 					</thead>
 					<tbody md-body>
 						<tr md-row ng-repeat="phage in data" ng-click="go(phage.id)">
-							<td md-cell>{{phage.historical_names}}</td>
+							<td md-cell>P{{phage.id}}</td>
 							<td md-cell>{{phage.primary_name}}</td>
+							<td md-cell>{{phage.historical_names}}</td>
 						</tr>
 					</tbody>
 				</table>
