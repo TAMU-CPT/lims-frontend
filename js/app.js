@@ -37,8 +37,8 @@ base.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarS
 		gravatarServiceProvider.secure = true;
 		gravatarServiceProvider.protocol = 'my-protocol';
 		$mdThemingProvider.theme('default')
-			.primaryPalette('pink')
-			.accentPalette('grey');
+			.primaryPalette('grey')
+			.accentPalette('blue');
 		$routeProvider.
 			when('/bioprojects', {
 				templateUrl: 'partials/bioproject-list.html',

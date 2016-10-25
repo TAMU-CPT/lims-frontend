@@ -3,6 +3,7 @@ export default function(base) {
 		function($scope, $location, $routeParams, Restangular, PERMISSION_LEVELS, $mdDialog) {
 			$scope.disabled = true;
 			$scope.disabled_samples = true;
+			$scope.permissions = PERMISSION_LEVELS;
 
 			// Project Info
 			$scope.edit_data = function() {
@@ -94,7 +95,6 @@ export default function(base) {
 
 			Restangular.one('bioproject/bioprojects', $routeParams.bioprojectID).get().then(function(data) {
 				$scope.data = data;
-				$scope.permissions = PERMISSION_LEVELS;
 				$scope.original_data = angular.copy(data);
 			});
 	}]);
