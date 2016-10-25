@@ -1,59 +1,172 @@
+<style type="text/css">
+.s48 {
+	fill: #444444;
+	margin: 0px;
+}
+md-chips.md-default-theme .md-chips, md-chips .md-chips {
+	box-shadow: none !important;
+}
+</style>
 <div layout="row" layout-align="center">
 	<div flex=40>
 		<md-card>
+			<md-toolbar layout="row" class="md-hue-2">
+				<div class="md-toolbar-tools" flex>
+					<span class="md-title">{{ data.name }}</span>
+					<span flex></span>
+					<!-- TODO: Show if user -->
+					<md-button class="md-icon-button" aria-label="Edit User Information" ng-click="edit_data()" ng-if="disabled">
+						<ng-md-icon icon="edit"></ng-md-icon>
+					</md-button>
+					<md-button class="md-icon-button" aria-label="Delete Phage" ng-click="edit_data_delete()" ng-if="!disabled">
+						<ng-md-icon icon="delete"></ng-md-icon>
+					</md-button>
+					<md-button class="md-icon-button" aria-label="Save Changes" ng-click="edit_data_save()" ng-if="!disabled">
+						<ng-md-icon icon="save"></ng-md-icon>
+					</md-button>
+					<md-button class="md-icon-button" aria-label="Cancel Changes" ng-click="edit_data_cancel()" ng-if="!disabled">
+						<ng-md-icon icon="cancel"></ng-md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
 			<md-card-header>
 				<md-card-header-text>
-					<span class="md-title">{{ bioproject.name }}</span>
-					<span flex class="md-subhead">Created {{bioproject.date}}</span>
+					<span flex class="md-subhead">Created {{data.date}}</span>
 				</md-card-header-text>
 			</md-card-header>
 			<md-card-content>
 				<div layout="column">
 					<md-input-container flex>
 						<label>name</label>
-						<input disabled ng-model="bioproject.name">
-					</md-input-container>
-					<md-input-container flex>
-						<label>date</label>
-						<input disabled ng-model="bioproject.date">
+						<input ng-disabled="disabled" ng-model="data.name">
 					</md-input-container>
 					<md-input-container flex>
 						<label>description</label>
-						<input disabled ng-model="bioproject.description">
+						<input ng-disabled="disabled" ng-model="data.description">
 					</md-input-container>
 				</div>
 			</md-card-content>
 		</md-card>
 		<md-card>
-			<md-card-header>
-				<md-card-header-text>
+			<md-toolbar layout="row" class="md-hue-3">
+				<div class="md-toolbar-tools" flex>
 					<span class="md-title">Access &amp; Sharing</span>
-				</md-card-header-text>
-			</md-card-header>
+					<span flex></span>
+					<!-- TODO: Show if user -->
+					<md-button class="md-icon-button" aria-label="Share" ng-click="popup_share()">
+						<ng-md-icon icon="share"></ng-md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
 			<md-card-content>
 				<b>Groups</b>
-				<div ng-repeat="group in bioproject.editingrolegroup_set">
-					{{ group }}
-				</div>
+				<md-chips ng-model="data.editingrolegroup_set" readonly="true">
+					<md-chip-template>
+						<ng-md-icon icon="{{ $chip.role | role_icon }}"></ng-md-icon>
+						{{ $chip.group.name }}
+					</md-chip-template>
+				</md-chips>
+
 				<b>Users</b>
-				<div ng-repeat="user in bioproject.editingroleuser_set">
-					{{ user }}
-				</div>
+				<md-chips ng-model="data.editingroleuser_set" readonly="true">
+					<md-chip-template ng-click="go_user($chip.user.id)">
+						<ng-md-icon icon="{{ $chip.role | role_icon }}"></ng-md-icon>
+						{{ $chip.user.name }}
+					</md-chip-template>
+				</md-chips>
 			</md-card-content>
 		</md-card>
 	</div>
 	<div flex=60>
 		<md-card>
-			<md-card-header>
-				<md-card-header-text>
-					<span class="md-title">Samples</span>
-				</md-card-header-text>
-			</md-card-header>
-			<md-card-content>
-				<div ng-repeat="sample in bioproject.sample">
-					{{ sample }}
+			<md-toolbar layout="row" class="md-hue-2">
+				<div class="md-toolbar-tools" flex>
+					<span class="md-title">Sample Collection</span>
+					<span flex></span>
+					<!-- TODO: Show if user -->
+					<md-button class="md-icon-button" aria-label="Edit User Information" ng-click="edit_samples()" ng-if="disabled_samples">
+						<ng-md-icon icon="edit"></ng-md-icon>
+					</md-button>
+					<md-button class="md-icon-button" aria-label="Save Changes" ng-click="edit_samples_save()" ng-if="!disabled_samples">
+						<ng-md-icon icon="save"></ng-md-icon>
+					</md-button>
+					<md-button class="md-icon-button" aria-label="Cancel Changes" ng-click="edit_samples_cancel()" ng-if="!disabled_samples">
+						<ng-md-icon icon="cancel"></ng-md-icon>
+					</md-button>
 				</div>
+			</md-toolbar>
+			<md-card-content>
+				<md-list flex>
+					<md-list-item ng-if="!disabled_samples">
+						<div flex layout="row">
+							<md-button class="md-raised" flex>
+								<ng-md-icon icon="add"></ng-md-icon>
+								Phage
+							</md-button>
+
+							<md-button class="md-raised" flex>
+								<ng-md-icon icon="add"></ng-md-icon>
+								Sample
+							</md-button>
+
+							<md-button class="md-raised" flex>
+								<ng-md-icon icon="add"></ng-md-icon>
+								Exp. Result
+							</md-button>
+						</div>
+					</md-list-item>
+					<md-list-item ng-repeat="sample in data.sample" ng-href="#/phages/{{sample.id}}">
+						<md-icon md-svg-src="phage.svg" aria-label="Phage Sample" class="s48"></md-icon>
+						{{ sample.primary_name }}
+					</md-list-item>
+				</md-list>
 			</md-card-content>
 		</md-card>
+	</div>
+</div>
+
+
+
+<div style="visibility: hidden">
+	<div class="md-dialog-container" id="create">
+		<md-dialog>
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<span class="md-headline">Create a BioProject</span>
+					<span flex></span>
+					<md-button ng-click="cancel()" aria-label="close" class="md-icon-button">
+						<ng-md-icon icon="close" "fill: white" ></ng-md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+			<md-card style="margin:0">
+				<md-card-content layout="column">
+					<form name="createBioProjectForm">
+						<md-input-container class="md-block">
+							<label>Name</label>
+							<input md-maxlength="32" required name="name" ng-model="createData.name">
+							<div ng-messages="createBioProjectForm.description.$error">
+								<div ng-message="required">This is required.</div>
+								<div ng-message="md-maxlength">The description must be less than 30 characters long.</div>
+							</div>
+						</md-input-container>
+
+						<md-input-container class="md-block">
+							<label>Description</label>
+							<textarea name="description" ng-model="createData.description"></textarea>
+						</md-input-container>
+
+						<div>
+							<md-button class="md-primary"           ng-click="popup_cancel()">
+								Cancel
+							</md-button>
+							<md-button class="md-primary md-raised" ng-click="popup_share_action()">
+								Share
+							</md-button>
+						</div>
+					</form>
+				</md-card-content>
+			</md-card>
+		</md-dialog>
 	</div>
 </div>
