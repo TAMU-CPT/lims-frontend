@@ -99,8 +99,8 @@ export default function(base) {
 			};
 
 			$scope.ctrl = {
-				searchText: "",
-				selectedItem: null,
+				simulateQuery: false,
+				isDisabled: false,
 				querySearch: function(text){
 					// Search
 					return Restangular.all('lims/phages').getList({name: text}).then(function(data) {
@@ -108,7 +108,7 @@ export default function(base) {
 						return data;
 					});
 				},
-				newPhage: function(searchText){
+				newState: function(searchText){
 					$log.info("Create new phage ", searchText);
 				}
 			}
