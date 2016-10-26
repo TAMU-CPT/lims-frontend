@@ -1,6 +1,6 @@
 export default function(base) {
-	base.controller('BioprojectDetailCtrl', ['$scope','$location','$routeParams', 'Restangular', 'PERMISSION_LEVELS', '$mdDialog',
-		function($scope, $location, $routeParams, Restangular, PERMISSION_LEVELS, $mdDialog) {
+	base.controller('BioprojectDetailCtrl', ['$scope','$location','$routeParams', 'Restangular', 'PERMISSION_LEVELS', '$mdDialog', '$log',
+		function($scope, $location, $routeParams, Restangular, PERMISSION_LEVELS, $mdDialog, $log) {
 			$scope.disabled = true;
 			$scope.disabled_samples = true;
 			$scope.permissions = PERMISSION_LEVELS;
@@ -77,17 +77,41 @@ export default function(base) {
 				searchText: "",
 				querySearchUser: function(queryString){
 					return Restangular.all("account").customGET("accounts", {name: queryString}).then(function(data){
-						console.log(data.results);
+						$log.info(data.results);
 						return data.results
 					});
 				},
 				querySearchGroup: function(queryString){
 					return Restangular.all("directory").customGET("groups", {name: queryString}).then(function(data){
-						console.log(data.results);
+						$log.info(data.results);
 						return data.results
 					});
 				}
 			};
+
+			// Add phage dialog
+			$scope.popup_search = function(ev) {
+				$mdDialog.show({
+					contentElement: '#add_sample',
+					parent: angular.element(document.body),
+					clickOutsideToClose: true
+				});
+			};
+
+			$scope.ctrl = {
+				searchText: "",
+				selectedItem: null,
+				querySearch: function(text){
+					// Search
+					return Restangular.all('lims/phages').getList({name: text}).then(function(data) {
+						$log.info(data);
+						return data;
+					});
+				},
+				newPhage: function(searchText){
+					$log.info("Create new phage ", searchText);
+				}
+			}
 
 			$scope.go_user = function(id){
 				$location.path('/accounts/' + id);

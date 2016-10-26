@@ -19,6 +19,7 @@ export default function(base) {
 					//sample: [],
 				}).then(function(data) {
 					$scope.createData = {};
+					$location.path('/bioprojects/' + data.id);
 				});
 				$mdDialog.cancel();
 			};

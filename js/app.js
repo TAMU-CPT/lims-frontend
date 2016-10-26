@@ -193,11 +193,11 @@ base.config(['$routeProvider', '$httpProvider', '$mdThemingProvider', 'gravatarS
 				templateUrl: 'partials/lysate-detail.html',
 				controller: 'LysateDetailCtrl'
 			}).
-			when('/bacterias', {
+			when('/bacteria', {
 				templateUrl: 'partials/bacteria-list.html',
 				controller: 'BacteriaListCtrl'
 			}).
-			when('/bacterias/:bacteriaID', {
+			when('/bacteria/:bacteriaID', {
 				templateUrl: 'partials/bacteria-detail.html',
 				controller: 'BacteriaDetailCtrl'
 			}).

@@ -2,9 +2,8 @@ export default function(base) {
 	base.controller('BacteriaListCtrl', ['$scope','$location','$routeParams', 'Restangular',
 		function($scope, $location, $routeParams, Restangular) {
 			$scope.go = function(id) {
-				$location.path('/bacterias/' + id);;
+				$location.path('/bacteria/' + id);;
 			};
-
 			//uncomment if ordering filter is implemented in backend
 			//$scope.ordering="name";
 

@@ -41,6 +41,27 @@
 				</div>
 			</md-card-content>
 		</md-card>
+
+		<md-card>
+			<md-toolbar layout="row" class="md-hue-1">
+				<div class="md-toolbar-tools media--card" flex>
+					<span class="md-title">Metadata</span>
+					<span flex></span>
+					<!-- TODO: Show if user -->
+					<md-button class="md-icon-button" aria-label="Edit Metadata" ng-click="upload_media()">
+						<ng-md-icon icon="edit"></ng-md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+			<md-card-content>
+				<h3>Hosts</h3>
+				<ul>
+					<li ng-repeat="host in data.host_lims" ng-bind-html='host | host_formatter'></li>
+				</ul>
+				asdf
+			</md-card-content>
+		</md-card>
+
 		<md-card>
 			<md-toolbar layout="row" class="md-hue-1">
 				<div class="md-toolbar-tools media--card" flex>
@@ -60,11 +81,6 @@
 		</md-card>
 	</div>
 	<div flex=60 layout="column">
-		<md-card>
-			<md-card-content>
-				Next Step: <md-button flex>ASDF</md-button>
-			</md-card-content>
-		</md-card>
 
 		<div layout="row">
 			<span flex></span>
@@ -76,9 +92,36 @@
 			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
 					<span class="md-title">Lysate</span>
+					<span flex></span>
+					<md-button ng-href="#/tubes/{{ data.lysate.tube.id }}" aria-label="close" class="md-icon-button">
+						<ng-md-icon icon="inbox"></ng-md-icon>
+						<md-tooltip>
+							Tube {{ data.lysate.tube.name }}
+						</md-tooltip>
+					</md-button>
 				</div>
 			</md-toolbar>
 			<md-card-content>
+				<md-table-container>
+					<table md-table md-progress="promise">
+						<thead md-head>
+							<tr md-row>
+								<th md-column>Property</th>
+								<th md-column>Value</th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row>
+								<td md-cell>Old ID</td>
+								<td md-cell>{{ data.lysate.oldid }}</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Isolation Date</td>
+								<td md-cell>{{ data.lysate.isolation }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
 			</md-card-content>
 		</md-card>
 
@@ -95,6 +138,35 @@
 				</div>
 			</md-toolbar>
 			<md-card-content>
+				<!-- TODO MAP -->
+				<h3>Samples</h3>
+				<md-table-container>
+					<table md-table md-progress="promise">
+						<thead md-head>
+							<tr md-row>
+								<th md-column>Type</th>
+								<th md-column>Description</th>
+								<th md-column>Collection Location</th>
+								<th md-column>Tube</th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row ng-repeat="env_sample in data.env_sample_collection.env_sample">
+								<td md-cell>{{ env_sample.sample_type.name }}</td>
+								<td md-cell>{{ env_sample.description }}</td>
+								<td md-cell>{{ env_sample.location }}</td>
+								<td md-cell>
+									<md-button ng-href="#/tubes/{{ env_sample.tube.id }}" aria-label="close" class="md-icon-button">
+										<ng-md-icon icon="inbox"></ng-md-icon>
+										<md-tooltip>
+											Tube {{ env_sample.tube.name }}
+										</md-tooltip>
+									</md-button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
 			</md-card-content>
 		</md-card>
 
@@ -102,9 +174,9 @@
 
 
 
-<pre>
+		<pre>
 {{ data | json }}
-</pre>
+		</pre>
 
 
 	</div>

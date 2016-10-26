@@ -19,7 +19,7 @@ export default function(base) {
 				$scope.data = angular.copy($scope.original_data);
 			}
 
-			Restangular.one('lims/phages', $routeParams.phageID).get().then(function(data) {
+			$scope.promise = Restangular.one('lims/phages', $routeParams.phageID).get().then(function(data) {
 				$scope.data = data;
 				$scope.original_data = angular.copy(data);
 			});
