@@ -1,6 +1,6 @@
 export default function(base) {
-	base.controller('BioprojectDetailCtrl', ['$scope','$location','$routeParams', 'Restangular', 'PERMISSION_LEVELS', '$mdDialog', '$log',
-		function($scope, $location, $routeParams, Restangular, PERMISSION_LEVELS, $mdDialog, $log) {
+	base.controller('BioprojectDetailCtrl', ['$scope','$location','$routeParams', 'Restangular', 'PERMISSION_LEVELS', '$mdDialog', '$log', '$q',
+		function($scope, $location, $routeParams, Restangular, PERMISSION_LEVELS, $mdDialog, $log, $q) {
 			$scope.disabled = true;
 			$scope.disabled_samples = true;
 			$scope.permissions = PERMISSION_LEVELS;
@@ -29,10 +29,29 @@ export default function(base) {
 
 			// Samples
 			$scope.edit_samples = function() {
+				$scope.samples;
 				$scope.disabled_samples = false;
 			}
 
 			$scope.edit_samples_save = function(){
+				// First create all the objects that are new
+				var requests = [];
+				var new_samples = [];
+				for(var idx = 0; idx < $scope.samples.length; idx++){
+					if($scope.samples[idx].id === "new"){
+						// New object, must be created in db.
+						new_samples.push({
+							historical_names: "",
+							primary_name: $scope.samples[idx].primary_name,
+						});
+					} else {
+						new_samples.push($scope.samples[idx]);
+					}
+				}
+				$scope.data.sample = new_samples;
+				$scope.data.save();
+
+                //for(var currentPage = 0; currentPage < Math.ceil(outer_data.meta.count / pageSize); currentPage++) {
 				//$scope.organisation.save();
 				//$scope.original_data = angular.copy($scope.organisation);
 				$scope.disabled_samples = true;
@@ -98,20 +117,52 @@ export default function(base) {
 				});
 			};
 
+
+
+			$scope.asdf = [];
 			$scope.ctrl = {
-				simulateQuery: false,
-				isDisabled: false,
-				querySearch: function(text){
-					// Search
-					return Restangular.all('lims/phages').getList({name: text}).then(function(data) {
-						$log.info(data);
-						return data;
-					});
+				transformChip(chip) {
+					// If it is an object, it's already a known chip
+					if (angular.isObject(chip)) {
+						return chip;
+					};
+
+					// Otherwise, create a new one
+					return {
+						primary_name: chip,
+						id: 'new'
+					}
 				},
-				newState: function(searchText){
-					$log.info("Create new phage ", searchText);
+				selectedItem: null,
+				searchText: null,
+				querySearch: function(queryString){
+					return Restangular.all('lims').customGET('phages', {name: queryString}).then(function(data) {
+						return data.results
+					});
 				}
 			}
+
+
+			//$scope.ctrl = {
+				//simulateQuery: false,
+				//isDisabled: false,
+				//selectedPhages: [],
+				//querySearch: function(text){
+					//// Search
+					//return Restangular.all('lims/phages').getList({name: text}).then(function(data) {
+						//$log.info(data);
+						//return data;
+					//});
+				//},
+				//newState: function(searchText){
+					//Restangular.all('lims/phages').post({
+						//primary_name: searchText,
+						//historical_names: "",
+					//}).then(function(data) {
+
+					//});
+				//}
+			//}
 
 			$scope.go_user = function(id){
 				$location.path('/accounts/' + id);
@@ -119,6 +170,7 @@ export default function(base) {
 
 			Restangular.one('bioproject/bioprojects', $routeParams.bioprojectID).get().then(function(data) {
 				$scope.data = data;
+				$scope.samples = JSON.parse(JSON.stringify(data.sample)); //angular.copy(data.sample);
 				$scope.original_data = angular.copy(data);
 			});
 	}]);
