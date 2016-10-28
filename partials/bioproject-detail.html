@@ -111,8 +111,10 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 					</md-autocomplete>
 					<md-chip-template>
 						<span>
-							<strong>{{$chip.primary_name}}</strong>
-							<em>({{$chip.id}})</em>
+							<a ng-href="#/phages/{{ $chip.id }}/">
+								<strong>{{$chip.primary_name}}</strong>
+								<em>({{$chip.id}})</em>
+							</a>
 						</span>
 					</md-chip-template>
 				</md-chips>

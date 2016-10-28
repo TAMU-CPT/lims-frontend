@@ -10,6 +10,8 @@ TODO List:
 
 - [ ] Can we automatically build a Database Schema Map? Is there a python
   module that will do this from Django?
+	- It looks like we can, we should add a Makefile target for this and build it as part of the documentatin someday.
+	- http://stackoverflow.com/questions/16320197/is-it-possible-to-generate-a-diagram-of-an-entire-django-webapp
 - [ ] Bioproject
 	- [ ] Project access control
 		- [ ] Use md-autocomplete for entering user/group names

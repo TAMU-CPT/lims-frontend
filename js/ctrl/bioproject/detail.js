@@ -29,7 +29,6 @@ export default function(base) {
 
 			// Samples
 			$scope.edit_samples = function() {
-				$scope.samples;
 				$scope.disabled_samples = false;
 			}
 
@@ -38,9 +37,12 @@ export default function(base) {
 				var requests = [];
 				var new_samples = [];
 				for(var idx = 0; idx < $scope.samples.length; idx++){
+					console.log($scope.samples[idx]);
 					if($scope.samples[idx].id === "new"){
+						console.log("NEW");
 						// New object, must be created in db.
 						new_samples.push({
+							id: -1,
 							historical_names: "",
 							primary_name: $scope.samples[idx].primary_name,
 						});
@@ -49,7 +51,9 @@ export default function(base) {
 					}
 				}
 				$scope.data.sample = new_samples;
-				$scope.data.save();
+				$scope.data.save().then(function(resp){
+					$scope.samples = resp.sample;
+				});
 
                 //for(var currentPage = 0; currentPage < Math.ceil(outer_data.meta.count / pageSize); currentPage++) {
 				//$scope.organisation.save();
