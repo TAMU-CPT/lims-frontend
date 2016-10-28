@@ -6,6 +6,13 @@
 md-chips.md-default-theme .md-chips, md-chips .md-chips {
 	box-shadow: none !important;
 }
+.role-name {
+	margin: 10px;
+}
+.role-select-nopad {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
 </style>
 <div layout="row" layout-align="center">
 	<div flex=40>
@@ -102,12 +109,12 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 					md-transform-chip="ctrl.transformChip($chip)"
 					md-require-match="false">
 					<md-autocomplete
-						md-selected-item="ctrl.selectedItem"
-						md-search-text="ctrl.searchText"
-						md-items="item in ctrl.querySearch(ctrl.searchText)"
+						md-selected-item="ctrl.selectedItemGroup"
+						md-search-text="ctrl.searchTextGroup"
+						md-items="item in ctrl.querySearch(ctrl.searchTextGroup)"
 						md-item-text="item.primary_name"
 						placeholder="Search for a phage">
-						<span md-highlight-text="ctrl.searchText">{{item.primary_name}} (P:{{item.id}})</span>
+						<span md-highlight-text="ctrl.searchTextGroup">{{item.primary_name}} (P:{{item.id}})</span>
 					</md-autocomplete>
 					<md-chip-template>
 						<span>
@@ -118,17 +125,6 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 						</span>
 					</md-chip-template>
 				</md-chips>
-
-
-
-				<!--
-				<md-list flex ng-if="!disabled_samples">
-					<md-list-item ng-repeat="sample in data.sample" ng-href="#/phages/{{sample.id}}">
-						<md-icon md-svg-src="phage.svg" aria-label="Phage Sample" class="s48"></md-icon>
-						{{ sample.primary_name }}
-					</md-list-item>
-				</md-list>
-				-->
 			</md-card-content>
 		</md-card>
 	</div>
@@ -154,32 +150,6 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 			<md-card style="margin:0">
 				<md-card-content layout="column">
 					<form ng-submit="$event.preventDefault()">
-						<!--
-						<md-autocomplete class="md-whiteframe-1dp"
-								ng-disabled="false"
-								md-no-cache="false"
-								md-selected-item="ctrl.selectedItem"
-								md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-								md-search-text="ctrl.searchText"
-								md-selected-item-change="ctrl.selectedItemChange(item)"
-								md-items="item in ctrl.querySearch(ctrl.searchText)"
-								md-item-text="item.primary_name"
-								md-min-length="0"
-								placeholder="Enter a Phage's name">
-							<md-item-template>
-								<span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">
-									{{item.primary_name}}
-								</span>
-							</md-item-template>
-							<md-not-found>
-								<a ng-click="ctrl.newState(ctrl.searchText)">
-								No phages matching "{{ctrl.searchText}}" were found. Click to create a new one
-								</a>
-							</md-not-found>
-						</md-autocomplete>
-						-->
-
-
 						<div>
 							<md-button class="" ng-click="popup_cancel()">
 								Cancel
@@ -204,7 +174,7 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 
 <div style="visibility: hidden">
 	<div class="md-dialog-container" id="create">
-		<md-dialog>
+		<md-dialog flex="70">
 			<md-toolbar>
 				<div class="md-toolbar-tools">
 					<span class="md-headline">Share</span>
@@ -217,43 +187,57 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 			<md-card style="margin:0">
 				<md-card-content layout="column">
 					<form name="shareForm">
-<pre>
-{{ share | json }}
-</pre>
-
-<!--md-autocomplete-snap="" md-transform-chip="ctrl.transformChip($chip)" -->
-
-						<md-chips ng-model="share.shareWith" md-require-match="true">
-							<md-autocomplete
-									md-selected-item="share.selectedItem"
-									md-search-text="share.searchText"
-									md-items="item in share.querySearchGroup(share.searchText)"
-									md-item-text="item.name" placeholder="Search for a user or group">
+						<div layout="row">
+							<md-autocomplete flex="50"
+									md-selected-item="share.selectedItemGroup"
+									md-search-text="share.searchTextGroup"
+									md-items="item in share.querySearchGroup(share.searchTextGroup)"
+									md-item-text="item.name"
+									placeholder="Search for a group"
+									md-selected-item-change="share.selectedItemChange(item)"
+									>
 								<span md-highlight-text="share.searchText">{{item.name}}</span>
 							</md-autocomplete>
-							<md-chip-template>
-								<span>
-									<strong>{{$chip.name}}</strong>
-								</span>
-							</md-chip-template>
-						</md-chips>
-
-
-
-						<!--<md-input-container class="md-block">-->
-							<!--<label>Name</label>-->
-							<!--<input md-maxlength="32" required name="name" ng-model="createData.name">-->
-							<!--<div ng-messages="createBioProjectForm.description.$error">-->
-								<!--<div ng-message="required">This is required.</div>-->
-								<!--<div ng-message="md-maxlength">The description must be less than 30 characters long.</div>-->
-							<!--</div>-->
-						<!--</md-input-container>-->
-
-						<!--<md-input-container class="md-block">-->
-							<!--<label>Description</label>-->
-							<!--<textarea name="description" ng-model="createData.description"></textarea>-->
-						<!--</md-input-container>-->
-
+							<md-autocomplete flex="50"
+									md-selected-item="share.selectedItemUser"
+									md-search-text="share.searchTextUser"
+									md-items="item in share.querySearchUser(share.searchTextUser)"
+									md-item-text="item.name"
+									placeholder="Search for a user"
+									md-selected-item-change="share.selectedItemChange(item)"
+									>
+								<span md-highlight-text="share.searchTextUser">{{item.name}}</span>
+							</md-autocomplete>
+						</div>
+						<h3>Shared With</h3>
+						<md-list flex>
+							<md-list-item ng-repeat="shareTarget in share.shareWith">
+								<div layout="row" flex="100">
+									<ng-md-icon icon="{{shareTarget.type | role_type_icon }}"></ng-md-icon>
+									<span class="role-name" >
+										{{ shareTarget.name }}
+									</span>
+									<span flex></span>
+									<md-select ng-model="shareTarget.role" class="role-select-nopad">
+										<md-option value="0">
+											<ng-md-icon icon="{{ 0 | role_icon }}"></ng-md-icon>
+											View
+										</md-option>
+										<md-option value="1">
+											<ng-md-icon icon="{{ 1 | role_icon }}"></ng-md-icon>
+											Edit
+										</md-option>
+										<md-option value="2">
+											<ng-md-icon icon="{{ 2 | role_icon }}"></ng-md-icon>
+											Admin
+										</md-option>
+									</md-select>
+									<md-button class="md-icon-button" ng-click="share.removeShareTarget(shareTarget)" ng-if="disabled">
+										<ng-md-icon icon="delete"></ng-md-icon>
+									</md-button>
+								</div>
+							</md-list-item>
+						</md-list>
 						<div>
 							<md-button class="md-primary"           ng-click="popup_cancel()">
 								Cancel

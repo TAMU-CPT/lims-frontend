@@ -37,9 +37,7 @@ export default function(base) {
 				var requests = [];
 				var new_samples = [];
 				for(var idx = 0; idx < $scope.samples.length; idx++){
-					console.log($scope.samples[idx]);
 					if($scope.samples[idx].id === "new"){
-						console.log("NEW");
 						// New object, must be created in db.
 						new_samples.push({
 							id: -1,
@@ -93,11 +91,55 @@ export default function(base) {
 				$mdDialog.cancel();
 			};
 
-			// TODO: Implementing searching
 			// ShareData
 			$scope.share = {
 				shareWith: [],
-				searchText: "",
+				searchTextUser: "",
+				searchTextGroup: "",
+				removeShareTarget: function(o) {
+					$scope.share.shareWith = $scope.share.shareWith.filter(function(e){
+						return e.id !== o.id && e.type !== o.type
+					});
+				},
+				selectedItemChange: function(item) {
+					if(item.netid){
+						item.type = 'user'
+					} else {
+						item.type = 'group';
+					}
+					console.log(item);
+					// Change includes change away from, so need to
+					// discard nulls.
+					if(!item){ return; }
+					// Add the item + clear the box.
+					//
+					if($scope.share.shareWith.some((e) => e.id === item.id && e.type == item.type)){
+						//function(e){ return e.id === item.id; })){
+						if(item.type === 'user'){
+							$scope.share.searchTextUser = "";
+							$scope.share.selectedItemUser = null;
+						} else {
+							$scope.share.searchTextGroup = "";
+							$scope.share.selectedItemGroup = null;
+						}
+						return;
+					}
+
+					$scope.share.shareWith.push({
+						name: item.name,
+						id: item.id,
+						type: item.type,
+						role: 0,
+					});
+
+					if(item.type === 'user'){
+						$scope.share.searchTextUser = "";
+						$scope.share.selectedItemUser = null;
+					} else {
+						$scope.share.searchTextGroup = "";
+						$scope.share.selectedItemGroup = null;
+					}
+				},
 				querySearchUser: function(queryString){
 					return Restangular.all("account").customGET("accounts", {name: queryString}).then(function(data){
 						$log.info(data.results);

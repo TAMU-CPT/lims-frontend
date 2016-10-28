@@ -17,4 +17,17 @@ export default function(base) {
 			return $sce.trustAs('html', "<i>" + input.genus +" " + input.species + "</i> " + input.strain);
 		};
 	}]);
+
+	base.filter('role_type_icon', function($sce) {
+		return function(input) {
+			switch(input){
+				case 'user': // view
+					return 'person';
+				case 'group': // edit
+					return 'group';
+				default:
+					return 'person';
+			}
+		};
+	});
 }

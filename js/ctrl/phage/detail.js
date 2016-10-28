@@ -13,12 +13,22 @@ export default function(base) {
 				if($scope.data.primary_name != $scope.original_data.primary_name){
 					console.log("Changed " + $scope.original_data.primary_name + " -> " + $scope.data.primary_name);
 					var hist_names = $scope.original_data.historical_names.split(',').map(function(x){ return x.trim(); });
-					hist_names.push($scope.original_data.primary_name);
+					if(hist_names.indexOf($scope.original_data.primary_name) == -1){
+						hist_names.push($scope.original_data.primary_name);
+					}
 					// Remove empty strings
 					hist_names = hist_names.filter(String);
 					$scope.data.historical_names = hist_names.join(", ");
 				}
-				$scope.data.save();
+
+				if($scope.data.host_lims != $scope.original_data.host_lims){
+					console.log("New host");
+				}
+
+
+				$scope.data.save().then(function(resp){
+					$scope.data.host_lims = resp.host_lims;
+				});
 				$scope.original_data = angular.copy($scope.data);
 				$scope.disabled = true;
 			}
@@ -29,23 +39,29 @@ export default function(base) {
 			}
 
 
-			$scope.edit_meta_state = false;
-			$scope.edit_meta = function() {
-				$scope.edit_meta_state = true;
-			}
+			$scope.ctrl = {
+				transformChip(chip) {
+					// If it is an object, it's already a known chip
+					if (angular.isObject(chip)) {
+						return chip;
+					};
 
-			$scope.edit_meta_save = function(){
-				console.log($scope.data);
-				$scope.data.save();
-				$scope.original_data = angular.copy($scope.data);
-				$scope.edit_meta_state = false;
+					// Otherwise, create a new one
+					var parts = chip.split(' ')
+					return {
+						genus: parts[0],
+						species: parts[1],
+						strain: parts.slice(2).join(' ')
+					}
+				},
+				selectedItem: null,
+				searchText: null,
+				querySearch: function(queryString){
+					return Restangular.all('lims').customGET('bacterias', {name: queryString}).then(function(data) {
+						return data.results
+					});
+				}
 			}
-
-			$scope.edit_meta_cancel = function(){
-				$scope.edit_meta_state = false;
-				$scope.data = angular.copy($scope.original_data);
-			}
-
 
 
 			$scope.promise = Restangular.one('lims/phages', $routeParams.phageID).get().then(function(data) {
