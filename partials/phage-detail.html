@@ -38,27 +38,11 @@
 						<label>Historical Names</label>
 						<input ng-disabled="disabled" ng-model="data.historical_names">
 					</md-input-container>
+					<h3>Hosts</h3>
+					<ul>
+						<li ng-repeat="host in data.host_lims" ng-bind-html='host | host_formatter'></li>
+					</ul>
 				</div>
-			</md-card-content>
-		</md-card>
-
-		<md-card>
-			<md-toolbar layout="row" class="md-hue-1">
-				<div class="md-toolbar-tools media--card" flex>
-					<span class="md-title">Metadata</span>
-					<span flex></span>
-					<!-- TODO: Show if user -->
-					<md-button class="md-icon-button" aria-label="Edit Metadata" ng-click="upload_media()">
-						<ng-md-icon icon="edit"></ng-md-icon>
-					</md-button>
-				</div>
-			</md-toolbar>
-			<md-card-content>
-				<h3>Hosts</h3>
-				<ul>
-					<li ng-repeat="host in data.host_lims" ng-bind-html='host | host_formatter'></li>
-				</ul>
-				asdf
 			</md-card-content>
 		</md-card>
 

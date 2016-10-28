@@ -14,6 +14,8 @@ export default function(base) {
 					console.log("Changed " + $scope.original_data.primary_name + " -> " + $scope.data.primary_name);
 					var hist_names = $scope.original_data.historical_names.split(',').map(function(x){ return x.trim(); });
 					hist_names.push($scope.original_data.primary_name);
+					// Remove empty strings
+					hist_names = hist_names.filter(String);
 					$scope.data.historical_names = hist_names.join(", ");
 				}
 				$scope.data.save();
@@ -25,6 +27,26 @@ export default function(base) {
 				$scope.disabled = true;
 				$scope.data = angular.copy($scope.original_data);
 			}
+
+
+			$scope.edit_meta_state = false;
+			$scope.edit_meta = function() {
+				$scope.edit_meta_state = true;
+			}
+
+			$scope.edit_meta_save = function(){
+				console.log($scope.data);
+				$scope.data.save();
+				$scope.original_data = angular.copy($scope.data);
+				$scope.edit_meta_state = false;
+			}
+
+			$scope.edit_meta_cancel = function(){
+				$scope.edit_meta_state = false;
+				$scope.data = angular.copy($scope.original_data);
+			}
+
+
 
 			$scope.promise = Restangular.one('lims/phages', $routeParams.phageID).get().then(function(data) {
 				$scope.data = data;
