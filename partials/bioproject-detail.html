@@ -215,7 +215,7 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 								<div layout="row" flex="100">
 									<ng-md-icon icon="{{shareTarget.type | role_type_icon }}"></ng-md-icon>
 									<span class="role-name" >
-										{{ shareTarget.name }}
+										{{ shareTarget.group.name || shareTarget.user.name }}
 									</span>
 									<span flex></span>
 									<md-select ng-model="shareTarget.role" class="role-select-nopad">

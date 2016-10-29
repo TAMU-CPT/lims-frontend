@@ -1,7 +1,7 @@
 export default function(base) {
 	base.filter('role_icon', function() {
 		return function(input) {
-			switch(input){
+			switch(parseInt(input)){
 				case 0: // view
 					return "visibility";
 				case 1: // edit

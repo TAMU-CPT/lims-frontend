@@ -11,7 +11,7 @@ export default function(base) {
 			}
 
 			$scope.edit_data_save = function(){
-				$scope.data.save();
+				$scope.promise = $scope.data.save();
 				$scope.original_data = angular.copy($scope.data);
 				$scope.disabled = true;
 			}
@@ -22,7 +22,7 @@ export default function(base) {
 			}
 
 			$scope.edit_data_delete = function() {
-				$scope.data.remove();
+				$scope.promise = $scope.data.remove();
 				$location.path('/bioprojects/');
 			}
 
@@ -75,15 +75,10 @@ export default function(base) {
 			};
 
 			$scope.popup_share_action = function() {
-				$scope.promise = Restangular.all('bioproject/bioprojects').post({
-					name: $scope.data.name,
-					desc: $scope.data.description,
-					editingrolegroup_set: $scope.data.editingrolegroup_set,
-					editingroleuser_set: $scope.data.editingroleuser_set,
-					sample: $scope.data.sample,
-				}).then(function(data) {
-					// asd;jkfh
-				});
+				$scope.data.editingrolegroup_set = $scope.share.shareWith.filter(function(el){ if('group' in el){ return el } });
+				$scope.data.editingroleuser_set = $scope.share.shareWith.filter(function(el){ if('user' in el){ return el } });
+
+				$scope.promise = $scope.data.save();
 				$mdDialog.cancel();
 			};
 
@@ -96,26 +91,32 @@ export default function(base) {
 				shareWith: [],
 				searchTextUser: "",
 				searchTextGroup: "",
+				localObjType: function(obj){
+					if('user' in obj){ return 'user' }
+					else { return 'group' }
+				},
 				removeShareTarget: function(o) {
 					$scope.share.shareWith = $scope.share.shareWith.filter(function(e){
-						return e.id !== o.id && e.type !== o.type
+						console.log(e.id, o.id, $scope.share.localObjType(e), $scope.share.localObjType(o));
+						if($scope.share.localObjType(e) === $scope.share.localObjType(o)){
+							if( e.id === o.id ){
+								return false;
+							}
+						}
+						return true;
 					});
 				},
 				selectedItemChange: function(item) {
-					if(item.netid){
-						item.type = 'user'
-					} else {
-						item.type = 'group';
-					}
-					console.log(item);
 					// Change includes change away from, so need to
 					// discard nulls.
+					console.log(item);
 					if(!item){ return; }
+
 					// Add the item + clear the box.
 					//
 					if($scope.share.shareWith.some((e) => e.id === item.id && e.type == item.type)){
 						//function(e){ return e.id === item.id; })){
-						if(item.type === 'user'){
+						if('netid' in item){
 							$scope.share.searchTextUser = "";
 							$scope.share.selectedItemUser = null;
 						} else {
@@ -125,14 +126,23 @@ export default function(base) {
 						return;
 					}
 
-					$scope.share.shareWith.push({
-						name: item.name,
-						id: item.id,
-						type: item.type,
+					// Datastructure to hold our nascent permission object
+					var ds = {
+						bioproject: $scope.data.id,
 						role: 0,
-					});
+					};
 
-					if(item.type === 'user'){
+					// Add the item to the appropriate slot (yes this design sucks).
+					if('netid' in item){
+						ds.user = item
+					} else {
+						ds.group = item
+					}
+
+					// Add to our shareWith
+					$scope.share.shareWith.push(ds);
+
+					if('netid' in item){
 						$scope.share.searchTextUser = "";
 						$scope.share.selectedItemUser = null;
 					} else {
@@ -164,8 +174,6 @@ export default function(base) {
 			};
 
 
-
-			$scope.asdf = [];
 			$scope.ctrl = {
 				transformChip(chip) {
 					// If it is an object, it's already a known chip
@@ -188,34 +196,14 @@ export default function(base) {
 				}
 			}
 
-
-			//$scope.ctrl = {
-				//simulateQuery: false,
-				//isDisabled: false,
-				//selectedPhages: [],
-				//querySearch: function(text){
-					//// Search
-					//return Restangular.all('lims/phages').getList({name: text}).then(function(data) {
-						//$log.info(data);
-						//return data;
-					//});
-				//},
-				//newState: function(searchText){
-					//Restangular.all('lims/phages').post({
-						//primary_name: searchText,
-						//historical_names: "",
-					//}).then(function(data) {
-
-					//});
-				//}
-			//}
-
 			$scope.go_user = function(id){
 				$location.path('/accounts/' + id);
 			}
 
 			Restangular.one('bioproject/bioprojects', $routeParams.bioprojectID).get().then(function(data) {
 				$scope.data = data;
+				// Update share-with list
+				$scope.share.shareWith = data.editingrolegroup_set.concat(data.editingroleuser_set);
 				$scope.samples = JSON.parse(JSON.stringify(data.sample)); //angular.copy(data.sample);
 				$scope.original_data = angular.copy(data);
 			});
