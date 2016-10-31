@@ -14,10 +14,9 @@ export default function(base) {
 				$scope.promise = Restangular.all('bioproject/bioprojects').post({
 					name: $scope.createData.name,
 					description: $scope.createData.description,
+					editingrolegroup_set: [],
+					editingroleuser_set: [],
 					sample: [],
-					//editingrolegroup_set: [],
-					//editingroleuser_set: [],
-					//sample: [],
 				}).then(function(data) {
 					$scope.createData = {};
 					$location.path('/bioprojects/' + data.id);

@@ -2,11 +2,17 @@ export default function(base) {
 	base.filter('role_icon', function() {
 		return function(input) {
 			switch(parseInt(input)){
-				case 0: // view
+				case 0:
+				case "view":
 					return "visibility";
-				case 1: // edit
+				case 1:
+				case "edit":
 					return "edit";
-				case 2: // admin
+				case 2:
+				case "admin":
+					return "person";
+				case 3:
+				case "owner":
 					return "person";
 			}
 		};

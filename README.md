@@ -14,8 +14,9 @@ TODO List:
 	- http://stackoverflow.com/questions/16320197/is-it-possible-to-generate-a-diagram-of-an-entire-django-webapp
 - [ ] Bioproject
 	- [ ] Project access control
-		- [ ] Use md-autocomplete for entering user/group names
-		- [ ] Once a name is selected, add it to the list with default "View only" permission + clear autocomplete
+		- [ ] Add concept of immutable "Owner"
+		- [x] Use md-autocomplete for entering user/group names
+		- [x] Once a name is selected, add it to the list with default "View only" permission + clear autocomplete
 		- [ ] Allow users to change permission level
 		- [ ] Ensure that they are always on the bioproject that they created
 	- [ ] "Add phage" interface (HXR)
@@ -92,6 +93,9 @@ TODO List:
 	- [ ] Edit
 	- [ ] Delete
 	- [ ] Link to phage list filtered by those that grow on this host
+- [ ] Organisation
+	- [ ] Needs to allow admins to add/remove users from the group.
+	- [ ] Needs a permission model similar to the one used in bioprojects.
 
 
 Install requirements and run:
@@ -100,4 +104,5 @@ $ make
 ```
 
 That's it! By default, your server will be running on port 10000 and pointing at
-port 8000 for the backend.
+port 8000 for the backend. The instructions for the backend are more complex,
+you'll need to read those in the associated README file.

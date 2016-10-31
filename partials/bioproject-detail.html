@@ -42,15 +42,18 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 				</md-card-header-text>
 			</md-card-header>
 			<md-card-content>
-				<div layout="column">
+				<div layout="column" ng-if="!disabled">
 					<md-input-container flex>
 						<label>name</label>
-						<input ng-disabled="disabled" ng-model="data.name">
+						<input ng-model="data.name">
 					</md-input-container>
 					<md-input-container flex>
 						<label>description</label>
-						<input ng-disabled="disabled" ng-model="data.description">
+						<input ng-model="data.description">
 					</md-input-container>
+				</div>
+				<div layout="column" ng-if="disabled">
+					{{ data.description }}
 				</div>
 			</md-card-content>
 		</md-card>
@@ -66,9 +69,16 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 				</div>
 			</md-toolbar>
 			<md-card-content>
+				<b>Owner</b>
+				<md-chips ng-model="data.owner_set" readonly="true">
+					<md-chip-template ng-click="go_user($chip.id)">
+						<ng-md-icon icon="{{ 3 | role_icon }}"></ng-md-icon>
+						{{ $chip.name }}
+					</md-chip-template>
+				</md-chips>
 				<b>Groups</b>
 				<md-chips ng-model="data.editingrolegroup_set" readonly="true">
-					<md-chip-template>
+					<md-chip-template >
 						<ng-md-icon icon="{{ $chip.role | role_icon }}"></ng-md-icon>
 						{{ $chip.group.name }}
 					</md-chip-template>
@@ -211,6 +221,24 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 						</div>
 						<h3>Shared With</h3>
 						<md-list flex>
+							<md-list-item>
+								<div layout="row" flex="100">
+									<ng-md-icon icon="{{ 'user' | role_type_icon }}" style="color: #aaaaaa"></ng-md-icon>
+									<span class="role-name" class="md-button" style="color: #aaaaaa">
+										{{ data.owner.name }}
+									</span>
+									<span flex></span>
+									<md-select ng-model="share.owner" class="role-select-nopad" disabled>
+										<md-option value="2">
+											<ng-md-icon icon="{{ 2 | role_icon }}"></ng-md-icon>
+											Owner
+										</md-option>
+									</md-select>
+									<md-button class="md-icon-button" ng-disabled="true">
+										<ng-md-icon icon="delete"></ng-md-icon>
+									</md-button>
+								</div>
+							</md-list-item>
 							<md-list-item ng-repeat="shareTarget in share.shareWith">
 								<div layout="row" flex="100">
 									<ng-md-icon icon="{{shareTarget.type | role_type_icon }}"></ng-md-icon>

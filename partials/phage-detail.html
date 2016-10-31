@@ -27,17 +27,27 @@
 					</md-button>
 				</div>
 			</md-toolbar>
+
+			<md-card-header ng-if="disabled && data.historical_names" style="-bottom:0px">
+				<md-card-header-text>
+					<span flex class="md-subhead">
+						Historically known as: {{ data.historical_names }}
+					</span>
+				</md-card-header-text>
+			</md-card-header>
 			<md-card-content>
 				<div layout="column">
-					<md-input-container flex>
+					<md-input-container flex ng-if="!disabled">
 						<label>Name</label>
 						<input ng-disabled="disabled" ng-model="data.primary_name">
 					</md-input-container>
 
-					<md-input-container flex>
+					<md-input-container flex ng-if="!disabled">
 						<label>Historical Names</label>
 						<input ng-disabled="disabled" ng-model="data.historical_names">
 					</md-input-container>
+
+
 					<h3>Hosts</h3>
 
 					<md-chips
@@ -94,7 +104,7 @@
 			<span flex></span>
 		</div>
 
-		<md-card class="lysate-card">
+		<md-card class="lysate-card" ng-if="data.lysate">
 			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
 					<span class="md-title">Lysate</span>
@@ -137,6 +147,9 @@
 				</md-table-container>
 			</md-card-content>
 		</md-card>
+		<md-button class="md-raised md-primary" ng-if="!data.lysate">
+			Lysate Data Missing
+		</md-button>
 
 		<div layout="row">
 			<span flex></span>
@@ -144,7 +157,7 @@
 			<span flex></span>
 		</div>
 
-		<md-card class="env-sample-card">
+		<md-card class="env-sample-card" ng-if="data.env_sample_collection">
 			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
 					<span class="md-title">Environmental Sample</span>
@@ -182,7 +195,9 @@
 				</md-table-container>
 			</md-card-content>
 		</md-card>
-
+		<md-button class="md-raised md-primary" ng-if="!data.env_sample_collection">
+			Environmental Sample Data Missing
+		</md-button>
 
 
 
@@ -192,74 +207,5 @@
 		</pre>
 
 
-	</div>
-</div>
-
-
-
-<div style="visibility: hidden">
-	<div class="md-dialog-container" id="create">
-		<md-dialog>
-			<md-toolbar>
-				<div class="md-toolbar-tools">
-					<span class="md-headline">Share</span>
-					<span flex></span>
-					<md-button ng-click="popup_cancel()" aria-label="close" class="md-icon-button">
-						<ng-md-icon icon="close"></ng-md-icon>
-					</md-button>
-				</div>
-			</md-toolbar>
-			<md-card style="margin:0">
-				<md-card-content layout="column">
-					<form name="shareForm">
-<pre>
-{{ share | json }}
-</pre>
-
-<!--md-autocomplete-snap="" md-transform-chip="ctrl.transformChip($chip)" -->
-
-						<md-chips ng-model="share.shareWith" md-require-match="true">
-							<md-autocomplete
-									md-selected-item="share.selectedItem"
-									md-search-text="share.searchText"
-									md-items="item in share.querySearchGroup(share.searchText)"
-									md-item-text="item.name" placeholder="Search for a user or group">
-								<span md-highlight-text="share.searchText">{{item.name}}</span>
-							</md-autocomplete>
-							<md-chip-template>
-								<span>
-									<strong>{{$chip.name}}</strong>
-								</span>
-							</md-chip-template>
-						</md-chips>
-
-
-
-						<!--<md-input-container class="md-block">-->
-							<!--<label>Name</label>-->
-							<!--<input md-maxlength="32" required name="name" ng-model="createData.name">-->
-							<!--<div ng-messages="createBioProjectForm.description.$error">-->
-								<!--<div ng-message="required">This is required.</div>-->
-								<!--<div ng-message="md-maxlength">The description must be less than 30 characters long.</div>-->
-							<!--</div>-->
-						<!--</md-input-container>-->
-
-						<!--<md-input-container class="md-block">-->
-							<!--<label>Description</label>-->
-							<!--<textarea name="description" ng-model="createData.description"></textarea>-->
-						<!--</md-input-container>-->
-
-						<div>
-							<md-button class="md-primary"           ng-click="popup_cancel()">
-								Cancel
-							</md-button>
-							<md-button class="md-primary md-raised" ng-click="popup_share_action()">
-								Share
-							</md-button>
-						</div>
-					</form>
-				</md-card-content>
-			</md-card>
-		</md-dialog>
 	</div>
 </div>

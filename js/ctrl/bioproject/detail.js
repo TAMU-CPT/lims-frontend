@@ -88,6 +88,7 @@ export default function(base) {
 
 			// ShareData
 			$scope.share = {
+				owner: 2,
 				shareWith: [],
 				searchTextUser: "",
 				searchTextGroup: "",
@@ -202,6 +203,8 @@ export default function(base) {
 
 			Restangular.one('bioproject/bioprojects', $routeParams.bioprojectID).get().then(function(data) {
 				$scope.data = data;
+				// Fake an array of owners, but read-only so it's OK(ish)
+				$scope.data.owner_set = [$scope.data.owner];
 				// Update share-with list
 				$scope.share.shareWith = data.editingrolegroup_set.concat(data.editingroleuser_set);
 				$scope.samples = JSON.parse(JSON.stringify(data.sample)); //angular.copy(data.sample);
