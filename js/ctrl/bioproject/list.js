@@ -16,6 +16,13 @@ export default function(base) {
 					description: $scope.createData.description,
 					editingrolegroup_set: [],
 					editingroleuser_set: [],
+					owner: {
+						// This is provided but completely unused by the
+						// backend. Just makes the serializer behave. TODO see
+						// if we can remove.
+						id: -1,
+						username: "a",
+					},
 					sample: [],
 				}).then(function(data) {
 					$scope.createData = {};

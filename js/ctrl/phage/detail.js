@@ -1,6 +1,6 @@
 export default function(base) {
-	base.controller('PhageDetailCtrl', ['$scope','$location','$routeParams', 'Restangular',
-		function($scope, $location, $routeParams, Restangular) {
+	base.controller('PhageDetailCtrl', ['$scope','$location','$routeParams', 'Restangular', 'leafletBoundsHelpers',
+		function($scope, $location, $routeParams, Restangular, leafletBoundsHelpers) {
 			$scope.disabled = true;
 
 			// Project Info
@@ -66,6 +66,34 @@ export default function(base) {
 
 			$scope.promise = Restangular.one('lims/phages', $routeParams.phageID).get().then(function(data) {
 				$scope.data = data;
+
+				// Markers for env sample map.
+				var markers = {};
+				$scope.data.env_sample_collection.env_sample.forEach(function(env_sample){
+					markers[env_sample.id] = {
+						lat: env_sample.location_xy[1],
+						lng: env_sample.location_xy[0],
+						message: "<b>Environmental Sample</b><br />Type: " + env_sample.sample_type.name + "<br />Desc: " + env_sample.description,
+						focus: false,
+						draggable: false,
+					}
+				});
+
+				var points = $scope.data.env_sample_collection.env_sample.map(function(e){ return [e.location_xy[1], e.location_xy[0]] })
+				var maxbounds = leafletBoundsHelpers.createBoundsFromArray(points);
+				//maxbounds.pad = 1.0;
+				$scope.map = {
+					bounds: maxbounds,
+					markers: markers,
+					center: {
+						lat: (maxbounds.northEast.lat + maxbounds.southWest.lat) / 2,
+						lng: (maxbounds.northEast.lng + maxbounds.southWest.lng) / 2,
+						zoom: 1,
+					}
+				}
+				console.log($scope.map);
+
+				// Backup copy for edit/restore functionality.
 				$scope.original_data = angular.copy(data);
 			});
 

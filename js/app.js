@@ -13,6 +13,8 @@ require('angular-animate');
 require('jquery');
 require('ngstorage');
 require('angular-jwt');
+require('leaflet');
+require('angular-leaflet-directive');
 var moment = require('moment');
 
 var base = angular.module('base', [
@@ -24,6 +26,7 @@ var base = angular.module('base', [
 	'ngMessages',
 	'ngAnimate',
 	'md.data.table',
+	'leaflet-directive',
 	'ngStorage' // https://github.com/gsklee/ngStorage
 ]);
 
