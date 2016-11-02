@@ -4,4 +4,5 @@ node_js:
 
 script:
   - gulp lint
+  - npm lint
   - npm test
