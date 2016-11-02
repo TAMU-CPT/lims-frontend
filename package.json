@@ -52,6 +52,7 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "angular-leaflet-directive": "^0.10.0",
-    "eslint": "^3.9.1"
+    "eslint": "^3.9.1",
+    "eslint-config-google": "^0.7.0"
   }
 }

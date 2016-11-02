@@ -1,7 +1,8 @@
 {
-  "extends": "google",
-  "rules": {
-    "indent": [2, "tab"],
-    "max-len": ["warn", 180, 4],
-  }
+	"extends": "google",
+	"rules": {
+		"indent": ["error", "tab"],
+		"max-len": ["warn", 180, 4],
+		"quotes": ["error", "double", { "avoidEscape": true }],
+	}
 }

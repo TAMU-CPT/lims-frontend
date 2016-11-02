@@ -1209,6 +1209,10 @@ eslint:
     text-table "~0.2.0"
     user-home "^2.0.0"
 
+eslint-config-google:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-google/-/eslint-config-google-0.7.0.tgz#d8544a134526f685f950ab9e1bb946d30d19e120"
+
 espree@^3.3.1:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/espree/-/espree-3.3.2.tgz#dbf3fadeb4ecb4d4778303e50103b3d36c88b89c"
