@@ -1,3 +1,7 @@
+/**
+ * Lysate list controller
+ * @param {object} base Base angular application object
+ */
 export default function(base) {
 	base.controller("LysateListCtrl", ["$scope", "$location", "$routeParams", "Restangular",
 		function($scope, $location, $routeParams, Restangular) {

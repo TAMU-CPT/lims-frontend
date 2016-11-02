@@ -1,3 +1,7 @@
+/**
+ * Sequencing Run Pool Item List
+ * @param {object} base Base angular application object
+ */
 export default function(base) {
 	base.controller("SequencingRunPoolItemListCtrl", ["$scope", "$location", "$routeParams", "Restangular",
 		function($scope, $location, $routeParams, Restangular) {

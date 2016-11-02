@@ -1,5 +1,4 @@
 let ExtractTextPlugin = require("extract-text-webpack-plugin");
-let FileLoader = require("file-loader");
 
 module.exports = {
 	entry: ["./js/app.js", "./css/main.scss"],

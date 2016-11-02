@@ -1,3 +1,7 @@
+/**
+ * Bioproject Detail controller
+ * @param {object} base Base angular application object
+ */
 export default function(base) {
 	base.controller("BioprojectDetailCtrl", ["$scope", "$location", "$routeParams", "Restangular", "PERMISSION_LEVELS", "$mdDialog", "$log", "$q",
 		function($scope, $location, $routeParams, Restangular, PERMISSION_LEVELS, $mdDialog, $log, $q) {
@@ -34,7 +38,6 @@ export default function(base) {
 
 			$scope.edit_samples_save = function() {
 				// First create all the objects that are new
-				let requests = [];
 				let new_samples = [];
 				for(let idx = 0; idx < $scope.samples.length; idx++) {
 					if($scope.samples[idx].id === "new") {

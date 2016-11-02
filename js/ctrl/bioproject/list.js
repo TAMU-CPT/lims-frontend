@@ -1,3 +1,7 @@
+/**
+ * Bioproject list controller
+ * @param {object} base Base angular application object
+ */
 export default function(base) {
 	base.controller("BioprojectListCtrl", ["$scope", "$location", "$routeParams", "Restangular", "$mdDialog",
 		function($scope, $location, $routeParams, Restangular, $mdDialog) {

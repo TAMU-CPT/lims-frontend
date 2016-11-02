@@ -1,3 +1,7 @@
+/**
+ * Navigation controller
+ * @param {object} base Base angular application object
+ */
 export default function(base) {
 	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval",
 		function($scope, $mdSidenav, $localStorage, $location, $interval) {

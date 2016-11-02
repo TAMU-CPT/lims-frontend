@@ -1,5 +1,9 @@
 let jwt_decode = require("jwt-decode");
 
+/**
+ * Login Controller
+ * @param {object} base Base angular application object
+ */
 export default function(base) {
 	base.controller("LoginCtrl", ["$scope", "$http", "$localStorage", "$location", "$mdLoginToast", "DRF_URL",
 		function($scope, $http, $localStorage, $location, $mdLoginToast, DRF_URL) {
@@ -20,7 +24,7 @@ export default function(base) {
 						});
 				}
 				if ($scope.loginForm.$invalid) {
-					 console.log("invalid");
+					console.log("invalid");
 				}
 			};
 		}]);

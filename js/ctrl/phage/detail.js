@@ -1,3 +1,7 @@
+/**
+ * Phage detail controller
+ * @param {object} base Base angular application object
+ */
 export default function(base) {
 	base.controller("PhageDetailCtrl", ["$scope", "$location", "$routeParams", "Restangular", "leafletBoundsHelpers",
 		function($scope, $location, $routeParams, Restangular, leafletBoundsHelpers) {

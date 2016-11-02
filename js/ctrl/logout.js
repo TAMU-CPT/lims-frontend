@@ -1,3 +1,7 @@
+/**
+ * Logout controller
+ * @param {object} base Base angular application object
+ */
 export default function(base) {
 	base.controller("LogOutCtrl", ["$scope", "$http", "$localStorage", "$location",
 		function($scope, $http, $localStorage, $location) {

@@ -1,3 +1,7 @@
+/**
+ * Custom filters used in HTML
+ * @param {object} base Base angular application object
+ */
 export default function(base) {
 	base.filter("role_icon", function() {
 		return function(input) {
