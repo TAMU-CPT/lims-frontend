@@ -27,15 +27,15 @@ let base = angular.module("base", [
 	"ngAnimate",
 	"md.data.table",
 	"leaflet-directive",
-	'ngStorage', // https://github.com/gsklee/ngStorage
+	"ngStorage", // https://github.com/gsklee/ngStorage
 ]);
 
 base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarServiceProvider", "RestangularProvider", "DRF_URL", "$compileProvider",
 	function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider, DRF_URL, $compileProvider) {
 		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftps?|sftp|http|mailto|fax|tel):/);
 		gravatarServiceProvider.defaults = {
-		  size: 100,
-		  "default": 'mm',  // Mystery (wo)man as default for missing avatars
+		  "size": 100,
+		  "default": "mm",  // Mystery (wo)man as default for missing avatars
 		};
 		gravatarServiceProvider.secure = true;
 		gravatarServiceProvider.protocol = "my-protocol";
@@ -45,236 +45,236 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 		$routeProvider.
 			when("/bioprojects", {
 				templateUrl: "partials/bioproject-list.html",
-				controller: 'BioprojectListCtrl',
+				controller: "BioprojectListCtrl",
 			}).
 			when("/bioprojects/:bioprojectID", {
 				templateUrl: "partials/bioproject-detail.html",
-				controller: 'BioprojectDetailCtrl',
+				controller: "BioprojectDetailCtrl",
 			}).
 
 			when("/persontags", {
 				templateUrl: "partials/persontag-list.html",
-				controller: 'PersonTagListCtrl',
+				controller: "PersonTagListCtrl",
 			}).
 			when("/persontags/:persontagID", {
 				templateUrl: "partials/persontag-detail.html",
-				controller: 'PersonTagDetailCtrl',
+				controller: "PersonTagDetailCtrl",
 			}).
 			when("/organisations", {
 				templateUrl: "partials/organisation-list.html",
-				controller: 'OrganisationListCtrl',
+				controller: "OrganisationListCtrl",
 			}).
 			when("/organisations/:organisationID", {
 				templateUrl: "partials/organisation-detail.html",
-				controller: 'OrganisationDetailCtrl',
+				controller: "OrganisationDetailCtrl",
 			}).
 			when("/boxs", {
 				templateUrl: "partials/box-list.html",
-				controller: 'BoxListCtrl',
+				controller: "BoxListCtrl",
 			}).
 			when("/boxs/:boxID", {
 				templateUrl: "partials/box-detail.html",
-				controller: 'BoxDetailCtrl',
+				controller: "BoxDetailCtrl",
 			}).
 			when("/storagelocations", {
 				templateUrl: "partials/storagelocation-list.html",
-				controller: 'StorageLocationListCtrl',
+				controller: "StorageLocationListCtrl",
 			}).
 			when("/storagelocations/:storagelocationID", {
 				templateUrl: "partials/storagelocation-detail.html",
-				controller: 'StorageLocationDetailCtrl',
+				controller: "StorageLocationDetailCtrl",
 			}).
 			when("/assemblys", {
 				templateUrl: "partials/assembly-list.html",
-				controller: 'AssemblyListCtrl',
+				controller: "AssemblyListCtrl",
 			}).
 			when("/assemblys/:assemblyID", {
 				templateUrl: "partials/assembly-detail.html",
-				controller: 'AssemblyDetailCtrl',
+				controller: "AssemblyDetailCtrl",
 			}).
 			when("/tubetypes", {
 				templateUrl: "partials/tubetype-list.html",
-				controller: 'TubeTypeListCtrl',
+				controller: "TubeTypeListCtrl",
 			}).
 			when("/tubetypes/:tubetypeID", {
 				templateUrl: "partials/tubetype-detail.html",
-				controller: 'TubeTypeDetailCtrl',
+				controller: "TubeTypeDetailCtrl",
 			}).
 			when("/experimentalresults", {
 				templateUrl: "partials/experimentalresult-list.html",
-				controller: 'ExperimentalResultListCtrl',
+				controller: "ExperimentalResultListCtrl",
 			}).
 			when("/experimentalresults/:experimentalresultID", {
 				templateUrl: "partials/experimentalresult-detail.html",
-				controller: 'ExperimentalResultDetailCtrl',
+				controller: "ExperimentalResultDetailCtrl",
 			}).
 			when("/sequencingruns", {
 				templateUrl: "partials/sequencingrun-list.html",
-				controller: 'SequencingRunListCtrl',
+				controller: "SequencingRunListCtrl",
 			}).
 			when("/sequencingruns/:sequencingrunID", {
 				templateUrl: "partials/sequencingrun-detail.html",
-				controller: 'SequencingRunDetailCtrl',
+				controller: "SequencingRunDetailCtrl",
 			}).
 			when("/tubes", {
 				templateUrl: "partials/tube-list.html",
-				controller: 'TubeListCtrl',
+				controller: "TubeListCtrl",
 			}).
 			when("/tubes/:tubeID", {
 				templateUrl: "partials/tube-detail.html",
-				controller: 'TubeDetailCtrl',
+				controller: "TubeDetailCtrl",
 			}).
 			when("/sampletypes", {
 				templateUrl: "partials/sampletype-list.html",
-				controller: 'SampleTypeListCtrl',
+				controller: "SampleTypeListCtrl",
 			}).
 			when("/sampletypes/:sampletypeID", {
 				templateUrl: "partials/sampletype-detail.html",
-				controller: 'SampleTypeDetailCtrl',
+				controller: "SampleTypeDetailCtrl",
 			}).
 			when("/experiments", {
 				templateUrl: "partials/experiment-list.html",
-				controller: 'ExperimentListCtrl',
+				controller: "ExperimentListCtrl",
 			}).
 			when("/experiments/:experimentID", {
 				templateUrl: "partials/experiment-detail.html",
-				controller: 'ExperimentDetailCtrl',
+				controller: "ExperimentDetailCtrl",
 			}).
 			when("/phages", {
 				templateUrl: "partials/phage-list.html",
-				controller: 'PhageListCtrl',
+				controller: "PhageListCtrl",
 			}).
 			when("/phages/:phageID", {
 				templateUrl: "partials/phage-detail.html",
-				controller: 'PhageDetailCtrl',
+				controller: "PhageDetailCtrl",
 			}).
 			when("/phagednapreps", {
 				templateUrl: "partials/phagednaprep-list.html",
-				controller: 'PhageDNAPrepListCtrl',
+				controller: "PhageDNAPrepListCtrl",
 			}).
 			when("/phagednapreps/:phagednaprepID", {
 				templateUrl: "partials/phagednaprep-detail.html",
-				controller: 'PhageDNAPrepDetailCtrl',
+				controller: "PhageDNAPrepDetailCtrl",
 			}).
 			when("/sequencingrunpools", {
 				templateUrl: "partials/sequencingrunpool-list.html",
-				controller: 'SequencingRunPoolListCtrl',
+				controller: "SequencingRunPoolListCtrl",
 			}).
 			when("/sequencingrunpools/:sequencingrunpoolID", {
 				templateUrl: "partials/sequencingrunpool-detail.html",
-				controller: 'SequencingRunPoolDetailCtrl',
+				controller: "SequencingRunPoolDetailCtrl",
 			}).
 			when("/sequencingrunpoolitems", {
 				templateUrl: "partials/sequencingrunpoolitem-list.html",
-				controller: 'SequencingRunPoolItemListCtrl',
+				controller: "SequencingRunPoolItemListCtrl",
 			}).
 			when("/sequencingrunpoolitems/:sequencingrunpoolitemID", {
 				templateUrl: "partials/sequencingrunpoolitem-detail.html",
-				controller: 'SequencingRunPoolItemDetailCtrl',
+				controller: "SequencingRunPoolItemDetailCtrl",
 			}).
 			when("/containertypes", {
 				templateUrl: "partials/containertype-list.html",
-				controller: 'ContainerTypeListCtrl',
+				controller: "ContainerTypeListCtrl",
 			}).
 			when("/containertypes/:containertypeID", {
 				templateUrl: "partials/containertype-detail.html",
-				controller: 'ContainerTypeDetailCtrl',
+				controller: "ContainerTypeDetailCtrl",
 			}).
 			when("/environmentalsamples", {
 				templateUrl: "partials/environmentalsample-list.html",
-				controller: 'EnvironmentalSampleListCtrl',
+				controller: "EnvironmentalSampleListCtrl",
 			}).
 			when("/environmentalsamples/:environmentalsampleID", {
 				templateUrl: "partials/environmentalsample-detail.html",
-				controller: 'EnvironmentalSampleDetailCtrl',
+				controller: "EnvironmentalSampleDetailCtrl",
 			}).
 			when("/lysates", {
 				templateUrl: "partials/lysate-list.html",
-				controller: 'LysateListCtrl',
+				controller: "LysateListCtrl",
 			}).
 			when("/lysates/:lysateID", {
 				templateUrl: "partials/lysate-detail.html",
-				controller: 'LysateDetailCtrl',
+				controller: "LysateDetailCtrl",
 			}).
 			when("/bacteria", {
 				templateUrl: "partials/bacteria-list.html",
-				controller: 'BacteriaListCtrl',
+				controller: "BacteriaListCtrl",
 			}).
 			when("/bacteria/:bacteriaID", {
 				templateUrl: "partials/bacteria-detail.html",
-				controller: 'BacteriaDetailCtrl',
+				controller: "BacteriaDetailCtrl",
 			}).
 			when("/accounts", {
 				templateUrl: "partials/account-list.html",
-				controller: 'AccountListCtrl',
+				controller: "AccountListCtrl",
 			}).
 			when("/accounts/:accountID", {
 				templateUrl: "partials/account-detail.html",
-				controller: 'AccountDetailCtrl',
+				controller: "AccountDetailCtrl",
 			}).
 			when("/emailconfirmations", {
 				templateUrl: "partials/emailconfirmation-list.html",
-				controller: 'EmailConfirmationListCtrl',
+				controller: "EmailConfirmationListCtrl",
 			}).
 			when("/emailconfirmations/:emailconfirmationID", {
 				templateUrl: "partials/emailconfirmation-detail.html",
-				controller: 'EmailConfirmationDetailCtrl',
+				controller: "EmailConfirmationDetailCtrl",
 			}).
 			when("/signupcoderesults", {
 				templateUrl: "partials/signupcoderesult-list.html",
-				controller: 'SignupCodeResultListCtrl',
+				controller: "SignupCodeResultListCtrl",
 			}).
 			when("/signupcoderesults/:signupcoderesultID", {
 				templateUrl: "partials/signupcoderesult-detail.html",
-				controller: 'SignupCodeResultDetailCtrl',
+				controller: "SignupCodeResultDetailCtrl",
 			}).
 			when("/signupcodes", {
 				templateUrl: "partials/signupcode-list.html",
-				controller: 'SignupCodeListCtrl',
+				controller: "SignupCodeListCtrl",
 			}).
 			when("/signupcodes/:signupcodeID", {
 				templateUrl: "partials/signupcode-detail.html",
-				controller: 'SignupCodeDetailCtrl',
+				controller: "SignupCodeDetailCtrl",
 			}).
 			when("/emailaddresses", {
 				templateUrl: "partials/emailaddress-list.html",
-				controller: 'EmailAddressListCtrl',
+				controller: "EmailAddressListCtrl",
 			}).
 			when("/emailaddresses/:emailaddressID", {
 				templateUrl: "partials/emailaddress-detail.html",
-				controller: 'EmailAddressDetailCtrl',
+				controller: "EmailAddressDetailCtrl",
 			}).
 			when("/accountdeletions", {
 				templateUrl: "partials/accountdeletion-list.html",
-				controller: 'AccountDeletionListCtrl',
+				controller: "AccountDeletionListCtrl",
 			}).
 			when("/accountdeletions/:accountdeletionID", {
 				templateUrl: "partials/accountdeletion-detail.html",
-				controller: 'AccountDeletionDetailCtrl',
+				controller: "AccountDeletionDetailCtrl",
 			}).
 			when("/anonymousaccounts", {
 				templateUrl: "partials/anonymousaccount-list.html",
-				controller: 'AnonymousAccountListCtrl',
+				controller: "AnonymousAccountListCtrl",
 			}).
 			when("/anonymousaccounts/:anonymousaccountID", {
 				templateUrl: "partials/anonymousaccount-detail.html",
-				controller: 'AnonymousAccountDetailCtrl',
+				controller: "AnonymousAccountDetailCtrl",
 			}).
 // LOAD ROUTES
 			when("/login", {
 				templateUrl: "partials/login.html",
-				controller: 'LoginCtrl',
+				controller: "LoginCtrl",
 			}).
 			when("/logout", {
 				templateUrl: "partials/login.html",
-				controller: 'LogOutCtrl',
+				controller: "LogOutCtrl",
 			}).
 			when("/", {
 				templateUrl: "partials/home.html",
-				controller: 'HomeCtrl',
+				controller: "HomeCtrl",
 			}).
 			otherwise({
-				redirectTo: '/',
+				redirectTo: "/",
 			});
 
 			// function loginRequired($q, $location, $localStorage) {

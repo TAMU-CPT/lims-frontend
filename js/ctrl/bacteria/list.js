@@ -1,26 +1,26 @@
 export default function(base) {
-	base.controller('BacteriaListCtrl', ['$scope','$location','$routeParams', 'Restangular',
+	base.controller("BacteriaListCtrl", ["$scope", "$location", "$routeParams", "Restangular",
 		function($scope, $location, $routeParams, Restangular) {
 			$scope.go = function(id) {
-				$location.path('/bacteria/' + id);;
+				$location.path("/bacteria/" + id); ;
 			};
-			//uncomment if ordering filter is implemented in backend
-			//$scope.ordering="name";
+			// uncomment if ordering filter is implemented in backend
+			// $scope.ordering="name";
 
 			$scope.updateData = function(page) {
-				if(!isNaN(parseInt(page))){
+				if(!isNaN(parseInt(page))) {
 					$scope.query.page = page;
 				}
-				//uncomment if ordering filter is implemented in backend
-				//$scope.query.ordering = $scope.ordering;
-				$scope.promise = Restangular.all('lims/bacterias').getList($scope.query).then(function(data) {
+				// uncomment if ordering filter is implemented in backend
+				// $scope.query.ordering = $scope.ordering;
+				$scope.promise = Restangular.all("lims/bacterias").getList($scope.query).then(function(data) {
 					$scope.data = data;
 				});
 			};
 
 			$scope.options = {
 				limitSelect: true,
-				pageSelect: true
+				pageSelect: true,
 			};
 
 			$scope.query = {
@@ -31,6 +31,5 @@ export default function(base) {
 			};
 
 			$scope.updateData(1);
-
-	}]);
+		}]);
 }

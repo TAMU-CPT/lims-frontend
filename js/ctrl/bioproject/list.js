@@ -1,17 +1,16 @@
 export default function(base) {
-	base.controller('BioprojectListCtrl', ['$scope','$location','$routeParams', 'Restangular', '$mdDialog',
+	base.controller("BioprojectListCtrl", ["$scope", "$location", "$routeParams", "Restangular", "$mdDialog",
 		function($scope, $location, $routeParams, Restangular, $mdDialog) {
-
 			$scope.choice_popup = function(ev) {
 				$mdDialog.show({
-					contentElement: '#create',
+					contentElement: "#create",
 					parent: angular.element(document.body),
-					clickOutsideToClose: true
+					clickOutsideToClose: true,
 				});
 			};
 
 			$scope.create = function() {
-				$scope.promise = Restangular.all('bioproject/bioprojects').post({
+				$scope.promise = Restangular.all("bioproject/bioprojects").post({
 					name: $scope.createData.name,
 					description: $scope.createData.description,
 					editingrolegroup_set: [],
@@ -26,7 +25,7 @@ export default function(base) {
 					sample: [],
 				}).then(function(data) {
 					$scope.createData = {};
-					$location.path('/bioprojects/' + data.id);
+					$location.path("/bioprojects/" + data.id);
 				});
 				$mdDialog.cancel();
 			};
@@ -36,21 +35,21 @@ export default function(base) {
 			};
 
 			$scope.go = function(id) {
-				$location.path('/bioprojects/' + id);;
+				$location.path("/bioprojects/" + id); ;
 			};
 
 			$scope.updateData = function(page) {
-				if(!isNaN(parseInt(page))){
+				if(!isNaN(parseInt(page))) {
 					$scope.query.page = page;
 				}
-				$scope.promise = Restangular.all('bioproject/bioprojects').getList($scope.query).then(function(data) {
+				$scope.promise = Restangular.all("bioproject/bioprojects").getList($scope.query).then(function(data) {
 					$scope.data = data;
 				});
 			};
 
 			$scope.options = {
 				limitSelect: true,
-				pageSelect: true
+				pageSelect: true,
 			};
 
 			$scope.query = {
@@ -59,5 +58,5 @@ export default function(base) {
 			};
 
 			$scope.updateData(1);
-	}]);
+		}]);
 }

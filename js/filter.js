@@ -1,38 +1,38 @@
 export default function(base) {
-	base.filter('role_icon', function() {
+	base.filter("role_icon", function() {
 		return function(input) {
-			switch(parseInt(input)){
-				case 0:
-				case "view":
-					return "visibility";
-				case 1:
-				case "edit":
-					return "edit";
-				case 2:
-				case "admin":
-					return "person";
-				case 3:
-				case "owner":
-					return "person";
+			switch(parseInt(input)) {
+			case 0:
+			case "view":
+				return "visibility";
+			case 1:
+			case "edit":
+				return "edit";
+			case 2:
+			case "admin":
+				return "person";
+			case 3:
+			case "owner":
+				return "person";
 			}
 		};
 	});
 
-	base.filter('host_formatter', ['$sce', function($sce) {
+	base.filter("host_formatter", ["$sce", function($sce) {
 		return function(input) {
-			return $sce.trustAs('html', "<i>" + input.genus +" " + input.species + "</i> " + input.strain);
+			return $sce.trustAs("html", "<i>" + input.genus +" " + input.species + "</i> " + input.strain);
 		};
 	}]);
 
-	base.filter('role_type_icon', function($sce) {
+	base.filter("role_type_icon", function($sce) {
 		return function(input) {
-			switch(input){
-				case 'user': // view
-					return 'person';
-				case 'group': // edit
-					return 'group';
-				default:
-					return 'person';
+			switch(input) {
+			case "user": // view
+				return "person";
+			case "group": // edit
+				return "group";
+			default:
+				return "person";
 			}
 		};
 	});
