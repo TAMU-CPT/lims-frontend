@@ -1,3 +1,7 @@
+/**
+ * Account detail controller
+ * @param {object} base Base angular application object
+ */
 export default function(base) {
 	base.controller("AccountDetailCtrl", ["$scope", "$location", "$routeParams", "Restangular",
 		function($scope, $location, $routeParams, Restangular) {
