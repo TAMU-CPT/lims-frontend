@@ -15,7 +15,6 @@ require("ngstorage");
 require("angular-jwt");
 require("leaflet");
 require("angular-leaflet-directive");
-let moment = require("moment");
 
 let base = angular.module("base", [
 	"ngRoute",
@@ -34,8 +33,8 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 	function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider, DRF_URL, $compileProvider) {
 		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftps?|sftp|http|mailto|fax|tel):/);
 		gravatarServiceProvider.defaults = {
-		  "size": 100,
-		  "default": "mm",  // Mystery (wo)man as default for missing avatars
+			"size": 100,
+			"default": "mm",  // Mystery (wo)man as default for missing avatars
 		};
 		gravatarServiceProvider.secure = true;
 		gravatarServiceProvider.protocol = "my-protocol";
@@ -307,22 +306,22 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 
 		$httpProvider.interceptors.push(["$q", "$location", "$localStorage", function($q, $location, $localStorage) {
 			return {
-			   "request": function(config) {
-				   config.headers = config.headers || {};
-				   if ($localStorage.jwtToken) {
-					   config.headers.Authorization = "JWT " + $localStorage.jwtToken;
-				   }
-				   return config;
-			   },
-			   "responseError": function(response) {
-				   console.log("Failed with", response.status, "status");
-				   if (response.status == 401 || response.status == 403 || response.status == 400 || response.status == 500) {
-					   console.log("bad");
-					   // $location.path('/login');
-				   }
-				   return $q.reject(response);
-			   },
-		   };
+				"request": function(config) {
+					config.headers = config.headers || {};
+					if ($localStorage.jwtToken) {
+						config.headers.Authorization = "JWT " + $localStorage.jwtToken;
+					}
+					return config;
+				},
+				"responseError": function(response) {
+					console.log("Failed with", response.status, "status");
+					if (response.status == 401 || response.status == 403 || response.status == 400 || response.status == 500) {
+						console.log("bad");
+						// $location.path('/login');
+					}
+					return $q.reject(response);
+				},
+			};
 		}]);
 	}]);
 
