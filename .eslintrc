@@ -4,6 +4,7 @@
 		"indent": ["error", "tab"],
 		"max-len": ["warn", 180, 4],
 		"quotes": ["error", "double", { "avoidEscape": true }],
+		"camelcase": [0],
 	},
 	"parserOptions": {
 		"ecmaVersion": 5,
