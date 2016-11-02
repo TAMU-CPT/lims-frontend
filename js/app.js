@@ -51,14 +51,6 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				controller: "BioprojectDetailCtrl",
 			}).
 
-			when("/persontags", {
-				templateUrl: "partials/persontag-list.html",
-				controller: "PersonTagListCtrl",
-			}).
-			when("/persontags/:persontagID", {
-				templateUrl: "partials/persontag-detail.html",
-				controller: "PersonTagDetailCtrl",
-			}).
 			when("/organisations", {
 				templateUrl: "partials/organisation-list.html",
 				controller: "OrganisationListCtrl",
@@ -336,8 +328,6 @@ require("./ctrl/login.js")(base);
 require("./ctrl/logout.js")(base);
 require("./ctrl/bioproject/list.js")(base);
 require("./ctrl/bioproject/detail.js")(base);
-require("./ctrl/persontag/list.js")(base);
-require("./ctrl/persontag/detail.js")(base);
 require("./ctrl/organisation/list.js")(base);
 require("./ctrl/organisation/detail.js")(base);
 require("./ctrl/box/list.js")(base);
@@ -376,16 +366,4 @@ require("./ctrl/bacteria/list.js")(base);
 require("./ctrl/bacteria/detail.js")(base);
 require("./ctrl/account/list.js")(base);
 require("./ctrl/account/detail.js")(base);
-require("./ctrl/emailconfirmation/list.js")(base);
-require("./ctrl/emailconfirmation/detail.js")(base);
-require("./ctrl/signupcoderesult/list.js")(base);
-require("./ctrl/signupcoderesult/detail.js")(base);
-require("./ctrl/signupcode/list.js")(base);
-require("./ctrl/signupcode/detail.js")(base);
-require("./ctrl/emailaddress/list.js")(base);
-require("./ctrl/emailaddress/detail.js")(base);
-require("./ctrl/accountdeletion/list.js")(base);
-require("./ctrl/accountdeletion/detail.js")(base);
-require("./ctrl/anonymousaccount/list.js")(base);
-require("./ctrl/anonymousaccount/detail.js")(base);
 // REQUIRE
