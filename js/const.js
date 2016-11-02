@@ -1,3 +1,7 @@
+/**
+ * Export default constants used throughout the app
+ * @param {object} base The base application.
+ */
 export default function(base) {
 	base.constant("DRF_URL", "http://localhost:8000/");
 

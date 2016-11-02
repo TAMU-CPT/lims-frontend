@@ -3,7 +3,7 @@ export default function(base) {
 		return {
 			show: function(content) {
 				return $mdToast.show(
-			  $mdToast.simple()
+				$mdToast.simple()
 				.content(content)
 				.position("top right")
 				.hideDelay(2000)
