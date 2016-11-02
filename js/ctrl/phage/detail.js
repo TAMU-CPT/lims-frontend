@@ -80,18 +80,30 @@ export default function(base) {
 				});
 
 				var points = $scope.data.env_sample_collection.env_sample.map(function(e){ return [e.location_xy[1], e.location_xy[0]] })
-				var maxbounds = leafletBoundsHelpers.createBoundsFromArray(points);
-				//maxbounds.pad = 1.0;
-				$scope.map = {
-					bounds: maxbounds,
-					markers: markers,
-					center: {
+				var maxbounds = null;
+				var center = null;
+
+				// If there are multiple points, calculate bounds using their
+				// library, otherwise just use the single point as the bounds.
+				if(points.length > 1){
+					maxbounds = leafletBoundsHelpers.createBoundsFromArray(points);
+					center = {
 						lat: (maxbounds.northEast.lat + maxbounds.southWest.lat) / 2,
 						lng: (maxbounds.northEast.lng + maxbounds.southWest.lng) / 2,
 						zoom: 1,
-					}
+					};
+				} else {
+					center = {
+						lat: points[0][0],
+						lng: points[0][1],
+						zoom: 4,
+					};
 				}
-				console.log($scope.map);
+				$scope.map = {
+					bounds: maxbounds,
+					markers: markers,
+					center: center,
+				}
 
 				// Backup copy for edit/restore functionality.
 				$scope.original_data = angular.copy(data);
