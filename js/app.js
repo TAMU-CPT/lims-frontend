@@ -39,8 +39,8 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 		gravatarServiceProvider.secure = true;
 		gravatarServiceProvider.protocol = "my-protocol";
 		$mdThemingProvider.theme("default")
-			.primaryPalette("grey")
-			.accentPalette("blue");
+			.primaryPalette("blue")
+			.accentPalette("pink");
 		$routeProvider.
 			when("/bioprojects", {
 				templateUrl: "partials/bioproject-list.html",
@@ -203,53 +203,14 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/account-detail.html",
 				controller: "AccountDetailCtrl",
 			}).
-			when("/emailconfirmations", {
-				templateUrl: "partials/emailconfirmation-list.html",
-				controller: "EmailConfirmationListCtrl",
+
+			when("/annotation", {
+				templateUrl: "partials/annotation-list.html",
+				controller: "AnnotationListCtrl",
 			}).
-			when("/emailconfirmations/:emailconfirmationID", {
-				templateUrl: "partials/emailconfirmation-detail.html",
-				controller: "EmailConfirmationDetailCtrl",
-			}).
-			when("/signupcoderesults", {
-				templateUrl: "partials/signupcoderesult-list.html",
-				controller: "SignupCodeResultListCtrl",
-			}).
-			when("/signupcoderesults/:signupcoderesultID", {
-				templateUrl: "partials/signupcoderesult-detail.html",
-				controller: "SignupCodeResultDetailCtrl",
-			}).
-			when("/signupcodes", {
-				templateUrl: "partials/signupcode-list.html",
-				controller: "SignupCodeListCtrl",
-			}).
-			when("/signupcodes/:signupcodeID", {
-				templateUrl: "partials/signupcode-detail.html",
-				controller: "SignupCodeDetailCtrl",
-			}).
-			when("/emailaddresses", {
-				templateUrl: "partials/emailaddress-list.html",
-				controller: "EmailAddressListCtrl",
-			}).
-			when("/emailaddresses/:emailaddressID", {
-				templateUrl: "partials/emailaddress-detail.html",
-				controller: "EmailAddressDetailCtrl",
-			}).
-			when("/accountdeletions", {
-				templateUrl: "partials/accountdeletion-list.html",
-				controller: "AccountDeletionListCtrl",
-			}).
-			when("/accountdeletions/:accountdeletionID", {
-				templateUrl: "partials/accountdeletion-detail.html",
-				controller: "AccountDeletionDetailCtrl",
-			}).
-			when("/anonymousaccounts", {
-				templateUrl: "partials/anonymousaccount-list.html",
-				controller: "AnonymousAccountListCtrl",
-			}).
-			when("/anonymousaccounts/:anonymousaccountID", {
-				templateUrl: "partials/anonymousaccount-detail.html",
-				controller: "AnonymousAccountDetailCtrl",
+			when("/annotation/:annotationID", {
+				templateUrl: "partials/annotation-detail.html",
+				controller: "AnnotationDetailCtrl",
 			}).
 // LOAD ROUTES
 			when("/login", {
@@ -366,4 +327,6 @@ require("./ctrl/bacteria/list.js")(base);
 require("./ctrl/bacteria/detail.js")(base);
 require("./ctrl/account/list.js")(base);
 require("./ctrl/account/detail.js")(base);
+require("./ctrl/annotation/list.js")(base);
+require("./ctrl/annotation/detail.js")(base);
 // REQUIRE

@@ -6,25 +6,16 @@ export default function(base) {
 	base.controller("HomeCtrl", ["$scope", "$location",
 		function($scope, $location) {
 			$scope.home = [
-				{
+				{ name: "Biological Data",
 					hue: 3,
-					name: "Biological Data",
 					routes: [
 						{
 							title: "Bioprojects",
 							url: "#/bioprojects",
 						},
 						{
-							title: "Assemblys",
-							url: "#/assemblys",
-						},
-						{
 							title: "ExperimentalResults",
 							url: "#/experimentalresults",
-						},
-						{
-							title: "SequencingRuns",
-							url: "#/sequencingruns",
 						},
 						{
 							title: "SampleTypes",
@@ -43,14 +34,6 @@ export default function(base) {
 							url: "#/phagednapreps",
 						},
 						{
-							title: "SequencingRunPools",
-							url: "#/sequencingrunpools",
-						},
-						{
-							title: "SequencingRunPoolItems",
-							url: "#/sequencingrunpoolitems",
-						},
-						{
 							title: "EnvironmentalSamples",
 							url: "#/environmentalsamples",
 						},
@@ -64,9 +47,8 @@ export default function(base) {
 						},
 					],
 				},
-				{
-					hue: 2,
-					name: "Directory Services",
+				{ name: "Sequencing",
+					hue: 3,
 					routes: [
 						{
 							title: "Organizations",
@@ -78,9 +60,30 @@ export default function(base) {
 						},
 					],
 				},
-				{
+				{ name: "Annotation",
+					hue: 3,
+					routes: [
+						{
+							title: "Annotation",
+							url: "#/annotation",
+						},
+					],
+				},
+				{ name: "Directory Services",
+					hue: 2,
+					routes: [
+						{
+							title: "Organizations",
+							url: "#/organisations",
+						},
+						{
+							title: "People",
+							url: "#/accounts",
+						},
+					],
+				},
+				{ name: "Storage",
 					hue: 1,
-					name: "Storage",
 					routes: [
 						{
 							title: "TubeTypes",
