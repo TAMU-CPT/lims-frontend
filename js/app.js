@@ -16,6 +16,7 @@ require("angular-jwt");
 require("leaflet");
 require("angular-leaflet-directive");
 require("angular-google-picker/dist/google-picker.js");
+require("angular-drag-and-drop-lists");
 
 let base = angular.module("base", [
 	"ngRoute",
@@ -28,8 +29,10 @@ let base = angular.module("base", [
 	"md.data.table",
 	"leaflet-directive",
 	"lk-google-picker",
+	"dndLists",
 	"ngStorage", // https://github.com/gsklee/ngStorage
 ]);
+
 
 base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarServiceProvider", "RestangularProvider", "DRF_URL", "$compileProvider", "lkGoogleSettingsProvider",
 	function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider, DRF_URL, $compileProvider, lkGoogleSettingsProvider) {
