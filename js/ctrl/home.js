@@ -47,16 +47,16 @@ export default function(base) {
 						},
 					],
 				},
-				{ name: "Sequencing",
+				{ name: "Sequencing & Assembly",
 					hue: 3,
 					routes: [
 						{
-							title: "Organizations",
-							url: "#/organisations",
+							title: "SequencingRuns",
+							url: "#/sequencingruns",
 						},
 						{
-							title: "People",
-							url: "#/accounts",
+							title: "Assemblys",
+							url: "#/assemblys",
 						},
 					],
 				},

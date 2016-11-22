@@ -1,42 +1,90 @@
+<style>
+md-chips.md-default-theme .md-chips, md-chips .md-chips {
+	box-shadow: none !important;
+}
+.imgbutton{
+	width: 32px;
+	height: 32px;
+	margin: 0px;
+	padding: 0px;
+	min-width: 32px;
+	min-height: 32px;
+}
+</style>
 <div layout="row" layout-align="center center">
 	<md-card>
-		<md-card-header>
-			<md-card-header-text>
-				<span class="md-title">SequencingRun</span>
-				<span flex class="md-subhead">{{sequencingrun.id}}</span>
-			</md-card-header-text>
-		</md-card-header>
+		<md-toolbar layout="row" class="md-hue-2">
+			<div class="md-toolbar-tools" flex>
+				<span class="md-title">{{sequencingrun.name}}</span>
+				<span flex></span>
+				<!-- TODO: Show if user -->
+				<md-button class="md-icon-button" aria-label="Edit" ng-click="edit_data()" ng-if="disabled">
+					<ng-md-icon icon="edit"></ng-md-icon>
+				</md-button>
+				<md-button class="md-icon-button" aria-label="Save Changes" ng-click="edit_data_save()" ng-if="!disabled">
+					<ng-md-icon icon="save"></ng-md-icon>
+				</md-button>
+				<md-button class="md-icon-button" aria-label="Cancel Changes" ng-click="edit_data_cancel()" ng-if="!disabled">
+					<ng-md-icon icon="cancel"></ng-md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
 		<md-card-content>
 			<div layout="column">
-				<md-input-container flex>
-					<label>methods</label>
-					<input disabled ng-model="sequencingrun.methods">
-				</md-input-container>
-				<md-input-container flex>
-					<label>bioanalyzer_qc</label>
-					<input disabled ng-model="sequencingrun.bioanalyzer_qc">
-				</md-input-container>
-				<md-input-container flex>
-					<label>date</label>
-					<input disabled ng-model="sequencingrun.date">
-				</md-input-container>
-				<md-input-container flex>
-					<label>galaxy_history</label>
-					<input disabled ng-model="sequencingrun.galaxy_history">
-				</md-input-container>
-				<md-input-container flex>
-					<label>run_prep_spreadsheet</label>
-					<input disabled ng-model="sequencingrun.run_prep_spreadsheet">
-				</md-input-container>
-				<md-input-container flex>
-					<label>id</label>
-					<input disabled ng-model="sequencingrun.id">
-				</md-input-container>
-				<md-input-container flex>
-					<label>name</label>
-					<input disabled ng-model="sequencingrun.name">
-				</md-input-container>
+				<table width="100%">
+					<tr>
+						<td>Owner</td>
+						<td>
+							<md-chips ng-model="owner_set" readonly="true">
+								<md-chip-template ng-click="go_user($chip.id)">
+									<ng-md-icon icon="person"></ng-md-icon>
+									{{ $chip.name }}
+								</md-chip-template>
+							</md-chips>
+						</td>
+					</tr>
+					<tr>
+						<td>Run Prep</td>
+						<td>
+							<md-button class="imgbutton" target="_blank" ng-href="{{sequencingrun.run_prep_spreadsheet}}">
+								<img src="img/icon_1_spreadsheet_x32.png" width=32 height=32/>
+							</md-button>
+						</td>
+						<td ng-if="!disabled">
+							<md-button lk-google-picker on-picked="onPicked(docs, 'run_prep_spreadsheet')" on-cancel="onCancel()" class="md-raised">
+								Choose a <span ng-if="sequencingrun.run_prep_spreadsheet">different</span> file
+							</md-button>
+						</td>
+					</tr>
+					<tr>
+						<td>BioAnalyzer QC</td>
+						<td>
+							<md-button class="imgbutton" target="_blank" ng-href="{{sequencingrun.bioanalyzer_qc}}">
+								<img src="img/icon_1_spreadsheet_x32.png" width=32 height=32/>
+							</md-button>
+						</td>
+						<td ng-if="!disabled">
+							<md-button lk-google-picker on-picked="onPicked(docs, 'bioanalyzer_qc')" on-cancel="onCancel()" class="md-raised">
+								Choose a <span ng-if="sequencingrun.bioanalyzer_qc">different</span> file
+							</md-button>
+						</td>
+					</tr>
+					<tr>
+						<td>Assembly</td>
+						<td>
+							<md-button class="imgbutton" target="_blank" ng-href="{{sequencingrun.assembly}}">
+								<img src="img/galaxy_logo.svg" width=32 height=32/>
+							</md-button>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div layout="column">
 			</div>
 		</md-card-content>
 	</md-card>
+<pre>
+{{ files | json }}
+</pre>
 </div>

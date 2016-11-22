@@ -15,6 +15,7 @@ require("ngstorage");
 require("angular-jwt");
 require("leaflet");
 require("angular-leaflet-directive");
+require("angular-google-picker/dist/google-picker.js");
 
 let base = angular.module("base", [
 	"ngRoute",
@@ -26,11 +27,12 @@ let base = angular.module("base", [
 	"ngAnimate",
 	"md.data.table",
 	"leaflet-directive",
+	"lk-google-picker",
 	"ngStorage", // https://github.com/gsklee/ngStorage
 ]);
 
-base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarServiceProvider", "RestangularProvider", "DRF_URL", "$compileProvider",
-	function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider, DRF_URL, $compileProvider) {
+base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarServiceProvider", "RestangularProvider", "DRF_URL", "$compileProvider", "lkGoogleSettingsProvider",
+	function($routeProvider, $httpProvider, $mdThemingProvider, gravatarServiceProvider, RestangularProvider, DRF_URL, $compileProvider, lkGoogleSettingsProvider) {
 		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftps?|sftp|http|mailto|fax|tel):/);
 		gravatarServiceProvider.defaults = {
 			"size": 100,
@@ -41,6 +43,17 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 		$mdThemingProvider.theme("default")
 			.primaryPalette("blue")
 			.accentPalette("pink");
+
+
+		lkGoogleSettingsProvider.configure({
+			apiKey   : 'AIzaSyCyLHfEMUFec9BSDxuwb21qUNo7VTYm8OQ',
+			clientId : '209566641071-f9edme4sktk76uh1dekuu8a1bsth58ao.apps.googleusercontent.com',
+			scopes   : ['https://www.googleapis.com/auth/drive'],
+			locale   : 'en',
+			//features : ['..', '..'],
+			//views    : ['..', '..']
+		});
+
 		$routeProvider.
 			when("/bioprojects", {
 				templateUrl: "partials/bioproject-list.html",

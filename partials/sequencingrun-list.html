@@ -15,7 +15,15 @@
 	<md-card flex="50" flex-xs="100" flex-sm="75">
 		<md-card-title>
 			<md-card-title-text>
-				<span class="md-headline">SequencingRuns<span>
+				<div layout="row">
+					<span class="md-headline">Sequencing Runs</span>
+					<span flex></span>
+					<span>
+						<md-button class="md-icon-button" aria-label="Add BioProject" ng-click="choice_popup()">
+							<ng-md-icon icon="add"></ng-md-icon>
+						</md-button>
+					</span>
+				</div>
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
@@ -23,24 +31,14 @@
 				<table md-table md-progress="promise">
 					<thead md-head md-order="ordering" md-on-reorder="updateData">
 						<tr md-row>
-							<th md-column><span>methods</span></th>
-							<th md-column><span>bioanalyzer_qc</span></th>
-							<th md-column><span>date</span></th>
-							<th md-column><span>galaxy_history</span></th>
-							<th md-column><span>run_prep_spreadsheet</span></th>
-							<th md-column><span>id</span></th>
-							<th md-column><span>name</span></th>
+							<th md-column><span>Name</span></th>
+							<th md-column><span>Date</span></th>
 						</tr>
 					</thead>
 					<tbody md-body>
 						<tr md-row ng-repeat="sequencingrun in data" ng-click="go(sequencingrun.id)">
-							<td md-cell>{{sequencingrun.methods}}</td>
-							<td md-cell>{{sequencingrun.bioanalyzer_qc}}</td>
-							<td md-cell>{{sequencingrun.date}}</td>
-							<td md-cell>{{sequencingrun.galaxy_history}}</td>
-							<td md-cell>{{sequencingrun.run_prep_spreadsheet}}</td>
-							<td md-cell>{{sequencingrun.id}}</td>
 							<td md-cell>{{sequencingrun.name}}</td>
+							<td md-cell>{{sequencingrun.date}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -54,4 +52,41 @@
 			</md-table-pagination>
 		</md-card-content>
 	</md-card>
+</div>
+
+
+
+<div style="visibility: hidden">
+	<div class="md-dialog-container" id="create">
+		<md-dialog>
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<span class="md-headline">New Sequencing Run</span>
+					<span flex></span>
+					<md-button ng-click="cancel()" aria-label="close" class="md-icon-button">
+						<ng-md-icon icon="close"></ng-md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+			<md-card style="margin:0">
+				<md-card-content layout="column">
+					<form name="createForm">
+						<md-input-container class="md-block">
+							<label>Name</label>
+							<input md-maxlength="32" required name="name" ng-model="createData.name">
+							<div ng-messages="createForm.description.$error">
+								<div ng-message="required">This is required.</div>
+								<div ng-message="md-maxlength">The description must be less than 32 characters long.</div>
+							</div>
+						</md-input-container>
+
+						<div>
+							<md-button class="md-primary"           ng-click="cancel()">Cancel</md-button>
+							<md-button class="md-primary md-raised" ng-click="create()">Create</md-button>
+						</div>
+					</form>
+				</md-card-content>
+			</md-card>
+		</md-dialog>
+	</div>
 </div>
