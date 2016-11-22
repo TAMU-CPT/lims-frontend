@@ -56,6 +56,7 @@
   "author": "TAMU-CPT",
   "license": "AGPL-3.0",
   "dependencies": {
+    "angular-drag-and-drop-lists": "^1.4.0",
     "angular-google-picker": "^0.2.2",
     "angular-leaflet-directive": "^0.10.0"
   }

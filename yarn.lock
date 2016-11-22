@@ -66,6 +66,10 @@ angular-aria@1.5.5:
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.5.5.tgz#2cb4cf9426372b6dd20f3a195f4157aaead571ff"
 
+angular-drag-and-drop-lists:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/angular-drag-and-drop-lists/-/angular-drag-and-drop-lists-1.4.0.tgz#291104c935e10a42f8459696ed30069509d79bfc"
+
 angular-google-picker:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/angular-google-picker/-/angular-google-picker-0.2.2.tgz#2d8d66a91fe4624b318b7d0177ef1c886cced238"
