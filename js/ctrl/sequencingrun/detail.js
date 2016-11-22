@@ -37,23 +37,35 @@ export default function(base) {
 				console.log('Google picker close/cancel!');
 			}
 
-
-
-
-
 			$scope.models = {
 				selected: null,
+				unsorted: [
+					{ label: "FDSA" },
+				],
 				lists: {
-					"A": [],
-					"B": []
+					"Pool 1": [
+						{
+							label: "Lambda",
+						},
+						{
+							label: "K12",
+						}
+					],
+					"Pool 2": [
+						{
+							label: "Asdf",
+						},
+						{
+							label: "IDK",
+						}
+					],
+					"Pool 3": [
+						{
+							label: "YAY",
+						}
+					]
 				}
 			};
-
-			for (var i = 1; i <= 3; ++i) {
-				$scope.models.lists.A.push({label: "Item A" + i});
-				$scope.models.lists.B.push({label: "Item B" + i});
-			}
-
 
 			$scope.loadSequencingMethods = function() {
 				if($scope.seq_methods){
