@@ -56,8 +56,10 @@ export default function(base) {
 					center = {
 						lat: points[0][0],
 						lng: points[0][1],
-						zoom: 6,
+						zoom: 9,
 					};
+					// If only one marker, focus on that.
+					markers[Object.keys(markers)[0]].focus = true;
 				}
 
 				return {

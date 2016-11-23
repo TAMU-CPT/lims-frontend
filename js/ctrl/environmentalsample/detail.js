@@ -8,6 +8,7 @@ export default function(base) {
 			Restangular.one("lims/environmentalsamples", $routeParams.environmentalsampleID).get().then(function(data) {
 				$scope.environmentalsample = data;
 				$scope.map = $mapHandler.calculateMap([data]);
+				$scope.center = $scope.map.center;
 				$scope.environmentalsample.collected_by_set = [data.collected_by];
 			});
 		}]);

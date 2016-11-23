@@ -1,0 +1,64 @@
+<style>
+	tbody .md-row:hover {
+		background-color: #fafafa;
+	}
+	tbody .md-row:focus {
+		outline:none;
+	}
+	[ng-click],
+	[data-ng-click],
+	[x-ng-click] {
+		cursor: pointer;
+	}
+</style>
+<div class="container-fluid" layout="row" layout-align="center">
+	<div flex="40" flex-xs="100">
+		<leaflet width="100%" height="500px" markers="map.markers" maxbounds="map.maxbounds" lf-center="map.center"></leaflet>
+	</div>
+
+	<md-card flex="60">
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">Environmental Samples<span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content>
+			<md-table-container>
+				<table md-table md-progress="promise">
+					<thead md-head md-order="ordering" md-on-reorder="updateData">
+						<tr md-row>
+							<th md-column><span>Type</span></th>
+							<th md-column><span>Description</span></th>
+							<th md-column><span>Date</span></th>
+							<th md-column><span>Tube</span></th>
+							<th md-column><span>Collected By</span></th>
+						</tr>
+					</thead>
+					<tbody md-body>
+						<tr md-row ng-repeat="environmentalsample in data" ng-click="go(environmentalsample.id)">
+							<td md-cell>{{environmentalsample.sample_type.name}}</td>
+							<td md-cell>{{environmentalsample.description}}</td>
+							<td md-cell>{{environmentalsample.collection}}</td>
+							<td md-cell>{{environmentalsample.tube.name}}</td>
+							<td md-cell>
+								<md-chips ng-if="environmentalsample.collected_by" ng-model="environmentalsample.collected_by_set" readonly="true">
+									<md-chip-template ng-click="go_user($chip.id)">
+										<ng-md-icon icon="{{ 3 | role_icon }}"></ng-md-icon>
+										{{ $chip.name }}
+									</md-chip-template>
+								</md-chips>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+			<md-table-pagination
+				md-limit="query.limit"
+				md-page="query.page"
+				md-total="{{data.meta.count}}"
+				md-page-select="options.pageSelect"
+				md-on-paginate="updateData">
+			</md-table-pagination>
+		</md-card-content>
+	</md-card>
+</div>
