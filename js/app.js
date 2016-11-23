@@ -59,173 +59,185 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 
 		$routeProvider.
 			when("/bioprojects", {
-				templateUrl: "partials/bioproject-list.html",
+				templateUrl: "partials/bioproject/list.html",
 				controller: "BioprojectListCtrl",
 			}).
 			when("/bioprojects/:bioprojectID", {
-				templateUrl: "partials/bioproject-detail.html",
+				templateUrl: "partials/bioproject/detail.html",
 				controller: "BioprojectDetailCtrl",
 			}).
 
 			when("/organisations", {
-				templateUrl: "partials/organisation-list.html",
+				templateUrl: "partials/organisation/list.html",
 				controller: "OrganisationListCtrl",
 			}).
 			when("/organisations/:organisationID", {
-				templateUrl: "partials/organisation-detail.html",
+				templateUrl: "partials/organisation/detail.html",
 				controller: "OrganisationDetailCtrl",
 			}).
 			when("/boxs", {
-				templateUrl: "partials/box-list.html",
+				templateUrl: "partials/box/list.html",
 				controller: "BoxListCtrl",
 			}).
 			when("/boxs/:boxID", {
-				templateUrl: "partials/box-detail.html",
+				templateUrl: "partials/box/detail.html",
 				controller: "BoxDetailCtrl",
 			}).
 			when("/storagelocations", {
-				templateUrl: "partials/storagelocation-list.html",
+				templateUrl: "partials/storagelocation/list.html",
 				controller: "StorageLocationListCtrl",
 			}).
 			when("/storagelocations/:storagelocationID", {
-				templateUrl: "partials/storagelocation-detail.html",
+				templateUrl: "partials/storagelocation/detail.html",
 				controller: "StorageLocationDetailCtrl",
 			}).
 			when("/assemblys", {
-				templateUrl: "partials/assembly-list.html",
+				templateUrl: "partials/assembly/list.html",
 				controller: "AssemblyListCtrl",
 			}).
 			when("/assemblys/:assemblyID", {
-				templateUrl: "partials/assembly-detail.html",
+				templateUrl: "partials/assembly/detail.html",
 				controller: "AssemblyDetailCtrl",
 			}).
 			when("/tubetypes", {
-				templateUrl: "partials/tubetype-list.html",
+				templateUrl: "partials/tubetype/list.html",
 				controller: "TubeTypeListCtrl",
 			}).
 			when("/tubetypes/:tubetypeID", {
-				templateUrl: "partials/tubetype-detail.html",
+				templateUrl: "partials/tubetype/detail.html",
 				controller: "TubeTypeDetailCtrl",
 			}).
 			when("/experimentalresults", {
-				templateUrl: "partials/experimentalresult-list.html",
+				templateUrl: "partials/experimentalresult/list.html",
 				controller: "ExperimentalResultListCtrl",
 			}).
 			when("/experimentalresults/:experimentalresultID", {
-				templateUrl: "partials/experimentalresult-detail.html",
+				templateUrl: "partials/experimentalresult/detail.html",
 				controller: "ExperimentalResultDetailCtrl",
 			}).
 			when("/sequencingruns", {
-				templateUrl: "partials/sequencingrun-list.html",
+				templateUrl: "partials/sequencingrun/list.html",
 				controller: "SequencingRunListCtrl",
 			}).
 			when("/sequencingruns/:sequencingrunID", {
-				templateUrl: "partials/sequencingrun-detail.html",
+				templateUrl: "partials/sequencingrun/detail.html",
 				controller: "SequencingRunDetailCtrl",
 			}).
 			when("/tubes", {
-				templateUrl: "partials/tube-list.html",
+				templateUrl: "partials/tube/list.html",
 				controller: "TubeListCtrl",
 			}).
 			when("/tubes/:tubeID", {
-				templateUrl: "partials/tube-detail.html",
+				templateUrl: "partials/tube/detail.html",
 				controller: "TubeDetailCtrl",
 			}).
 			when("/sampletypes", {
-				templateUrl: "partials/sampletype-list.html",
+				templateUrl: "partials/sampletype/list.html",
 				controller: "SampleTypeListCtrl",
 			}).
 			when("/sampletypes/:sampletypeID", {
-				templateUrl: "partials/sampletype-detail.html",
+				templateUrl: "partials/sampletype/detail.html",
 				controller: "SampleTypeDetailCtrl",
 			}).
 			when("/experiments", {
-				templateUrl: "partials/experiment-list.html",
+				templateUrl: "partials/experiment/list.html",
 				controller: "ExperimentListCtrl",
 			}).
 			when("/experiments/:experimentID", {
-				templateUrl: "partials/experiment-detail.html",
+				templateUrl: "partials/experiment/detail.html",
 				controller: "ExperimentDetailCtrl",
 			}).
 			when("/phages", {
-				templateUrl: "partials/phage-list.html",
+				templateUrl: "partials/phage/list.html",
 				controller: "PhageListCtrl",
 			}).
 			when("/phages/:phageID", {
-				templateUrl: "partials/phage-detail.html",
+				templateUrl: "partials/phage/detail.html",
 				controller: "PhageDetailCtrl",
 			}).
 			when("/phagednapreps", {
-				templateUrl: "partials/phagednaprep-list.html",
+				templateUrl: "partials/phagednaprep/list.html",
 				controller: "PhageDNAPrepListCtrl",
 			}).
 			when("/phagednapreps/:phagednaprepID", {
-				templateUrl: "partials/phagednaprep-detail.html",
+				templateUrl: "partials/phagednaprep/detail.html",
 				controller: "PhageDNAPrepDetailCtrl",
 			}).
 			when("/sequencingrunpools", {
-				templateUrl: "partials/sequencingrunpool-list.html",
+				templateUrl: "partials/sequencingrunpool/list.html",
 				controller: "SequencingRunPoolListCtrl",
 			}).
 			when("/sequencingrunpools/:sequencingrunpoolID", {
-				templateUrl: "partials/sequencingrunpool-detail.html",
+				templateUrl: "partials/sequencingrunpool/detail.html",
 				controller: "SequencingRunPoolDetailCtrl",
 			}).
 			when("/sequencingrunpoolitems", {
-				templateUrl: "partials/sequencingrunpoolitem-list.html",
+				templateUrl: "partials/sequencingrunpoolitem/list.html",
 				controller: "SequencingRunPoolItemListCtrl",
 			}).
 			when("/sequencingrunpoolitems/:sequencingrunpoolitemID", {
-				templateUrl: "partials/sequencingrunpoolitem-detail.html",
+				templateUrl: "partials/sequencingrunpoolitem/detail.html",
 				controller: "SequencingRunPoolItemDetailCtrl",
 			}).
 			when("/containertypes", {
-				templateUrl: "partials/containertype-list.html",
+				templateUrl: "partials/containertype/list.html",
 				controller: "ContainerTypeListCtrl",
 			}).
 			when("/containertypes/:containertypeID", {
-				templateUrl: "partials/containertype-detail.html",
+				templateUrl: "partials/containertype/detail.html",
 				controller: "ContainerTypeDetailCtrl",
 			}).
 			when("/environmentalsamples", {
-				templateUrl: "partials/environmentalsample-list.html",
+				templateUrl: "partials/environmentalsample/list.html",
 				controller: "EnvironmentalSampleListCtrl",
 			}).
 			when("/environmentalsamples/:environmentalsampleID", {
-				templateUrl: "partials/environmentalsample-detail.html",
+				templateUrl: "partials/environmentalsample/detail.html",
 				controller: "EnvironmentalSampleDetailCtrl",
 			}).
+
+
+			when("/environmentalsamplecollection", {
+				templateUrl: "partials/environmentalsamplecollection/list.html",
+				controller: "EnvironmentalSampleCollectionListCtrl",
+			}).
+			when("/environmentalsamplecollection/:environmentalsampleID", {
+				templateUrl: "partials/environmentalsamplecollection/detail.html",
+				controller: "EnvironmentalSampleCollectionDetailCtrl",
+			}).
+
+
 			when("/lysates", {
-				templateUrl: "partials/lysate-list.html",
+				templateUrl: "partials/lysate/list.html",
 				controller: "LysateListCtrl",
 			}).
 			when("/lysates/:lysateID", {
-				templateUrl: "partials/lysate-detail.html",
+				templateUrl: "partials/lysate/detail.html",
 				controller: "LysateDetailCtrl",
 			}).
 			when("/bacteria", {
-				templateUrl: "partials/bacteria-list.html",
+				templateUrl: "partials/bacteria/list.html",
 				controller: "BacteriaListCtrl",
 			}).
 			when("/bacteria/:bacteriaID", {
-				templateUrl: "partials/bacteria-detail.html",
+				templateUrl: "partials/bacteria/detail.html",
 				controller: "BacteriaDetailCtrl",
 			}).
 			when("/accounts", {
-				templateUrl: "partials/account-list.html",
+				templateUrl: "partials/account/list.html",
 				controller: "AccountListCtrl",
 			}).
 			when("/accounts/:accountID", {
-				templateUrl: "partials/account-detail.html",
+				templateUrl: "partials/account/detail.html",
 				controller: "AccountDetailCtrl",
 			}).
 
 			when("/annotation", {
-				templateUrl: "partials/annotation-list.html",
+				templateUrl: "partials/annotation/list.html",
 				controller: "AnnotationListCtrl",
 			}).
 			when("/annotation/:annotationID", {
-				templateUrl: "partials/annotation-detail.html",
+				templateUrl: "partials/annotation/detail.html",
 				controller: "AnnotationDetailCtrl",
 			}).
 // LOAD ROUTES
@@ -337,6 +349,8 @@ require("./ctrl/containertype/list.js")(base);
 require("./ctrl/containertype/detail.js")(base);
 require("./ctrl/environmentalsample/list.js")(base);
 require("./ctrl/environmentalsample/detail.js")(base);
+require("./ctrl/environmentalsamplecollection/list.js")(base);
+require("./ctrl/environmentalsamplecollection/detail.js")(base);
 require("./ctrl/lysate/list.js")(base);
 require("./ctrl/lysate/detail.js")(base);
 require("./ctrl/bacteria/list.js")(base);

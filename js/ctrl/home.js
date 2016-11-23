@@ -34,8 +34,12 @@ export default function(base) {
 							url: "#/phagednapreps",
 						},
 						{
-							title: "Environmental Samples and Sample Collections",
+							title: "Environmental Samples",
 							url: "#/environmentalsamples",
+						},
+						{
+							title: "Environmental Sample Collections",
+							url: "#/environmentalsamplecollection",
 						},
 						{
 							title: "Lysates",

@@ -19,7 +19,7 @@
 	<md-card flex="60">
 		<md-card-title>
 			<md-card-title-text>
-				<span class="md-headline">Environmental Samples<span>
+				<span class="md-headline">Environmental Sample Collections<span>
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
@@ -27,19 +27,14 @@
 				<table md-table md-progress="promise">
 					<thead md-head md-order="ordering" md-on-reorder="updateData">
 						<tr md-row>
-							<th md-column><span>Type</span></th>
 							<th md-column><span>Description</span></th>
-							<th md-column><span>Date</span></th>
-							<th md-column><span>Tube</span></th>
-							<th md-column><span>Collected By</span></th>
+							<th md-column><span>Samples</span></th>
 						</tr>
 					</thead>
 					<tbody md-body>
 						<tr md-row ng-repeat="environmentalsample in data" ng-click="go(environmentalsample.id)">
-							<td md-cell>{{environmentalsample.sample_type.name}}</td>
 							<td md-cell>{{environmentalsample.description}}</td>
-							<td md-cell>{{environmentalsample.collection}}</td>
-							<td md-cell>{{environmentalsample.tube.name}}</td>
+							<td md-cell>{{environmentalsample.env_sample.length}}</td>
 							<td md-cell>
 								<md-chips ng-if="environmentalsample.collected_by" ng-model="environmentalsample.collected_by_set" readonly="true">
 									<md-chip-template ng-click="go_user($chip.id)">
