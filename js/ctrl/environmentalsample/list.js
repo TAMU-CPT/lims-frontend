@@ -3,23 +3,27 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("EnvironmentalSampleListCtrl", ["$scope", "$location", "$routeParams", "Restangular",
-		function($scope, $location, $routeParams, Restangular) {
+	base.controller("EnvironmentalSampleListCtrl", ["$scope", "$location", "$routeParams", "Restangular", "leafletBoundsHelpers", "$mapHandler",
+		function($scope, $location, $routeParams, Restangular, leafletBoundsHelpers, $mapHandler) {
 			$scope.go = function(id) {
-				$location.path("/environmentalsamples/" + id); ;
+				$location.path("/environmentalsamples/" + id);
 			};
 
-			// uncomment if ordering filter is implemented in backend
-			// $scope.ordering="name";
+			$scope.go_user = function(id) {
+				$location.path("/accounts/" + id);
+			};
 
 			$scope.updateData = function(page) {
 				if(!isNaN(parseInt(page))) {
 					$scope.query.page = page;
 				}
-				// uncomment if ordering filter is implemented in backend
-				// $scope.query.ordering = $scope.ordering;
+
 				$scope.promise = Restangular.all("lims/environmentalsamples").getList($scope.query).then(function(data) {
 					$scope.data = data;
+					$scope.data.forEach(function(x){
+						x.collected_by_set = [x.collected_by];
+					});
+					$scope.map = $mapHandler.calculateMap(data);
 				});
 			};
 
@@ -29,12 +33,9 @@ export default function(base) {
 			};
 
 			$scope.query = {
-				limit: 5,
+				limit: 10,
 				page: 1,
-				//uncomment if ordering filter is implemented in backend
-				//ordering: $scope.ordering,
 			};
-
 			$scope.updateData(1);
 		}]);
 }

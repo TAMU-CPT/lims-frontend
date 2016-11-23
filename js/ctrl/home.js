@@ -34,7 +34,7 @@ export default function(base) {
 							url: "#/phagednapreps",
 						},
 						{
-							title: "EnvironmentalSamples",
+							title: "Environmental Samples and Sample Collections",
 							url: "#/environmentalsamples",
 						},
 						{

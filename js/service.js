@@ -14,4 +14,59 @@ export default function(base) {
 			);},
 		};
 	});
+
+	base.service("$mapHandler", function() {
+		return {
+			calculateMap: function(data) {
+				let markers = {};
+				// Create markers
+				data.forEach(function(sample) {
+					markers[sample.id] = {
+						lat: sample.location_xy[1],
+						lng: sample.location_xy[0],
+						message: "<b>Environmental Sample</b><br />Type: " + sample.sample_type.name + "<br />Desc: " + sample.description,
+						focus: false,
+						draggable: false,
+					};
+				});
+				// Grab all points
+				let points = data.map(function(e) {
+					return [e.location_xy[1], e.location_xy[0]];
+				});
+
+				let maxbounds = null;
+				let center = null;
+
+				// If there are multiple points, calculate bounds using their
+				// library, otherwise just use the single point as the bounds.
+				if(points.length > 1) {
+					var lats = points.map(function(e){ return e[0] });
+					var lons = points.map(function(e){ return e[1] });
+					var lat_max = Math.max.apply(0, lats);
+					var lat_min = Math.min.apply(0, lats);
+					var lon_max = Math.max.apply(0, lons);
+					var lon_min = Math.min.apply(0, lons);
+
+					center = {
+						lat: (lat_max + lat_min) / 2,
+						lng: (lon_max + lon_min) / 2,
+						zoom: 2,
+					};
+				} else {
+					center = {
+						lat: points[0][0],
+						lng: points[0][1],
+						zoom: 6,
+					};
+				}
+
+				return {
+					bounds: maxbounds,
+					markers: markers,
+					center: center,
+				};
+
+			},
+		};
+	});
 }
