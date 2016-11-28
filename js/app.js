@@ -191,6 +191,10 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/environmentalsample/list.html",
 				controller: "EnvironmentalSampleListCtrl",
 			}).
+			when("/environmentalsamples/create", {
+				templateUrl: "partials/environmentalsample/create.html",
+				controller: "EnvironmentalSampleCreateCtrl",
+			}).
 			when("/environmentalsamples/:environmentalsampleID", {
 				templateUrl: "partials/environmentalsample/detail.html",
 				controller: "EnvironmentalSampleDetailCtrl",
@@ -348,6 +352,7 @@ require("./ctrl/sequencingrunpoolitem/detail.js")(base);
 require("./ctrl/containertype/list.js")(base);
 require("./ctrl/containertype/detail.js")(base);
 require("./ctrl/environmentalsample/list.js")(base);
+require("./ctrl/environmentalsample/create.js")(base);
 require("./ctrl/environmentalsample/detail.js")(base);
 require("./ctrl/environmentalsamplecollection/list.js")(base);
 require("./ctrl/environmentalsamplecollection/detail.js")(base);

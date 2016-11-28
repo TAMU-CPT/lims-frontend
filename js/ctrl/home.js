@@ -47,7 +47,7 @@ export default function(base) {
 						},
 						{
 							title: "Bacterias",
-							url: "#/bacterias",
+							url: "#/bacteria",
 						},
 					],
 				},
