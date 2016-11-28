@@ -32,3 +32,7 @@ tbody .md-row:focus {
 [x-ng-click] {
 	cursor: pointer;
 }
+
+.leaflet-top, .leaflet-bottom {
+	z-index: 7 !important;
+}
