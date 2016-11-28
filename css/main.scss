@@ -19,3 +19,16 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 	min-width: 32px;
 	min-height: 32px;
 }
+
+
+tbody .md-row:hover {
+	background-color: #fafafa;
+}
+tbody .md-row:focus {
+	outline:none;
+}
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+	cursor: pointer;
+}
