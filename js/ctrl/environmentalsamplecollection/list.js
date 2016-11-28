@@ -9,6 +9,10 @@ export default function(base) {
 				$location.path("/environmentalsamplecollection/" + id);
 			};
 
+
+// CICADA: NEW_INPUTS_HERE_DO_NOT_REMOVE
+
+
 			$scope.updateData = function(page) {
 				if(!isNaN(parseInt(page))) {
 					$scope.query.page = page;
