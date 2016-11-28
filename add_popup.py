@@ -84,7 +84,7 @@ import re
 import os
 import glob
 from cmd import Cmd
-from termcolor import colored
+import tempfile
 # py2/3 raw_input
 try:
 	input = raw_input
@@ -99,29 +99,40 @@ def _append_slash_if_dir(p):
 
 
 class HelloWorld(Cmd):
-	Cmd.intro = colored("Welcome to CICADA CLI","yellow")
-	Cmd.prompt = colored(">> ","cyan")
+	Cmd.intro = "Welcome to CICADA CLI"
+	Cmd.prompt = ">> "
 	id = None
 	inputs = []
+	script = []
 
 	def do_init(self, line):
 		"""Initialize the form"""
+		self.script.push('init')
 		self.id = input("Form id: ")
+		self.script.push(self.id)
 		self.title = input("Form title: ")
+		self.script.push(self.title)
 
 		self.ajax_route = input("AJAX Route Component [app/model]: ")
+		self.script.push(self.ajax_route)
 		self.url_route = input("User Route [usually 'models']: ")
-		print("Form configured, run 'add_input' to add inputs and then 'write' to save the form to files.")
+		self.script.push(self.url_route)
+		print("Form configured, run 'add_input' to add inputs and then 'write_html' and 'write_js' (in that order) to save the form to files.")
 
 	def safe_name(self, data):
 		return re.sub('[^a-z0-9_]', '', data.lower())
 
 	def do_add_input(self, line):
 		"""Add an input to a form."""
+		self.script.push('add_input')
 		name = input("Field name: ")
+		self.script.push(name)
 		required = input("Required? [Y/n]: ") in ('y', 'Y', 'T', 'J')
+		self.script.push(required)
 		max_length = input("Max Length [0]: ") or 0
+		self.script.push(max_length)
 		input_type = input("Input type [text, number, date, email, file]: ")
+		self.script.push(input_type)
 
 		input_options = []
 		input_children = []
@@ -147,6 +158,7 @@ class HelloWorld(Cmd):
 
 	def do_write_html(self, fn):
 		"""Write out HTML component. This supports tab-completion"""
+		self.script.push('write_html %s' % fn)
 		# Want to append here
 		with open(fn, 'a') as handle:
 			handle.write(POPUP_TEMPLATE.format(
@@ -159,6 +171,7 @@ class HelloWorld(Cmd):
 
 	def do_write_js(self, fn):
 		"""Write out HTML component. This supports tab-completion"""
+		self.script.push('write_js %s' % fn)
 		new_text = JS_TEMPLATE.format(
 			id=self.id,
 			ajax_route=self.ajax_route,
@@ -168,6 +181,12 @@ class HelloWorld(Cmd):
 		MATCH = '// CICADA: NEW_INPUTS_HERE_DO_NOT_REMOVE'
 		with open(fn, 'r+') as handle:
 			data = handle.read()
+
+			if MATCH not in data:
+				tmp = tempfile.NamedTemporaryFile(delete=False)
+				tmp.write('\n'.join(self.script))
+				print("Error: '%s' was not found in the Javascript file. This run has been saved as %s" % (MATCH, tmp))
+
 			data = data.replace(MATCH, MATCH + '\n' + new_text)
 			handle.seek(0)
 			handle.write(data)
@@ -195,8 +214,6 @@ class HelloWorld(Cmd):
 			path = _append_slash_if_dir(path)
 			completions.append(path.replace(fixed, "", 1))
 		return completions
-
-
 
 	def do_EOF(self, line):
 		return True
