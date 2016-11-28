@@ -20,6 +20,11 @@
 		<md-card-title>
 			<md-card-title-text>
 				<span class="md-headline">Environmental Samples<span>
+				<span></span>
+				<md-button class="md-icon-button" aria-label="Register a New Environmental Sample" ng-click="popup_envSampleCreate.show()">
+					<ng-md-icon icon="add"></ng-md-icon>
+				</md-button>
+
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
@@ -61,4 +66,66 @@
 			</md-table-pagination>
 		</md-card-content>
 	</md-card>
+</div>
+
+<div style="visibility: hidden">
+	<div class="md-dialog-container" id="popup_envSampleCreate">
+		<md-dialog>
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<span class="md-headline">Register a New Environmental Sample</span>
+					<span flex></span>
+					<md-button ng-click="popup_envSampleCreate.cancel()" aria-label="close" class="md-icon-button">
+						<ng-md-icon icon="close"></ng-md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+			<md-card style="margin:0">
+				<md-card-content layout="column">
+					<form name="createenvSampleCreateForm">
+						
+						<md-input-container class="md-block">
+							<label>Sample Type</label>
+							<input  name="sampletype" ng-model="popup_envSampleCreate.data.sampletype" type="text"></input>
+							<div ng-messages="createenvSampleCreateForm.sampletype.$error">
+
+							</div>
+						</md-input-container>
+
+
+						<md-input-container class="md-block">
+							<label>Description</label>
+							<input  name="description" ng-model="popup_envSampleCreate.data.description" type="text"></input>
+							<div ng-messages="createenvSampleCreateForm.description.$error">
+
+							</div>
+						</md-input-container>
+
+
+						<md-input-container class="md-block">
+							<label>Tube</label>
+							<input  name="tube" ng-model="popup_envSampleCreate.data.tube" type=""></input>
+							<div ng-messages="createenvSampleCreateForm.tube.$error">
+
+							</div>
+						</md-input-container>
+
+
+						<md-input-container class="md-block">
+							<label>Location</label>
+							<input required  name="location" ng-model="popup_envSampleCreate.data.location" type="text"></input>
+							<div ng-messages="createenvSampleCreateForm.location.$error">
+								<div ng-message="required">This is required.</div>
+							</div>
+						</md-input-container>
+
+						<div>
+							<md-button class="md-primary"           ng-click="popup_envSampleCreate.cancel()">Cancel</md-button>
+							<md-button class="md-primary md-raised" ng-click="popup_envSampleCreate.create()">Create</md-button>
+						</div>
+					</form>
+				</md-card-content>
+			</md-card>
+		</md-dialog>
+	</div>
 </div>
