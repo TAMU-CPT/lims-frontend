@@ -107,16 +107,16 @@ class HelloWorld(Cmd):
 
 	def do_init(self, line):
 		"""Initialize the form"""
-		self.script.push('init')
+		self.script.append('init')
 		self.id = input("Form id: ")
-		self.script.push(self.id)
+		self.script.append(self.id)
 		self.title = input("Form title: ")
-		self.script.push(self.title)
+		self.script.append(self.title)
 
 		self.ajax_route = input("AJAX Route Component [app/model]: ")
-		self.script.push(self.ajax_route)
+		self.script.append(self.ajax_route)
 		self.url_route = input("User Route [usually 'models']: ")
-		self.script.push(self.url_route)
+		self.script.append(self.url_route)
 		print("Form configured, run 'add_input' to add inputs and then 'write_html' and 'write_js' (in that order) to save the form to files.")
 
 	def safe_name(self, data):
@@ -124,24 +124,24 @@ class HelloWorld(Cmd):
 
 	def do_add_input(self, line):
 		"""Add an input to a form."""
-		self.script.push('add_input')
+		self.script.append('add_input')
 		name = input("Field name: ")
-		self.script.push(name)
-		required = input("Required? [Y/n]: ") in ('y', 'Y', 'T', 'J')
-		self.script.push(required)
-		max_length = input("Max Length [0]: ") or 0
-		self.script.push(max_length)
+		self.script.append(name)
+		required = input("Required? [Y/n]: ")
+		self.script.append(required)
+		max_length = input("Max Length [0]: ") or '0'
+		self.script.append(max_length)
 		input_type = input("Input type [text, number, date, email, file]: ")
-		self.script.push(input_type)
+		self.script.append(input_type)
 
 		input_options = []
 		input_children = []
 
-		if required:
+		if required in ('y', 'Y', 'T', 'J'):
 			input_options.append(INPUT_REQUIRED)
 			input_children.append(REQUIRED)
 
-		if max_length > 0:
+		if int(max_length) > 0:
 			input_options.append(INPUT_MAXLEN.format(length=max_length))
 			input_children.append(MAXLENGTH.format(length=max_length))
 
@@ -158,7 +158,7 @@ class HelloWorld(Cmd):
 
 	def do_write_html(self, fn):
 		"""Write out HTML component. This supports tab-completion"""
-		self.script.push('write_html %s' % fn)
+		self.script.append('write_html %s' % fn)
 		# Want to append here
 		with open(fn, 'a') as handle:
 			handle.write(POPUP_TEMPLATE.format(
@@ -171,7 +171,7 @@ class HelloWorld(Cmd):
 
 	def do_write_js(self, fn):
 		"""Write out HTML component. This supports tab-completion"""
-		self.script.push('write_js %s' % fn)
+		self.script.append('write_js %s' % fn)
 		new_text = JS_TEMPLATE.format(
 			id=self.id,
 			ajax_route=self.ajax_route,
@@ -179,20 +179,19 @@ class HelloWorld(Cmd):
 		)
 
 		MATCH = '// CICADA: NEW_INPUTS_HERE_DO_NOT_REMOVE'
-		with open(fn, 'r+') as handle:
+		with open(fn, 'r') as handle:
 			data = handle.read()
 
-			if MATCH not in data:
-				tmp = tempfile.NamedTemporaryFile(delete=False)
-				tmp.write('\n'.join(self.script))
-				print("Error: '%s' was not found in the Javascript file. This run has been saved as %s" % (MATCH, tmp))
-
+		if MATCH not in data:
+			tmp = tempfile.NamedTemporaryFile(mode='w', delete=False)
+			tmp.write('\n'.join(self.script))
+			print("Error: '%s' was not found in the Javascript file. This run has been saved as %s. Once you have added the CICADA string, you can run `python add_popup.py < %s` to re-run." % (MATCH, tmp.name, tmp.name))
+		else:
 			data = data.replace(MATCH, MATCH + '\n' + new_text)
-			handle.seek(0)
-			handle.write(data)
-			handle.truncate()
+			with open(fn, 'w') as handle:
+				handle.write(data)
+			print(DONE.format(title=self.title, id=self.id))
 
-		print(DONE.format(title=self.title, id=self.id))
 
 	def complete_write_js(self, text, line, begidx, endidx):
 		return self.autocomplete(text, line, begidx, endidx)
