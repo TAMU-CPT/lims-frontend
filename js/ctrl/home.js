@@ -90,6 +90,10 @@ export default function(base) {
 					hue: 1,
 					routes: [
 						{
+							title: "Storage",
+							url: "#/storage",
+						},
+						{
 							title: "TubeTypes",
 							url: "#/tubetypes",
 						},
