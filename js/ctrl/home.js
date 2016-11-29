@@ -90,7 +90,7 @@ export default function(base) {
 					hue: 1,
 					routes: [
 						{
-							title: "Add new location",
+							title: "Add new tube",
 							url: "#/storage/add",
 						},
 						{
