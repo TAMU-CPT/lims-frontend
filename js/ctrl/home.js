@@ -93,26 +93,6 @@ export default function(base) {
 							title: "Storage",
 							url: "#/storage",
 						},
-						{
-							title: "TubeTypes",
-							url: "#/tubetypes",
-						},
-						{
-							title: "Tubes",
-							url: "#/tubes",
-						},
-						{
-							title: "ContainerTypes",
-							url: "#/containertypes",
-						},
-						{
-							title: "Boxs",
-							url: "#/boxs",
-						},
-						{
-							title: "StorageLocations",
-							url: "#/storagelocations",
-						},
 					],
 				},
 			];

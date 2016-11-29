@@ -75,25 +75,9 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/organisation/detail.html",
 				controller: "OrganisationDetailCtrl",
 			}).
-			when("/boxs", {
-				templateUrl: "partials/box/list.html",
-				controller: "BoxListCtrl",
-			}).
-			when("/boxs/:boxID", {
-				templateUrl: "partials/box/detail.html",
-				controller: "BoxDetailCtrl",
-			}).
 			when("/storage", {
 				templateUrl: "partials/storage.html",
 				controller: "StorageCtrl",
-			}).
-			when("/storagelocations", {
-				templateUrl: "partials/storagelocation/list.html",
-				controller: "StorageLocationListCtrl",
-			}).
-			when("/storagelocations/:storagelocationID", {
-				templateUrl: "partials/storagelocation/detail.html",
-				controller: "StorageLocationDetailCtrl",
 			}).
 			when("/assemblys", {
 				templateUrl: "partials/assembly/list.html",
@@ -102,14 +86,6 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 			when("/assemblys/:assemblyID", {
 				templateUrl: "partials/assembly/detail.html",
 				controller: "AssemblyDetailCtrl",
-			}).
-			when("/tubetypes", {
-				templateUrl: "partials/tubetype/list.html",
-				controller: "TubeTypeListCtrl",
-			}).
-			when("/tubetypes/:tubetypeID", {
-				templateUrl: "partials/tubetype/detail.html",
-				controller: "TubeTypeDetailCtrl",
 			}).
 			when("/experimentalresults", {
 				templateUrl: "partials/experimentalresult/list.html",
@@ -126,14 +102,6 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 			when("/sequencingruns/:sequencingrunID", {
 				templateUrl: "partials/sequencingrun/detail.html",
 				controller: "SequencingRunDetailCtrl",
-			}).
-			when("/tubes", {
-				templateUrl: "partials/tube/list.html",
-				controller: "TubeListCtrl",
-			}).
-			when("/tubes/:tubeID", {
-				templateUrl: "partials/tube/detail.html",
-				controller: "TubeDetailCtrl",
 			}).
 			when("/sampletypes", {
 				templateUrl: "partials/sampletype/list.html",
@@ -183,14 +151,6 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/sequencingrunpoolitem/detail.html",
 				controller: "SequencingRunPoolItemDetailCtrl",
 			}).
-			when("/containertypes", {
-				templateUrl: "partials/containertype/list.html",
-				controller: "ContainerTypeListCtrl",
-			}).
-			when("/containertypes/:containertypeID", {
-				templateUrl: "partials/containertype/detail.html",
-				controller: "ContainerTypeDetailCtrl",
-			}).
 			when("/environmentalsamples", {
 				templateUrl: "partials/environmentalsample/list.html",
 				controller: "EnvironmentalSampleListCtrl",
@@ -199,8 +159,6 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/environmentalsample/detail.html",
 				controller: "EnvironmentalSampleDetailCtrl",
 			}).
-
-
 			when("/environmentalsamplecollection", {
 				templateUrl: "partials/environmentalsamplecollection/list.html",
 				controller: "EnvironmentalSampleCollectionListCtrl",
@@ -209,8 +167,6 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/environmentalsamplecollection/detail.html",
 				controller: "EnvironmentalSampleCollectionDetailCtrl",
 			}).
-
-
 			when("/lysates", {
 				templateUrl: "partials/lysate/list.html",
 				controller: "LysateListCtrl",
@@ -235,7 +191,6 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/account/detail.html",
 				controller: "AccountDetailCtrl",
 			}).
-
 			when("/annotation", {
 				templateUrl: "partials/annotation/list.html",
 				controller: "AnnotationListCtrl",
@@ -323,20 +278,12 @@ require("./ctrl/bioproject/list.js")(base);
 require("./ctrl/bioproject/detail.js")(base);
 require("./ctrl/organisation/list.js")(base);
 require("./ctrl/organisation/detail.js")(base);
-require("./ctrl/box/list.js")(base);
-require("./ctrl/box/detail.js")(base);
-require("./ctrl/storagelocation/list.js")(base);
-require("./ctrl/storagelocation/detail.js")(base);
 require("./ctrl/assembly/list.js")(base);
 require("./ctrl/assembly/detail.js")(base);
-require("./ctrl/tubetype/list.js")(base);
-require("./ctrl/tubetype/detail.js")(base);
 require("./ctrl/experimentalresult/list.js")(base);
 require("./ctrl/experimentalresult/detail.js")(base);
 require("./ctrl/sequencingrun/list.js")(base);
 require("./ctrl/sequencingrun/detail.js")(base);
-require("./ctrl/tube/list.js")(base);
-require("./ctrl/tube/detail.js")(base);
 require("./ctrl/sampletype/list.js")(base);
 require("./ctrl/sampletype/detail.js")(base);
 require("./ctrl/experiment/list.js")(base);
@@ -349,8 +296,6 @@ require("./ctrl/sequencingrunpool/list.js")(base);
 require("./ctrl/sequencingrunpool/detail.js")(base);
 require("./ctrl/sequencingrunpoolitem/list.js")(base);
 require("./ctrl/sequencingrunpoolitem/detail.js")(base);
-require("./ctrl/containertype/list.js")(base);
-require("./ctrl/containertype/detail.js")(base);
 require("./ctrl/environmentalsample/list.js")(base);
 require("./ctrl/environmentalsample/detail.js")(base);
 require("./ctrl/environmentalsamplecollection/list.js")(base);
