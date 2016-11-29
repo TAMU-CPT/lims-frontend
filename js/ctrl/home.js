@@ -91,7 +91,7 @@ export default function(base) {
 					routes: [
 						{
 							title: "Storage",
-							url: "#/storage",
+							url: "#/storage/add",
 						},
 					],
 				},
