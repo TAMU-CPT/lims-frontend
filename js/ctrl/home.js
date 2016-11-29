@@ -90,8 +90,12 @@ export default function(base) {
 					hue: 1,
 					routes: [
 						{
-							title: "Storage",
+							title: "Add new location",
 							url: "#/storage/add",
+						},
+						{
+							title: "inventory",
+							url: "#/storage",
 						},
 					],
 				},

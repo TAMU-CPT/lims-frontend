@@ -75,6 +75,10 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/organisation/detail.html",
 				controller: "OrganisationDetailCtrl",
 			}).
+			when("/storage", {
+				templateUrl: "partials/storage/inventory.html",
+				controller: "InventoryCtrl",
+			}).
 			when("/storage/add", {
 				templateUrl: "partials/storage/storage_add.html",
 				controller: "StorageAddCtrl",
@@ -309,4 +313,5 @@ require("./ctrl/account/detail.js")(base);
 require("./ctrl/annotation/list.js")(base);
 require("./ctrl/annotation/detail.js")(base);
 require("./ctrl/storage/add.js")(base);
+require("./ctrl/storage/inventory.js")(base);
 // REQUIRE
