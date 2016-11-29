@@ -1,0 +1,40 @@
+<div layout="row" layout-align="center center">
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Add Tube</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <form name="StorageForm" ng-submit="saveData()" novalidate>
+                <div class="row">
+                    <md-input-container flex>
+                        <label>Location (room)</label>
+                        <input md-no-asterisk required name="room" ng-model="storage.room"/>
+                        <div ng-messages="StorageForm.room.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Storage Type</label>
+                        <input md-no-asterisk required name="form" ng-model="storage.room"/>
+                        <div ng-messages="StorageForm.form.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div class="row">
+                    <md-input-container flex>
+                        <label>Storage Type</label>
+                        <input md-no-asterisk required name="Fridge/freezer name" ng-model="storage.room"/>
+                        <div ng-messages="StorageForm.name.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <md-button ng-disabled="StorageForm.$invalid" class="md-primary md-raised" ng-click="saveData()">Submit</md-button>
+            </form>
+        </md-card-content>
+    </md-card>
+
+</div>
