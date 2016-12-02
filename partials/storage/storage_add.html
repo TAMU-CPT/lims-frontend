@@ -8,6 +8,17 @@
         <md-card-content>
             <form name="StorageForm" ng-submit="saveData()" novalidate>
                 <div class="row">
+                    <md-autocomplete flex="50"
+                            md-selected-item="ctrl.selectedItem"
+                            md-search-text="ctrl.searchText"
+                            md-items="item in ctrl.querySearch(share.searchText)"
+                            md-item-text="item.room"
+                            placeholder="Search for a room"
+                            md-selected-item-change="ctrl.selectedItemChange(item)">
+                        <span md-highlight-text="ctrl.searchText">{{item.room}}</span>
+                    </md-autocomplete>
+                </div>
+                <div class="row">
                     <md-input-container flex>
                         <label>Location (room)</label>
                         <input md-no-asterisk required name="room" ng-model="storage.room"/>
