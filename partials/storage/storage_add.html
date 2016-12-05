@@ -13,6 +13,7 @@
                             md-search-text="ctrl.searchText"
                             md-items="item in ctrl.querySearch(share.searchText)"
                             md-item-text="item.room"
+                            md-min-length="0"
                             placeholder="Search for a room"
                             md-selected-item-change="ctrl.selectedItemChange(item)">
                         <span md-highlight-text="ctrl.searchText">{{item.room}}</span>
