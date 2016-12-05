@@ -7,7 +7,7 @@
         </md-card-title>
         <md-card-content>
             <form name="StorageForm" ng-submit="saveData()" novalidate>
-                <div class="row">
+                <div layout="row">
                     <md-autocomplete flex="50"
                             md-selected-item="room.selectedItem"
                             md-search-text="room.searchText"
@@ -19,34 +19,30 @@
                         <span md-highlight-text="room.searchText">{{item.room}}</span>
                     </md-autocomplete>
                 </div>
-                <div class="row">
-                    <md-input-container flex>
-                        <label>Location (room)</label>
-                        <input md-no-asterisk required name="room" ng-model="storage.room"/>
-                        <div ng-messages="StorageForm.room.$error">
-                            <div ng-message="required">This is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container flex>
-                        <label>Storage Type</label>
-                        <input md-no-asterisk required name="form" ng-model="storage.room"/>
-                        <div ng-messages="StorageForm.form.$error">
-                            <div ng-message="required">This is required.</div>
-                        </div>
-                    </md-input-container>
-                </div>
-                <div class="row">
-                    <md-input-container flex>
-                        <label>Storage Type</label>
-                        <input md-no-asterisk required name="Fridge/freezer name" ng-model="storage.room"/>
-                        <div ng-messages="StorageForm.name.$error">
-                            <div ng-message="required">This is required.</div>
-                        </div>
-                    </md-input-container>
+                <br>
+                <div layout="row">
+                    <md-select name="container_type" ng-change="update()" ng-model="container.type" placeholder="Fridge/Freezer">
+                        <md-option ng-repeat="type in container.types" ng-value="type">{{type | container_to_text}}</md-option>
+                    </md-select>
+                    <md-autocomplete flex="20"
+                            md-input-name="containerField"
+                            md-selected-item="container.selectedItem"
+                            md-search-text="container.searchText"
+                            md-no-cache="true"
+                            md-items="item in container.querySearch(container.searchText, room.searchText, container.type)"
+                            md-item-text="item.container"
+                            md-min-length="0"
+                            placeholder="{{container.type | container_to_text}} name"
+                            md-selected-item-change="container.selectedItemChange(item)">
+                        <span md-highlight-text="container.searchText">{{item.name}}</span>
+                    </md-autocomplete>
                 </div>
                 <md-button ng-disabled="StorageForm.$invalid" class="md-primary md-raised" ng-click="saveData()">Submit</md-button>
             </form>
         </md-card-content>
     </md-card>
+                <pre>
+{{StorageForm | json}}
+                </pre>
 
 </div>
