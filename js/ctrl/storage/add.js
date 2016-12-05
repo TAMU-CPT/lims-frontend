@@ -2,7 +2,7 @@ export default function(base) {
     base.controller("StorageAddCtrl", ["$scope", "$location", "$routeParams", "Restangular",
         function($scope, $location, $routeParams, Restangular) {
 
-            $scope.ctrl = {
+            $scope.room = {
                 selectedItem: null,
                 searchText: null,
                 querySearch: function(queryString) {

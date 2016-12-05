@@ -9,14 +9,14 @@
             <form name="StorageForm" ng-submit="saveData()" novalidate>
                 <div class="row">
                     <md-autocomplete flex="50"
-                            md-selected-item="ctrl.selectedItem"
-                            md-search-text="ctrl.searchText"
-                            md-items="item in ctrl.querySearch(ctrl.searchText)"
+                            md-selected-item="room.selectedItem"
+                            md-search-text="room.searchText"
+                            md-items="item in room.querySearch(room.searchText)"
                             md-item-text="item.room"
                             md-min-length="0"
-                            placeholder="Search for a room"
-                            md-selected-item-change="ctrl.selectedItemChange(item)">
-                        <span md-highlight-text="ctrl.searchText">{{item.room}}</span>
+                            placeholder="Room"
+                            md-selected-item-change="room.selectedItemChange(item)">
+                        <span md-highlight-text="room.searchText">{{item.room}}</span>
                     </md-autocomplete>
                 </div>
                 <div class="row">
