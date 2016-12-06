@@ -12,6 +12,7 @@
                             md-selected-item="room.selectedItem"
                             md-search-text="room.searchText"
                             md-items="item in room.querySearch(room.searchText)"
+                            md-no-cache="true"
                             md-item-text="item.room"
                             md-min-length="0"
                             placeholder="Room"
@@ -21,7 +22,7 @@
                 </div>
                 <br>
                 <div layout="row">
-                    <md-select name="container_type" ng-change="update()" ng-model="container.type" placeholder="Fridge/Freezer">
+                    <md-select md-no-cache="true" name="container_type" ng-model="container.type" placeholder="Fridge/Freezer">
                         <md-option ng-repeat="type in container.types" ng-value="type">{{type | container_to_text}}</md-option>
                     </md-select>
                     <md-autocomplete flex="20"
@@ -29,8 +30,8 @@
                             md-selected-item="container.selectedItem"
                             md-search-text="container.searchText"
                             md-no-cache="true"
-                            md-items="item in container.querySearch(container.searchText, room.searchText, container.type)"
-                            md-item-text="item.container"
+                            md-items="item in container.querySearch(container.searchText)"
+                            md-item-text="item.name"
                             md-min-length="0"
                             placeholder="{{container.type | container_to_text}} name"
                             md-selected-item-change="container.selectedItemChange(item)">
@@ -41,8 +42,4 @@
             </form>
         </md-card-content>
     </md-card>
-                <pre>
-{{StorageForm | json}}
-                </pre>
-
 </div>
