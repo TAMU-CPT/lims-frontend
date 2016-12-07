@@ -1,12 +1,8 @@
-/**
- * Tube type list
- * @param {object} base Base angular application object
- */
 export default function(base) {
-	base.controller("TubeTypeListCtrl", ["$scope", "$location", "$routeParams", "Restangular",
+	base.controller("InventoryCtrl", ["$scope", "$location", "$routeParams", "Restangular",
 		function($scope, $location, $routeParams, Restangular) {
 			$scope.go = function(id) {
-				$location.path("/tubetypes/" + id); ;
+				$location.path("/storage/" + id); ;
 			};
 
 			// uncomment if ordering filter is implemented in backend
@@ -18,7 +14,7 @@ export default function(base) {
 				}
 				// uncomment if ordering filter is implemented in backend
 				// $scope.query.ordering = $scope.ordering;
-				$scope.promise = Restangular.all("lims/tubetypes").getList($scope.query).then(function(data) {
+				$scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
 					$scope.data = data;
 				});
 			};

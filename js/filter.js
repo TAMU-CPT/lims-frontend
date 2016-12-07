@@ -40,4 +40,15 @@ export default function(base) {
 			}
 		};
 	});
+
+	base.filter("container_to_text", function() {
+		return function(input) {
+			switch(input) {
+			case 0:
+				return "Fridge";
+			case 1:
+				return "Freezer";
+			}
+		};
+	});
 }

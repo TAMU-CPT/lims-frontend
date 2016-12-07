@@ -90,24 +90,12 @@ export default function(base) {
 					hue: 1,
 					routes: [
 						{
-							title: "TubeTypes",
-							url: "#/tubetypes",
+							title: "Add new tube",
+							url: "#/storage/add",
 						},
 						{
-							title: "Tubes",
-							url: "#/tubes",
-						},
-						{
-							title: "ContainerTypes",
-							url: "#/containertypes",
-						},
-						{
-							title: "Boxs",
-							url: "#/boxs",
-						},
-						{
-							title: "StorageLocations",
-							url: "#/storagelocations",
+							title: "inventory",
+							url: "#/storage",
 						},
 					],
 				},
