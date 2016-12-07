@@ -15,29 +15,34 @@
                             md-no-cache="true"
                             md-item-text="item.room"
                             md-min-length="0"
-                            placeholder="Room"
+                            md-floating-label="Room"
                             md-selected-item-change="room.selectedItemChange(item)">
                         <span md-highlight-text="room.searchText">{{item.room}}</span>
                     </md-autocomplete>
                 </div>
-                <br>
                 <div layout="row">
-                    <md-select md-no-cache="true" name="container_type" ng-model="container.type" placeholder="Fridge/Freezer">
-                        <md-option ng-repeat="type in container.types" ng-value="type">{{type | container_to_text}}</md-option>
-                    </md-select>
+                    <md-input-container>
+                        <label>Container</label>
+                        <md-select md-no-cache="true" name="container_type" ng-model="container.type" placeholder="Fridge/Freezer">
+                            <md-option ng-repeat="type in container.types" ng-value="type">{{type | container_to_text}}</md-option>
+                        </md-select>
+                    </md-input-container>
                     <md-autocomplete flex="20"
                             md-input-name="containerField"
                             md-selected-item="container.selectedItem"
                             md-search-text="container.searchText"
                             md-no-cache="true"
+                            md-floating-label="{{container.type | container_to_text}} name"
                             md-items="item in container.querySearch(container.searchText)"
                             md-item-text="item.name"
                             md-min-length="0"
-                            placeholder="{{container.type | container_to_text}} name"
                             md-selected-item-change="container.selectedItemChange(item)">
                         <span md-highlight-text="container.searchText">{{item.name}}</span>
                     </md-autocomplete>
                 </div>
+                <br>
+                <br>
+                <br>
                 <md-button ng-disabled="StorageForm.$invalid" class="md-primary md-raised" ng-click="saveData()">Submit</md-button>
             </form>
         </md-card-content>
