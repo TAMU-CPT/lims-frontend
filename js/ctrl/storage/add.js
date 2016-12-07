@@ -1,6 +1,9 @@
 export default function(base) {
     base.controller("StorageAddCtrl", ["$scope", "$location", "$routeParams", "Restangular",
         function($scope, $location, $routeParams, Restangular) {
+            $scope.shelf;
+            $scope.tube_label;
+
             $scope.room = {
                 selectedItem: null,
                 searchText: null,
@@ -19,13 +22,13 @@ export default function(base) {
                 },
             };
 
-            $scope.container = {
+            $scope.storage_type = {
                 types: [0,1],
                 type: 0,
                 selectedItem: null,
                 searchText: null,
                 querySearch: function(queryString) {
-                    return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.container.type}).then(function(data) {
+                    return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.storage_type.type, name: $scope.storage_type.searchText}).then(function(data) {
                         var flags = [], output = [];
                         for( var i=0; i<data.results.length; i++) {
                             if( flags[data.results[i].name]) continue;
@@ -38,16 +41,47 @@ export default function(base) {
                 selectedItemChange: function(item) {
                 },
                 reset: function() {
-                    $scope.container.searchText = null;
-                    $scope.container.selectedItem = null;
+                    $scope.storage_type.searchText = null;
+                    $scope.storage_type.selectedItem = null;
                 },
             };
 
+            $scope.box = {
+                selectedItem: null,
+                searchText: null,
+                querySearch: function(queryString) {
+                    return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.storage_type.type, name: $scope.storage_type.searchText, shelf: $scope.shelf, box: $scope.box.searchText}).then(function(data) {
+                        var flags = [], output = [];
+                        for( var i=0; i<data.results.length; i++) {
+                            if( flags[data.results[i].box]) continue;
+                            flags[data.results[i].box] = true;
+                            output.push(data.results[i]);
+                        }
+                        return output;
+                    });
+                },
+                selectedItemChange: function(item) {
+                },
+                reset: function() {
+                    $scope.box.searchText = null;
+                    $scope.box.selectedItem = null;
+                },
+            };
+
+
             $scope.$watch('room.searchText', function(newValue, oldValue) {
-                $scope.container.reset();
+                $scope.storage_type.reset();
+                $scope.box.reset();
             });
-            $scope.$watch('container.type', function(newValue, oldValue) {
-                $scope.container.reset();
+            $scope.$watch('storage_type.type', function(newValue, oldValue) {
+                $scope.storage_type.reset();
+                $scope.box.reset();
+            });
+            $scope.$watch('storage_type.searchText', function(newValue, oldValue) {
+                $scope.box.reset();
+            });
+            $scope.$watch('shelf', function(newValue, oldValue) {
+                $scope.box.reset();
             });
 
         }]);
