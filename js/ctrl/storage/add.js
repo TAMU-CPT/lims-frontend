@@ -6,7 +6,13 @@ export default function(base) {
                 searchText: null,
                 querySearch: function(queryString) {
                     return Restangular.all("lims").customGET("storage", {room: queryString}).then(function(data) {
-                        return data.results;
+                        var flags = [], output = [];
+                        for( var i=0; i<data.results.length; i++) {
+                            if( flags[data.results[i].room]) continue;
+                            flags[data.results[i].room] = true;
+                            output.push(data.results[i]);
+                        }
+                        return output;
                     });
                 },
                 selectedItemChange: function(item) {
@@ -20,7 +26,13 @@ export default function(base) {
                 searchText: null,
                 querySearch: function(queryString) {
                     return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.container.type}).then(function(data) {
-                        return data.results;
+                        var flags = [], output = [];
+                        for( var i=0; i<data.results.length; i++) {
+                            if( flags[data.results[i].name]) continue;
+                            flags[data.results[i].name] = true;
+                            output.push(data.results[i]);
+                        }
+                        return output;
                     });
                 },
                 selectedItemChange: function(item) {
