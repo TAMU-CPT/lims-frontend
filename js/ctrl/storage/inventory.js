@@ -8,17 +8,14 @@ export default function(base) {
                 $location.path("/storage/" + id); ;
             };
 
-            // uncomment if ordering filter is implemented in backend
-            // $scope.ordering="name";
+             $scope.ordering="sample_label";
 
             $scope.updateData = function(page) {
-                console.log('updating');
                 if(!isNaN(parseInt(page))) {
                     $scope.query.page = page;
                 }
-                // uncomment if ordering filter is implemented in backend
                 $scope.query.sample_label = $scope.sample_label;
-                // $scope.query.ordering = $scope.ordering;
+                 $scope.query.ordering = $scope.ordering;
                 $scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
                     $scope.data = data;
                 });
@@ -33,8 +30,7 @@ export default function(base) {
                 limit: 5,
                 page: 1,
                 sample_label: null,
-                //uncomment if ordering filter is implemented in backend
-                //ordering: $scope.ordering,
+                ordering: $scope.ordering,
             };
 
             $scope.updateData(1);
