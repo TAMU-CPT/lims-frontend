@@ -32,10 +32,10 @@
                             md-no-cache="true"
                             md-floating-label="{{storage_type.type | storage_type_to_text}} name"
                             md-items="item in storage_type.querySearch(storage_type.searchText)"
-                            md-item-text="item.name"
+                            md-item-text="item.container_label"
                             md-min-length="0"
                             md-selected-item-change="storage_type.selectedItemChange(item)">
-                        <span md-highlight-text="storage_type.searchText">{{item.name}}</span>
+                        <span md-highlight-text="storage_type.searchText">{{item.container_label}}</span>
                     </md-autocomplete>
                 </div>
                 <div layout="row">

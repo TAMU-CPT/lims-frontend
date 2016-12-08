@@ -9,6 +9,7 @@ export default function(base) {
                 searchText: null,
                 querySearch: function(queryString) {
                     return Restangular.all("lims").customGET("storage", {room: queryString}).then(function(data) {
+                        console.log(data);
                         var flags = [], output = [];
                         for( var i=0; i<data.results.length; i++) {
                             if( flags[data.results[i].room]) continue;
@@ -28,11 +29,13 @@ export default function(base) {
                 selectedItem: null,
                 searchText: null,
                 querySearch: function(queryString) {
-                    return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.storage_type.type, name: $scope.storage_type.searchText}).then(function(data) {
+                    return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.storage_type.type, container_label: $scope.storage_type.searchText}).then(function(data) {
+
+                        console.log(data);
                         var flags = [], output = [];
                         for( var i=0; i<data.results.length; i++) {
-                            if( flags[data.results[i].name]) continue;
-                            flags[data.results[i].name] = true;
+                            if( flags[data.results[i].container_label]) continue;
+                            flags[data.results[i].container_label] = true;
                             output.push(data.results[i]);
                         }
                         return output;
@@ -50,7 +53,7 @@ export default function(base) {
                 selectedItem: null,
                 searchText: null,
                 querySearch: function(queryString) {
-                    return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.storage_type.type, name: $scope.storage_type.searchText, shelf: $scope.shelf, box: $scope.box.searchText}).then(function(data) {
+                    return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.storage_type.type, container_label: $scope.storage_type.searchText, shelf: $scope.shelf, box: $scope.box.searchText}).then(function(data) {
                         var flags = [], output = [];
                         for( var i=0; i<data.results.length; i++) {
                             if( flags[data.results[i].box]) continue;
