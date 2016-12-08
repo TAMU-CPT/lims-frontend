@@ -17,6 +17,12 @@ require("leaflet");
 require("angular-leaflet-directive");
 require("angular-google-picker/dist/google-picker.js");
 require("angular-drag-and-drop-lists");
+var Raven = require('raven-js');
+
+Raven
+    .config('https://3891355533d043d1939f2cdca4361d21@cptgnome.tamu.edu/11')
+    .addPlugin(require('raven-js/plugins/angular'), angular)
+    .install();
 
 let base = angular.module("base", [
 	"ngRoute",
