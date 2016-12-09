@@ -18,6 +18,7 @@ export default function(base) {
                  $scope.query.ordering = $scope.ordering;
                 $scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
                     $scope.data = data;
+                    console.log($scope.data[0]);
                 });
             };
 

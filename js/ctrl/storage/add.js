@@ -9,7 +9,6 @@ export default function(base) {
                 searchText: null,
                 querySearch: function(queryString) {
                     return Restangular.all("lims").customGET("storage", {room: queryString}).then(function(data) {
-                        console.log(data);
                         var flags = [], output = [];
                         for( var i=0; i<data.results.length; i++) {
                             if( flags[data.results[i].room]) continue;
@@ -30,8 +29,6 @@ export default function(base) {
                 searchText: null,
                 querySearch: function(queryString) {
                     return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.storage_type.type, container_label: $scope.storage_type.searchText}).then(function(data) {
-
-                        console.log(data);
                         var flags = [], output = [];
                         for( var i=0; i<data.results.length; i++) {
                             if( flags[data.results[i].container_label]) continue;
