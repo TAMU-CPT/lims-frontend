@@ -41,7 +41,7 @@ export default function(base) {
 		};
 	});
 
-	base.filter("container_to_text", function() {
+	base.filter("storage_type_to_text", function() {
 		return function(input) {
 			switch(input) {
 			case 0:

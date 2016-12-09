@@ -12,23 +12,44 @@
 	}
 </style>
 <div class="container-fluid" layout="row" layout-align="center">
-	<md-card flex="50" flex-xs="100" flex-sm="75">
+	<md-card flex="80" flex-xs="100" flex-sm="100">
 		<md-card-title>
 			<md-card-title-text>
-				<span class="md-headline">Storage<span>
+                <span class="md-headline">Inventory<span>
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
+            <div layout="row">
+                <div flex="20">
+                    <md-input-container>
+                        <label>Sample</label>
+                        <input md-no-asterisk name="sample_label" ng-model="sample_label" ng-model-options="{ debounce: 200 }" ng-change="updateData()"/>
+                    </md-input-container>
+                </div>
+                <div flex="80">
+
+                </div>
+            </div>
 			<md-table-container>
 				<table md-table md-progress="promise">
 					<thead md-head md-order="ordering" md-on-reorder="updateData">
 						<tr md-row>
-							<th md-column><span>name</span></th>
+                            <th md-column md-order-by="sample_label"><span>Sample</span></th>
+                            <th md-column md-order-by="room"><span>Room</span></th>
+                            <th md-column><span>Storage Type</span></th>
+                            <th md-column><span>Fridge/Freezer Name</span></th>
+                            <th md-column><span>Shelf</span></th>
+                            <th md-column><span>Box Label</span></th>
 						</tr>
 					</thead>
 					<tbody md-body>
 						<tr md-row ng-repeat="storage in data" ng-click="go(storage.id)">
-							<td md-cell>{{storage.name}}</td>
+							<td md-cell>{{storage.sample_label}}</td>
+							<td md-cell>{{storage.room}}</td>
+							<td md-cell>{{storage.type | storage_type_to_text}}</td>
+							<td md-cell>{{storage.container_label}}</td>
+							<td md-cell>{{storage.shelf}}</td>
+							<td md-cell>{{storage.box}}</td>
 						</tr>
 					</tbody>
 				</table>

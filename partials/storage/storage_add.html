@@ -2,7 +2,7 @@
     <md-card>
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">Add Tube</span>
+                <span class="md-headline">Add Sample Storage</span>
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
@@ -22,26 +22,45 @@
                 </div>
                 <div layout="row">
                     <md-input-container>
-                        <label>Container</label>
-                        <md-select md-no-cache="true" name="container_type" ng-model="container.type" placeholder="Fridge/Freezer">
-                            <md-option ng-repeat="type in container.types" ng-value="type">{{type | container_to_text}}</md-option>
+                        <md-select md-no-cache="true" name="storage_type" ng-model="storage_type.type" placeholder="Fridge/Freezer">
+                            <md-option ng-repeat="type in storage_type.types" ng-value="type">{{type | storage_type_to_text}}</md-option>
                         </md-select>
                     </md-input-container>
-                    <md-autocomplete flex="20"
-                            md-input-name="containerField"
-                            md-selected-item="container.selectedItem"
-                            md-search-text="container.searchText"
+                    <md-autocomplete
+                            md-selected-item="storage_type.selectedItem"
+                            md-search-text="storage_type.searchText"
                             md-no-cache="true"
-                            md-floating-label="{{container.type | container_to_text}} name"
-                            md-items="item in container.querySearch(container.searchText)"
-                            md-item-text="item.name"
+                            md-floating-label="{{storage_type.type | storage_type_to_text}} name"
+                            md-items="item in storage_type.querySearch(storage_type.searchText)"
+                            md-item-text="item.container_label"
                             md-min-length="0"
-                            md-selected-item-change="container.selectedItemChange(item)">
-                        <span md-highlight-text="container.searchText">{{item.name}}</span>
+                            md-selected-item-change="storage_type.selectedItemChange(item)">
+                        <span md-highlight-text="storage_type.searchText">{{item.container_label}}</span>
                     </md-autocomplete>
                 </div>
-                <br>
-                <br>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Shelf/Rack</label>
+                        <input md-no-asterisk name="shelf" ng-model="shelf"/>
+                    </md-input-container>
+                    <md-autocomplete
+                            md-selected-item="box.selectedItem"
+                            md-search-text="box.searchText"
+                            md-no-cache="true"
+                            md-floating-label="Box label"
+                            md-items="item in box.querySearch(box.searchText)"
+                            md-item-text="item.box"
+                            md-min-length="0"
+                            md-selected-item-change="box.selectedItemChange(item)">
+                        <span md-highlight-text="box.searchText">{{item.box}}</span>
+                    </md-autocomplete>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Sample label</label>
+                        <input md-no-asterisk name="tube" ng-model="tube_label"/>
+                    </md-input-container>
+                </div>
                 <br>
                 <md-button ng-disabled="StorageForm.$invalid" class="md-primary md-raised" ng-click="saveData()">Submit</md-button>
             </form>

@@ -1,36 +1,40 @@
 export default function(base) {
 	base.controller("InventoryCtrl", ["$scope", "$location", "$routeParams", "Restangular",
-		function($scope, $location, $routeParams, Restangular) {
-			$scope.go = function(id) {
-				$location.path("/storage/" + id); ;
-			};
+	    function($scope, $location, $routeParams, Restangular) {
 
-			// uncomment if ordering filter is implemented in backend
-			// $scope.ordering="name";
+            $scope.sample_label;
 
-			$scope.updateData = function(page) {
-				if(!isNaN(parseInt(page))) {
-					$scope.query.page = page;
-				}
-				// uncomment if ordering filter is implemented in backend
-				// $scope.query.ordering = $scope.ordering;
-				$scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
-					$scope.data = data;
-				});
-			};
+            $scope.go = function(id) {
+                $location.path("/storage/" + id); ;
+            };
 
-			$scope.options = {
-				limitSelect: true,
-				pageSelect: true,
-			};
+             $scope.ordering="sample_label";
 
-			$scope.query = {
-				limit: 5,
-				page: 1,
-				//uncomment if ordering filter is implemented in backend
-				//ordering: $scope.ordering,
-			};
+            $scope.updateData = function(page) {
+                if(!isNaN(parseInt(page))) {
+                    $scope.query.page = page;
+                }
+                $scope.query.sample_label = $scope.sample_label;
+                 $scope.query.ordering = $scope.ordering;
+                $scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
+                    $scope.data = data;
+                    console.log($scope.data[0]);
+                });
+            };
 
-			$scope.updateData(1);
-		}]);
+            $scope.options = {
+                limitSelect: true,
+                pageSelect: true,
+            };
+
+            $scope.query = {
+                limit: 5,
+                page: 1,
+                sample_label: null,
+                ordering: $scope.ordering,
+            };
+
+            $scope.updateData(1);
+
+        }]);
 }
