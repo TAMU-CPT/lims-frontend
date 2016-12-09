@@ -1,0 +1,70 @@
+<div class="container-fluid" layout="row" layout-align="center">
+	<div flex="40" flex-xs="100">
+		<leaflet width="100%" height="500px" markers="map.markers" maxbounds="map.maxbounds" lf-center="map.center"></leaflet>
+	</div>
+	<md-card flex="60">
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">Register a New Environmental Sample</span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content>
+			<form name="createenvSampleCreateForm">
+				<md-input-container class="md-block">
+					<label>Sample Type</label>
+					<input  name="sampletype" ng-model="data.sampletype" type="text"></input>
+					<div ng-messages="createenvSampleCreateForm.sampletype.$error">
+					</div>
+				</md-input-container>
+
+				<div layout="row">
+					<div>
+						<md-input-container class="md-block">
+							<label>Latitude</label>
+							<input name="latitude" ng-model="marker.lat" type="number"></input>
+							<div ng-messages="createenvSampleCreateForm.latitude.$error">
+							</div>
+						</md-input-container>
+					</div>
+					<div>
+						<md-input-container class="md-block">
+							<label>Longitude</label>
+							<input name="longitude" ng-model="marker.lng" type="number"></input>
+							<div ng-messages="createenvSampleCreateForm.longitude.$error">
+							</div>
+						</md-input-container>
+					</div>
+					<div>
+						<md-button class="md-primary md-raised" ng-click="detect_location()">
+							<ng-md-icon icon="my_location"></ng-md-icon>
+							Auto-detect
+						</md-button>
+					</div>
+				</div>
+
+				<md-input-container class="md-block">
+					<label>Description</label>
+					<input  name="description" ng-model="data.description" type="text"></input>
+					<div ng-messages="createenvSampleCreateForm.description.$error">
+					</div>
+				</md-input-container>
+				<md-input-container class="md-block">
+					<label>Tube</label>
+					<input  name="tube" ng-model="data.tube" type=""></input>
+					<div ng-messages="createenvSampleCreateForm.tube.$error">
+					</div>
+				</md-input-container>
+				<md-input-container class="md-block">
+					<label>Location</label>
+					<input required  name="location" ng-model="data.location" type="text"></input>
+					<div ng-messages="createenvSampleCreateForm.location.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+				<div>
+					<md-button class="md-primary md-raised" ng-click="save()">Create</md-button>
+				</div>
+			</form>
+		</md-card-content>
+	</md-card>
+</div>
