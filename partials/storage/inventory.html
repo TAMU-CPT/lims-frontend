@@ -35,7 +35,18 @@
 					<thead md-head md-order="ordering" md-on-reorder="updateData">
 						<tr md-row>
                             <th md-column md-order-by="sample_label"><span>Sample</span></th>
-                            <th md-column><span>Sample Type</span></th>
+                            <th md-column>
+                                <span>
+                                    <md-input-container>
+                                        <label>Sample type</label>
+                                        <md-select name="sample_category" ng-model="choice.sample_category" ng-change="updateData()">
+                                            <md-option value="">All</md-option>
+                                            <md-option ng-repeat="type in sample_categories" value="{{type}}">{{type | sample_category_filter}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </span>
+                            </span>
+                            </th>
                             <th md-column><span>Phage</span></th>
                             <th md-column md-order-by="room"><span>Room</span></th>
                             <th md-column><span>Storage Type</span></th>
