@@ -7,11 +7,13 @@ export default function(base) {
                 sample_category: '',
                 phage: '',
                 rooms: [],
+                container_labels: [],
                 type: '' // fridge/freezer
             }
 
             $scope.deduped_data = {
-                room: []
+                rooms: [],
+                container_labels: [],
             }
 
             $scope.go = function(id) {
@@ -26,7 +28,8 @@ export default function(base) {
             })
             Restangular.all("lims/storage").getList().then(function(data) {
                 $scope.stuff = data;
-                $scope.deduped_data.room = $scope.deduplicate_data('room');
+                $scope.deduped_data.rooms = $scope.deduplicate_data('room');
+                $scope.deduped_data.container_labels = $scope.deduplicate_data('container_label');
             })
 
             $scope.updateData = function(page) {
@@ -38,6 +41,7 @@ export default function(base) {
                 $scope.query.phage = $scope.choice.phage;
                 $scope.query.type = $scope.choice.type;
                 $scope.query.rooms = $scope.choice.rooms.join()
+                $scope.query.container_labels = $scope.choice.container_labels.join()
                 $scope.query.ordering = $scope.ordering;
                 $scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
                     $scope.data = data;
@@ -55,6 +59,7 @@ export default function(base) {
                 type: $scope.choice.type,
                 rooms: $scope.choice.rooms,
                 phage: $scope.choice.phage,
+                container_labels: $scope.choice.container_label,
                 sample_label: null,
                 ordering: $scope.ordering,
                 sample_category: $scope.choice.sample_category,
