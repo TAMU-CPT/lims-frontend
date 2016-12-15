@@ -57,7 +57,17 @@
                                     </md-input-container>
                                 </span>
                             </th>
-                            <th md-column md-order-by="room"><span>Room</span></th>
+                            <th md-column>
+                                <span>
+                                    <md-input-container>
+                                        <label>Room</label>
+                                        <md-select name="rooms" ng-model="choice.rooms" ng-change="updateData()" multiple="">
+                                            <!--<md-option value="">All</md-option>-->
+                                            <md-option ng-repeat="room in deduped_data.room" value="{{room.room}}">{{room.room}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </span>
+                            </th>
                             <th md-column>
                                 <span>
                                     <md-input-container>
