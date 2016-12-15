@@ -6,7 +6,7 @@ export default function(base) {
             $scope.choice = {
                 sample_category: '',
                 phage: '',
-                rooms: '',
+                rooms: [],
                 type: '' // fridge/freezer
             }
 
@@ -24,6 +24,10 @@ export default function(base) {
             Restangular.all("lims/phages").getList().then(function(data) {
                 $scope.all_phages = data;
             })
+            Restangular.all("lims/storage").getList().then(function(data) {
+                $scope.stuff = data;
+                $scope.deduped_data.room = $scope.deduplicate_data('room');
+            })
 
             $scope.updateData = function(page) {
                 if(!isNaN(parseInt(page))) {
@@ -33,10 +37,10 @@ export default function(base) {
                 $scope.query.sample_category = $scope.choice.sample_category;
                 $scope.query.phage = $scope.choice.phage;
                 $scope.query.type = $scope.choice.type;
+                $scope.query.rooms = $scope.choice.rooms.join()
                 $scope.query.ordering = $scope.ordering;
                 $scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
                     $scope.data = data;
-                    $scope.deduped_data.room = $scope.deduplicate_data('room');
                 });
             };
 
@@ -48,8 +52,8 @@ export default function(base) {
             $scope.query = {
                 limit: 5,
                 page: 1,
-                type: '',
-                rooms: '',
+                type: $scope.choice.type,
+                rooms: $scope.choice.rooms,
                 phage: $scope.choice.phage,
                 sample_label: null,
                 ordering: $scope.ordering,
@@ -58,10 +62,10 @@ export default function(base) {
 
             $scope.deduplicate_data = function(field) {
                 var flags = [], output = [];
-                for( var i=0; i<$scope.data.length; i++) {
-                    if( flags[$scope.data[i][field]]) continue;
-                    flags[$scope.data[i][field]] = true;
-                    output.push($scope.data[i]);
+                for( var i=0; i<$scope.stuff.length; i++) {
+                    if( flags[$scope.stuff[i][field]]) continue;
+                    flags[$scope.stuff[i][field]] = true;
+                    output.push($scope.stuff[i]);
                 }
                 return output;
             };
