@@ -4,7 +4,8 @@ export default function(base) {
 
             $scope.sample_label;
             $scope.choice = {
-                sample_category: ''
+                sample_category: '',
+                phage: ''
             }
 
             $scope.go = function(id) {
@@ -23,6 +24,8 @@ export default function(base) {
                 }
                 $scope.query.sample_label = $scope.sample_label;
                 $scope.query.sample_category = $scope.choice.sample_category;
+                $scope.query.phage = $scope.choice.phage;
+                console.log($scope.query.phage);
                 $scope.query.ordering = $scope.ordering;
                 $scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
                     $scope.data = data;
@@ -37,6 +40,7 @@ export default function(base) {
             $scope.query = {
                 limit: 5,
                 page: 1,
+                phage: $scope.choice.phage,
                 sample_label: null,
                 ordering: $scope.ordering,
                 sample_category: $scope.choice.sample_category,
