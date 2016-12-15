@@ -3,22 +3,34 @@ export default function(base) {
 	    function($scope, $location, $routeParams, Restangular) {
 
             $scope.sample_label;
+            $scope.choice = {
+                sample_category: '',
+                phage: '',
+                type: '' // fridge/freezer
+            }
 
             $scope.go = function(id) {
                 $location.path("/storage/" + id); ;
             };
 
-             $scope.ordering="sample_label";
+            $scope.ordering="sample_label";
+            $scope.sample_categories = ['lysate', 'phagednaprep', 'envsample'];
+            $scope.storage_types = [0,1];
+            Restangular.all("lims/phages").getList().then(function(data) {
+                $scope.all_phages = data;
+            })
 
             $scope.updateData = function(page) {
                 if(!isNaN(parseInt(page))) {
                     $scope.query.page = page;
                 }
                 $scope.query.sample_label = $scope.sample_label;
-                 $scope.query.ordering = $scope.ordering;
+                $scope.query.sample_category = $scope.choice.sample_category;
+                $scope.query.phage = $scope.choice.phage;
+                $scope.query.type = $scope.choice.type;
+                $scope.query.ordering = $scope.ordering;
                 $scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
                     $scope.data = data;
-                    console.log($scope.data[0]);
                 });
             };
 
@@ -30,8 +42,11 @@ export default function(base) {
             $scope.query = {
                 limit: 5,
                 page: 1,
+                type: '',
+                phage: $scope.choice.phage,
                 sample_label: null,
                 ordering: $scope.ordering,
+                sample_category: $scope.choice.sample_category,
             };
 
             $scope.updateData(1);

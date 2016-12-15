@@ -51,4 +51,17 @@ export default function(base) {
 			}
 		};
 	});
+
+	base.filter("sample_category_filter", function() {
+		return function(input) {
+			switch(input) {
+			case 'lysate':
+				return "Lysate";
+			case 'phagednaprep':
+				return "DNA Prep";
+			case 'envsample':
+				return "Environmental Sample";
+			}
+		};
+	});
 }
