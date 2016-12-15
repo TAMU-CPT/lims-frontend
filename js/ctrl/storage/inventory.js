@@ -13,6 +13,9 @@ export default function(base) {
 
             $scope.ordering="sample_label";
             $scope.sample_categories = ['lysate', 'phagednaprep', 'envsample']
+            Restangular.all("lims/phages").getList().then(function(data) {
+                $scope.all_phages = data;
+            })
 
             $scope.updateData = function(page) {
                 if(!isNaN(parseInt(page))) {
