@@ -58,7 +58,17 @@
                                 </span>
                             </th>
                             <th md-column md-order-by="room"><span>Room</span></th>
-                            <th md-column><span>Storage Type</span></th>
+                            <th md-column>
+                                <span>
+                                    <md-input-container>
+                                        <label>Storage Type</label>
+                                        <md-select name="type" ng-model="choice.type" ng-change="updateData()">
+                                            <md-option value="">All</md-option>
+                                            <md-option ng-repeat="t in storage_types" value="{{t}}">{{t | storage_type_to_text}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </span>
+                            </th>
                             <th md-column><span>Fridge/Freezer Name</span></th>
                             <th md-column><span>Shelf</span></th>
                             <th md-column><span>Box Label</span></th>

@@ -5,7 +5,8 @@ export default function(base) {
             $scope.sample_label;
             $scope.choice = {
                 sample_category: '',
-                phage: ''
+                phage: '',
+                type: '' // fridge/freezer
             }
 
             $scope.go = function(id) {
@@ -13,7 +14,8 @@ export default function(base) {
             };
 
             $scope.ordering="sample_label";
-            $scope.sample_categories = ['lysate', 'phagednaprep', 'envsample']
+            $scope.sample_categories = ['lysate', 'phagednaprep', 'envsample'];
+            $scope.storage_types = [0,1];
             Restangular.all("lims/phages").getList().then(function(data) {
                 $scope.all_phages = data;
             })
@@ -25,7 +27,7 @@ export default function(base) {
                 $scope.query.sample_label = $scope.sample_label;
                 $scope.query.sample_category = $scope.choice.sample_category;
                 $scope.query.phage = $scope.choice.phage;
-                console.log($scope.query.phage);
+                $scope.query.type = $scope.choice.type;
                 $scope.query.ordering = $scope.ordering;
                 $scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
                     $scope.data = data;
@@ -40,6 +42,7 @@ export default function(base) {
             $scope.query = {
                 limit: 5,
                 page: 1,
+                type: '',
                 phage: $scope.choice.phage,
                 sample_label: null,
                 ordering: $scope.ordering,
