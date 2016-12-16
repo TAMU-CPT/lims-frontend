@@ -8,18 +8,21 @@ export default function(base) {
                 phage: '',
                 rooms: [],
                 container_labels: [],
+                box_label: '',
                 type: '' // fridge/freezer
             }
 
             $scope.deduped_data = {
                 rooms: [],
                 container_labels: [],
+                box_label: []
             }
 
             $scope.go = function(id) {
                 $location.path("/storage/" + id); ;
             };
 
+            $scope.show_boxes = false;
             $scope.ordering="sample_label";
             $scope.sample_categories = ['lysate', 'phagednaprep', 'envsample'];
             $scope.storage_types = [0,1];
@@ -27,15 +30,21 @@ export default function(base) {
                 $scope.all_phages = data;
             })
             Restangular.all("lims/storage").getList().then(function(data) {
-                $scope.stuff = data;
-                $scope.deduped_data.rooms = $scope.deduplicate_data('room');
-                $scope.deduped_data.container_labels = $scope.deduplicate_data('container_label');
+                $scope.deduped_data.rooms = $scope.deduplicate_data(data, 'room');
+                $scope.deduped_data.container_labels = $scope.deduplicate_data(data, 'container_label');
             })
 
             $scope.updateData = function(page) {
                 if(!isNaN(parseInt(page))) {
                     $scope.query.page = page;
-                }
+                } else { $scope.query.page = 1;  }
+
+                if ($scope.choice.container_labels.length) {
+                    $scope.show_boxes = true;
+                    $scope.deduped_data.box_label = $scope.deduplicate_data($scope.data, 'box');
+                    console.log($scope.deduped_data.box_label);
+                } else { $scope.show_boxes = false; }
+
                 $scope.query.sample_label = $scope.sample_label;
                 $scope.query.sample_category = $scope.choice.sample_category;
                 $scope.query.phage = $scope.choice.phage;
@@ -65,12 +74,12 @@ export default function(base) {
                 sample_category: $scope.choice.sample_category,
             };
 
-            $scope.deduplicate_data = function(field) {
+            $scope.deduplicate_data = function(data, field) {
                 var flags = [], output = [];
-                for( var i=0; i<$scope.stuff.length; i++) {
-                    if( flags[$scope.stuff[i][field]]) continue;
-                    flags[$scope.stuff[i][field]] = true;
-                    output.push($scope.stuff[i]);
+                for( var i=0; i<data.length; i++) {
+                    if( flags[data[i][field]]) continue;
+                    flags[data[i][field]] = true;
+                    output.push(data[i]);
                 }
                 return output;
             };

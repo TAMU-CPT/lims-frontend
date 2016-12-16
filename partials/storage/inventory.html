@@ -89,7 +89,17 @@
                                 </span>
                             </th>
                             <th md-column><span>Shelf</span></th>
-                            <th md-column><span>Box Label</span></th>
+                            <th md-column>
+                                <span>
+                                    <md-input-container>
+                                        <label>Box Label</label>
+                                        <md-select name="box_label" ng-model="choice.box_label" ng-change="updateData()">
+                                            <md-option ng-show="!show_boxes" disabled>Please select a fridge/freezer</md-option>
+                                            <md-option ng-show="show_boxes" ng-repeat="label in deduped_data.box_label" value="{{label.box}}">{{label.box}}</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </span>
+                            </th>
 						</tr>
 					</thead>
 					<tbody md-body>
