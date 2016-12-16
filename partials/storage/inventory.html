@@ -10,6 +10,14 @@
 	[x-ng-click] {
 		cursor: pointer;
 	}
+
+    .selectlabel {
+        padding-left:16px !important;
+    }
+
+    .selectlabel ._md-container {
+        display:none !important;
+    }
 </style>
 <div class="container-fluid" layout="row" layout-align="center">
 	<md-card flex="80" flex-xs="100" flex-sm="100">
@@ -62,7 +70,7 @@
                                     <md-input-container>
                                         <label>Room</label>
                                         <md-select name="rooms" ng-model="choice.rooms" ng-change="updateData()" multiple="">
-                                            <md-option ng-repeat="room in deduped_data.rooms" value="{{room.room}}">{{room.room}}</md-option>
+                                            <md-option ng-repeat="room in inventory.rooms" value="{{room.room}}">{{room.room}}</md-option>
                                         </md-select>
                                     </md-input-container>
                                 </span>
@@ -83,7 +91,8 @@
                                     <md-input-container>
                                         <label>Fridge/Freezer Name</label>
                                         <md-select name="container_labels" ng-model="choice.container_labels" ng-change="updateData()" multiple="">
-                                            <md-option ng-repeat="label in deduped_data.container_labels" value="{{label.container_label}}">{{label.container_label}}</md-option>
+                                            <md-option class="selectlabel" disabled>Selection restricted based on room choice</md-option>
+                                            <md-option ng-repeat="label in inventory.container_labels" value="{{label.container_label}}">{{label.container_label}}</md-option>
                                         </md-select>
                                     </md-input-container>
                                 </span>
@@ -95,7 +104,7 @@
                                         <label>Box Label</label>
                                         <md-select name="box_label" ng-model="choice.box_label" ng-change="updateData()">
                                             <md-option ng-show="!show_boxes" disabled>Please select a fridge/freezer</md-option>
-                                            <md-option ng-show="show_boxes" ng-repeat="label in deduped_data.box_label" value="{{label.box}}">{{label.box}}</md-option>
+                                            <md-option ng-show="show_boxes" ng-repeat="label in inventory.box_label" value="{{label.box}}">{{label.box}}</md-option>
                                         </md-select>
                                     </md-input-container>
                                 </span>
@@ -115,7 +124,7 @@
 							<td md-cell>{{storage.type | storage_type_to_text}}</td>
 							<td md-cell>{{storage.container_label}}</td>
 							<td md-cell>{{storage.shelf}}</td>
-							<td md-cell>{{storage.box}}</td>
+							<td md-cell>{{storage.box | box_filter}}</td>
 						</tr>
 					</tbody>
 				</table>
