@@ -69,7 +69,7 @@
                                 <span>
                                     <md-input-container>
                                         <label>Room</label>
-                                        <md-select name="rooms" ng-model="choice.rooms" ng-change="updateData()" multiple="">
+                                        <md-select name="rooms" ng-model="choice.rooms" ng-change="updateContainerandBox()" multiple="">
                                             <md-option ng-repeat="room in inventory.rooms" value="{{room.room}}">{{room.room}}</md-option>
                                         </md-select>
                                     </md-input-container>
@@ -79,7 +79,7 @@
                                 <span>
                                     <md-input-container>
                                         <label>Storage Type</label>
-                                        <md-select name="type" ng-model="choice.type" ng-change="updateData()">
+                                        <md-select name="type" ng-model="choice.type" ng-change="updateContainerandBox()">
                                             <md-option value="">All</md-option>
                                             <md-option ng-repeat="t in storage_types" value="{{t}}">{{t | storage_type_to_text}}</md-option>
                                         </md-select>
@@ -90,8 +90,8 @@
                                 <span>
                                     <md-input-container>
                                         <label>Fridge/Freezer Name</label>
-                                        <md-select name="container_labels" ng-model="choice.container_labels" ng-change="updateData()" multiple="">
-                                            <md-option class="selectlabel" disabled>Selection restricted based on room choice</md-option>
+                                        <md-select name="container_labels" ng-model="choice.container_labels" ng-change="updateBox()" multiple="">
+                                            <md-option class="selectlabel" disabled>Selection restricted</md-option>
                                             <md-option ng-repeat="label in inventory.container_labels" value="{{label.container_label}}">{{label.container_label}}</md-option>
                                         </md-select>
                                     </md-input-container>
@@ -104,7 +104,7 @@
                                         <label>Box Label</label>
                                         <md-select name="box_label" ng-model="choice.box_label" ng-change="updateData()">
                                             <md-option ng-show="!show_boxes" disabled>Please select a fridge/freezer</md-option>
-                                            <md-option ng-show="show_boxes" ng-repeat="label in inventory.box_label" value="{{label.box}}">{{label.box}}</md-option>
+                                            <md-option ng-show="show_boxes" ng-repeat="label in inventory.box_label" value="{{label.box | box_filter}}">{{label.box | box_filter}}</md-option>
                                         </md-select>
                                     </md-input-container>
                                 </span>

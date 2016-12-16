@@ -12,7 +12,7 @@ export default function(base) {
                 type: '' // fridge/freezer
             }
 
-            $scope.deduped_data = {
+            $scope.inventory = {
                 rooms: [],
                 container_labels: [],
                 box_label: []
@@ -23,27 +23,24 @@ export default function(base) {
             };
 
             $scope.show_boxes = false;
-            $scope.ordering="sample_label";
             $scope.sample_categories = ['lysate', 'phagednaprep', 'envsample'];
             $scope.storage_types = [0,1];
             Restangular.all("lims/phages").getList().then(function(data) {
                 $scope.all_phages = data;
             })
-            Restangular.all("lims/storage").getList().then(function(data) {
-                $scope.deduped_data.rooms = $scope.deduplicate_data(data, 'room');
-                $scope.deduped_data.container_labels = $scope.deduplicate_data(data, 'container_label');
+            Restangular.all("lims/storage/rooms").getList().then(function(data) {
+                $scope.inventory.rooms = data;
             })
+            Restangular.all("lims/storage/container_labels").getList().then(function(data) {
+                $scope.inventory.container_labels = data;
+            })
+
+            $scope.ordering="sample_label";
 
             $scope.updateData = function(page) {
                 if(!isNaN(parseInt(page))) {
                     $scope.query.page = page;
                 } else { $scope.query.page = 1;  }
-
-                if ($scope.choice.container_labels.length) {
-                    $scope.show_boxes = true;
-                    $scope.deduped_data.box_label = $scope.deduplicate_data($scope.data, 'box');
-                    console.log($scope.deduped_data.box_label);
-                } else { $scope.show_boxes = false; }
 
                 $scope.query.sample_label = $scope.sample_label;
                 $scope.query.sample_category = $scope.choice.sample_category;
@@ -55,6 +52,27 @@ export default function(base) {
                 $scope.promise = Restangular.all("lims/storage").getList($scope.query).then(function(data) {
                     $scope.data = data;
                 });
+            };
+
+            $scope.updateContainerandBox = function() {
+                $scope.choice.container_labels = [];
+                $scope.choice.box = [];
+                $scope.show_boxes= false;
+                Restangular.all("lims").customGET("storage/container_labels", {rooms: $scope.choice.rooms.join(), type: $scope.choice.type}).then(function(data) {
+                    $scope.inventory.container_labels = data.results;
+                });
+                $scope.updateData();
+            };
+
+            $scope.updateBox = function() {
+                $scope.choice.box = [];
+                if ($scope.choice.container_labels.length != 0) {
+                    Restangular.all("lims").customGET("storage/boxes", {container_labels: $scope.choice.container_labels.join()}).then(function(data) {
+                        $scope.inventory.box_label = data.results;
+                    });
+                    $scope.show_boxes = true;
+                } else { $scope.show_boxes = false; }
+                $scope.updateData();
             };
 
             $scope.options = {
@@ -72,16 +90,6 @@ export default function(base) {
                 sample_label: null,
                 ordering: $scope.ordering,
                 sample_category: $scope.choice.sample_category,
-            };
-
-            $scope.deduplicate_data = function(data, field) {
-                var flags = [], output = [];
-                for( var i=0; i<data.length; i++) {
-                    if( flags[data[i][field]]) continue;
-                    flags[data[i][field]] = true;
-                    output.push(data[i]);
-                }
-                return output;
             };
 
             $scope.updateData(1);
