@@ -52,7 +52,7 @@
                             md-item-text="item.box"
                             md-min-length="0"
                             md-selected-item-change="box.selectedItemChange(item)">
-                        <span md-highlight-text="box.searchText">{{item.box}}</span>
+                        <span md-highlight-text="box.searchText">{{item.box | box_filter}}</span>
                     </md-autocomplete>
                 </div>
                 <div layout="row">

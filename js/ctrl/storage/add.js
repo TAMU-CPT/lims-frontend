@@ -8,14 +8,8 @@ export default function(base) {
                 selectedItem: null,
                 searchText: null,
                 querySearch: function(queryString) {
-                    return Restangular.all("lims").customGET("storage", {room: queryString}).then(function(data) {
-                        var flags = [], output = [];
-                        for( var i=0; i<data.results.length; i++) {
-                            if( flags[data.results[i].room]) continue;
-                            flags[data.results[i].room] = true;
-                            output.push(data.results[i]);
-                        }
-                        return output;
+                    return Restangular.all("lims").customGET("storage/rooms", {room: queryString}).then(function(data) {
+                        return data.results;
                     });
                 },
                 selectedItemChange: function(item) {
@@ -28,14 +22,8 @@ export default function(base) {
                 selectedItem: null,
                 searchText: null,
                 querySearch: function(queryString) {
-                    return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.storage_type.type, container_label: $scope.storage_type.searchText}).then(function(data) {
-                        var flags = [], output = [];
-                        for( var i=0; i<data.results.length; i++) {
-                            if( flags[data.results[i].container_label]) continue;
-                            flags[data.results[i].container_label] = true;
-                            output.push(data.results[i]);
-                        }
-                        return output;
+                    return Restangular.all("lims").customGET("storage/container_labels", {room: $scope.room.searchText, type: $scope.storage_type.type, container_label: $scope.storage_type.searchText}).then(function(data) {
+                        return data.results;
                     });
                 },
                 selectedItemChange: function(item) {
@@ -50,14 +38,8 @@ export default function(base) {
                 selectedItem: null,
                 searchText: null,
                 querySearch: function(queryString) {
-                    return Restangular.all("lims").customGET("storage", {room: $scope.room.searchText, type: $scope.storage_type.type, container_label: $scope.storage_type.searchText, shelf: $scope.shelf, box: $scope.box.searchText}).then(function(data) {
-                        var flags = [], output = [];
-                        for( var i=0; i<data.results.length; i++) {
-                            if( flags[data.results[i].box]) continue;
-                            flags[data.results[i].box] = true;
-                            output.push(data.results[i]);
-                        }
-                        return output;
+                    return Restangular.all("lims").customGET("storage/boxes", {room: $scope.room.searchText, type: $scope.storage_type.type, container_label: $scope.storage_type.searchText, shelf: $scope.shelf, box: $scope.box.searchText}).then(function(data) {
+                        return data.results;
                     });
                 },
                 selectedItemChange: function(item) {

@@ -73,4 +73,12 @@ export default function(base) {
 			}
 		};
 	});
+
+	base.filter("box_filter", function() {
+		return function(input) {
+            if (input == "") {
+                return 'None';
+            } else { return input; }
+		};
+	});
 }
