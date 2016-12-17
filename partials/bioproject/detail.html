@@ -113,6 +113,118 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 				</div>
 			</md-toolbar>
 			<md-card-content>
+				<md-toolbar class="md-table-toolbar md-default">
+					<div class="md-toolbar-tools">
+						<span>Environmental Samples</span>
+					</div>
+				</md-toolbar>
+				<md-table-container>
+
+					<table md-table
+							md-row-select="!disabled_samples"
+							multiple
+							ng-model="envSampleTable.selected"
+							md-progress="envSampleTable.promise">
+						<thead md-head>
+							<tr md-row>
+								<th md-column>Type</th>
+								<th md-column>Date(s)</th>
+								<th md-column>Collector(s)</th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row md-select="item" md-select-id="id" md-auto-select ng-repeat="item in envSampleTable.data">
+								<td md-cell>
+									<span ng-if="!item.true_collection">
+										Sample
+									</span>
+									<span ng-if="item.true_collection">
+										Sample Collection
+									</span>
+								</td>
+								<td md-cell>
+									<span ng-if="!item.true_collection">
+										<!--<a target="_blank" href="#/environmentalsamplecollection/{{ item.env_sample[0].collection.id }}">-->
+										{{ item.env_sample[0].collection | human_time_abs }}
+										<!--</a>-->
+									</span>
+									<span ng-if="item.true_collection">
+										<ul>
+											<li ng-repeat="es in item.env_sample">
+												<!--<a target="_blank" href="#/environmentalsamplecollection/{{ es.collection.id }}">-->
+												{{ es.collection | human_time_abs }}
+												<!--</a>-->
+											</li>
+										</ul>
+									</span>
+								</td>
+								<td md-cell>
+									<span ng-if="!item.true_collection">
+										{{ item.env_sample[0].collected_by.name }}
+									</span>
+									<span ng-if="item.true_collection">
+										<ul>
+											<li ng-repeat="es in item.env_sample">{{ es.collected_by.name }}</li>
+										</ul>
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
+				<md-table-pagination
+					md-limit="envSampleTable.query.limit"
+					md-page="envSampleTable.query.page"
+					md-total="{{envSampleTable.data.meta.count}}"
+					md-on-paginate="envSampleTable.updateData"
+					md-page-select></md-table-pagination>
+
+
+
+				<md-toolbar class="md-table-toolbar md-default">
+					<div class="md-toolbar-tools">
+						<span>Phages</span>
+					</div>
+				</md-toolbar>
+				<md-table-container>
+
+					<table md-table
+							md-row-select="!disabled_samples"
+							multiple
+							ng-model="phageTable.selected"
+							md-progress="phageTable.promise">
+						<thead md-head>
+							<tr md-row>
+								<th md-column>ID</th>
+								<th md-column>Name</th>
+								<th md-column>Owner</th>
+							</tr>
+						</thead>
+						<tbody md-body>
+							<tr md-row md-select="item" md-select-id="id" md-auto-select ng-repeat="item in phageTable.data">
+								<td md-cell>
+									{{ item.id }}
+								</td>
+								<td md-cell>
+									{{ item.primary_name }}
+								</td>
+								<td md-cell>
+									{{ item.owner.name }}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
+				<md-table-pagination
+					md-limit="phageTable.query.limit"
+					md-page="phageTable.query.page"
+					md-total="{{phageTable.data.meta.count}}"
+					md-on-paginate="phageTable.updateData"
+					md-page-select></md-table-pagination>
+
+				<!--
+
+				<h2>Select a Phage</h2>
 				<md-chips
 					ng-model="samples"
 					readonly="disabled_samples"
@@ -135,6 +247,8 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 						</span>
 					</md-chip-template>
 				</md-chips>
+				-->
+
 			</md-card-content>
 		</md-card>
 	</div>

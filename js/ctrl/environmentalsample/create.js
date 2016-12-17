@@ -47,19 +47,14 @@ export default function(base) {
 			}
 
 			$scope.data = {
-				point: $scope.marker,
+				location: $scope.marker,
+				collection: new Date()
 			};
 
-			$scope.create = function() {
-				console.log('hi');
-			}
-			//$scope.create = function() {
-					//$scope.promise = Restangular.all("lims/environmentalsamples").post($scope.popup_envSampleCreate.data).then(function(data) {
-						//$scope.popup_envSampleCreate.data = {};
-						//// Maybe do a redirect to your new model
-						//// $location.path("/environmentalsamples/" + data.id);
-					//});
-					//$mdDialog.cancel();
-			//};
+			$scope.save = function() {
+					$scope.promise = Restangular.all("lims/environmentalsamples").post($scope.data).then(function(data) {
+						 $location.path("/environmentalsamples/" + data.id);
+					});
+			};
 		}]);
 }

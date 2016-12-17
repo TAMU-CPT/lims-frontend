@@ -11,7 +11,7 @@
 		cursor: pointer;
 	}
 </style>
-<div class="container-fluid" layout="row" layout-align="center">
+<div class="container-fluid" layout="row" layout-align="center start">
 	<div flex="40" flex-xs="100">
 		<leaflet width="100%" height="500px" markers="map.markers" maxbounds="map.maxbounds" lf-center="map.center"></leaflet>
 	</div>
@@ -19,11 +19,13 @@
 	<md-card flex="60">
 		<md-card-title>
 			<md-card-title-text>
-				<span class="md-headline">Environmental Sample Collections</span>
+				<div layout="row" layout-align="space-between center">
+					<span class="md-headline">Environmental Sample Collections</span>
 
-				<md-button class="md-icon-button" aria-label="Create an Environmental Sample Collection" ng-click="popup_envSampleCreate.show()">
-					<ng-md-icon icon="add"></ng-md-icon>
-				</md-button>
+					<md-button class="md-icon-button md-raised md-accent" aria-label="Create an Environmental Sample Collection" ng-click="popup_envSampleCreate.show()">
+						<ng-md-icon icon="add"></ng-md-icon>
+					</md-button>
+				</div>
 
 			</md-card-title-text>
 		</md-card-title>

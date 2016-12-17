@@ -1,8 +1,27 @@
+var moment = require('moment');
+
 /**
  * Custom services
  * @param {object} base Base angular application object
  */
 export default function(base) {
+	base.service('$humanTime', function(){
+		return {
+			c: function(datetime){
+				return moment(datetime);
+			},
+			f: function(datetime) {
+				var m = moment(datetime);
+				return {
+					abs: m.calendar(),
+					rel: m.fromNow(),
+					day: m.format('LL'),
+					m: m,
+				}
+			}
+		}
+	});
+
 	base.service("$mdLoginToast", function($mdToast) {
 		return {
 			show: function(content) {
@@ -29,7 +48,7 @@ export default function(base) {
 					markers[sample.id] = {
 						lat: sample.location_xy[1],
 						lng: sample.location_xy[0],
-						message: "<b>Environmental Sample</b><br />Type: " + sample.sample_type.name + "<br />Desc: " + sample.description + "<br />Collected by: " + collected_by,
+						message: "<b>Environmental Sample</b><br />Type: " + sample.sample_type.name + "<br />Desc: " + sample.description + "<hr/>Collected by: " + collected_by + "<br/>Collected: " + moment(sample.collection).calendar(),
 						focus: false,
 						draggable: false,
 					};

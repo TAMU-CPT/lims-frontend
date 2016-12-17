@@ -11,7 +11,7 @@
 		cursor: pointer;
 	}
 </style>
-<div class="container-fluid" layout="row" layout-align="center">
+<div class="container-fluid" layout="row" layout-align="center start">
 	<div flex="40" flex-xs="100">
 		<leaflet width="100%" height="500px" markers="map.markers" maxbounds="map.maxbounds" lf-center="map.center"></leaflet>
 	</div>
@@ -19,12 +19,12 @@
 	<md-card flex="60">
 		<md-card-title>
 			<md-card-title-text>
-				<span class="md-headline">Environmental Samples</span>
-				<span></span>
-				<md-button class="md-icon-button" aria-label="Register a New Environmental Sample" ng-click="popup_envSampleCreate.show()">
-					<ng-md-icon icon="add"></ng-md-icon>
-				</md-button>
-
+				<div layout="row" layout-align="space-between center">
+					<span class="md-headline">Environmental Samples</span>
+					<md-button class="md-icon-button md-raised md-accent" aria-label="Register a New Environmental Sample">
+						<ng-md-icon icon="add" ng-click="go('', '#/environmentalsamples/create')"></ng-md-icon>
+					</md-button>
+				</div>
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
@@ -43,11 +43,11 @@
 						<tr md-row ng-repeat="environmentalsample in data" ng-click="go(environmentalsample.id)">
 							<td md-cell>{{environmentalsample.sample_type.name}}</td>
 							<td md-cell>{{environmentalsample.description}}</td>
-							<td md-cell>{{environmentalsample.collection}}</td>
+							<td md-cell>{{environmentalsample.collection | human_time_abs}}</td>
 							<td md-cell>{{environmentalsample.tube.name}}</td>
 							<td md-cell>
 								<md-chips ng-if="environmentalsample.collected_by" ng-model="environmentalsample.collected_by_set" readonly="true">
-									<md-chip-template ng-click="go_user($chip.id)">
+									<md-chip-template ng-click="go($chip.id, '#/accounts/')">
 										<ng-md-icon icon="{{ 3 | role_icon }}"></ng-md-icon>
 										{{ $chip.name }}
 									</md-chip-template>
@@ -66,66 +66,4 @@
 			</md-table-pagination>
 		</md-card-content>
 	</md-card>
-</div>
-
-<div style="visibility: hidden">
-	<div class="md-dialog-container" id="popup_envSampleCreate">
-		<md-dialog>
-			<md-toolbar>
-				<div class="md-toolbar-tools">
-					<span class="md-headline">Register a New Environmental Sample</span>
-					<span flex></span>
-					<md-button ng-click="popup_envSampleCreate.cancel()" aria-label="close" class="md-icon-button">
-						<ng-md-icon icon="close"></ng-md-icon>
-					</md-button>
-				</div>
-			</md-toolbar>
-			<md-card style="margin:0">
-				<md-card-content layout="column">
-					<form name="createenvSampleCreateForm">
-						
-						<md-input-container class="md-block">
-							<label>Sample Type</label>
-							<input  name="sampletype" ng-model="popup_envSampleCreate.data.sampletype" type="text"></input>
-							<div ng-messages="createenvSampleCreateForm.sampletype.$error">
-
-							</div>
-						</md-input-container>
-
-
-						<md-input-container class="md-block">
-							<label>Description</label>
-							<input  name="description" ng-model="popup_envSampleCreate.data.description" type="text"></input>
-							<div ng-messages="createenvSampleCreateForm.description.$error">
-
-							</div>
-						</md-input-container>
-
-
-						<md-input-container class="md-block">
-							<label>Tube</label>
-							<input  name="tube" ng-model="popup_envSampleCreate.data.tube" type=""></input>
-							<div ng-messages="createenvSampleCreateForm.tube.$error">
-
-							</div>
-						</md-input-container>
-
-
-						<md-input-container class="md-block">
-							<label>Location</label>
-							<input required  name="location" ng-model="popup_envSampleCreate.data.location" type="text"></input>
-							<div ng-messages="createenvSampleCreateForm.location.$error">
-								<div ng-message="required">This is required.</div>
-							</div>
-						</md-input-container>
-
-						<div>
-							<md-button class="md-primary"           ng-click="popup_envSampleCreate.cancel()">Cancel</md-button>
-							<md-button class="md-primary md-raised" ng-click="popup_envSampleCreate.create()">Create</md-button>
-						</div>
-					</form>
-				</md-card-content>
-			</md-card>
-		</md-dialog>
-	</div>
 </div>
