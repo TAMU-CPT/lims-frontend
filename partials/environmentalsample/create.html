@@ -21,7 +21,7 @@
 					<div>
 						<md-input-container class="md-block">
 							<label>Latitude</label>
-							<input name="latitude" ng-model="marker.lat" type="number"></input>
+							<input ng-required name="latitude" ng-model="marker.lat" type="number"></input>
 							<div ng-messages="createenvSampleCreateForm.latitude.$error">
 							</div>
 						</md-input-container>
@@ -29,7 +29,7 @@
 					<div>
 						<md-input-container class="md-block">
 							<label>Longitude</label>
-							<input name="longitude" ng-model="marker.lng" type="number"></input>
+							<input ng-required name="longitude" ng-model="marker.lng" type="number"></input>
 							<div ng-messages="createenvSampleCreateForm.longitude.$error">
 							</div>
 						</md-input-container>
@@ -48,17 +48,15 @@
 					<div ng-messages="createenvSampleCreateForm.description.$error">
 					</div>
 				</md-input-container>
+				<div layout="row" layout-xs="column">
+					<div layout="column" flex="100">
+						<md-datepicker ng-model="data.collection" md-placeholder="Collection Date"></md-datepicker>
+					</div>
+				</div>
 				<md-input-container class="md-block">
 					<label>Tube</label>
 					<input  name="tube" ng-model="data.tube" type=""></input>
 					<div ng-messages="createenvSampleCreateForm.tube.$error">
-					</div>
-				</md-input-container>
-				<md-input-container class="md-block">
-					<label>Location</label>
-					<input required  name="location" ng-model="data.location" type="text"></input>
-					<div ng-messages="createenvSampleCreateForm.location.$error">
-						<div ng-message="required">This is required.</div>
 					</div>
 				</md-input-container>
 				<div>

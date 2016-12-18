@@ -1,8 +1,17 @@
+var moment = require('moment');
+
 /**
  * Custom filters used in HTML
  * @param {object} base Base angular application object
  */
 export default function(base) {
+	base.filter('human_time_abs', function(){
+		return function(input) {
+			return moment(input).format('lll');
+			//return moment(input).calendar();
+		}
+	});
+
 	base.filter("role_icon", function() {
 		return function(input) {
 			switch(parseInt(input)) {

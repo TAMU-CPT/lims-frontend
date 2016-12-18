@@ -5,12 +5,14 @@
 export default function(base) {
 	base.controller("EnvironmentalSampleListCtrl", ["$scope", "$location", "$routeParams", "Restangular", "leafletBoundsHelpers", "$mapHandler", "$mdDialog",
 		function($scope, $location, $routeParams, Restangular, leafletBoundsHelpers, $mapHandler, $mdDialog) {
-			$scope.go = function(id) {
-				$location.path("/environmentalsamples/" + id);
-			};
-
-			$scope.go_user = function(id) {
-				$location.path("/accounts/" + id);
+			$scope.go = function(id, route) {
+				console.log('id', id, 'route', route);
+				if(route){
+					console.log('id', id, 'route', route);
+					$location.path(route.substring(1) + id);
+				} else {
+					$location.path("/environmentalsamples/" + id);
+				}
 			};
 
 // CICADA: NEW_INPUTS_HERE_DO_NOT_REMOVE

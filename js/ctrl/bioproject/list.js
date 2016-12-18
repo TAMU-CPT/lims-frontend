@@ -39,7 +39,11 @@ export default function(base) {
 			};
 
 			$scope.go = function(id) {
-				$location.path("/bioprojects/" + id); ;
+				if(id.startsWith('#')){
+					$location.path(id);
+				} else {
+					$location.path("/bioprojects/" + id); ;
+				}
 			};
 
 			$scope.updateData = function(page) {

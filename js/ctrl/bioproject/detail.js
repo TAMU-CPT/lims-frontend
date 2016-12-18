@@ -68,6 +68,79 @@ export default function(base) {
 			};
 
 
+			// Environmental Sample Table
+			$scope.envSampleTable = {
+				ordering: null,
+
+				updateData: function(page){
+					if(!isNaN(parseInt(page))) {
+						$scope.envSampleTable.query.page = page;
+					}
+					// uncomment if ordering filter is implemented in backend
+					 $scope.envSampleTable.query.ordering = $scope.envSampleTable.ordering;
+					$scope.envSampleTable.promise = Restangular.all("lims/environmentalsamplecollection").getList($scope.envSampleTable.query).then(function(data) {
+						$scope.envSampleTable.data = data;
+					});
+				},
+
+				options: {
+					limitSelect: true,
+					pageSelect: true,
+				},
+
+				query: {
+					limit: 5,
+					page: 1,
+					custom: 'asdf',
+					ordering: $scope.ordering,
+				},
+
+				selected: [],
+			};
+			$scope.envSampleTable.updateData(1);
+
+			$scope.phageTable = {
+				ordering: null,
+
+				updateData: function(page){
+					if(!isNaN(parseInt(page))) {
+						$scope.phageTable.query.page = page;
+					}
+					// uncomment if ordering filter is implemented in backend
+					 $scope.phageTable.query.ordering = $scope.phageTable.ordering;
+					$scope.phageTable.promise = Restangular.all("lims/phages").getList($scope.phageTable.query).then(function(data) {
+						$scope.phageTable.data = data;
+					});
+				},
+
+				options: {
+					limitSelect: true,
+					pageSelect: true,
+				},
+
+				query: {
+					limit: 5,
+					page: 1,
+					ordering: $scope.ordering,
+				},
+
+				selected: [],
+			};
+			$scope.phageTable.updateData(1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			// Sharing
 			$scope.popup_share = function(ev) {
 				$mdDialog.show({

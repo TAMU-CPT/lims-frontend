@@ -64,6 +64,7 @@ export default function(base) {
 			$scope.query = {
 				limit: 10,
 				page: 1,
+				true_collection: true,
 			};
 			$scope.updateData(1);
 		}]);
