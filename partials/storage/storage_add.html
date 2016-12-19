@@ -8,7 +8,8 @@
         <md-card-content>
             <form name="StorageForm" ng-submit="saveData()" novalidate>
                 <div layout="row">
-                    <md-autocomplete flex="50"
+                    <md-autocomplete md-no-asterisk required flex="50"
+                            md-input-name="room"
                             md-selected-item="room.selectedItem"
                             md-search-text="room.searchText"
                             md-items="item in room.querySearch(room.searchText)"
@@ -17,7 +18,12 @@
                             md-min-length="0"
                             md-floating-label="Room"
                             md-selected-item-change="room.selectedItemChange(item)">
-                        <span md-highlight-text="room.searchText">{{item.room}}</span>
+                        <md-item-template>
+                            <span md-highlight-text="room.searchText">{{item.room}}</span>
+                        </md-item-template>
+                        <div ng-messages="StorageForm.room.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
                     </md-autocomplete>
                 </div>
                 <div layout="row">
@@ -26,7 +32,8 @@
                             <md-option ng-repeat="type in storage_type.types" ng-value="type">{{type | storage_type_to_text}}</md-option>
                         </md-select>
                     </md-input-container>
-                    <md-autocomplete
+                    <md-autocomplete md-no-asterisk required
+                            md-input-name="container_label"
                             md-selected-item="storage_type.selectedItem"
                             md-search-text="storage_type.searchText"
                             md-no-cache="true"
@@ -35,7 +42,12 @@
                             md-item-text="item.container_label"
                             md-min-length="0"
                             md-selected-item-change="storage_type.selectedItemChange(item)">
-                        <span md-highlight-text="storage_type.searchText">{{item.container_label}}</span>
+                        <md-item-template>
+                            <span md-highlight-text="storage_type.searchText">{{item.container_label}}</span>
+                        </md-item-template>
+                        <div ng-messages="StorageForm.container_label.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
                     </md-autocomplete>
                 </div>
                 <div layout="row">
@@ -58,7 +70,10 @@
                 <div layout="row">
                     <md-input-container flex>
                         <label>Sample label</label>
-                        <input md-no-asterisk name="tube" ng-model="tube_label"/>
+                        <input md-no-asterisk required name="tube" ng-model="tube_label"/>
+                        <div ng-messages="StorageForm.tube.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
                     </md-input-container>
                 </div>
                 <br>
