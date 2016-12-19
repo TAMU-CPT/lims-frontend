@@ -1,6 +1,6 @@
 export default function(base) {
-    base.controller("StorageAddCtrl", ["$scope", "$location", "$routeParams", "Restangular",
-        function($scope, $location, $routeParams, Restangular) {
+    base.controller("StorageAddCtrl", ["$scope", "$location", "$routeParams", "Restangular", "$mdLoginToast",
+        function($scope, $location, $routeParams, Restangular, $mdLoginToast) {
             $scope.shelf;
             $scope.tube_label;
 
@@ -65,6 +65,23 @@ export default function(base) {
             $scope.$watch('shelf', function(newValue, oldValue) {
                 $scope.box.reset();
             });
+
+            $scope.saveData = function() {
+                Restangular.all('lims/storage').post({
+                    room: $scope.room.searchText,
+                    type: $scope.storage_type.type,
+                    container_label: $scope.storage_type.searchText,
+                    shelf: $scope.shelf,
+                    box: $scope.box.searchText,
+                    sample_label: $scope.tube_label,
+                })
+                .then(function(gaf) {
+                    $mdLoginToast.show("Success");
+                }, function() {
+                    console.log("there was an error");
+                    $mdLoginToast.show("Error");
+                });
+            };
 
         }]);
 }
