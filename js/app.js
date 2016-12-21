@@ -97,14 +97,6 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/assembly/detail.html",
 				controller: "AssemblyDetailCtrl",
 			}).
-			when("/experimentalresults", {
-				templateUrl: "partials/experimentalresult/list.html",
-				controller: "ExperimentalResultListCtrl",
-			}).
-			when("/experimentalresults/:experimentalresultID", {
-				templateUrl: "partials/experimentalresult/detail.html",
-				controller: "ExperimentalResultDetailCtrl",
-			}).
 			when("/sequencingruns", {
 				templateUrl: "partials/sequencingrun/list.html",
 				controller: "SequencingRunListCtrl",
@@ -112,22 +104,6 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 			when("/sequencingruns/:sequencingrunID", {
 				templateUrl: "partials/sequencingrun/detail.html",
 				controller: "SequencingRunDetailCtrl",
-			}).
-			when("/sampletypes", {
-				templateUrl: "partials/sampletype/list.html",
-				controller: "SampleTypeListCtrl",
-			}).
-			when("/sampletypes/:sampletypeID", {
-				templateUrl: "partials/sampletype/detail.html",
-				controller: "SampleTypeDetailCtrl",
-			}).
-			when("/experiments", {
-				templateUrl: "partials/experiment/list.html",
-				controller: "ExperimentListCtrl",
-			}).
-			when("/experiments/:experimentID", {
-				templateUrl: "partials/experiment/detail.html",
-				controller: "ExperimentDetailCtrl",
 			}).
 			when("/phages", {
 				templateUrl: "partials/phage/list.html",
@@ -184,6 +160,10 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 			when("/lysates", {
 				templateUrl: "partials/lysate/list.html",
 				controller: "LysateListCtrl",
+			}).
+			when("/lysates/create/:envSampleCollectionID/", {
+				templateUrl: "partials/lysate/create.html",
+				controller: "LysateCreateCtrl",
 			}).
 			when("/lysates/:lysateID", {
 				templateUrl: "partials/lysate/detail.html",
@@ -298,10 +278,6 @@ require("./ctrl/experimentalresult/list.js")(base);
 require("./ctrl/experimentalresult/detail.js")(base);
 require("./ctrl/sequencingrun/list.js")(base);
 require("./ctrl/sequencingrun/detail.js")(base);
-require("./ctrl/sampletype/list.js")(base);
-require("./ctrl/sampletype/detail.js")(base);
-require("./ctrl/experiment/list.js")(base);
-require("./ctrl/experiment/detail.js")(base);
 require("./ctrl/phage/list.js")(base);
 require("./ctrl/phage/detail.js")(base);
 require("./ctrl/phagednaprep/list.js")(base);
@@ -317,6 +293,7 @@ require("./ctrl/environmentalsamplecollection/list.js")(base);
 require("./ctrl/environmentalsamplecollection/detail.js")(base);
 require("./ctrl/lysate/list.js")(base);
 require("./ctrl/lysate/detail.js")(base);
+require("./ctrl/lysate/create.js")(base);
 require("./ctrl/bacteria/list.js")(base);
 require("./ctrl/bacteria/detail.js")(base);
 require("./ctrl/account/list.js")(base);

@@ -1,0 +1,61 @@
+<div class="container-fluid" layout="row" layout-align="center start">
+	<md-card flex="40">
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">Samples</span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content>
+			<div>What information would be useful to see here? <md-button class="md-raised">Suggest</md-button></div>
+			<table md-table md-progress="promise_esc">
+				<thead md-head md-order="ordering">
+					<tr md-row>
+						<th md-column><span>Type</span></th>
+						<th md-column><span>Description</span></th>
+						<th md-column><span>Date</span></th>
+					</tr>
+				</thead>
+				<tbody md-body>
+					<tr md-row ng-repeat="environmentalsample in esc.env_sample">
+						<td md-cell>{{environmentalsample.sample_type.name}}</td>
+						<td md-cell>{{environmentalsample.description}}</td>
+						<td md-cell>{{environmentalsample.collection | human_time_abs}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-card-content>
+	</md-card>
+
+
+
+	<md-card flex="60">
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">New Lysate</span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content>
+			<form name="createlysateCreateForm">
+				<span class="md-title">Metadata</span>
+				<md-input-container class="md-block">
+					<label>Bacterial Host</label>
+					<md-autocomplete
+							md-selected-item="host.selectedItem"
+							md-search-text="host.searchText"
+							md-items="item in host.querySearch(host.searchText)"
+							md-item-text="item.full"
+							md-min-length="0">
+						<span md-highlight-text="host.searchText">{{item.full}}</span>
+					</md-autocomplete>
+				</md-input-container>
+
+				<span class="md-title">Storage</span>
+				<ng-include src="'partials/storage/storage_form.html'"></ng-include>
+
+				<div>
+					<md-button class="md-primary md-raised" ng-click="save()">Create</md-button>
+				</div>
+			</form>
+		</md-card-content>
+	</md-card>
+</div>

@@ -14,18 +14,6 @@ export default function(base) {
 							url: "#/bioprojects",
 						},
 						{
-							title: "ExperimentalResults",
-							url: "#/experimentalresults",
-						},
-						{
-							title: "SampleTypes",
-							url: "#/sampletypes",
-						},
-						{
-							title: "Experiments",
-							url: "#/experiments",
-						},
-						{
 							title: "Phages",
 							url: "#/phages",
 						},
@@ -64,15 +52,15 @@ export default function(base) {
 						},
 					],
 				},
-				{ name: "Annotation",
-					hue: 3,
-					routes: [
-						{
-							title: "Annotation",
-							url: "#/annotation",
-						},
-					],
-				},
+				//{ name: "Annotation",
+					//hue: 3,
+					//routes: [
+						//{
+							//title: "Annotation",
+							//url: "#/annotation",
+						//},
+					//],
+				//},
 				{ name: "Directory Services",
 					hue: 2,
 					routes: [

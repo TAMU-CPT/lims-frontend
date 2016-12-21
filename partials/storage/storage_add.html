@@ -22,7 +22,7 @@
                 </div>
                 <div layout="row">
                     <md-input-container>
-                        <md-select md-no-cache="true" name="storage_type" ng-model="storage_type.type" placeholder="Fridge/Freezer">
+                        <md-select md-no-cache="true" name="storage_type" ng-model="storage.storage_type.type" placeholder="Fridge/Freezer">
                             <md-option ng-repeat="type in storage_type.types" ng-value="type">{{type | storage_type_to_text}}</md-option>
                         </md-select>
                     </md-input-container>
@@ -58,7 +58,7 @@
                 <div layout="row">
                     <md-input-container flex>
                         <label>Sample label</label>
-                        <input md-no-asterisk name="tube" ng-model="tube_label"/>
+                        <input md-no-asterisk name="tube" ng-model="storage.sample_label"/>
                     </md-input-container>
                 </div>
                 <br>

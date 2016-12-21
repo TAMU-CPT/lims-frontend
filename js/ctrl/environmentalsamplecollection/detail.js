@@ -15,9 +15,13 @@ export default function(base) {
 				$scope.data.env_sample = $scope.data.env_sample.map(function(env_sample){
 					env_sample.collected_by_set = [env_sample.collected_by];
 					return env_sample;
-				})
+				});
 
 				$scope.map = $mapHandler.calculateMap(data.env_sample);
+
+				$scope.create_lysate = function(){
+					$location.path("/lysates/create/" + data.id + "/");
+				}
 			});
 		}]);
 }

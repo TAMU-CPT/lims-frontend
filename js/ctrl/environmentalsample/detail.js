@@ -10,6 +10,10 @@ export default function(base) {
 				$scope.map = $mapHandler.calculateMap([data]);
 				$scope.center = $scope.map.center;
 				$scope.environmentalsample.collected_by_set = [data.collected_by];
+
+				$scope.create_lysate = function(){
+					$location.path("/lysates/create/" + data.default_collection_id + "/");
+				}
 			});
 		}]);
 }

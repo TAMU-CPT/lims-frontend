@@ -59,6 +59,7 @@
   "dependencies": {
     "angular-drag-and-drop-lists": "^1.4.0",
     "angular-google-picker": "^0.2.2",
-    "angular-leaflet-directive": "^0.10.0"
+    "angular-leaflet-directive": "^0.10.0",
+    "mdi": "^1.7.22"
   }
 }

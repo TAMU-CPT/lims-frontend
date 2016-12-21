@@ -31,6 +31,25 @@ export default function(base) {
 		};
 	});
 
+	base.filter("storage_formatter", ["$sce", function($sce) {
+		return function(input) {
+			return $sce.trustAs(
+				"html",
+				'<md-button class="md-icon-button md-primary md-raised" aria-label="storage_location">' +
+					'<i class="mdi mdi-test-tube" style="font-size: 160%"></i>' +
+					'<md-tooltip md-direction="down">' +
+						input.room + '/' +
+						input.type + '/' +
+						input.container_label + '/' +
+						input.shelf + '/' +
+						input.box + '/' +
+						input.sample_label +
+					'</md-tooltip>' +
+				'</md-button>'
+			);
+		};
+	}]);
+
 	base.filter("host_formatter", ["$sce", function($sce) {
 		return function(input) {
 			return $sce.trustAs("html", "<i>" + input.genus +" " + input.species + "</i> " + input.strain);
