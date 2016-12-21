@@ -45,7 +45,7 @@ export default function(base) {
 						collected_by = '<a href="#/accounts/' + sample.collected_by.id + '">' + sample.collected_by.name + '</a>';
 					}
 
-					markers[sample.id] = {
+					markers[sample.id.replace(/-/g, '_')] = {
 						lat: sample.location_xy[1],
 						lng: sample.location_xy[0],
 						message: "<b>Environmental Sample</b><br />Type: " + sample.sample_type.name + "<br />Desc: " + sample.description + "<hr/>Collected by: " + collected_by + "<br/>Collected: " + moment(sample.collection).calendar(),
