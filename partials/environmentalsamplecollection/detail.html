@@ -30,7 +30,7 @@
 								<td md-cell>{{environmentalsample.tube.name}}</td>
 								<td md-cell>
 									<md-chips ng-if="environmentalsample.collected_by" ng-model="environmentalsample.collected_by_set" readonly="true">
-										<md-chip-template ng-click="go_user($chip.id)">
+										<md-chip-template>
 											<ng-md-icon icon="{{ 3 | role_icon }}"></ng-md-icon>
 											{{ $chip.name }}
 										</md-chip-template>
