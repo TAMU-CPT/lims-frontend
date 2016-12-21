@@ -17,6 +17,7 @@
 						<tr md-row><td md-cell>Description</td><td md-cell>{{ environmentalsample.description }}</td></tr>
 						<tr md-row><td md-cell>Tube</td><td md-cell>{{ environmentalsample.tube }}</td></tr>
 						<tr md-row><td md-cell>Collection Date</td><td md-cell>{{ environmentalsample.collection | human_time_abs }}</td></tr>
+						<tr md-row><td md-cell>Location</td><td md-cell>{{ environmentalsample.location_xy  }}</td></tr>
 						<tr md-row><td md-cell>Collected By</td><td md-cell>
 							<md-chips ng-if="environmentalsample.collected_by" ng-model="environmentalsample.collected_by_set" readonly="true">
 								<md-chip-template ng-click="go_user($chip.id)">
