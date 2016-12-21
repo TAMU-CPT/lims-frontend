@@ -100,4 +100,12 @@ export default function(base) {
             } else { return input; }
 		};
 	});
+
+	base.filter("box_filter_selection", function() {
+		return function(input) {
+            if (input == "") {
+                return 'All';
+            } else { return input; }
+		};
+	});
 }

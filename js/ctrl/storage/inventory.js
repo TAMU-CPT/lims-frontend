@@ -8,7 +8,7 @@ export default function(base) {
                 phage: '',
                 rooms: [],
                 container_labels: [],
-                box_label: '',
+                box_label: null,
                 type: '' // fridge/freezer
             }
 
@@ -46,6 +46,7 @@ export default function(base) {
                 $scope.query.sample_category = $scope.choice.sample_category;
                 $scope.query.phage = $scope.choice.phage;
                 $scope.query.type = $scope.choice.type;
+                $scope.query.box = $scope.choice.box_label;
                 $scope.query.rooms = $scope.choice.rooms.join()
                 $scope.query.container_labels = $scope.choice.container_labels.join()
                 $scope.query.ordering = $scope.ordering;
@@ -56,7 +57,7 @@ export default function(base) {
 
             $scope.updateContainerandBox = function() {
                 $scope.choice.container_labels = [];
-                $scope.choice.box = [];
+                $scope.choice.box_label = null;
                 $scope.show_boxes= false;
                 Restangular.all("lims").customGET("storage/container_labels", {rooms: $scope.choice.rooms.join(), type: $scope.choice.type}).then(function(data) {
                     $scope.inventory.container_labels = data.results;
@@ -65,7 +66,8 @@ export default function(base) {
             };
 
             $scope.updateBox = function() {
-                $scope.choice.box = [];
+                $scope.choice.box_label = '';
+                console.log($scope.choice.box_label);
                 if ($scope.choice.container_labels.length != 0) {
                     Restangular.all("lims").customGET("storage/boxes", {container_labels: $scope.choice.container_labels.join()}).then(function(data) {
                         $scope.inventory.box_label = data.results;
@@ -86,6 +88,7 @@ export default function(base) {
                 type: $scope.choice.type,
                 rooms: $scope.choice.rooms,
                 phage: $scope.choice.phage,
+                box: $scope.choice.box_label,
                 container_labels: $scope.choice.container_label,
                 sample_label: null,
                 ordering: $scope.ordering,

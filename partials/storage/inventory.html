@@ -104,7 +104,7 @@
                                         <label>Box Label</label>
                                         <md-select name="box_label" ng-model="choice.box_label" ng-change="updateData()">
                                             <md-option ng-show="!show_boxes" disabled>Please select a fridge/freezer</md-option>
-                                            <md-option ng-show="show_boxes" ng-repeat="label in inventory.box_label" value="{{label.box | box_filter}}">{{label.box | box_filter}}</md-option>
+                                            <md-option ng-show="show_boxes" ng-repeat="label in inventory.box_label" value="{{label.box}}">{{label.box | box_filter_selection}}</md-option>
                                         </md-select>
                                     </md-input-container>
                                 </span>
