@@ -274,8 +274,6 @@ require("./ctrl/organisation/list.js")(base);
 require("./ctrl/organisation/detail.js")(base);
 require("./ctrl/assembly/list.js")(base);
 require("./ctrl/assembly/detail.js")(base);
-require("./ctrl/experimentalresult/list.js")(base);
-require("./ctrl/experimentalresult/detail.js")(base);
 require("./ctrl/sequencingrun/list.js")(base);
 require("./ctrl/sequencingrun/detail.js")(base);
 require("./ctrl/phage/list.js")(base);

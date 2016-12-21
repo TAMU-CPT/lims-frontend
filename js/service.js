@@ -5,6 +5,18 @@ var moment = require('moment');
  * @param {object} base Base angular application object
  */
 export default function(base) {
+	base.service('$go', ['$location', function($location){
+		return {
+			phage: function(id){
+				$location.path("/phages/" + id);
+			},
+
+			storage: function(id){
+				$location.path("/storage/" + id);
+			}
+		}
+	}]);
+
 	base.service('$humanTime', function(){
 		return {
 			c: function(datetime){

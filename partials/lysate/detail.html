@@ -1,4 +1,9 @@
-<div layout="row" layout-align="center center">
+<div layout="row" layout-align="center start">
+	<md-card>
+<pre>
+{{data | json}}
+</pre>
+	</md-card>
 	<md-card>
 		<md-card-header>
 			<md-card-header-text>
@@ -20,19 +25,32 @@
 							<td md-cell><div ng-bind-html="data.host | host_formatter"></div></td>
 						</tr>
 						<tr md-row>
+							<td md-cell>Phage</td>
+							<td md-cell>
+								<md-button class="md-raised" aria-label="Go to Phage" ng-click="go.phage(data.phage.id)" layout="row" layout-align="center start">
+									<i class="mdi mdi-hexagon" style="font-size: 160%"></i>  <!-- bell -->
+									&nbsp;
+									<span>
+									{{ data.phage.primary_name }}
+									</span>
+								</md-button>
+							</td>
+						</tr>
+						<tr md-row>
 							<td md-cell>Storage</td>
 							<td md-cell>
-								<md-button class="md-raised" aria-label="storage_location" ng-click="go_storage(data.storage.id)">
+								<!--<md-button class="md-raised" aria-label="Go To Storage Location" ng-click="go.storage(data.storage.id)" layout="row" layout-align="center start">-->
+								<div>
 									<i class="mdi mdi-test-tube" style="font-size: 160%"></i>  <!-- bell -->
-									<md-tooltip md-direction="down">
-										{{ data.storage.room }} /
-										{{ data.storage.type | storage_type_to_text }} /
-										{{ data.storage.container_label }} /
-										{{ data.storage.shelf }} /
-										{{ data.storage.box }} /
-										{{ data.storage.sample_label }}
-									</md-tooltip>
-								</md-button>
+									&nbsp;
+									{{ data.storage.room }} /
+									{{ data.storage.type | storage_type_to_text }} /
+									{{ data.storage.container_label }} /
+									{{ data.storage.shelf }} /
+									{{ data.storage.box }} /
+									{{ data.storage.sample_label }}
+								</div>
+								<!--</md-button>-->
 							</td>
 						</tr>
 					</tbody>
