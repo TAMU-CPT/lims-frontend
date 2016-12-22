@@ -23,6 +23,7 @@
                     <span class="md-title"><a href="#/">LIMS Frontend</a></span>
                 </h2>
                 <span flex></span>
+                <md-button aria-label="report bug" ng-if="nav.userData.username" ng-click="bug_popup()">Report Bug</md-button>
                 <md-menu md-position-mode="target-right target" md-offset="0 55" ng-if="nav.userData.username">
                     <md-button aria-label="Open user menu" class="md-icon-button" ng-click="$mdOpenMenu($event)" style="padding:0" layout="row" layout-align="center center">
                         <img md-menu-origin gravatar-src="nav.userData.email" style="width:100%; border-radius: 50%">
@@ -49,6 +50,28 @@
         <div class="view-container">
             <div ng-view class="view-frame"></div>
         </div>
+    </div>
+    <div style="visibility: hidden">
+      <div class="md-dialog-container" id="bug_report">
+        <md-dialog>
+            <md-card style="margin:0">
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <span class="md-headline">Submit a Bug Report</span>
+                        <span flex></span>
+                        <md-button ng-click="vm.cancel()" aria-label="close" class="md-icon-button">
+                            <ng-md-icon icon="close" "fill: white" ></ng-md-icon>
+                        </md-button>
+                        <md-button ng-click="vm.cancel()">asdf</md-button>
+                    </div>
+                </md-toolbar>
+                <md-card-content>
+                    <div class="md-media-lg">
+                    </div>
+                </md-card-content>
+            </md-card>
+        </md-dialog>
+      </div>
     </div>
     <script type="text/javascript" src="build/app.js" charset="utf-8"></script>
 </body>

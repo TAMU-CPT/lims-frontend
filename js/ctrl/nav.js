@@ -3,8 +3,8 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval",
-		function($scope, $mdSidenav, $localStorage, $location, $interval) {
+	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval", "$mdDialog",
+		function($scope, $mdSidenav, $localStorage, $location, $interval, $mdDialog) {
 			$scope.nav = {};
 			$scope.nav.userData = $localStorage.jwtData;
 
@@ -28,6 +28,18 @@ export default function(base) {
 				// }
 				// else { $location.path(route); }
 			};
+
+            $scope.bug_popup = function(ev) {
+                $mdDialog.show({
+                    contentElement: '#bug_report',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: true
+                });
+            };
+
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
 
 			// $scope.get_notifications = function() {
 				// NotificationBackend.all('inbox').getList().then(function(data) {
