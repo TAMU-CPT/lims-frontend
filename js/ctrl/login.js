@@ -7,8 +7,6 @@ let jwt_decode = require("jwt-decode");
 export default function(base) {
 	base.controller("LoginCtrl", ["$scope", "$http", "$localStorage", "$location", "$mdLoginToast", "DRF_URL", "Raven",
 		function($scope, $http, $localStorage, $location, $mdLoginToast, DRF_URL, Raven) {
-            //console.log(Raven.isSetup());
-
 			$scope.userData = {};
 
 			$scope.saveData = function() {
@@ -18,6 +16,12 @@ export default function(base) {
 							$localStorage.jwtToken = data.token;
 							$localStorage.jwtData = jwt_decode(data.token);
 							$scope.nav.userData = $localStorage.jwtData;
+
+                            Raven.setUserContext({
+                                email: jwt_decode(data.token).email,
+                                id: jwt_decode(data.token).user_id
+                            })
+
 							$mdLoginToast.show("Success");
 							$location.path("/");
 						})

@@ -26,6 +26,7 @@ Raven
 
 let base = angular.module("base", [
 	"ngRoute",
+	"ngRaven",
 	"restangular",
 	"ngMdIcons",
 	"ngMaterial",
