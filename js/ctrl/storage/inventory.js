@@ -83,7 +83,7 @@ export default function(base) {
             };
 
             $scope.query = {
-                limit: 5,
+                limit: 10,
                 page: 1,
                 type: $scope.choice.type,
                 rooms: $scope.choice.rooms,

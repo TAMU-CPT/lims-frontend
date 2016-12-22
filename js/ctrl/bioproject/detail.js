@@ -89,7 +89,7 @@ export default function(base) {
 				},
 
 				query: {
-					limit: 5,
+					limit: 10,
 					page: 1,
 					custom: 'asdf',
 					ordering: $scope.ordering,
@@ -119,7 +119,7 @@ export default function(base) {
 				},
 
 				query: {
-					limit: 5,
+					limit: 10,
 					page: 1,
 					ordering: $scope.ordering,
 				},

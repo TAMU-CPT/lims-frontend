@@ -36,7 +36,7 @@ export default function(base) {
 			};
 
 			$scope.query = {
-				limit: 5,
+				limit: 10,
 				page: 1,
 				//uncomment if ordering filter is implemented in backend
 				//ordering: $scope.ordering,
