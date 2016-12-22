@@ -5,8 +5,10 @@ let jwt_decode = require("jwt-decode");
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("LoginCtrl", ["$scope", "$http", "$localStorage", "$location", "$mdLoginToast", "DRF_URL",
-		function($scope, $http, $localStorage, $location, $mdLoginToast, DRF_URL) {
+	base.controller("LoginCtrl", ["$scope", "$http", "$localStorage", "$location", "$mdLoginToast", "DRF_URL", "Raven",
+		function($scope, $http, $localStorage, $location, $mdLoginToast, DRF_URL, Raven) {
+            //console.log(Raven.isSetup());
+
 			$scope.userData = {};
 
 			$scope.saveData = function() {
