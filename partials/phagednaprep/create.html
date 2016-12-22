@@ -1,0 +1,30 @@
+<div layout="row" layout-align="center center">
+	<md-card>
+		<md-card-header>
+			<md-card-header-text>
+				<span class="md-title">Add Phage DNA Prep</span>
+			</md-card-header-text>
+		</md-card-header>
+		<md-card-content>
+			<div layout="column">
+				<md-input-container flex>
+					<label>morphology</label>
+					<md-select name="morphology" ng-model="morphology">
+						<md-option value="0">Unknown</md-option>
+						<md-option value="1">Podophage</md-option>
+						<md-option value="2">Myophage</md-option>
+						<md-option value="3">Siphophage</md-option>
+					</md-select>
+				</md-input-container>
+
+				<span class="md-title">Storage</span>
+				<ng-include src="'partials/storage/storage_form.html'"></ng-include>
+
+				<div>
+					<md-button class="md-primary md-raised" ng-click="save()">Create</md-button>
+				</div>
+
+			</div>
+		</md-card-content>
+	</md-card>
+</div>

@@ -98,6 +98,82 @@
 	</div>
 	<div flex=60 layout="column">
 
+		<md-button ng-disabled="true" class="md-raised md-primary" ng-if="!data.phagednaprep">
+			Annotation
+		</md-button>
+
+		<div layout="row">
+			<span flex></span>
+			<ng-md-icon icon="arrow_upwards"></ng-md-icon>
+			<span flex></span>
+		</div>
+
+		<md-button ng-disabled="true" class="md-raised md-primary" ng-if="!data.phagednaprep">
+			Sequencing Data
+		</md-button>
+
+		<div layout="row">
+			<span flex></span>
+			<ng-md-icon icon="arrow_upwards"></ng-md-icon>
+			<span flex></span>
+		</div>
+
+		<md-button class="md-raised md-primary" ng-if="!data.phagednaprep" ng-click="go.dnaprep_create(data.id)">
+			DNA Prep Missing
+		</md-button>
+		<md-card class="dnaprep-card" ng-if="data.phagednaprep">
+			<md-toolbar layout="row" class="md-hue-2">
+				<div class="md-toolbar-tools" flex>
+					<span class="md-title">Lysate</span>
+					<span flex></span>
+				</div>
+			</md-toolbar>
+			<md-card-content>
+				<md-table-container>
+					<table md-table>
+						<tbody md-body>
+							<tr md-row>
+								<td md-cell>ID</td>
+								<td md-cell>L{{ data.lysate.phage.id }}</td>
+							</tr>
+							<tr md-row ng-if="data.lysate.oldid">
+								<td md-cell>Old ID</td>
+								<td md-cell>{{ data.lysate.oldid }}</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Isolated Against</td>
+								<td md-cell><div ng-bind-html="data.lysate.host | host_formatter"></div></td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Phage</td>
+								<td md-cell>
+									<md-button class="md-raised" aria-label="Go to Phage" ng-click="go.phage(data.lysate.phage.id)" layout="row" layout-align="center start">
+										<i class="mdi mdi-hexagon" style="font-size: 160%"></i>  <!-- bell -->
+										&nbsp;
+										<span>
+										{{ data.lysate.phage.primary_name }}
+										</span>
+									</md-button>
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Storage</td>
+								<td md-cell>
+									<!--<md-button class="md-raised" aria-label="Go To Storage Location" ng-click="go.storage(data.lysate.storage.id)" layout="row" layout-align="center start">-->
+									<div>
+										<i class="mdi mdi-test-tube" style="font-size: 160%"></i>  <!-- bell -->
+										&nbsp;
+										{{ data.lysate.storage | storage_formatter }}
+									</div>
+									<!--</md-button>-->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
+			</md-card-content>
+		</md-card>
+
 		<div layout="row">
 			<span flex></span>
 			<ng-md-icon icon="arrow_upwards"></ng-md-icon>
@@ -109,38 +185,47 @@
 				<div class="md-toolbar-tools" flex>
 					<span class="md-title">Lysate</span>
 					<span flex></span>
-
-					<md-button aria-label="Add a tube" class="md-icon-button" ng-if="!data.lysate.tube.id">
-						<ng-md-icon icon="add"></ng-md-icon>
-						<md-tooltip>
-							We don't have a tube on record containing this phage. Add one?
-						</md-tooltip>
-					</md-button>
-					<md-button ng-href="#/tubes/{{ data.lysate.tube.id }}" aria-label="Go to tube in inventory" class="md-icon-button" ng-if="data.lysate.tube.id">
-						<ng-md-icon icon="inbox"></ng-md-icon>
-						<md-tooltip>
-							Tube {{ data.lysate.tube.name }}
-						</md-tooltip>
-					</md-button>
 				</div>
 			</md-toolbar>
 			<md-card-content>
 				<md-table-container>
-					<table md-table md-progress="promise">
-						<thead md-head>
-							<tr md-row>
-								<th md-column>Property</th>
-								<th md-column>Value</th>
-							</tr>
-						</thead>
+					<table md-table>
 						<tbody md-body>
 							<tr md-row>
+								<td md-cell>ID</td>
+								<td md-cell>L{{ data.lysate.phage.id }}</td>
+							</tr>
+							<tr md-row ng-if="data.lysate.oldid">
 								<td md-cell>Old ID</td>
 								<td md-cell>{{ data.lysate.oldid }}</td>
 							</tr>
 							<tr md-row>
-								<td md-cell>Isolation Date</td>
-								<td md-cell>{{ data.lysate.isolation }}</td>
+								<td md-cell>Isolated Against</td>
+								<td md-cell><div ng-bind-html="data.lysate.host | host_formatter"></div></td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Phage</td>
+								<td md-cell>
+									<md-button class="md-raised" aria-label="Go to Phage" ng-click="go.phage(data.lysate.phage.id)" layout="row" layout-align="center start">
+										<i class="mdi mdi-hexagon" style="font-size: 160%"></i>  <!-- bell -->
+										&nbsp;
+										<span>
+										{{ data.lysate.phage.primary_name }}
+										</span>
+									</md-button>
+								</td>
+							</tr>
+							<tr md-row>
+								<td md-cell>Storage</td>
+								<td md-cell>
+									<!--<md-button class="md-raised" aria-label="Go To Storage Location" ng-click="go.storage(data.lysate.storage.id)" layout="row" layout-align="center start">-->
+									<div>
+										<i class="mdi mdi-test-tube" style="font-size: 160%"></i>  <!-- bell -->
+										&nbsp;
+										{{ data.lysate.storage | storage_formatter }}
+									</div>
+									<!--</md-button>-->
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -151,20 +236,21 @@
 			Lysate Data Missing
 		</md-button>
 
+
 		<div layout="row">
 			<span flex></span>
 			<ng-md-icon icon="arrow_upwards"></ng-md-icon>
 			<span flex></span>
 		</div>
 
-		<md-card class="env-sample-card" ng-if="data.env_sample_collection">
+
+		<md-card class="env-sample-card" ng-if="data.lysate.env_sample_collection">
 			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
 					<span class="md-title">Environmental Sample</span>
 				</div>
 			</md-toolbar>
 			<md-card-content>
-				<!-- TODO MAP -->
 				<h3>Samples</h3>
 
 				<leaflet width="100%" height="299px" markers="map.markers" maxbounds="map.maxbounds" lf-center="map.center"></leaflet>
@@ -180,17 +266,13 @@
 							</tr>
 						</thead>
 						<tbody md-body>
-							<tr md-row ng-repeat="env_sample in data.env_sample_collection.env_sample">
-								<td md-cell>{{ env_sample.sample_type.name }}</td>
+							<!-- TODO: -->
+							<tr md-row ng-repeat="env_sample in data.lysate.env_sample_collection.env_sample">
+								<td md-cell>{{ env_sample.sample_type }}</td>
 								<td md-cell>{{ env_sample.description }}</td>
-								<td md-cell>{{ env_sample.location }}</td>
+								<td md-cell>{{ env_sample.collection | human_time_abs }}</td>
 								<td md-cell>
-									<md-button ng-href="#/tubes/{{ env_sample.tube.id }}" aria-label="close" class="md-icon-button">
-										<ng-md-icon icon="inbox"></ng-md-icon>
-										<md-tooltip>
-											Tube {{ env_sample.tube.name }}
-										</md-tooltip>
-									</md-button>
+									TODO
 								</td>
 							</tr>
 						</tbody>
@@ -198,17 +280,9 @@
 				</md-table-container>
 			</md-card-content>
 		</md-card>
-		<md-button class="md-raised md-primary" ng-if="!data.env_sample_collection">
+		<md-button class="md-raised md-primary" ng-if="!data.lysate.env_sample_collection">
 			Environmental Sample Data Missing
 		</md-button>
-
-
-
-
-		<pre>
-{{ data | json }}
-		</pre>
-
 
 	</div>
 </div>

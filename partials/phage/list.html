@@ -1,27 +1,5 @@
-<style>
-	tbody .md-row:hover {
-		background-color: #fafafa;
-	}
-	tbody .md-row:focus {
-		outline:none;
-	}
-	[ng-click],
-	[data-ng-click],
-	[x-ng-click] {
-		cursor: pointer;
-	}
-
-md-card-title md-input-container {
-	margin: 0px
-}
-
-md-card-title md-input-container input {
-	margin-left: 0px;
-	padding-left: 36px !important;
-}
-</style>
-<div class="container-fluid" layout="row" layout-align="center">
-	<md-card flex="50" flex-xs="100" flex-sm="75">
+<div class="container-fluid" layout="row" layout-align="center start">
+	<md-card flex="100">
 		<md-card-title>
 			<md-card-title-text flex layout="row">
 				<span class="md-headline">Phages</span>
@@ -45,7 +23,10 @@ md-card-title md-input-container input {
 					</thead>
 					<tbody md-body>
 						<tr md-row ng-repeat="phage in data" ng-click="go(phage.id)">
-							<td md-cell>P{{phage.id}}</td>
+							<td md-cell>
+								P{{phage.id}}
+								<img src="https://cpt.tamu.edu/barcodes/i/code128/CPT:P{{ phage.id }}.png?w=140&h=20">
+							</td>
 							<td md-cell>{{phage.primary_name}}</td>
 							<td md-cell>{{phage.historical_names}}</td>
 						</tr>

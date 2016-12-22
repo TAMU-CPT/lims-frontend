@@ -5,8 +5,91 @@ var moment = require('moment');
  * @param {object} base Base angular application object
  */
 export default function(base) {
+	base.service('$cptStorage', ['Restangular', function(Restangular){
+		var serviceObject = {
+			room: {
+				selectedItem: null,
+				searchText: null,
+				querySearch: function(queryString) {
+					return Restangular.all("lims").customGET("storage/rooms", {room: queryString}).then(function(data) {
+						return data.results;
+					});
+				},
+				selectedItemChange: function(item) {
+				},
+			},
+
+			storage_type: {
+				types: [0,1],
+				type: 0,
+				selectedItem: null,
+				searchText: null,
+				querySearch: function(queryString) {
+					return Restangular.all("lims").customGET("storage/container_labels", {room: serviceObject.room.searchText, type: serviceObject.storage_type.type, container_label: serviceObject.storage_type.searchText}).then(function(data) {
+						return data.results;
+					});
+				},
+				selectedItemChange: function(item) {
+				},
+				reset: function() {
+					serviceObject.storage_type.searchText = null;
+					serviceObject.storage_type.selectedItem = null;
+				},
+			},
+
+			box: {
+				selectedItem: null,
+				searchText: null,
+				querySearch: function(queryString) {
+					return Restangular.all("lims").customGET("storage/boxes", {room: serviceObject.room.searchText, type: serviceObject.storage_type.type, container_label: serviceObject.storage_type.searchText, shelf: serviceObject.shelf, box: serviceObject.box.searchText}).then(function(data) {
+						return data.results;
+					});
+				},
+				selectedItemChange: function(item) {
+				},
+				reset: function() {
+					serviceObject.box.searchText = null;
+					serviceObject.box.selectedItem = null;
+				},
+			},
+
+			get_form: function(){
+				return {
+					// Room              | room
+					room: serviceObject.room.selectedItem ? serviceObject.room.selectedItem.room : serviceObject.room.searchText,
+					// Fridge / Freezer  | type
+					type: serviceObject.storage_type.type,
+					// Fridge Name       | container_label
+					container_label: serviceObject.storage_type.selectedItem ? serviceObject.storage_type.selectedItem.type : serviceObject.storage_type.searchText,
+					// Shelf/Rack        | shelf
+					shelf: serviceObject.shelf,
+					// Box Label         | box
+					box: serviceObject.box.selectedItem ? serviceObject.box.selectedItem.box: serviceObject.box.searchText,
+					// Sample Label      | sample_label
+					sample_label: serviceObject.tube_label,
+				}
+			}
+		};
+
+		return serviceObject;
+	}]);
+
+
+
 	base.service('$go', ['$location', function($location){
 		return {
+			dnaprep_create: function(id) {
+				$location.path("/phagednapreps/create/" + id);
+			},
+
+			envsample: function(id) {
+				$location.path("/environmentalsamples/" + id);
+			},
+
+			lysate: function(id){
+				$location.path("/lysates/" + id);
+			},
+
 			phage: function(id){
 				$location.path("/phages/" + id);
 			},

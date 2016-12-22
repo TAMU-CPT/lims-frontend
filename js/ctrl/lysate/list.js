@@ -3,11 +3,9 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("LysateListCtrl", ["$scope", "$location", "$routeParams", "Restangular",
-		function($scope, $location, $routeParams, Restangular) {
-			$scope.go = function(id) {
-				$location.path("/lysates/" + id); ;
-			};
+	base.controller("LysateListCtrl", ["$scope", "$location", "$routeParams", "Restangular", "$go",
+		function($scope, $location, $routeParams, Restangular, $go) {
+			$scope.go = $go;
 
 			// uncomment if ordering filter is implemented in backend
 			// $scope.ordering="name";
