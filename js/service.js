@@ -78,6 +78,10 @@ export default function(base) {
 
 	base.service('$go', ['$location', function($location){
 		return {
+			sequencing_request: function(id) {
+				$location.path("/sequencing/request/" + id);
+			},
+
 			dnaprep_create: function(id) {
 				$location.path("/phagednapreps/create/" + id);
 			},

@@ -7,7 +7,7 @@
 	font-weight: 700;
 }
 </style>
-<div layout="row" layout-align="center">
+<div layout="column" layout-gt-sm="row" layout-align="center">
 	<div flex=40>
 		<md-card>
 			<md-toolbar layout="row" class="md-hue-1">
@@ -16,13 +16,13 @@
 					<span class="md-title">{{ data.primary_name }}</span>
 					<span flex></span>
 					<!-- TODO: Show if user -->
-					<md-button class="md-icon-button" aria-label="Edit User Information" ng-click="edit_data()" ng-if="disabled">
+					<md-button class="md-icon-button" aria-label="Edit User Information" ng-click="phage.edit_data()" ng-if="phage.disabled">
 						<ng-md-icon icon="edit"></ng-md-icon>
 					</md-button>
-					<md-button class="md-icon-button" aria-label="Save Changes" ng-click="edit_data_save()" ng-if="!disabled">
+					<md-button class="md-icon-button" aria-label="Save Changes" ng-click="phage.edit_data_save()" ng-if="!phage.disabled">
 						<ng-md-icon icon="save"></ng-md-icon>
 					</md-button>
-					<md-button class="md-icon-button" aria-label="Cancel Changes" ng-click="edit_data_cancel()" ng-if="!disabled">
+					<md-button class="md-icon-button" aria-label="Cancel Changes" ng-click="phage.edit_data_cancel()" ng-if="!phage.disabled">
 						<ng-md-icon icon="cancel"></ng-md-icon>
 					</md-button>
 				</div>
@@ -37,22 +37,33 @@
 			</md-card-header>
 			<md-card-content>
 				<div layout="column">
-					<md-input-container flex ng-if="!disabled">
+					<md-input-container flex ng-if="!phage.disabled">
 						<label>Name</label>
-						<input ng-disabled="disabled" ng-model="data.primary_name">
+						<input ng-disabled="phage.disabled" ng-model="data.primary_name">
 					</md-input-container>
 
-					<md-input-container flex ng-if="!disabled">
+					<md-input-container flex ng-if="!phage.disabled">
 						<label>Historical Names</label>
-						<input ng-disabled="disabled" ng-model="data.historical_names">
+						<input ng-disabled="phage.disabled" ng-model="data.historical_names">
 					</md-input-container>
+
+					<md-input-container flex ng-if="!phage.disabled">
+						<label>Morphology</label>
+						<md-select name="morphology" ng-model="data.morphology">
+							<md-option value="0">Unknown</md-option>
+							<md-option value="1">Podophage</md-option>
+							<md-option value="2">Myophage</md-option>
+							<md-option value="3">Siphophage</md-option>
+						</md-select>
+					</md-input-container>
+
 
 
 					<h3>Hosts</h3>
 
 					<md-chips
 						ng-model="data.host_lims"
-						readonly="disabled"
+						readonly="phage.disabled"
 						md-transform-chip="ctrl.transformChip($chip)"
 						md-require-match="false">
 						<md-autocomplete
@@ -98,7 +109,7 @@
 	</div>
 	<div flex=60 layout="column">
 
-		<md-button ng-disabled="true" class="md-raised md-primary" ng-if="!data.phagednaprep">
+		<md-button ng-disabled="true" class="md-raised md-primary" ng-if="true">
 			Annotation
 		</md-button>
 
@@ -108,9 +119,34 @@
 			<span flex></span>
 		</div>
 
-		<md-button ng-disabled="true" class="md-raised md-primary" ng-if="!data.phagednaprep">
-			Sequencing Data
+		<md-button class="md-raised md-primary" ng-if="true" ng-click="go.sequencing_request(data.id)">
+			Request Sequencing
 		</md-button>
+		<md-card class="dnaprep-card" ng-if="false">
+			<md-toolbar layout="row" class="md-hue-2">
+				<div class="md-toolbar-tools" flex>
+					<span class="md-title">Sequencing Data</span>
+				</div>
+			</md-toolbar>
+			<md-card-content>
+				<md-table-container>
+					<table md-table>
+						<tbody md-body>
+							<tr md-row ng-repeat="dnaprep in data.phagednaprep_set">
+								<td md-cell>{{ dnaprep.added | human_time_abs }}</td>
+								<td md-cell>
+									<div>
+										<i class="mdi mdi-test-tube" style="font-size: 160%"></i>  <!-- bell -->
+										&nbsp;
+										{{ dnaprep.storage | storage_formatter }}
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</md-table-container>
+			</md-card-content>
+		</md-card>
 
 		<div layout="row">
 			<span flex></span>
@@ -118,54 +154,27 @@
 			<span flex></span>
 		</div>
 
-		<md-button class="md-raised md-primary" ng-if="!data.phagednaprep" ng-click="go.dnaprep_create(data.id)">
+		<md-button class="md-raised md-primary" ng-if="!data.phagednaprep_set.length" ng-click="go.dnaprep_create(data.id)">
 			DNA Prep Missing
 		</md-button>
-		<md-card class="dnaprep-card" ng-if="data.phagednaprep">
+		<md-card class="dnaprep-card" ng-if="data.phagednaprep_set.length">
 			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
-					<span class="md-title">Lysate</span>
-					<span flex></span>
+					<span class="md-title">Phage DNA Preps</span>
 				</div>
 			</md-toolbar>
 			<md-card-content>
 				<md-table-container>
 					<table md-table>
 						<tbody md-body>
-							<tr md-row>
-								<td md-cell>ID</td>
-								<td md-cell>L{{ data.lysate.phage.id }}</td>
-							</tr>
-							<tr md-row ng-if="data.lysate.oldid">
-								<td md-cell>Old ID</td>
-								<td md-cell>{{ data.lysate.oldid }}</td>
-							</tr>
-							<tr md-row>
-								<td md-cell>Isolated Against</td>
-								<td md-cell><div ng-bind-html="data.lysate.host | host_formatter"></div></td>
-							</tr>
-							<tr md-row>
-								<td md-cell>Phage</td>
+							<tr md-row ng-repeat="dnaprep in data.phagednaprep_set">
+								<td md-cell>{{ dnaprep.added | human_time_abs }}</td>
 								<td md-cell>
-									<md-button class="md-raised" aria-label="Go to Phage" ng-click="go.phage(data.lysate.phage.id)" layout="row" layout-align="center start">
-										<i class="mdi mdi-hexagon" style="font-size: 160%"></i>  <!-- bell -->
-										&nbsp;
-										<span>
-										{{ data.lysate.phage.primary_name }}
-										</span>
-									</md-button>
-								</td>
-							</tr>
-							<tr md-row>
-								<td md-cell>Storage</td>
-								<td md-cell>
-									<!--<md-button class="md-raised" aria-label="Go To Storage Location" ng-click="go.storage(data.lysate.storage.id)" layout="row" layout-align="center start">-->
 									<div>
 										<i class="mdi mdi-test-tube" style="font-size: 160%"></i>  <!-- bell -->
 										&nbsp;
-										{{ data.lysate.storage | storage_formatter }}
+										{{ dnaprep.storage | storage_formatter }}
 									</div>
-									<!--</md-button>-->
 								</td>
 							</tr>
 						</tbody>
@@ -200,20 +209,8 @@
 								<td md-cell>{{ data.lysate.oldid }}</td>
 							</tr>
 							<tr md-row>
-								<td md-cell>Isolated Against</td>
+								<td md-cell>Originally Isolated Against</td>
 								<td md-cell><div ng-bind-html="data.lysate.host | host_formatter"></div></td>
-							</tr>
-							<tr md-row>
-								<td md-cell>Phage</td>
-								<td md-cell>
-									<md-button class="md-raised" aria-label="Go to Phage" ng-click="go.phage(data.lysate.phage.id)" layout="row" layout-align="center start">
-										<i class="mdi mdi-hexagon" style="font-size: 160%"></i>  <!-- bell -->
-										&nbsp;
-										<span>
-										{{ data.lysate.phage.primary_name }}
-										</span>
-									</md-button>
-								</td>
 							</tr>
 							<tr md-row>
 								<td md-cell>Storage</td>
