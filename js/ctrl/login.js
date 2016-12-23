@@ -16,12 +16,6 @@ export default function(base) {
 							$localStorage.jwtToken = data.token;
 							$localStorage.jwtData = jwt_decode(data.token);
 							$scope.nav.userData = $localStorage.jwtData;
-
-                            Raven.setUserContext({
-                                email: jwt_decode(data.token).email,
-                                id: jwt_decode(data.token).user_id
-                            })
-
 							$mdLoginToast.show("Success");
 							$location.path("/");
 						})

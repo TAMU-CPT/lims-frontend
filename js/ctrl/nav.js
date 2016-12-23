@@ -43,11 +43,6 @@ export default function(base) {
                         $mdDialog.cancel();
                     }
                     $scope.sendBug = function() {
-                        Raven.setUserContext({
-                            id: $localStorage.jwtData.user_id,
-                            username: $localStorage.jwtData.username,
-                            email: $localStorage.jwtData.email
-                        });
                         Raven.captureMessage($scope.bugreport, {
                             level: 'info'
                         });
