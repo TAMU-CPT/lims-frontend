@@ -3,8 +3,8 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval",
-		function($scope, $mdSidenav, $localStorage, $location, $interval) {
+	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval", "$mdDialog",
+		function($scope, $mdSidenav, $localStorage, $location, $interval, $mdDialog) {
 			$scope.nav = {};
 			$scope.nav.userData = $localStorage.jwtData;
 
@@ -28,6 +28,31 @@ export default function(base) {
 				// }
 				// else { $location.path(route); }
 			};
+
+            $scope.showDialog = function($event) {
+                $mdDialog.show({
+                    parent: angular.element(document.body),
+                    targetEvent: $event,
+                    clickOutsideToClose: true,
+                    template:
+                    '<md-dialog aria-label="bug report popup">' +
+                    '  <md-dialog-content>'+
+                    '  </md-dialog-content>' +
+                    '  <md-dialog-actions>' +
+                    '    <md-button ng-click="closeDialog()" class="md-primary">' +
+                    '      Close Dialog' +
+                    '    </md-button>' +
+                    '  </md-dialog-actions>' +
+                    '</md-dialog>',
+                    controller: DialogController
+            });
+
+                function DialogController($scope, $mdDialog) {
+                    $scope.closeDialog = function() {
+                      $mdDialog.cancel();
+                    }
+                };
+            };
 
 			// $scope.get_notifications = function() {
 				// NotificationBackend.all('inbox').getList().then(function(data) {
