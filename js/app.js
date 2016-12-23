@@ -237,6 +237,11 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 					config.headers = config.headers || {};
 					if ($localStorage.jwtToken) {
 						config.headers.Authorization = "JWT " + $localStorage.jwtToken;
+                        Raven.setUserContext({
+                            id: $localStorage.jwtData.user_id,
+                            username: $localStorage.jwtData.username,
+                            email: $localStorage.jwtData.email
+                        });
 					}
 					return config;
 				},
