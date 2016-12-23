@@ -3,8 +3,8 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval", "$mdDialog",
-		function($scope, $mdSidenav, $localStorage, $location, $interval, $mdDialog) {
+	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval", "$mdDialog", "Raven",
+		function($scope, $mdSidenav, $localStorage, $location, $interval, $mdDialog, Raven) {
 			$scope.nav = {};
 			$scope.nav.userData = $localStorage.jwtData;
 
@@ -34,22 +34,24 @@ export default function(base) {
                     parent: angular.element(document.body),
                     targetEvent: $event,
                     clickOutsideToClose: true,
-                    template:
-                    '<md-dialog aria-label="bug report popup">' +
-                    '  <md-dialog-content>'+
-                    '  </md-dialog-content>' +
-                    '  <md-dialog-actions>' +
-                    '    <md-button ng-click="closeDialog()" class="md-primary">' +
-                    '      Close Dialog' +
-                    '    </md-button>' +
-                    '  </md-dialog-actions>' +
-                    '</md-dialog>',
+                    templateUrl: 'partials/bug-report.html',
                     controller: DialogController
             });
 
                 function DialogController($scope, $mdDialog) {
                     $scope.closeDialog = function() {
-                      $mdDialog.cancel();
+                        $mdDialog.cancel();
+                    }
+                    $scope.sendBug = function() {
+                        Raven.setUserContext({
+                            id: $localStorage.jwtData.user_id,
+                            username: $localStorage.jwtData.username,
+                            email: $localStorage.jwtData.email
+                        });
+                        Raven.captureMessage($scope.bugreport, {
+                            level: 'info'
+                        });
+                        $scope.closeDialog();
                     }
                 };
             };
