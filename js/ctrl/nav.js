@@ -34,16 +34,7 @@ export default function(base) {
                     parent: angular.element(document.body),
                     targetEvent: $event,
                     clickOutsideToClose: true,
-                    template:
-                    '<md-dialog aria-label="bug report popup">' +
-                    '  <md-dialog-content>'+
-                    '  </md-dialog-content>' +
-                    '  <md-dialog-actions>' +
-                    '    <md-button ng-click="closeDialog()" class="md-primary">' +
-                    '      Close Dialog' +
-                    '    </md-button>' +
-                    '  </md-dialog-actions>' +
-                    '</md-dialog>',
+                    templateUrl: 'partials/bug-report.html',
                     controller: DialogController
             });
 
