@@ -18,10 +18,6 @@ export default function(base) {
 							url: "#/phages",
 						},
 						{
-							title: "PhageDNAPreps",
-							url: "#/phagednapreps",
-						},
-						{
 							title: "Environmental Samples",
 							url: "#/environmentalsamples",
 						},

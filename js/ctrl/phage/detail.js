@@ -10,7 +10,6 @@ export default function(base) {
 			// Phage Info
 			$scope.phage = {
 				disabled: true,
-				data: {},
 				original_data: {},
 
 				edit_data: function() {
@@ -19,6 +18,7 @@ export default function(base) {
 
 				edit_data_save: function() {
 					// Update previous names if primary_name has changed
+					console.log($scope.phage.data);
 					if($scope.phage.data.primary_name != $scope.phage.original_data.primary_name) {
 						console.log("Changed " + $scope.phage.original_data.primary_name + " -> " + $scope.phage.data.primary_name);
 						let hist_names = $scope.phage.original_data.historical_names.split(",").map(function(x) {
