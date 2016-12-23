@@ -31,17 +31,6 @@ export default function(base) {
 		};
 	});
 
-	base.filter("storage_formatter", ["$sce", function($sce) {
-		return function(input) {
-			return input.room + ' / ' +
-				(input.type === 0 ? "Fridge": "Freezer") + ' / ' +
-				input.container_label + ' / ' +
-				input.shelf + ' / ' +
-				input.box + ' / ' +
-				input.sample_label;
-		};
-	}]);
-
 	base.filter("host_formatter", ["$sce", function($sce) {
 		return function(input) {
 			return $sce.trustAs("html", "<i>" + input.genus +" " + input.species + "</i> " + input.strain);

@@ -3,18 +3,19 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("PhageDNAPrepCreateCtrl", ["$scope", "$location", "$routeParams", "Restangular", "$cptStorage", "$go",
-		function($scope, $location, $routeParams, Restangular, $cptStorage, $go) {
+	base.controller("PhageDNAPrepCreateCtrl", ["$scope", "$location", "$routeParams", "Restangular", "$cptStorage", "$go", "$mdToast",
+		function($scope, $location, $routeParams, Restangular, $cptStorage, $go, $mdToast) {
 			$scope.go = $go;
-			$scope.morphology = 0;
+			//$scope.morphology = 0;
 
 			$scope.save = function() {
 				var post_data = {
-					morphology: $scope.morphology,
+					phage: $routeParams.phageID,
+					//morphology: $scope.morphology,
 					storage: $scope.storage.get_form(),
 				};
 				$scope.promise = Restangular.all("lims/phagednapreps").post(post_data).then(function(data) {
-					//$go.phage(data.id);
+					$go.phage(data.phage);
 				}, function(error){
 					if(error.data[0] === 'Duplicate storage'){
 						$mdToast.showSimple(error.data[0])

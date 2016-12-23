@@ -1,0 +1,17 @@
+<div layout-align="center start">
+	<i class="mdi mdi-test-tube" style="font-size: 160%">
+		<md-tooltip>
+			Storage Location
+		</md-tooltip>
+	</i>
+	&nbsp;
+	<span>
+	{{ data.room }} /
+	<span ng-if="data.type">Freezer</span>
+	<span ng-if="!data.type">Fridge</span> /
+	{{ data.container_label }} /
+	{{ data.shelf }} /
+	{{ data.box }} /
+	{{ data.sample_label }}
+	</span>
+</div>

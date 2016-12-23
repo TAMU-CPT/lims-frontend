@@ -6,15 +6,15 @@ export default function(base) {
 	base.controller("PhageDetailCtrl", ["$scope", "$location", "$routeParams", "Restangular", "leafletBoundsHelpers", "$mapHandler", "$go",
 		function($scope, $location, $routeParams, Restangular, leafletBoundsHelpers, $mapHandler, $go) {
 			$scope.go = $go;
-			$scope.disabled = true;
 
 			// Phage Info
 			$scope.phage = {
+				disabled: true,
 				data: {},
 				original_data: {},
 
 				edit_data: function() {
-					$scope.disabled = false;
+					$scope.phage.disabled = false;
 				},
 
 				edit_data_save: function() {

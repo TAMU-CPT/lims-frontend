@@ -3,8 +3,10 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("SequencingRunListCtrl", ["$scope", "$location", "$routeParams", "Restangular", "GLOBAL_PAGINATION_LIMIT","$mdDialog",
-		function($scope, $location, $routeParams, Restangular, GLOBAL_PAGINATION_LIMIT, $mdDialog) {
+	base.controller("SequencingRunListCtrl", ["$scope", "$location", "$routeParams", "Restangular", "GLOBAL_PAGINATION_LIMIT","$mdDialog", "$go",
+		function($scope, $location, $routeParams, Restangular, GLOBAL_PAGINATION_LIMIT, $mdDialog, $go) {
+			$scope.go = $go;
+
 			$scope.choice_popup = function(ev) {
 				$mdDialog.show({
 					contentElement: "#create",
@@ -29,7 +31,7 @@ export default function(base) {
 					sample: [],
 				}).then(function(data) {
 					$scope.createData = {};
-					$location.path("/sequencingruns/" + data.id);
+					$scope.go.sequencing(data.id);
 				});
 				$mdDialog.cancel();
 			};
@@ -38,10 +40,6 @@ export default function(base) {
 				$mdDialog.cancel();
 			};
 
-
-			$scope.go = function(id) {
-				$location.path("/sequencingruns/" + id); ;
-			};
 
 			// uncomment if ordering filter is implemented in backend
 			// $scope.ordering="name";

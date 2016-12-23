@@ -98,12 +98,16 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/assembly/detail.html",
 				controller: "AssemblyDetailCtrl",
 			}).
-			when("/sequencingruns", {
-				templateUrl: "partials/sequencingrun/list.html",
+			when("/sequencing", {
+				templateUrl: "partials/sequencing/list.html",
 				controller: "SequencingRunListCtrl",
 			}).
-			when("/sequencingruns/:sequencingrunID", {
-				templateUrl: "partials/sequencingrun/detail.html",
+			when("/sequencing/request/:dnaPrepID", {
+				templateUrl: "partials/sequencing/request.html",
+				controller: "SequencingRunRequestCtrl",
+			}).
+			when("/sequencing/:sequencingrunID", {
+				templateUrl: "partials/sequencing/detail.html",
 				controller: "SequencingRunDetailCtrl",
 			}).
 			when("/phages", {
@@ -125,22 +129,6 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 			when("/phagednapreps/:phagednaprepID", {
 				templateUrl: "partials/phagednaprep/detail.html",
 				controller: "PhageDNAPrepDetailCtrl",
-			}).
-			when("/sequencingrunpools", {
-				templateUrl: "partials/sequencingrunpool/list.html",
-				controller: "SequencingRunPoolListCtrl",
-			}).
-			when("/sequencingrunpools/:sequencingrunpoolID", {
-				templateUrl: "partials/sequencingrunpool/detail.html",
-				controller: "SequencingRunPoolDetailCtrl",
-			}).
-			when("/sequencingrunpoolitems", {
-				templateUrl: "partials/sequencingrunpoolitem/list.html",
-				controller: "SequencingRunPoolItemListCtrl",
-			}).
-			when("/sequencingrunpoolitems/:sequencingrunpoolitemID", {
-				templateUrl: "partials/sequencingrunpoolitem/detail.html",
-				controller: "SequencingRunPoolItemDetailCtrl",
 			}).
 			when("/environmentalsamples", {
 				templateUrl: "partials/environmentalsample/list.html",
@@ -279,17 +267,14 @@ require("./ctrl/organisation/list.js")(base);
 require("./ctrl/organisation/detail.js")(base);
 require("./ctrl/assembly/list.js")(base);
 require("./ctrl/assembly/detail.js")(base);
-require("./ctrl/sequencingrun/list.js")(base);
-require("./ctrl/sequencingrun/detail.js")(base);
+require("./ctrl/sequencing/list.js")(base);
+require("./ctrl/sequencing/detail.js")(base);
+require("./ctrl/sequencing/request.js")(base);
 require("./ctrl/phage/list.js")(base);
 require("./ctrl/phage/detail.js")(base);
 require("./ctrl/phagednaprep/list.js")(base);
 require("./ctrl/phagednaprep/detail.js")(base);
 require("./ctrl/phagednaprep/create.js")(base);
-require("./ctrl/sequencingrunpool/list.js")(base);
-require("./ctrl/sequencingrunpool/detail.js")(base);
-require("./ctrl/sequencingrunpoolitem/list.js")(base);
-require("./ctrl/sequencingrunpoolitem/detail.js")(base);
 require("./ctrl/environmentalsample/list.js")(base);
 require("./ctrl/environmentalsample/create.js")(base);
 require("./ctrl/environmentalsample/detail.js")(base);

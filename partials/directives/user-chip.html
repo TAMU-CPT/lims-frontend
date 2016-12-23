@@ -1,0 +1,9 @@
+<div class="contact-item" layout="row" layout-align="start center">
+	<div style="margin-right: 0.8em;">
+		<img gravatar-src="user.email || user.email_h" alt="{{ user.name }}" gravatar-size="48">
+	</div>
+	<div>
+		<h3 class="ng-binding">{{ user.name }}</h3>
+		<p ng-if="user.email">{{ user.email }}</p>
+	</div>
+</div>

@@ -25,16 +25,12 @@
 								
 							</td>
 							<td md-cell ng-click="go.lysate(lysate.id)">{{ lysate.isolation | human_time_abs }}</td>
-							<td md-cell ng-click="go.lysate(lysate.id)">{{ lysate.storage | storage_formatter }}</td>
+							<td md-cell ng-click="go.lysate(lysate.id)">
+								<storage-badge location="lysate.storage"></storage-badge>
+							</td>
 							<td md-cell ng-click="go.lysate(lysate.id)">{{ lysate.host.full }}</td>
 							<td md-cell>
-								<md-button class="md-raised" aria-label="Go to Phage" ng-click="go.phage(lysate.phage.id)" layout="row" layout-align="center start">
-									<i class="mdi mdi-hexagon" style="font-size: 160%"></i>  <!-- bell -->
-									&nbsp;
-									<span>
-									{{ lysate.phage.primary_name }}
-									</span>
-								</md-button>
+								<phage-badge phage="lysate.phage"></phage-badge>
 							</td>
 						</tr>
 					</tbody>

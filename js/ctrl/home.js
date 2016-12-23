@@ -43,11 +43,11 @@ export default function(base) {
 					hue: 3,
 					routes: [
 						{
-							title: "SequencingRuns",
-							url: "#/sequencingruns",
+							title: "Sequencing Runs",
+							url: "#/sequencing",
 						},
 						{
-							title: "Assemblys",
+							title: "Assemblies",
 							url: "#/assemblys",
 						},
 					],

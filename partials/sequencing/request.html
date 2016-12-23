@@ -1,0 +1,57 @@
+<div class="container-fluid" layout="row" layout-align="center start">
+	<md-card flex="40">
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">Sequencing Request</span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content>
+			<p>
+			This form allows you to request the sequencing of your phage. By submitting this form, you certify that:
+				<ul>
+					<li>There is enough sample to be sequenced.</li>
+					<li>We can come collect your phage from the storage location associated with the record.</li>
+					<li>Are free to sequence the sample, assemble it, and store the sequencing data in the CPT's Galaxy for downstream analyses.</li>
+				</ul>
+			</p>
+			<div ng-if="dnaprep.sequencingrunpoolitem" class="md-whiteframe-1dp md-padding">
+				<b>Note:</b>
+				<p>
+				This particular DNA prep was already submitted for
+				sequencing as part of [TODO].
+				</p>
+				<p>
+				Our model currently does not support multiple sequencing
+				runs of a single phage DNA preparation, and assumes
+				re-sequencing will require a new DNA prep. If this is
+				not true, please <a target="_blank" href="https://github.tamu.edu/CPT/lims/issues/new">file an issue</a>.
+				If this is correct, please also file an issue and we will remove this notice.
+				</p>
+			</div>
+			<div>
+				<md-button class="md-raised md-primary" style="width: 100%" ng-disabled="submit_disabled || dnaprep.sequencingrunpoolitem" ng-click="request()">Request Sample Sequencing</md-button>
+			</div>
+		</md-card-content>
+	</md-card>
+	<div flex="40">
+		<md-card>
+			<md-card-title>
+				<md-card-title-text>
+					<span class="md-headline">Phage DNA Prep</span>
+					<span class="md-subhead" ng-if="data.historical_names">
+						<div>
+						Historical Names: {{ data.historical_names }}
+						</div>
+					</span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<storage-badge location="dnaprep.storage"></storage-badge>
+				<br/>
+				Isolated: {{ dnaprep.added | human_time_abs }}
+			</md-card-content>
+		</md-card>
+		<progress-arrow></progress-arrow>
+		<phage-card phage="dnaprep.phage"></phage-card>
+	</div>
+</div>
