@@ -3,8 +3,8 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval", "$mdDialog",
-		function($scope, $mdSidenav, $localStorage, $location, $interval, $mdDialog) {
+	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval", "$mdDialog", "Raven",
+		function($scope, $mdSidenav, $localStorage, $location, $interval, $mdDialog, Raven) {
 			$scope.nav = {};
 			$scope.nav.userData = $localStorage.jwtData;
 
@@ -40,7 +40,13 @@ export default function(base) {
 
                 function DialogController($scope, $mdDialog) {
                     $scope.closeDialog = function() {
-                      $mdDialog.cancel();
+                        $mdDialog.cancel();
+                    }
+                    $scope.sendBug = function() {
+                        console.log($scope.bugreport);
+                        Raven.captureMessage($scope.bugreport, {
+                            level: 'info'
+                        });
                     }
                 };
             };

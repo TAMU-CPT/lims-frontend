@@ -13,8 +13,8 @@
             <form name="bugForm" ng-submit="sendBug()" novalidate>
                 <md-input-container style="width:100%">
                     <label>What seems to be the problem?</label>
-                    <textarea name="bug" md-no-asterisk required md-autofocus></textarea>
-                    <div ng-messages="bugForm.bug.$error">
+                    <textarea name="bugreport" ng-model="bugreport" md-no-asterisk required md-autofocus></textarea>
+                    <div ng-messages="bugForm.bugreport.$error">
                       <div ng-message="required">This field is required</div>
                     </div>
                 </md-input-container>
