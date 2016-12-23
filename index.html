@@ -7,8 +7,8 @@
 
     <link rel="stylesheet" type="text/css" href="build/main.css"/>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
-	<script src="http://apis.google.com/js/client.js"></script>
-	<script src="http://apis.google.com/js/api.js"></script>
+    <script src="http://apis.google.com/js/client.js"></script>
+    <script src="http://apis.google.com/js/api.js"></script>
 
 
     <style>
@@ -23,7 +23,10 @@
                     <span class="md-title"><a href="#/">LIMS Frontend</a></span>
                 </h2>
                 <span flex></span>
-                <md-button aria-label="report bug" ng-if="nav.userData.username" ng-click="showDialog($event)">Report Bug</md-button>
+                <md-button aria-label="report bug" ng-if="nav.userData.username" ng-click="showDialog($event)">
+                    <i class="mdi mdi-bug" style="font-size: 130%"></i>
+                    Report Bug
+                </md-button>
                 <md-menu md-position-mode="target-right target" md-offset="0 55" ng-if="nav.userData.username">
                     <md-button aria-label="Open user menu" class="md-icon-button" ng-click="$mdOpenMenu($event)" style="padding:0" layout="row" layout-align="center center">
                         <img md-menu-origin gravatar-src="nav.userData.email" style="width:100%; border-radius: 50%">

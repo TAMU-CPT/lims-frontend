@@ -118,17 +118,9 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/phage/detail.html",
 				controller: "PhageDetailCtrl",
 			}).
-			when("/phagednapreps", {
-				templateUrl: "partials/phagednaprep/list.html",
-				controller: "PhageDNAPrepListCtrl",
-			}).
 			when("/phagednapreps/create/:phageID", {
 				templateUrl: "partials/phagednaprep/create.html",
 				controller: "PhageDNAPrepCreateCtrl",
-			}).
-			when("/phagednapreps/:phagednaprepID", {
-				templateUrl: "partials/phagednaprep/detail.html",
-				controller: "PhageDNAPrepDetailCtrl",
 			}).
 			when("/environmentalsamples", {
 				templateUrl: "partials/environmentalsample/list.html",
@@ -272,8 +264,6 @@ require("./ctrl/sequencing/detail.js")(base);
 require("./ctrl/sequencing/request.js")(base);
 require("./ctrl/phage/list.js")(base);
 require("./ctrl/phage/detail.js")(base);
-require("./ctrl/phagednaprep/list.js")(base);
-require("./ctrl/phagednaprep/detail.js")(base);
 require("./ctrl/phagednaprep/create.js")(base);
 require("./ctrl/environmentalsample/list.js")(base);
 require("./ctrl/environmentalsample/create.js")(base);
