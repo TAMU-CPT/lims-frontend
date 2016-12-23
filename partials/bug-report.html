@@ -1,23 +1,25 @@
-<md-dialog>
-    <md-dialog-content>
-        <md-dialog-actions>
-            <md-button ng-click="closeDialog()">asdf</md-button>
-        </md-dialog-actions>
-    </md-dialog-content>
-    <!--<md-card style="margin:0">-->
-        <!--<md-toolbar>-->
-            <!--<div class="md-toolbar-tools">-->
-                <!--<span class="md-headline">Submit a Bug Report</span>-->
-                <!--<span flex></span>-->
-                <!--[><md-button ng-click="cancel()" aria-label="close" class="md-icon-button"><]-->
-                    <!--[><ng-md-icon icon="close" "fill: white" ></ng-md-icon><]-->
-                <!--[></md-button><]-->
-                <!--<md-button ng-click="cancel()">asdf</md-button>-->
-            <!--</div>-->
-        <!--</md-toolbar>-->
-        <!--<md-card-content>-->
-            <!--<div class="md-media-lg">-->
-            <!--</div>-->
-        <!--</md-card-content>-->
-    <!--</md-card>-->
+<md-dialog flex="30">
+    <md-card style="margin:0">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <span class="md-headline">Submit a Bug Report</span>
+                <span flex></span>
+                <md-button ng-click="closeDialog()" aria-label="close" class="md-icon-button">
+                    <ng-md-icon icon="close" "fill: white" ></ng-md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <form name="bugForm" ng-submit="sendBug()" novalidate>
+                <md-input-container style="width:100%">
+                    <label>What seems to be the problem?</label>
+                    <textarea name="bug" md-no-asterisk required md-autofocus></textarea>
+                    <div ng-messages="bugForm.bug.$error">
+                      <div ng-message="required">This field is required</div>
+                    </div>
+                </md-input-container>
+                <md-button ng-disabled="bugForm.$invalid" class="md-primary md-raised" ng-click="sendBug()">Submit</md-button>
+            </form>
+        </md-card-content>
+    </md-card>
 </md-dialog>
