@@ -113,14 +113,10 @@
 			Annotation
 		</md-button>
 
-		<div layout="row">
-			<span flex></span>
-			<ng-md-icon icon="arrow_upwards"></ng-md-icon>
-			<span flex></span>
-		</div>
+		<progress-arrow></progress-arrow>
 
-		<md-button class="md-raised md-primary" ng-if="true" ng-click="go.sequencing_request(data.id)">
-			Request Sequencing
+		<md-button ng-disabled="true" class="md-raised md-primary">
+			Sequencing
 		</md-button>
 		<md-card class="dnaprep-card" ng-if="false">
 			<md-toolbar layout="row" class="md-hue-2">
@@ -135,11 +131,7 @@
 							<tr md-row ng-repeat="dnaprep in data.phagednaprep_set">
 								<td md-cell>{{ dnaprep.added | human_time_abs }}</td>
 								<td md-cell>
-									<div>
-										<i class="mdi mdi-test-tube" style="font-size: 160%"></i>  <!-- bell -->
-										&nbsp;
-										{{ dnaprep.storage | storage_formatter }}
-									</div>
+									<storage-badge location="dnaprep.storage"></storage-badge>
 								</td>
 							</tr>
 						</tbody>
@@ -148,11 +140,7 @@
 			</md-card-content>
 		</md-card>
 
-		<div layout="row">
-			<span flex></span>
-			<ng-md-icon icon="arrow_upwards"></ng-md-icon>
-			<span flex></span>
-		</div>
+		<progress-arrow></progress-arrow>
 
 		<md-button class="md-raised md-primary" ng-if="!data.phagednaprep_set.length" ng-click="go.dnaprep_create(data.id)">
 			DNA Prep Missing
@@ -170,11 +158,13 @@
 							<tr md-row ng-repeat="dnaprep in data.phagednaprep_set">
 								<td md-cell>{{ dnaprep.added | human_time_abs }}</td>
 								<td md-cell>
-									<div>
-										<i class="mdi mdi-test-tube" style="font-size: 160%"></i>  <!-- bell -->
-										&nbsp;
-										{{ dnaprep.storage | storage_formatter }}
-									</div>
+									<storage-badge location="dnaprep.storage"></storage-badge>
+								</td>
+								<td md-cell>
+									<md-button style="text-transform: none!important" class="md-raised" ng-click="go.sequencing_request(dnaprep.id)">
+										<i class="mdi mdi-dna" style="font-size: 100%"></i>
+										Request Sequencing
+									</md-button>
 								</td>
 							</tr>
 						</tbody>
@@ -183,11 +173,7 @@
 			</md-card-content>
 		</md-card>
 
-		<div layout="row">
-			<span flex></span>
-			<ng-md-icon icon="arrow_upwards"></ng-md-icon>
-			<span flex></span>
-		</div>
+		<progress-arrow></progress-arrow>
 
 		<md-card class="lysate-card" ng-if="data.lysate">
 			<md-toolbar layout="row" class="md-hue-2">
@@ -215,13 +201,7 @@
 							<tr md-row>
 								<td md-cell>Storage</td>
 								<td md-cell>
-									<!--<md-button class="md-raised" aria-label="Go To Storage Location" ng-click="go.storage(data.lysate.storage.id)" layout="row" layout-align="center start">-->
-									<div>
-										<i class="mdi mdi-test-tube" style="font-size: 160%"></i>  <!-- bell -->
-										&nbsp;
-										{{ data.lysate.storage | storage_formatter }}
-									</div>
-									<!--</md-button>-->
+									<storage-badge location="data.lysate.storage"></storage-badge>
 								</td>
 							</tr>
 						</tbody>
@@ -233,13 +213,7 @@
 			Lysate Data Missing
 		</md-button>
 
-
-		<div layout="row">
-			<span flex></span>
-			<ng-md-icon icon="arrow_upwards"></ng-md-icon>
-			<span flex></span>
-		</div>
-
+		<progress-arrow></progress-arrow>
 
 		<md-card class="env-sample-card" ng-if="data.lysate.env_sample_collection">
 			<md-toolbar layout="row" class="md-hue-2">

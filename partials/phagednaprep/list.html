@@ -23,16 +23,14 @@
 				<table md-table md-progress="promise">
 					<thead md-head md-order="ordering" md-on-reorder="updateData">
 						<tr md-row>
-							<th md-column><span>morphology</span></th>
-							<th md-column><span>lysate</span></th>
-							<th md-column><span>tube</span></th>
+							<th md-column><span>Phage</span></th>
+							<th md-column><span>Storage</span></th>
 						</tr>
 					</thead>
 					<tbody md-body>
 						<tr md-row ng-repeat="phagednaprep in data" ng-click="go(phagednaprep.id)">
-							<td md-cell>{{phagednaprep.morphology}}</td>
-							<td md-cell>{{phagednaprep.lysate}}</td>
-							<td md-cell>{{phagednaprep.tube}}</td>
+							<td md-cell><phage-badge phage="phagednaprep.phage"></phage-badge></td>
+							<td md-cell><storage-badge location="phagednaprep.storage"></storage-badge></td>
 						</tr>
 					</tbody>
 				</table>

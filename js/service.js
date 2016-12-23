@@ -78,6 +78,10 @@ export default function(base) {
 
 	base.service('$go', ['$location', function($location){
 		return {
+			sequencing: function(id) {
+				$location.path("/sequencing/" + id);
+			},
+
 			sequencing_request: function(id) {
 				$location.path("/sequencing/request/" + id);
 			},

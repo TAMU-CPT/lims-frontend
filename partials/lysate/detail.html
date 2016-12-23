@@ -24,25 +24,13 @@
 						<tr md-row>
 							<td md-cell>Phage</td>
 							<td md-cell>
-								<md-button class="md-raised" aria-label="Go to Phage" ng-click="go.phage(data.phage.id)" layout="row" layout-align="center start">
-									<i class="mdi mdi-hexagon" style="font-size: 160%"></i>  <!-- bell -->
-									&nbsp;
-									<span>
-									{{ data.phage.primary_name }}
-									</span>
-								</md-button>
+								<phage-badge phage="data.phage"></phage-badge>
 							</td>
 						</tr>
 						<tr md-row>
 							<td md-cell>Storage</td>
 							<td md-cell>
-								<!--<md-button class="md-raised" aria-label="Go To Storage Location" ng-click="go.storage(data.storage.id)" layout="row" layout-align="center start">-->
-								<div>
-									<i class="mdi mdi-test-tube" style="font-size: 160%"></i>  <!-- bell -->
-									&nbsp;
-									{{ data.storage | storage_formatter }}
-								</div>
-								<!--</md-button>-->
+								<storage-badge location="data.storage"></storage-badge>
 							</td>
 						</tr>
 					</tbody>

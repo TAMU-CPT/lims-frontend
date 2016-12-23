@@ -1,147 +1,155 @@
-<div layout="row" layout-align="center">
-	<md-card flex="30">
-		<md-toolbar layout="row" class="md-hue-2">
-			<div class="md-toolbar-tools" flex>
-				<span class="md-title">{{sequencingrun.name}}</span>
-				<span flex></span>
-				<!-- TODO: Show if user -->
-				<md-button class="md-icon-button" aria-label="Edit" ng-click="edit_data()" ng-if="disabled">
-					<ng-md-icon icon="edit"></ng-md-icon>
-				</md-button>
-				<md-button class="md-icon-button" aria-label="Save Changes" ng-click="edit_data_save()" ng-if="!disabled">
-					<ng-md-icon icon="save"></ng-md-icon>
-				</md-button>
-				<md-button class="md-icon-button" aria-label="Cancel Changes" ng-click="edit_data_cancel()" ng-if="!disabled">
-					<ng-md-icon icon="cancel"></ng-md-icon>
-				</md-button>
-			</div>
-		</md-toolbar>
-		<md-card-content>
-			<div layout="column">
-				<table width="100%">
-					<tr>
-						<td>Owner</td>
-						<td colspan="2">
-							<md-chips ng-model="owner_set" readonly="true">
-								<md-chip-template ng-click="go_user($chip.id)">
-									<ng-md-icon icon="person"></ng-md-icon>
-									{{ $chip.name }}
-								</md-chip-template>
-							</md-chips>
-						</td>
-					</tr>
-					<tr>
-						<td>Run Prep</td>
-						<td>
-							<md-button class="imgbutton" target="_blank" ng-href="{{sequencingrun.run_prep_spreadsheet}}">
-								<img src="img/icon_1_spreadsheet_x32.png" width=32 height=32/>
-							</md-button>
-						</td>
-						<td ng-if="!disabled">
-							<md-button lk-google-picker on-picked="onPicked(docs, 'run_prep_spreadsheet')" on-cancel="onCancel()" class="md-raised">
-								Choose a <br /><span ng-if="sequencingrun.run_prep_spreadsheet">different</span> file
-							</md-button>
-						</td>
-					</tr>
-					<tr>
-						<td>BioAnalyzer QC</td>
-						<td>
-							<md-button class="imgbutton" target="_blank" ng-href="{{sequencingrun.bioanalyzer_qc}}">
-								<img src="img/icon_1_spreadsheet_x32.png" width=32 height=32/>
-							</md-button>
-						</td>
-						<td ng-if="!disabled">
-							<md-button lk-google-picker on-picked="onPicked(docs, 'bioanalyzer_qc')" on-cancel="onCancel()" class="md-raised">
-								Choose a <br /><span ng-if="sequencingrun.bioanalyzer_qc">different</span> file
-							</md-button>
-						</td>
-					</tr>
-					<tr>
-						<td>Assembly</td>
-						<td>
-							<md-button class="imgbutton" target="_blank" ng-href="{{sequencingrun.assembly}}">
-								<img src="img/galaxy_logo.svg" width=32 height=32/>
-							</md-button>
-						</td>
-					</tr>
-				</table>
-			</div>
-
-			<div layout="column">
-			</div>
-		</md-card-content>
-	</md-card>
-
-	<div flex="70" layout="row" layout-wrap>
-		<md-card flex="45">
-			<md-toolbar layout="row" class="md-hue-1">
+<div layout="row" layout-align="center start">
+	<div flex="30" layout="column">
+		<md-card>
+			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
-					<span class="md-title">Controls</span>
+					<span class="md-title">Run: {{sequencingrun.name}}</span>
+					<span flex></span>
+					<!-- TODO: Show if user -->
+					<md-button class="md-icon-button" aria-label="Edit" ng-click="edit_data()" ng-if="disabled">
+						<ng-md-icon icon="edit"></ng-md-icon>
+					</md-button>
+					<md-button class="md-icon-button" aria-label="Save Changes" ng-click="edit_data_save()" ng-if="!disabled">
+						<ng-md-icon icon="save"></ng-md-icon>
+					</md-button>
+					<md-button class="md-icon-button" aria-label="Cancel Changes" ng-click="edit_data_cancel()" ng-if="!disabled">
+						<ng-md-icon icon="cancel"></ng-md-icon>
+					</md-button>
 				</div>
 			</md-toolbar>
 			<md-card-content>
-				<md-button class="md-raised md-primary">Add phage to run</md-button>
-				<md-button class="md-raised md-primary">Add pool</md-button>
-				<md-button class="md-raised md-primary">Remove Empty Pools</md-button>
+				<div layout="column">
+					<table width="100%">
+						<tr>
+							<td>Owner</td>
+							<td colspan="2">
+								<md-chips ng-model="owner_set" readonly="true">
+									<md-chip-template ng-click="go_user($chip.id)">
+										<ng-md-icon icon="person"></ng-md-icon>
+										{{ $chip.name }}
+									</md-chip-template>
+								</md-chips>
+							</td>
+						</tr>
+						<tr>
+							<td>Run Prep</td>
+							<td>
+								<md-button class="imgbutton" target="_blank" ng-href="{{sequencingrun.run_prep_spreadsheet}}" ng-if="sequencingrun.run_prep_spreadsheet">
+									<img src="img/icon_1_spreadsheet_x32.png" width=32 height=32/>
+								</md-button>
+								<md-button lk-google-picker on-picked="onPicked(docs, 'run_prep_spreadsheet')" on-cancel="onCancel()" class="md-raised" ng-if="!sequencingrun.run_prep_spreadsheet">
+									Choose a file
+								</md-button>
+							</td>
+							<td ng-if="!disabled">
+								<md-button lk-google-picker on-picked="onPicked(docs, 'run_prep_spreadsheet')" on-cancel="onCancel()" class="md-raised">
+									Choose a <br /><span ng-if="sequencingrun.run_prep_spreadsheet">different</span> file
+								</md-button>
+							</td>
+						</tr>
+						<tr>
+							<td>BioAnalyzer QC</td>
+							<td>
+								<md-button class="imgbutton" target="_blank" ng-href="{{sequencingrun.bioanalyzer_qc}}" ng-if="sequencingrun.bioanalyzer_qc">
+									<img src="img/icon_1_spreadsheet_x32.png" width=32 height=32/>
+								</md-button>
+								<md-button lk-google-picker on-picked="onPicked(docs, 'bioanalyzer_qc')" on-cancel="onCancel()" class="md-raised" ng-if="!sequencingrun.bioanalyzer_qc">
+									Choose a file
+								</md-button>
+							</td>
+							<td ng-if="!disabled">
+								<md-button lk-google-picker on-picked="onPicked(docs, 'bioanalyzer_qc')" on-cancel="onCancel()" class="md-raised">
+									Choose a <br /><span ng-if="sequencingrun.bioanalyzer_qc">different</span> file
+								</md-button>
+							</td>
+						</tr>
+						<tr>
+							<td>Sequencing Data</td>
+							<td>
+								<md-button class="imgbutton" target="_blank" ng-href="{{sequencingrun.galaxy_library}}" ng-if="sequencingrun.galaxy_library">
+									<img src="img/galaxy_logo.svg" width=32 height=32/>
+								</md-button>
+								<md-button ng-if="!sequencingrun.galaxy_library" class="md-raised">
+									Choose a file
+								</md-button>
+
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<h3>Controls</h3>
+				<div layout="row">
+					<md-button flex="50" class="md-raised md-primary" ng-click="add_pool()">Add pool</md-button>
+					<md-button flex="50" class="md-raised md-primary" ng-click="remove_empty_pools()">Remove Empty</md-button>
+				</div>
+				<div layout="row">
+					<md-button flex="100" class="md-raised md-primary md-accent" ng-click="finalize()">Finalize Sequencing Run</md-button>
+				</div>
 			</md-card-content>
 		</md-card>
-		<md-card flex="45">
+		<md-card>
 			<md-toolbar layout="row" class="">
 				<div class="md-toolbar-tools" flex>
-					<span class="md-title">NO POOL</span>
+					<span class="md-title">Ready for Sequencing</span>
 				</div>
 			</md-toolbar>
-			<md-card-content>
+			<md-card-content style="padding:0px">
 				<!-- The dnd-list directive allows to drop elements into it.
 					 The dropped data will be added to the referenced list -->
-				<ul dnd-list="models.unsorted">
+				<div dnd-list="models.unsorted" style="padding: 1em" layout="row" layout-wrap>
 					<!-- The dnd-draggable directive makes an element draggable and will
 						 transfer the object that was assigned to it. If an element was
 						 dragged away, you have to remove it from the original list
 						 yourself using the dnd-moved attribute -->
-					<li ng-repeat="item in models.unsorted"
+					<div ng-repeat="item in models.unsorted"
 						dnd-draggable="item"
 						dnd-moved="models.unsorted.splice($index, 1)"
 						dnd-effect-allowed="move"
 						dnd-selected="models.selected = item"
 						ng-class="{'selected': models.selected === item}"
+						flex="50"
 						>
-						{{item.label}}
-					</li>
-				</ul>
+						<dna-prep-card data="item"></dna-prep-card>
+					</div>
+					<div class="dndPlaceholder" flex="50">
+						Drop
+					</div>
+				</div>
 			</md-card-content>
 		</md-card>
+	</div>
+
+	<div flex="70" layout="row" layout-wrap>
 		<md-card flex="30" ng-repeat="(listName, list) in models.lists">
 			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
-					<span class="md-title">{{listName}}</span>
+					<span class="md-title">Pool {{listName + 1}}</span>
 				</div>
 			</md-toolbar>
-			<md-card-content>
+			<md-card-content style="padding: 0px">
 				<!-- The dnd-list directive allows to drop elements into it.
 					 The dropped data will be added to the referenced list -->
-				<ul dnd-list="list">
+				<div dnd-list="list" layout="row" style="padding: 1em" layout-wrap>
 					<!-- The dnd-draggable directive makes an element draggable and will
 						 transfer the object that was assigned to it. If an element was
 						 dragged away, you have to remove it from the original list
 						 yourself using the dnd-moved attribute -->
-					<li ng-repeat="item in list"
+					<div ng-repeat="item in list"
 						dnd-draggable="item"
 						dnd-moved="list.splice($index, 1)"
 						dnd-effect-allowed="move"
 						dnd-selected="models.selected = item"
 						ng-class="{'selected': models.selected === item}"
+						flex="50"
 						>
-						{{item.label}}
-					</li>
-				</ul>
+						<dna-prep-card data="item"></dna-prep-card>
+					</div>
+					<div class="dndPlaceholder" flex="50">
+						Drop
+					</div>
+				</div>
 			</md-card-content>
 		</md-card>
 	</div>
-
-</div>
-<div>
-	<pre>
-{{ models | json }}
-	</pre>
 </div>

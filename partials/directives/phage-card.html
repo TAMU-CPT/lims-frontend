@@ -1,0 +1,27 @@
+<md-card>
+	<md-card-title>
+		<md-card-title-text>
+			<span class="md-headline">Phage: {{ data.primary_name }}</span>
+			<span class="md-subhead" ng-if="data.historical_names">
+				<div>
+				Historical Names: {{ data.historical_names }}
+				</div>
+			</span>
+			<div>
+				<img src="https://cpt.tamu.edu/barcodes/i/code128/CPT:P{{ data.id  }}.png?w=140&h=20" 
+					style="width: 140px!important;height: 20px!important">
+				<div flex></div>
+			</div>
+		</md-card-title-text>
+		<md-card-title-media>
+			<div class="md-media-sm card-media">
+				<img src="{{ data.image }}">
+			</div>
+		</md-card-title-media>
+	</md-card-title>
+	<md-card-actions layout="row" layout-align="end center">
+		<phage-status data="data.status"></phage-status>
+		<span flex></span>
+		<md-button style="text-transform: none!important" class="md-raised" ng-click="go.phage(data.id)">More Information</md-button>
+	</md-card-actions>
+</md-card>

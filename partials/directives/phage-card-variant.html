@@ -1,0 +1,19 @@
+<md-card>
+	<md-card-header>
+		<md-card-avatar>
+			<i class="mdi mdi-hexagon" style="font-size: 250%"></i>
+		</md-card-avatar>
+		<md-card-header-text>
+			<span class="md-headline">Phage: {{ data.primary_name }}</span>
+			<span class="md-subhead" ng-if="data.historical_names">
+				Historical Names: {{ data.historical_names }}
+			</span>
+		</md-card-header-text>
+	</md-card-header>
+	<img src="{{ data.image }}" class="md-card-image" alt="Phage TEM Image">
+	<md-card-actions layout="row" layout-align="end center">
+		<phage-status data="data.status"></phage-status>
+		<span flex></span>
+		<md-button style="text-transform: none!important" class="md-raised" ng-click="go.phage(data.id)">More Information</md-button>
+	</md-card-actions>
+</md-card>

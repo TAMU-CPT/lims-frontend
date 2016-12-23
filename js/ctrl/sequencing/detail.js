@@ -3,9 +3,10 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("SequencingRunDetailCtrl", ["$scope", "$location", "$routeParams", "Restangular", '$timeout',
-		function($scope, $location, $routeParams, Restangular, $timeout) {
+	base.controller("SequencingRunDetailCtrl", ["$scope", "$location", "$routeParams", "Restangular", '$timeout', "$mdToast",
+		function($scope, $location, $routeParams, Restangular, $timeout, $mdToast) {
 			$scope.disabled = true;
+			// TODO: autosave
 
 			// Project Info
 			$scope.edit_data = function() {
@@ -37,34 +38,23 @@ export default function(base) {
 				console.log('Google picker close/cancel!');
 			}
 
+			$scope.add_pool = function() {
+				$scope.models.lists.push([]);
+			}
+
+			$scope.remove_empty_pools = function() {
+				$scope.models.lists = $scope.models.lists.filter(function(d){
+					return d.length > 0;
+				})
+			}
+
 			$scope.models = {
 				selected: null,
 				unsorted: [
-					{ label: "FDSA" },
 				],
-				lists: {
-					"Pool 1": [
-						{
-							label: "Lambda",
-						},
-						{
-							label: "K12",
-						}
-					],
-					"Pool 2": [
-						{
-							label: "Asdf",
-						},
-						{
-							label: "IDK",
-						}
-					],
-					"Pool 3": [
-						{
-							label: "YAY",
-						}
-					]
-				}
+				lists: [
+					[],
+				]
 			};
 
 			$scope.loadSequencingMethods = function() {
@@ -81,7 +71,40 @@ export default function(base) {
 				return promise;
 			};
 
+			$scope.save = function(final){
+				//$scope.sequencingrun.sequencingrunpool_set = $scope.models.lists.map(function(pool, idx){
+					//return {
+						//'pool': idx,
+						//'sequencingrunpoolitem_set': pool
+					//}
+				//});
+				$scope.sequencingrun.sequencingrunpool_set= [
+					{
+						"id": "ebfa4595-cfee-4dea-88af-b8bd0b33d1f4",
+						"pool": "0",
+						"sequencingrunpoolitem_set": []
+					}
+				];
+				$scope.finalized = final;
+				$scope.sequencingrun.save();
+				//}).then(function(data) {
+					//$mdToast.showSimple("Success");
+					//$scope.submit_disabled = false;
+				//}, function() {
+					//$mdToast.showSimple("Error");
+				//});
+			};
 
+			$scope.finalize = function(){
+				$scope.save(true);
+			};
+
+			Restangular.all("lims/sequencingrunpoolitems").getList({'no_pool': true}).then(function(data) {
+				$scope.models.unsorted = data;
+			});
+			//Restangular.all("lims/sequencingrunpoolitems").get().then(function(data) {
+				//cosnole.log(data);
+			//});
 
 			Restangular.one("lims/sequencingruns", $routeParams.sequencingrunID).get().then(function(data) {
 				$scope.sequencingrun = data;

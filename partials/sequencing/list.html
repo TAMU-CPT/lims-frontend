@@ -19,7 +19,7 @@
 					<span class="md-headline">Sequencing Runs</span>
 					<span flex></span>
 					<span>
-						<md-button class="md-icon-button" aria-label="Add BioProject" ng-click="choice_popup()">
+						<md-button class="md-icon-button" aria-label="New Sequencing Run" ng-click="choice_popup()">
 							<ng-md-icon icon="add"></ng-md-icon>
 						</md-button>
 					</span>
@@ -33,12 +33,16 @@
 						<tr md-row>
 							<th md-column><span>Name</span></th>
 							<th md-column><span>Date</span></th>
+							<th md-column><span>Run Manager</span></th>
 						</tr>
 					</thead>
 					<tbody md-body>
-						<tr md-row ng-repeat="sequencingrun in data" ng-click="go(sequencingrun.id)">
-							<td md-cell>{{sequencingrun.name}}</td>
-							<td md-cell>{{sequencingrun.date}}</td>
+						<tr md-row ng-repeat="sr in data"  ng-click="go.sequencing(sr.id)">
+							<td md-cell>{{sr.name}}</td>
+							<td md-cell>{{sr.date}}</td>
+							<td md-cell>
+								<user-chip user="sr.owner"></user-chip>
+							</td>
 						</tr>
 					</tbody>
 				</table>
