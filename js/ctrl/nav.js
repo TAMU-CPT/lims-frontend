@@ -29,16 +29,29 @@ export default function(base) {
 				// else { $location.path(route); }
 			};
 
-            $scope.bug_popup = function(ev) {
+            $scope.showDialog = function($event) {
                 $mdDialog.show({
-                    contentElement: '#bug_report',
                     parent: angular.element(document.body),
-                    clickOutsideToClose: true
-                });
-            };
+                    targetEvent: $event,
+                    clickOutsideToClose: true,
+                    template:
+                    '<md-dialog aria-label="bug report popup">' +
+                    '  <md-dialog-content>'+
+                    '  </md-dialog-content>' +
+                    '  <md-dialog-actions>' +
+                    '    <md-button ng-click="closeDialog()" class="md-primary">' +
+                    '      Close Dialog' +
+                    '    </md-button>' +
+                    '  </md-dialog-actions>' +
+                    '</md-dialog>',
+                    controller: DialogController
+            });
 
-            $scope.cancel = function() {
-                $mdDialog.cancel();
+                function DialogController($scope, $mdDialog) {
+                    $scope.closeDialog = function() {
+                      $mdDialog.cancel();
+                    }
+                };
             };
 
 			// $scope.get_notifications = function() {
