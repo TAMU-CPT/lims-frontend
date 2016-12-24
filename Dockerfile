@@ -11,4 +11,4 @@ RUN make node_modules && \
 	cp -Rv img /output/ && \
 	cp -Rv build/ /output/ && \
 	cp -Rv partials/ /output/ && \
-	rm -rf build
+	cp manifest.json /output/
