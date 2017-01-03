@@ -3,8 +3,8 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("EnvironmentalSampleCreateCtrl", ["$scope", "$location", "$routeParams", "Restangular", "leafletBoundsHelpers", "$mdDialog",
-		function($scope, $location, $routeParams, Restangular, leafletBoundsHelpers, $mdDialog) {
+	base.controller("EnvironmentalSampleCreateCtrl", ["$scope", "$location", "$routeParams", "Restangular", "leafletBoundsHelpers", "$mdDialog", "$cptStorage",
+		function($scope, $location, $routeParams, Restangular, leafletBoundsHelpers, $mdDialog, $cptStorage) {
 			$scope.go = function(id) {
 				$location.path("/environmentalsamples/" + id);
 			};
@@ -23,6 +23,23 @@ export default function(base) {
 					zoom: 4,
 				}
 			}
+
+			$scope.storage = $cptStorage;
+            $scope.$watch('storage.room.searchText', function(newValue, oldValue) {
+                $scope.storage.storage_type.reset();
+                $scope.storage.box.reset();
+            });
+            $scope.$watch('storage.storage_type.type', function(newValue, oldValue) {
+                $scope.storage.storage_type.reset();
+                $scope.storage.box.reset();
+            });
+            $scope.$watch('storage.storage_type.searchText', function(newValue, oldValue) {
+                $scope.storage.box.reset();
+            });
+            $scope.$watch('storage.shelf', function(newValue, oldValue) {
+                $scope.storage.box.reset();
+            });
+
 
             $scope.sample_type = {
                 selectedItem: null,
@@ -66,7 +83,14 @@ export default function(base) {
 
 			$scope.save = function() {
 					$scope.promise = Restangular.all("lims/environmentalsamples").post($scope.data).then(function(data) {
-						 $location.path("/environmentalsamples/" + data.id);
+                        $location.path("/environmentalsamples/" + data.id);
+                        Restangular.one("lims/environmentalsamplecollection/simple", data.default_collection_id).get().then(function(envsamplecoll) {
+                            envsamplecoll.storage = $scope.storage.get_form();
+                            envsamplecoll.put().then(function() {
+                            });
+                            // TODO: put failure state (e.g. if storage is duplicated)
+                        });
+
 					});
 			};
 		}]);

@@ -60,7 +60,7 @@ export default function(base) {
 					// Fridge / Freezer  | type
 					type: serviceObject.storage_type.type,
 					// Fridge Name       | container_label
-					container_label: serviceObject.storage_type.selectedItem ? serviceObject.storage_type.selectedItem.type : serviceObject.storage_type.searchText,
+					container_label: serviceObject.storage_type.selectedItem ? serviceObject.storage_type.selectedItem.container_label : serviceObject.storage_type.searchText,
 					// Shelf/Rack        | shelf
 					shelf: serviceObject.shelf,
 					// Box Label         | box
