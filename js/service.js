@@ -11,7 +11,7 @@ export default function(base) {
 				selectedItem: null,
 				searchText: null,
 				querySearch: function(queryString) {
-					return Restangular.all("lims").customGET("storage/rooms", {room: queryString}).then(function(data) {
+					return Restangular.all("lims").customGET("storage/rooms", {room: serviceObject.room.searchText}).then(function(data) {
 						return data.results;
 					});
 				},

@@ -1,6 +1,7 @@
-<form name="StorageForm" ng-submit="saveData()" novalidate>
+<form name="StorageForm" novalidate>
 	<div layout="row">
 		<md-autocomplete flex="50"
+                md-no-asterisk required
 				md-selected-item="storage.room.selectedItem"
 				md-search-text="storage.room.searchText"
 				md-items="item in storage.room.querySearch(room.searchText)"
@@ -36,6 +37,7 @@
 			<input md-no-asterisk name="shelf" ng-model="storage.shelf"/>
 		</md-input-container>
 		<md-autocomplete
+                md-no-asterisk required
 				md-selected-item="storage.box.selectedItem"
 				md-search-text="storage.box.searchText"
 				md-no-cache="true"
@@ -50,7 +52,7 @@
 	<div layout="row">
 		<md-input-container flex>
 			<label>Sample label</label>
-			<input md-no-asterisk name="tube" ng-model="storage.tube_label"/>
+			<input md-no-asterisk required name="tube" ng-model="storage.tube_label"/>
 		</md-input-container>
 	</div>
 	<br>
