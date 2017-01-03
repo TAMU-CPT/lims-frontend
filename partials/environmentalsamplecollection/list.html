@@ -79,7 +79,7 @@
 			</md-toolbar>
 			<md-card style="margin:0">
 				<md-card-content layout="column">
-					<form name="createenvSampleCreateForm">
+					<form name="createenvSampleCreateForm" novalidate>
 						
 						<md-input-container class="md-block">
 							<label>Description</label>
@@ -99,7 +99,7 @@
 						</md-input-container>
 
 						<div>
-							<md-button class="md-primary"           ng-click="popup_envSampleCreate.cancel()">Cancel</md-button>
+							<md-button class="md-primary" ng-disabled="createenvSampleCreateForm.$invalid" ng-click="popup_envSampleCreate.cancel()">Cancel</md-button>
 							<md-button class="md-primary md-raised" ng-click="popup_envSampleCreate.create()">Create</md-button>
 						</div>
 					</form>

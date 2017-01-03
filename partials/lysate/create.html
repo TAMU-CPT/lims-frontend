@@ -34,7 +34,7 @@
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
-			<form name="createlysateCreateForm">
+			<form name="createlysateCreateForm" novalidate>
 				<span class="md-title">Metadata</span>
 				<md-input-container class="md-block">
 					<md-autocomplete
@@ -52,7 +52,7 @@
 				<ng-include src="'partials/storage/storage_form.html'"></ng-include>
 
 				<div>
-					<md-button class="md-primary md-raised" ng-click="save()">Create</md-button>
+					<md-button ng-disabled="createLysateCreateForm.$invalid" class="md-primary md-raised" ng-click="save()">Create</md-button>
 				</div>
 			</form>
 		</md-card-content>
