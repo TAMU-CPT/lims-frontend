@@ -24,6 +24,19 @@ export default function(base) {
 				}
 			}
 
+            $scope.sample_type = {
+                selectedItem: null,
+                searchText: null,
+                querySearch: function(queryString) {
+                    return Restangular.all("lims").customGET("environmentalsamples/types", {sample_type: queryString}).then(function(data) {
+                        $scope.data.sample_type = $scope.sample_type.searchText;
+                        return data.results;
+                    });
+                },
+                selectedItemChange: function(item) {
+                },
+            };
+
 			// The position isn't being updated.
 			// http://tombatossals.github.io/angular-leaflet-directive/#!/examples/dragging-markers
 			// So this is a working solution at least.
