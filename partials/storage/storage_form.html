@@ -1,6 +1,6 @@
 <form name="StorageForm" novalidate>
 	<div layout="row">
-		<md-autocomplete flex="50"
+		<md-autocomplete flex
                 md-no-asterisk required
 				md-selected-item="storage.room.selectedItem"
 				md-search-text="storage.room.searchText"
@@ -14,12 +14,12 @@
 		</md-autocomplete>
 	</div>
 	<div layout="row">
-		<md-input-container>
+		<md-input-container flex>
 			<md-select md-no-cache="true" name="storage_type" ng-model="storage.storage_type.type" placeholder="Fridge/Freezer">
 				<md-option ng-repeat="type in storage.storage_type.types" ng-value="type">{{type | storage_type_to_text}}</md-option>
 			</md-select>
 		</md-input-container>
-		<md-autocomplete
+		<md-autocomplete flex
 				md-selected-item="storage.storage_type.selectedItem"
 				md-search-text="storage.storage_type.searchText"
 				md-no-cache="true"
