@@ -35,7 +35,6 @@
 							<th md-column><span>Type</span></th>
 							<th md-column><span>Description</span></th>
 							<th md-column><span>Date</span></th>
-							<th md-column><span>Tube</span></th>
 							<th md-column><span>Collected By</span></th>
 						</tr>
 					</thead>
@@ -44,7 +43,6 @@
 							<td md-cell>{{environmentalsample.sample_type}}</td>
 							<td md-cell>{{environmentalsample.description}}</td>
 							<td md-cell>{{environmentalsample.collection | human_time_abs}}</td>
-							<td md-cell>{{environmentalsample.tube.name}}</td>
 							<td md-cell>
 								<md-chips ng-if="environmentalsample.collected_by" ng-model="environmentalsample.collected_by_set" readonly="true">
 									<md-chip-template ng-click="go($chip.id, '#/accounts/')">
