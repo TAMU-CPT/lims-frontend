@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en" ng-app="base">
-<head>
+<head ng-controller="NavCtrl">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="manifest" href="manifest.json">
-    <title>LIMS Frontend</title>
+    <title ng-cloak>LIMS Frontend {{version}}</title>
 
     <style>
         a { text-decoration: none; }
