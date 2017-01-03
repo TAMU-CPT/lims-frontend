@@ -41,7 +41,7 @@
 					</thead>
 					<tbody md-body>
 						<tr md-row ng-repeat="environmentalsample in data" ng-click="go(environmentalsample.id)">
-							<td md-cell>{{environmentalsample.sample_type.name}}</td>
+							<td md-cell>{{environmentalsample.sample_type}}</td>
 							<td md-cell>{{environmentalsample.description}}</td>
 							<td md-cell>{{environmentalsample.collection | human_time_abs}}</td>
 							<td md-cell>{{environmentalsample.tube.name}}</td>
