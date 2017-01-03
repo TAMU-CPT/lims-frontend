@@ -2,9 +2,13 @@
  * Navigation controller
  * @param {object} base Base angular application object
  */
+
+var version = require("json-loader!../../package.json");
+
 export default function(base) {
 	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval", "$mdDialog", "Raven",
 		function($scope, $mdSidenav, $localStorage, $location, $interval, $mdDialog, Raven) {
+            $scope.version = version.version;
 			$scope.nav = {};
 			$scope.nav.userData = $localStorage.jwtData;
 
