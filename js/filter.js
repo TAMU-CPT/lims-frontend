@@ -33,7 +33,10 @@ export default function(base) {
 
 	base.filter("host_formatter", ["$sce", function($sce) {
 		return function(input) {
-			return $sce.trustAs("html", "<i>" + input.genus +" " + input.species + "</i> " + input.strain);
+            if (input) {
+                return $sce.trustAs("html", "<i>" + input.genus +" " + input.species + "</i> " + input.strain);
+            }
+            return;
 		};
 	}]);
 
