@@ -6,7 +6,7 @@
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
-            <form name="StorageForm" ng-submit="saveData()" novalidate>
+            <form name="StorageForm" ng-submit="saveData()" novalidate ng-init="clear_form()">
                 <div layout="row">
                     <md-autocomplete md-no-asterisk required flex="50"
                             md-input-name="room"

@@ -7,6 +7,16 @@ var moment = require('moment');
 export default function(base) {
 	base.service('$cptStorage', ['Restangular', function(Restangular){
 		var serviceObject = {
+
+            reset_all: function() {
+                serviceObject.room.reset();
+                serviceObject.storage_type.reset();
+                serviceObject.box.reset();
+                serviceObject.shelf = null;
+                serviceObject.tube_label = null;
+                serviceObject.storage_type.type = 0;
+            },
+
 			room: {
 				selectedItem: null,
 				searchText: null,
@@ -17,6 +27,10 @@ export default function(base) {
 				},
 				selectedItemChange: function(item) {
 				},
+                reset: function() {
+                    serviceObject.room.searchText = null;
+                    serviceObject.room.selectedItem = null;
+                },
 			},
 
 			storage_type: {
