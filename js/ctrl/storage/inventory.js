@@ -25,8 +25,8 @@ export default function(base) {
             $scope.show_boxes = false;
             $scope.sample_categories = ['lysate', 'phagednaprep', 'envsample'];
             $scope.storage_types = [0,1];
-            Restangular.all("lims/phages").getList().then(function(data) {
-                $scope.all_phages = data;
+            Restangular.all("lims").customGET("phages", {primary_name: '<Unnamed>'}).then(function(data) {
+                $scope.all_phages = data.results;
             })
             Restangular.all("lims/storage/rooms").getList().then(function(data) {
                 $scope.inventory.rooms = data;
@@ -67,7 +67,6 @@ export default function(base) {
 
             $scope.updateBox = function() {
                 $scope.choice.box_label = '';
-                console.log($scope.choice.box_label);
                 if ($scope.choice.container_labels.length != 0) {
                     Restangular.all("lims").customGET("storage/boxes", {container_labels: $scope.choice.container_labels.join()}).then(function(data) {
                         $scope.inventory.box_label = data.results;
