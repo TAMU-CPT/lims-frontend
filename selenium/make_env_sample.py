@@ -9,8 +9,9 @@ class LimsEnvSampleCreate(unittest.TestCase):
 
     def test_login(self):
         driver = self.driver
-        driver.get("http://localhost:10000/login")
-        self.assertIn("LIMS", driver.title)
+        driver.get("http://localhost:10000/#/login")
+        # driver.implicitly_wait(2)
+        login_button = driver.find_element_by_xpath("//md-card-content/button")
 
     def tearDown(self):
         self.driver.close()
