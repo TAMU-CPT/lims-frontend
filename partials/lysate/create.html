@@ -1,4 +1,4 @@
-<div class="container-fluid" layout="row" layout-align="center start">
+<div class="container-fluid" layout="row" layout-align="center start" ng-init="clear_form()">
 	<md-card flex="40">
 		<md-card-title>
 			<md-card-title-text>
@@ -16,7 +16,7 @@
 				</thead>
 				<tbody md-body>
 					<tr md-row ng-repeat="environmentalsample in esc.env_sample">
-						<td md-cell>{{environmentalsample.sample_type.name}}</td>
+						<td md-cell>{{environmentalsample.sample_type}}</td>
 						<td md-cell>{{environmentalsample.description}}</td>
 						<td md-cell>{{environmentalsample.collection | human_time_abs}}</td>
 					</tr>
@@ -34,25 +34,24 @@
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
-			<form name="createlysateCreateForm">
+			<form name="createlysateCreateForm" novalidate>
 				<span class="md-title">Metadata</span>
-				<md-input-container class="md-block">
-					<label>Bacterial Host</label>
-					<md-autocomplete
-							md-selected-item="host.selectedItem"
-							md-search-text="host.searchText"
-							md-items="item in host.querySearch(host.searchText)"
-							md-item-text="item.full"
-							md-min-length="0">
-						<span md-highlight-text="host.searchText">{{item.full}}</span>
-					</md-autocomplete>
-				</md-input-container>
+                <md-autocomplete
+                        md-no-asterisk required
+                        md-floating-label="Bacterial Host"
+                        md-selected-item="host.selectedItem"
+                        md-search-text="host.searchText"
+                        md-items="item in host.querySearch(host.searchText)"
+                        md-item-text="item.full"
+                        md-min-length="0">
+                    <span md-highlight-text="host.searchText">{{item.full}}</span>
+                </md-autocomplete>
 
 				<span class="md-title">Storage</span>
 				<ng-include src="'partials/storage/storage_form.html'"></ng-include>
 
 				<div>
-					<md-button class="md-primary md-raised" ng-click="save()">Create</md-button>
+					<md-button ng-disabled="createlysateCreateForm.$invalid" class="md-primary md-raised" ng-click="save()">Create</md-button>
 				</div>
 			</form>
 		</md-card-content>

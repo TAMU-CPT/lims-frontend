@@ -1,6 +1,7 @@
-<form name="StorageForm" ng-submit="saveData()" novalidate>
+<ng-form name="StorageForm" novalidate>
 	<div layout="row">
-		<md-autocomplete flex="50"
+		<md-autocomplete flex
+                md-no-asterisk required
 				md-selected-item="storage.room.selectedItem"
 				md-search-text="storage.room.searchText"
 				md-items="item in storage.room.querySearch(room.searchText)"
@@ -13,12 +14,13 @@
 		</md-autocomplete>
 	</div>
 	<div layout="row">
-		<md-input-container>
+		<md-input-container flex>
 			<md-select md-no-cache="true" name="storage_type" ng-model="storage.storage_type.type" placeholder="Fridge/Freezer">
 				<md-option ng-repeat="type in storage.storage_type.types" ng-value="type">{{type | storage_type_to_text}}</md-option>
 			</md-select>
 		</md-input-container>
-		<md-autocomplete
+		<md-autocomplete flex
+                md-no-asterisk required
 				md-selected-item="storage.storage_type.selectedItem"
 				md-search-text="storage.storage_type.searchText"
 				md-no-cache="true"
@@ -36,6 +38,7 @@
 			<input md-no-asterisk name="shelf" ng-model="storage.shelf"/>
 		</md-input-container>
 		<md-autocomplete
+                md-no-asterisk required
 				md-selected-item="storage.box.selectedItem"
 				md-search-text="storage.box.searchText"
 				md-no-cache="true"
@@ -50,8 +53,8 @@
 	<div layout="row">
 		<md-input-container flex>
 			<label>Sample label</label>
-			<input md-no-asterisk name="tube" ng-model="storage.tube_label"/>
+			<input md-no-asterisk required name="tube" ng-model="storage.tube_label"/>
 		</md-input-container>
 	</div>
 	<br>
-</form>
+</ng-form>

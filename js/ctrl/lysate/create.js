@@ -48,6 +48,10 @@ export default function(base) {
 				},
 				selectedItemChange: function(item) {
 				},
+                reset: function() {
+                    $scope.host.searchText = null;
+                    $scope.host.selectedItem = null;
+                },
 			};
 
 			$scope.save = function() {
@@ -64,5 +68,9 @@ export default function(base) {
 					}
 				});
 			};
+
+            $scope.clear_form = function() {
+                $scope.storage.reset_all();
+            };
 		}]);
 }

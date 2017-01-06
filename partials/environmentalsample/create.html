@@ -1,22 +1,42 @@
-<div class="container-fluid" layout="row" layout-align="center">
-	<div flex="40" flex-xs="100">
+<div class="container-fluid" layout="row" layout-align="center start">
+	<div flex="55" flex-xs="100">
 		<leaflet width="100%" height="500px" markers="map.markers" maxbounds="map.maxbounds" lf-center="map.center"></leaflet>
 	</div>
-	<md-card flex="60">
+	<md-card flex="45">
 		<md-card-title>
 			<md-card-title-text>
 				<span class="md-headline">Register a New Environmental Sample</span>
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
-			<form name="createenvSampleCreateForm">
-				<md-input-container class="md-block">
-					<label>Sample Type</label>
-					<input name="sample_type" ng-model="data.sample_type" type="text"></input>
-					<div ng-messages="createenvSampleCreateForm.sample_type.$error">
-					</div>
-				</md-input-container>
-
+			<form name="createenvSampleCreateForm" novalidate>
+				<span class="md-title">Metadata</span>
+				<div layout="row" layout-xs="column">
+                    <md-autocomplete md-no-asterisk flex required
+                            ng-model="data.sample_type"
+                            md-input-name="sample_type"
+                            md-selected-item="sample_type.selectedItem"
+                            md-search-text="sample_type.searchText"
+                            md-items="item in sample_type.querySearch(sample_type.searchText)"
+                            md-no-cache="true"
+                            md-item-text="item.sample_type"
+                            md-min-length="0"
+                            md-floating-label="Sample Type"
+                            md-selected-item-change="sample_type.selectedItemChange(item)">
+                        <md-item-template>
+                            <span md-highlight-text="sample_type.searchText">{{item.sample_type}}</span>
+                        </md-item-template>
+                        <div ng-messages="createenvSampleCreateForm.sample_type.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-autocomplete>
+                    <md-input-container flex class="md-block">
+                        <label>Description</label>
+                        <input name="description" ng-model="data.description" type="text"></input>
+                        <div ng-messages="createenvSampleCreateForm.description.$error">
+                        </div>
+                    </md-input-container>
+				</div>
 				<div layout="row">
 					<div>
 						<md-input-container class="md-block">
@@ -41,26 +61,18 @@
 						</md-button>
 					</div>
 				</div>
-
-				<md-input-container class="md-block">
-					<label>Description</label>
-					<input  name="description" ng-model="data.description" type="text"></input>
-					<div ng-messages="createenvSampleCreateForm.description.$error">
-					</div>
-				</md-input-container>
-				<div layout="row" layout-xs="column">
+				<div layout="row">
 					<div layout="column" flex="100">
 						<md-datepicker ng-model="data.collection" md-placeholder="Collection Date"></md-datepicker>
 					</div>
 				</div>
-				<md-input-container class="md-block">
-					<label>Tube</label>
-					<input  name="tube" ng-model="data.tube" type=""></input>
-					<div ng-messages="createenvSampleCreateForm.tube.$error">
-					</div>
-				</md-input-container>
+                <br>
+                <br>
+				<span class="md-title">Storage</span>
+				<ng-include src="'partials/storage/storage_form.html'"></ng-include>
+
 				<div>
-					<md-button class="md-primary md-raised" ng-click="save()">Create</md-button>
+					<md-button ng-disabled="createenvSampleCreateForm.$invalid" class="md-primary md-raised" ng-click="save()">Create</md-button>
 				</div>
 			</form>
 		</md-card-content>

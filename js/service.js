@@ -7,16 +7,30 @@ var moment = require('moment');
 export default function(base) {
 	base.service('$cptStorage', ['Restangular', function(Restangular){
 		var serviceObject = {
+
+            reset_all: function() {
+                serviceObject.room.reset();
+                serviceObject.storage_type.reset();
+                serviceObject.box.reset();
+                serviceObject.shelf = null;
+                serviceObject.tube_label = null;
+                serviceObject.storage_type.type = 0;
+            },
+
 			room: {
 				selectedItem: null,
 				searchText: null,
 				querySearch: function(queryString) {
-					return Restangular.all("lims").customGET("storage/rooms", {room: queryString}).then(function(data) {
+					return Restangular.all("lims").customGET("storage/rooms", {room: serviceObject.room.searchText}).then(function(data) {
 						return data.results;
 					});
 				},
 				selectedItemChange: function(item) {
 				},
+                reset: function() {
+                    serviceObject.room.searchText = null;
+                    serviceObject.room.selectedItem = null;
+                },
 			},
 
 			storage_type: {
@@ -60,7 +74,7 @@ export default function(base) {
 					// Fridge / Freezer  | type
 					type: serviceObject.storage_type.type,
 					// Fridge Name       | container_label
-					container_label: serviceObject.storage_type.selectedItem ? serviceObject.storage_type.selectedItem.type : serviceObject.storage_type.searchText,
+					container_label: serviceObject.storage_type.selectedItem ? serviceObject.storage_type.selectedItem.container_label : serviceObject.storage_type.searchText,
 					// Shelf/Rack        | shelf
 					shelf: serviceObject.shelf,
 					// Box Label         | box
@@ -151,7 +165,7 @@ export default function(base) {
 					markers[sample.id.replace(/-/g, '_')] = {
 						lat: sample.location_xy[1],
 						lng: sample.location_xy[0],
-						message: "<b>Environmental Sample</b><br />Type: " + sample.sample_type.name + "<br />Desc: " + sample.description + "<hr/>Collected by: " + collected_by + "<br/>Collected: " + moment(sample.collection).calendar(),
+						message: "<b>Environmental Sample</b><br />Type: " + sample.sample_type + "<br />Desc: " + sample.description + "<hr/>Collected by: " + collected_by + "<br/>Collected: " + moment(sample.collection).calendar(),
 						focus: false,
 						draggable: false,
 					};

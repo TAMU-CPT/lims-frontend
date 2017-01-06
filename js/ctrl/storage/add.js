@@ -3,6 +3,19 @@ export default function(base) {
         function($scope, $location, $routeParams, Restangular, $mdLoginToast) {
             $scope.shelf;
             $scope.tube_label;
+            $scope.clear_form = function() {
+                if ($scope.StorageForm) {
+                    $scope.reset_all();
+                }
+            };
+
+            $scope.reset_all = function() {
+                $scope.room.reset();
+                $scope.storage_type.reset();
+                $scope.box.reset();
+                $scope.shelf = null;
+                $scope.tube_label = null;
+            };
 
             $scope.room = {
                 selectedItem: null,
@@ -13,6 +26,10 @@ export default function(base) {
                     });
                 },
                 selectedItemChange: function(item) {
+                },
+                reset: function() {
+                    $scope.room.searchText = null;
+                    $scope.room.selectedItem = null;
                 },
             };
 
@@ -43,6 +60,7 @@ export default function(base) {
                     });
                 },
                 selectedItemChange: function(item) {
+                    console.log($scope.StorageForm);
                 },
                 reset: function() {
                     $scope.box.searchText = null;
@@ -82,6 +100,5 @@ export default function(base) {
                     $mdLoginToast.show("Error");
                 });
             };
-
         }]);
 }

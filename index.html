@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en" ng-app="base">
-<head>
+<head ng-controller="NavCtrl">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="manifest" href="manifest.json">
-    <title>LIMS Frontend</title>
+    <title ng-cloak>LIMS Frontend {{version}}</title>
 
     <style>
         a { text-decoration: none; }
@@ -15,7 +15,7 @@
         <md-toolbar ng-cloak>
             <div class="md-toolbar-tools">
                 <h2>
-                    <span class="md-title"><a href="#/">LIMS Frontend</a></span>
+                    <span class="md-title"><a href="#/">LIMS Frontend {{version}}</a></span>
                 </h2>
                 <span flex></span>
                 <md-button aria-label="report bug" ng-if="nav.userData.username" ng-click="showDialog($event)">

@@ -6,7 +6,7 @@
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
-            <form name="StorageForm" ng-submit="saveData()" novalidate>
+            <form name="StorageForm" ng-submit="saveData()" novalidate ng-init="clear_form()">
                 <div layout="row">
                     <md-autocomplete md-no-asterisk required flex="50"
                             md-input-name="room"
@@ -28,7 +28,7 @@
                 </div>
                 <div layout="row">
                     <md-input-container>
-                        <md-select md-no-cache="true" name="storage_type" ng-model="storage.storage_type.type" placeholder="Fridge/Freezer">
+                        <md-select md-no-cache="true" name="storage_type" ng-model="storage_type.type" placeholder="Fridge/Freezer">
                             <md-option ng-repeat="type in storage_type.types" ng-value="type">{{type | storage_type_to_text}}</md-option>
                         </md-select>
                     </md-input-container>
