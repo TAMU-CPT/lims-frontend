@@ -1,6 +1,7 @@
 <ng-form name="StorageForm" novalidate>
 	<div layout="row">
 		<md-autocomplete flex
+                md-input-name="room"
                 md-no-asterisk required
 				md-selected-item="storage.room.selectedItem"
 				md-search-text="storage.room.searchText"
@@ -20,6 +21,7 @@
 			</md-select>
 		</md-input-container>
 		<md-autocomplete flex
+                md-input-name="container_label"
                 md-no-asterisk required
 				md-selected-item="storage.storage_type.selectedItem"
 				md-search-text="storage.storage_type.searchText"
@@ -38,6 +40,7 @@
 			<input md-no-asterisk name="shelf" ng-model="storage.shelf"/>
 		</md-input-container>
 		<md-autocomplete
+                md-input-name="box_label"
                 md-no-asterisk required
 				md-selected-item="storage.box.selectedItem"
 				md-search-text="storage.box.searchText"
