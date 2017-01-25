@@ -12,10 +12,15 @@
 	  workflow. This is perfectly tractable, we can build multiple interfaces
 	  on top of the same infrastructure, tailored to different needs that are
 	  all present within the organisation.
+	- This model addresses a specific issue: not being able to declare (without
+	  much archival data searching) where a specific phage came from.
 - Environmental Sample Collections
 	- These were something that are not well tracked, and not in public
 	  datasets, but due to their use in health products, we absolutely must
 	  track which environmental samples the phages came from.
+	- This model addresses a specific issue: we did not visibly track which
+	  phages went into which samples. They were in spreadsheets not accessible
+	  to relevant parties.
 - Bioproject
 	- This is just an overall tracking module for bringing together all facets
 	  of research progress on a specific project in one location for easy
@@ -82,6 +87,7 @@
 	- This is crucial information that we report in the GenomeA paper but is
 	  specified only in a small fraction (<10%?) of records in our existing
 	  databases.
+	- This model addresses a specific issue: not knowing the sequencing methods used because they were stored in someone's memory/lab notebook.
 - Experimental Result
 	- This model captures the results of an experiment.
 	- Likewise, end users will not see or deal with this model very often directly
@@ -111,12 +117,15 @@
 		- copy and pasting code which provides significant room for typos and other errors
 		- **spreadsheets were hidden on peoples computers and hard to find during accessing archival data**
 		- This spreadhseets all ran the same calculations
-	- The model addresses these problems:
+	- The model addresses these specific problems:
 		- The sequencing data is avialable online by default, it is now
-		  impossible to lose sequencing data. I do not personally have
-		  to dig through old PC hard drives to find where Bob the Dunce
+		  impossible to lose sequencing data. Unlike the past, I will not personally have
+		  to dig through old PC hard drives to find where Joe Aggie
 		  decided to stick his sequencing spreadsheet. I can easily find
 		  it because they're all in one place with uniform display.
+		- This has been an issue in the past. I could not find records of
+		  phages being sequenced due to name changes and not being able to find
+		  the spreadsheets for various year.
 		- They capture all of the information online, because we are
 		  building the infrastructure to plan sequencing runs as well as
 		  process results: This is not just a spreadsheet with pools,
@@ -183,5 +192,3 @@
 	- This would significantly reduce burden on writers and on viewing, as we
 	  can transparently display the current gene numbers and adjust them in the
 	  final version.
-	
-
