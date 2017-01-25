@@ -137,6 +137,19 @@
 	  been able to track down their contigs. We do not know the end
 	  closure status because it was maintained in separatespread
 	  sheets**
+	- We choose to track things like DNA concentration and provide the same
+	  tables of data that are in the existing sequencing spreadsheets to reduce
+	  friction for end users. While it is unlikely people will immediately
+	  adopt the web version, we can provide significant value add by using it.
+	  This is projected as a future need, the problems I have encountered in
+	  the past have not necessitated the addition of these fields, they simply
+	  would provide a better user experience.
+	- The addition of a web based interface for building pools, however,
+	  addresses specific issues: users cross referencing phages (and their
+	  hosts, possible restriction digest data) when considering which phages
+	  should go in which pools. This is all contextual information already
+	  stored by our system, thus provides a significantly streamlined
+	  experience for sequencing czars.
 - Sequencing Run Pool / Sequencing Run Pool Item
 	- These follow from needing a Sequencing Run model.
 	- They significantly streamline the process:
