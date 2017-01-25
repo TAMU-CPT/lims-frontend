@@ -1,11 +1,13 @@
 # LIMS
 
-CPT Lab Information Management System
+CPT Lab Information Management System + Phage Database + ...
 
 This system will track biological samples from collection through sequencing,
 annotation, and publishing.
 
-TODO List:
+Please see the [Design Doc](./DESIGN.md) for ideas of why we did specific things.
+
+## TODO List
 
 
 - [x] Can we automatically build a Database Schema Map? Is there a python
@@ -52,11 +54,7 @@ TODO List:
 	- [ ] When number of samples in collection = 1, then it is identical to the environmental sample detial route
 	- [ ] When >1, then we show multiple pins on a map.
 	- [ ] Maybe if we have this ruote, we don't need EnvSample detail route?
-- [ ] Boxes
-	- [ ] Create
-	- [ ] Edit
-	- [ ] Delete
-- [ ] Storage Location (Fridge)
+- [ ] Storage Location
 	- [ ] Create
 	- [ ] Edit
 	- [ ] Delete
@@ -88,7 +86,7 @@ TODO List:
 	- [ ] Delete
 	- Collection of samples (PhageDNAPrep) in, split into pools, output as assemblies
 	- [ ] UI should allow adding samples easily + re-arranging into pools
-- [ ] Bacteria
+- [x] Bacteria
 	- [ ] Create
 	- [ ] Edit
 	- [ ] Delete
