@@ -5,7 +5,7 @@ var moment = require('moment');
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.service('$cptStorage', ['Restangular', function(Restangular){
+	base.service('$cptStorage', ['Restangular', '$mdLoginToast', function(Restangular, $mdLoginToast){
 		var serviceObject = {
 
             reset_all: function() {
