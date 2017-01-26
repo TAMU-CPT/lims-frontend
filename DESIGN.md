@@ -19,7 +19,7 @@
 	  datasets, but due to their use in health products, we absolutely must
 	  track which environmental samples the phages came from.
 	- This model addresses a specific issue: we did not visibly track which
-	  phages went into which samples. They were in spreadsheets not accessible
+	  samples constituted which phages. They were in spreadsheets not accessible
 	  to relevant parties.
 - Bioproject
 	- This is just an overall tracking module for bringing together all facets
