@@ -33,6 +33,10 @@
 	  previous administrator of a project to collect up possibly disparate
 	  pieces of data (when they are not organised) and share this with the new
 	  person. The lab version of "technical debt".
+	- This addresses a specific issue of inheriting projects and legacy
+	  projects. I inherited a lot of legacy data from previous lab members and
+	  was at a loss for how to make sense of it all, and how to find the bits
+	  that they forgot to include.
 	- The response is a single, unified interface to a project that touches
 	  phages. Given that the underlying data is shared/shareable, users can
 	  easily add phages to their project and instanaeously have access to all
@@ -133,10 +137,10 @@
 		  results.
 		- The code is identical on every page, and **auditable** for mistakes.
 	- With the past, **we have lost phages because we could not find the
-	  sequencing run spreadsheet which mentioned their sequencing, and
+	  sequencing run spreadsheet** which mentioned their sequencing, and
 	  been able to track down their contigs. We do not know the end
-	  closure status because it was maintained in separatespread
-	  sheets**
+	  closure status because it was maintained in separate spread
+	  sheets
 	- We choose to track things like DNA concentration and provide the same
 	  tables of data that are in the existing sequencing spreadsheets to reduce
 	  friction for end users. While it is unlikely people will immediately
