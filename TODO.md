@@ -34,3 +34,14 @@
 	- Add NCBI BioProject field
 	- Use this data when calling the post-processing pipeline from LIMS to Galaxy
 - Verify that ALL search boxes have timeouts on them
+
+
+# asdf
+
+- 5pm today have stuff working for jason
+- 2 weeks from now we have envsample + lysate for class.
+- enter bits and pieces
+- import data from google sheets
+- special galaxy account?
+- backup histories to data libraries
+- import PCR data
