@@ -1,4 +1,4 @@
-# LIMS
+# LIMS [![Docker Repository on Quay](https://quay.io/repository/tamu_cpt/lims-frontend/status "Docker Repository on Quay")](https://quay.io/repository/tamu_cpt/lims-frontend)
 
 CPT Lab Information Management System + Phage Database + ...
 

@@ -1,6 +1,6 @@
 {
   "name": "frontend-test",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "LIMS Frontend",
   "main": "index.html",
   "repository": {
