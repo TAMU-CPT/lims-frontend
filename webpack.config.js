@@ -5,13 +5,11 @@ module.exports = {
 	output: {
 		path: __dirname + "/build",
 		filename: "app.js",
-		publicPath: "/build",
 	},
 	module: {
 		loaders: [
-			{test: /\.(png|gif|ttf|eot|svg|woff|woff2)(\?[a-z0-9]+)?$/, loader: "file-loader"},
+			{test: /\.css$/, loader: "style!css?sourceMap"},
 			{test: /\.(png|gif|ttf|eot|svg|woff|woff2)(\?[a-z0-9=.]+)?$/, loader: "file-loader"},
-			{test: /\.css$/, loader: "style!css"},
 			{test: /\.jsx?$/, exclude: /(node_modules|bower_components)/, loader: "babel"},
 			{test: /node_modules[\\\/]admin-config[\\\/].*\.jsx?$/, loader: "babel"},
 			{test: /\.html$/, loader: "html"},
