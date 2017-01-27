@@ -1,0 +1,65 @@
+<md-dialog aria-label="About">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>About</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+			X
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+			<h3>Metadata</h3>
+			<md-table-container>
+				<table md-table>
+					<tbody md-body>
+						<tr md-row>
+							<td md-cell>Project Name</td>
+							<td md-cell>{{ metadata.name }}</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>Version</td>
+							<td md-cell>{{ metadata.version }}</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>Repository</td>
+							<td md-cell>
+								<a target="_blank" href="{{metadata.repository.url}}">
+								{{ metadata.repository.url }}
+								</a>
+							</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>Author</td>
+							<td md-cell>{{ metadata.author }}</td>
+						</tr>
+						<tr md-row>
+							<td md-cell>License</td>
+							<td md-cell>
+								<a href="https://spdx.org/licenses/{{ metadata.license }}.html">
+								{{ metadata.license }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+			<h3>Dependencies</h3>
+			<ul>
+				<li ng-repeat="(k, v) in metadata.dependencies" style="font-family: monospace">
+					{{ k }}=={{ v }}
+				</li>
+				<li ng-repeat="(k, v) in metadata.devDependencies" style="font-family: monospace">
+					{{ k }}=={{ v }}
+				</li>
+			</ul>
+			<md-table-container>
+				<table md-table>
+					<tbody md-body>
+					</tbody>
+				</table>
+			</md-table-container>
+      </div>
+    </md-dialog-content>
+</md-dialog>

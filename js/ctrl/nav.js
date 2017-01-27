@@ -3,12 +3,12 @@
  * @param {object} base Base angular application object
  */
 
-var version = require("json-loader!../../package.json");
+var metadata = require("json-loader!../../package.json");
 
 export default function(base) {
 	base.controller("NavCtrl", ["$scope", "$mdSidenav", "$localStorage", "$location", "$interval", "$mdDialog", "Raven",
 		function($scope, $mdSidenav, $localStorage, $location, $interval, $mdDialog, Raven) {
-            $scope.version = version.version;
+			$scope.metadata = metadata;
 			$scope.nav = {};
 			$scope.nav.userData = $localStorage.jwtData;
 
@@ -33,27 +33,59 @@ export default function(base) {
 				// else { $location.path(route); }
 			};
 
-            $scope.showDialog = function($event) {
-                $mdDialog.show({
-                    parent: angular.element(document.body),
-                    targetEvent: $event,
-                    clickOutsideToClose: true,
-                    templateUrl: 'partials/bug-report.html',
-                    controller: DialogController
-            });
+			$scope.showDialog = function($event) {
+				$mdDialog.show({
+					parent: angular.element(document.body),
+					targetEvent: $event,
+					clickOutsideToClose: true,
+					templateUrl: 'partials/bug-report.html',
+					controller: DialogController
+				});
 
-                function DialogController($scope, $mdDialog) {
-                    $scope.closeDialog = function() {
-                        $mdDialog.cancel();
-                    }
-                    $scope.sendBug = function() {
-                        Raven.captureMessage($scope.bugreport, {
-                            level: 'info'
-                        });
-                        $scope.closeDialog();
-                    }
-                };
-            };
+				function DialogController($scope, $mdDialog) {
+					$scope.closeDialog = function() {
+						$mdDialog.cancel();
+					}
+					$scope.sendBug = function() {
+						Raven.captureMessage($scope.bugreport, {
+							level: 'info'
+						});
+						$scope.closeDialog();
+					}
+				};
+			};
+
+			$scope.showAbout = function() {
+				$scope.closeDialog = function() {
+					$mdDialog.cancel();
+				}
+
+				$mdDialog.show({
+					parent: angular.element(document.body),
+					clickOutsideToClose: true,
+					templateUrl: 'partials/about.html',
+					scope: $scope,
+				});
+
+
+
+            //$scope.choice_popup = function(ev) {
+                //$mdDialog.show({
+                    //contentElement: '#search_by',
+                    //parent: angular.element(document.body),
+                    //clickOutsideToClose: true
+                //});
+            //};
+
+            //$scope.cancel = function() {
+                //$mdDialog.cancel();
+            //};
+
+
+
+
+
+			};
 
 			// $scope.get_notifications = function() {
 				// NotificationBackend.all('inbox').getList().then(function(data) {

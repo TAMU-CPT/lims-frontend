@@ -1,11 +1,11 @@
 {
-  "name": "frontend-test",
-  "version": "0.1.0",
+  "name": "LIMS Frontend",
+  "version": "0.2.0",
   "description": "LIMS Frontend",
   "main": "index.html",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TAMU-CPT/frontend-test"
+    "url": "https://github.com/TAMU-CPT/lims-frontend"
   },
   "devDependencies": {
     "admin-config": "^0.4.0",

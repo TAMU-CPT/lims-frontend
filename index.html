@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="manifest" href="manifest.json">
-    <title ng-cloak>LIMS Frontend {{version}}</title>
+    <title ng-cloak>LIMS Frontend {{metadata.version}}</title>
 
     <style>
         a { text-decoration: none; }
@@ -15,9 +15,13 @@
         <md-toolbar ng-cloak>
             <div class="md-toolbar-tools">
                 <h2>
-                    <span class="md-title"><a href="#/">LIMS Frontend {{version}}</a></span>
+					<span class="md-title"><a href="#/">LIMS Frontend <span class="md-accent">{{metadata.version}}</span></a></span>
                 </h2>
                 <span flex></span>
+                <md-button aria-label="about" ng-click="showAbout($event)">
+                    <i class="mdi mdi-info" style="font-size: 130%"></i>
+                    About
+                </md-button>
                 <md-button aria-label="report bug" ng-if="nav.userData.username" ng-click="showDialog($event)">
                     <i class="mdi mdi-bug" style="font-size: 130%"></i>
                     Report Bug
