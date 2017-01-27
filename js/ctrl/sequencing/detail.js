@@ -108,6 +108,7 @@ export default function(base) {
 
 			Restangular.one("lims/sequencingruns", $routeParams.sequencingrunID).get().then(function(data) {
 				$scope.sequencingrun = data;
+				$scope.models.lists = $scope.sequencingrun.sequencingrunpool_set;
 				$scope.owner_set = [$scope.sequencingrun.owner];
 			});
 		}]);
