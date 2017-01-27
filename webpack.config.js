@@ -5,6 +5,7 @@ module.exports = {
 	output: {
 		path: __dirname + "/build",
 		filename: "app.js",
+		publicPath: "/build/",
 	},
 	module: {
 		loaders: [
