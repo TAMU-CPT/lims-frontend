@@ -1,5 +1,5 @@
 {
-  "name": "LIMS Frontend",
+  "name": "lims-frontend",
   "version": "0.2.0",
   "description": "LIMS Frontend",
   "main": "index.html",
