@@ -59,3 +59,7 @@ md-input-container.fix-search > input{
 	width: inherit;
 }
 
+// Stop buttons from shouting at us
+button {
+	text-transform: none!important;
+}
