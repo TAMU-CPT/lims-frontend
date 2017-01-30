@@ -14,20 +14,19 @@
 					<li>Are free to sequence the sample, assemble it, and store the sequencing data in the CPT's Galaxy for downstream analyses.</li>
 				</ul>
 			</p>
-			<div ng-if="dnaprep.sequencingrunpoolitem" class="md-whiteframe-1dp md-padding">
-				<b>Note:</b>
-				<p>
-				This particular DNA prep was already submitted for
-				sequencing as part of [TODO].
-				</p>
-				<p>
-				Our model currently does not support multiple sequencing
-				runs of a single phage DNA preparation, and assumes
-				re-sequencing will require a new DNA prep. If this is
-				not true, please <a target="_blank" href="https://github.tamu.edu/CPT/lims/issues/new">file an issue</a>.
-				If this is correct, please also file an issue and we will remove this notice.
-				</p>
-			</div>
+
+			<md-card ng-if="dnaprep.sequencingrunpoolitem_set.length" md-colors="::{backgroundColor: 'default-warn-500'}">
+				<md-card-content>
+					<b>Note:</b>
+					<p>
+					This particular DNA prep was already submitted for
+					sequencing as part of:
+					</p>
+					<div ng-repeat="srpi in dnaprep.sequencingrunpoolitem_set">
+						<md-button ng-click="go.sequencing(srpi.run.id)">Sequencing Run {{ srpi.run.name }} ({{ srpi.run.date }})</md-button>
+					</div>
+				</md-card-content>
+			</md-card>
 			<div>
 				<md-button class="md-raised md-primary" style="width: 100%" ng-disabled="submit_disabled || dnaprep.sequencingrunpoolitem" ng-click="request()">Request Sample Sequencing</md-button>
 			</div>

@@ -75,7 +75,9 @@
 						</md-autocomplete>
 						<md-chip-template>
 							<span>
-								{{ $chip }}
+								<a ng-href="#/bacteria/{{ $chip.id }}/">
+									<i>{{$chip.genus}} {{$chip.species}}</i> {{$chip.strain}}
+								</a>
 							</span>
 						</md-chip-template>
 					</md-chips>
@@ -103,6 +105,7 @@
 				</div>
 			</md-card-title-media>
 		</md-card>
+
 	</div>
 	<div flex=60 layout="column">
 
@@ -160,7 +163,12 @@
 								<td md-cell>
 									<md-button style="text-transform: none!important" class="md-raised" ng-click="go.sequencing_request(dnaprep.id)">
 										<i class="mdi mdi-dna" style="font-size: 100%"></i>
+										<span ng-if="TODO_RESEQUENCING">
+										Request Re-sequencing
+										</span>
+										<span ng-if="!TODO_RESEQUENCING">
 										Request Sequencing
+										</span>
 									</md-button>
 								</td>
 							</tr>
@@ -188,12 +196,18 @@
 								<td md-cell>L{{ phage.data.lysate.phage.id }}</td>
 							</tr>
 							<tr md-row ng-if="phage.data.lysate.oldid">
+								<td md-cell>Isolation</td>
+								<td md-cell>{{ phage.data.lysate.isolation | human_time_abs }}</td>
+							</tr>
+							<tr md-row ng-if="phage.data.lysate.oldid">
 								<td md-cell>Old ID</td>
 								<td md-cell>{{ phage.data.lysate.oldid }}</td>
 							</tr>
 							<tr md-row>
 								<td md-cell>Originally Isolated Against</td>
-								<td md-cell><div ng-bind-html="phage.data.lysate.host | host_formatter"></div></td>
+								<td md-cell>
+									<div ng-bind-html="phage.data.lysate.host | host_formatter"></div>
+								</td>
 							</tr>
 							<tr md-row>
 								<td md-cell>Storage</td>
