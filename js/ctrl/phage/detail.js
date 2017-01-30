@@ -19,11 +19,14 @@ export default function(base) {
 				edit_data_save: function() {
 					// Update previous names if primary_name has changed
 					console.log($scope.phage.data);
+					console.log($scope.phage.original_data);
 					if($scope.phage.data.primary_name != $scope.phage.original_data.primary_name) {
 						console.log("Changed " + $scope.phage.original_data.primary_name + " -> " + $scope.phage.data.primary_name);
+
 						let hist_names = $scope.phage.original_data.historical_names.split(",").map(function(x) {
 							return x.trim();
 						});
+
 						if(hist_names.indexOf($scope.phage.original_data.primary_name) == -1) {
 							hist_names.push($scope.phage.original_data.primary_name);
 						}
@@ -36,12 +39,12 @@ export default function(base) {
 						console.log("New host");
 					}
 
-
 					$scope.phage.data.save().then(function(resp) {
 						$scope.phage.data.host_lims = resp.host_lims;
+						// Only do on success
+						$scope.phage.original_data = angular.copy($scope.phage.data);
+						$scope.phage.disabled = true;
 					});
-					$scope.phage.original_data = angular.copy($scope.phage.data);
-					$scope.phage.disabled = true;
 				},
 
 				edit_data_cancel: function() {
@@ -50,35 +53,37 @@ export default function(base) {
 				},
 			};
 
-			//$scope.ctrl = {
-				//transformChip(chip) {
-					//// If it is an object, it's already a known chip
-					//if (angular.isObject(chip)) {
-						//return chip;
-					//};
+			$scope.ctrl = {
+				transformChip(chip) {
+					// If it is an object, it's already a known chip
+					if (angular.isObject(chip)) {
+						return chip;
+					};
+					console.log(chip);
 
-					//// Otherwise, create a new one
-					//let parts = chip.split(" ");
-					//return {
-						//genus: parts[0],
-						//species: parts[1],
-						//strain: parts.slice(2).join(" "),
-					//};
-				//},
-				//selectedItem: null,
-				//searchText: null,
-				//querySearch: function(queryString) {
-					//return Restangular.all("lims").customGET("bacterias", {name: queryString}).then(function(data) {
-						//return data.results;
-					//});
-				//},
-			//};
+					// Otherwise, create a new one
+					let parts = chip.split(" ");
+					return {
+						genus: parts[0],
+						species: parts[1],
+						strain: parts.slice(2).join(" "),
+					};
+				},
+				selectedItem: [],
+				searchText: null,
+				querySearch: function(queryString) {
+					return Restangular.all("lims").customGET("bacterias", {full: queryString}).then(function(data) {
+						return data.results;
+					});
+				},
+			};
 
 
 			$scope.promise = Restangular.one("lims/phages", $routeParams.phageID).get().then(function(data) {
-				$scope.data = data;
-				$scope.map = $mapHandler.calculateMap(data.lysate.env_sample_collection.env_sample);
+				$scope.phage.data = data;
 				$scope.phage.original_data = angular.copy(data);
+				// TODO: fix this which fails
+				$scope.map = $mapHandler.calculateMap(data.lysate.env_sample_collection.env_sample);
 			});
 		}]);
 }

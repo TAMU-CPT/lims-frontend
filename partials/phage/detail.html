@@ -13,7 +13,7 @@
 			<md-toolbar layout="row" class="md-hue-1">
 				<div class="md-toolbar-tools phage-card" flex>
 					<span class="md-title-prefix">Phage&nbsp;</span>
-					<span class="md-title">{{ data.primary_name }}</span>
+					<span class="md-title">{{ phage.data.primary_name }}</span>
 					<span flex></span>
 					<!-- TODO: Show if user -->
 					<md-button class="md-icon-button" aria-label="Edit User Information" ng-click="phage.edit_data()" ng-if="phage.disabled">
@@ -28,10 +28,10 @@
 				</div>
 			</md-toolbar>
 
-			<md-card-header ng-if="disabled && data.historical_names" style="-bottom:0px">
+			<md-card-header ng-if="disabled && phage.data.historical_names" style="-bottom:0px">
 				<md-card-header-text>
 					<span flex class="md-subhead">
-						Historically known as: {{ data.historical_names }}
+						Historically known as: {{ phage.data.historical_names }}
 					</span>
 				</md-card-header-text>
 			</md-card-header>
@@ -39,17 +39,17 @@
 				<div layout="column">
 					<md-input-container flex ng-if="!phage.disabled">
 						<label>Name</label>
-						<input ng-disabled="phage.disabled" ng-model="data.primary_name">
+						<input ng-disabled="phage.disabled" ng-model="phage.data.primary_name">
 					</md-input-container>
 
 					<md-input-container flex ng-if="!phage.disabled">
 						<label>Historical Names</label>
-						<input ng-disabled="phage.disabled" ng-model="data.historical_names">
+						<input ng-disabled="phage.disabled" ng-model="phage.data.historical_names">
 					</md-input-container>
 
 					<md-input-container flex ng-if="!phage.disabled">
 						<label>Morphology</label>
-						<md-select name="morphology" ng-model="data.morphology">
+						<md-select name="morphology" ng-model="phage.data.morphology">
 							<md-option value="0">Unknown</md-option>
 							<md-option value="1">Podophage</md-option>
 							<md-option value="2">Myophage</md-option>
@@ -62,12 +62,11 @@
 					<h3>Hosts</h3>
 
 					<md-chips
-						ng-model="data.host_lims"
+						ng-model="phage.data.host_lims"
 						readonly="phage.disabled"
 						md-transform-chip="ctrl.transformChip($chip)"
 						md-require-match="false">
 						<md-autocomplete
-							md-selected-item="ctrl.selectedItem"
 							md-search-text="ctrl.searchText"
 							md-items="item in ctrl.querySearch(ctrl.searchText)"
 							md-item-text="item.genus"
@@ -76,9 +75,7 @@
 						</md-autocomplete>
 						<md-chip-template>
 							<span>
-								<a ng-href="#/bacteria/{{ $chip.id }}/">
-									<i>{{$chip.genus}} {{$chip.species}}</i> {{$chip.strain}}
-								</a>
+								{{ $chip }}
 							</span>
 						</md-chip-template>
 					</md-chips>
@@ -101,8 +98,8 @@
 				</div>
 			</md-toolbar>
 			<md-card-title-media>
-				<div class="md-media-md card-media">
-					<img src="http://placekitten.com/g/500/500" />
+				<div class="md-media-md card-media md-padding">
+					Coming soon: TEM Images
 				</div>
 			</md-card-title-media>
 		</md-card>
@@ -128,7 +125,7 @@
 				<md-table-container>
 					<table md-table>
 						<tbody md-body>
-							<tr md-row ng-repeat="dnaprep in data.phagednaprep_set">
+							<tr md-row ng-repeat="dnaprep in phage.data.phagednaprep_set">
 								<td md-cell>{{ dnaprep.added | human_time_abs }}</td>
 								<td md-cell>
 									<storage-badge location="dnaprep.storage"></storage-badge>
@@ -142,10 +139,10 @@
 
 		<progress-arrow></progress-arrow>
 
-		<md-button class="md-raised md-primary" ng-if="!data.phagednaprep_set.length" ng-click="go.dnaprep_create(data.id)">
+		<md-button class="md-raised md-primary" ng-if="!phage.data.phagednaprep_set.length" ng-click="go.dnaprep_create(phage.data.id)">
 			DNA Prep Missing
 		</md-button>
-		<md-card class="dnaprep-card" ng-if="data.phagednaprep_set.length">
+		<md-card class="dnaprep-card" ng-if="phage.data.phagednaprep_set.length">
 			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
 					<span class="md-title">Phage DNA Preps</span>
@@ -155,7 +152,7 @@
 				<md-table-container>
 					<table md-table>
 						<tbody md-body>
-							<tr md-row ng-repeat="dnaprep in data.phagednaprep_set">
+							<tr md-row ng-repeat="dnaprep in phage.data.phagednaprep_set">
 								<td md-cell>{{ dnaprep.added | human_time_abs }}</td>
 								<td md-cell>
 									<storage-badge location="dnaprep.storage"></storage-badge>
@@ -175,7 +172,7 @@
 
 		<progress-arrow></progress-arrow>
 
-		<md-card class="lysate-card" ng-if="data.lysate">
+		<md-card class="lysate-card" ng-if="phage.data.lysate">
 			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
 					<span class="md-title">Lysate</span>
@@ -188,20 +185,20 @@
 						<tbody md-body>
 							<tr md-row>
 								<td md-cell>ID</td>
-								<td md-cell>L{{ data.lysate.phage.id }}</td>
+								<td md-cell>L{{ phage.data.lysate.phage.id }}</td>
 							</tr>
-							<tr md-row ng-if="data.lysate.oldid">
+							<tr md-row ng-if="phage.data.lysate.oldid">
 								<td md-cell>Old ID</td>
-								<td md-cell>{{ data.lysate.oldid }}</td>
+								<td md-cell>{{ phage.data.lysate.oldid }}</td>
 							</tr>
 							<tr md-row>
 								<td md-cell>Originally Isolated Against</td>
-								<td md-cell><div ng-bind-html="data.lysate.host | host_formatter"></div></td>
+								<td md-cell><div ng-bind-html="phage.data.lysate.host | host_formatter"></div></td>
 							</tr>
 							<tr md-row>
 								<td md-cell>Storage</td>
 								<td md-cell>
-									<storage-badge location="data.lysate.storage"></storage-badge>
+									<storage-badge location="phage.data.lysate.storage"></storage-badge>
 								</td>
 							</tr>
 						</tbody>
@@ -209,49 +206,54 @@
 				</md-table-container>
 			</md-card-content>
 		</md-card>
-		<md-button class="md-raised md-primary" ng-if="!data.lysate">
+		<md-button class="md-raised md-primary" ng-if="!phage.data.lysate">
 			Lysate Data Missing
 		</md-button>
 
 		<progress-arrow></progress-arrow>
 
-		<md-card class="env-sample-card" ng-if="data.lysate.env_sample_collection">
+		<md-card class="env-sample-card" ng-if="phage.data.lysate.env_sample_collection">
 			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
 					<span class="md-title">Environmental Sample</span>
 				</div>
 			</md-toolbar>
-			<md-card-content>
-				<h3>Samples</h3>
+			<md-card-content flex layout="column">
+				<div flex layout="row" layout-align="space-between center">
+					<h3>Samples</h3>
+					<storage-badge location="phage.data.lysate.env_sample_collection.storage"></storage-badge>
+				</div>
 
-				<leaflet width="100%" height="299px" markers="map.markers" maxbounds="map.maxbounds" lf-center="map.center"></leaflet>
+				<leaflet ng-if="map.markers.length" width="100%" height="299px" markers="map.markers" maxbounds="map.maxbounds" lf-center="map.center"></leaflet>
 
 				<md-table-container>
 					<table md-table md-progress="promise">
 						<thead md-head>
 							<tr md-row>
+								<th md-column>Collector</th>
 								<th md-column>Type</th>
-								<th md-column>Description</th>
+								<th md-column>Collection Date</th>
 								<th md-column>Collection Location</th>
-								<th md-column>Tube</th>
+								<th md-column>Description</th>
 							</tr>
 						</thead>
 						<tbody md-body>
-							<!-- TODO: -->
-							<tr md-row ng-repeat="env_sample in data.lysate.env_sample_collection.env_sample">
-								<td md-cell>{{ env_sample.sample_type }}</td>
-								<td md-cell>{{ env_sample.description }}</td>
-								<td md-cell>{{ env_sample.collection | human_time_abs }}</td>
+							<tr md-row ng-repeat="env_sample in phage.data.lysate.env_sample_collection.env_sample">
 								<td md-cell>
-									TODO
+									{{ env_sample.id }}
 								</td>
+								<td md-cell><user-chip user="env_sample.collected_by"></user-chip></td>
+								<td md-cell>{{ env_sample.sample_type || "Unknown" }}</td>
+								<td md-cell>{{ env_sample.collection | human_time_abs }}</td>
+								<td md-cell>{{ env_sample.location_xy || "Unknown"}}</td>
+								<td md-cell>{{ env_sample.description }}</td>
 							</tr>
 						</tbody>
 					</table>
 				</md-table-container>
 			</md-card-content>
 		</md-card>
-		<md-button class="md-raised md-primary" ng-if="!data.lysate.env_sample_collection">
+		<md-button class="md-raised md-primary" ng-if="!phage.data.lysate.env_sample_collection">
 			Environmental Sample Data Missing
 		</md-button>
 
