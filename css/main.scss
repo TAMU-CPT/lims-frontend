@@ -49,3 +49,13 @@ div.dndPlaceholder {
 	color: #999999;
 	text-align: center;
 }
+
+// Fix search going off page / having stupid big margins.
+md-input-container.fix-search {
+	margin: 0px;
+}
+
+md-input-container.fix-search > input{
+	width: inherit;
+}
+
