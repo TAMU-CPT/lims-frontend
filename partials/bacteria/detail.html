@@ -1,26 +1,83 @@
-<div layout="row" layout-align="center center">
-	<md-card>
-		<md-card-header>
-			<md-card-header-text>
-				<span class="md-title">Bacteria</span>
-				<span flex class="md-subhead">{{bacteria.id}}</span>
-			</md-card-header-text>
-		</md-card-header>
-		<md-card-content>
+<div layout="row" layout-align="center start">
+	<md-card flex="30">
+		<md-toolbar layout="row" class="md-hue-2">
+			<div class="md-toolbar-tools bact-card" flex>
+				<span class="md-title" ng-bind-html="bact.data | host_formatter"></span>
+				<span flex></span>
+				<!-- TODO: Show if user -->
+				<md-button class="md-icon-button" aria-label="Edit User Information" ng-click="bact.edit_data()" ng-if="bact.disabled">
+					<ng-md-icon icon="edit"></ng-md-icon>
+				</md-button>
+				<md-button class="md-icon-button" aria-label="Save Changes" ng-click="bact.edit_data_save()" ng-if="!bact.disabled">
+					<ng-md-icon icon="save"></ng-md-icon>
+				</md-button>
+				<md-button class="md-icon-button" aria-label="Cancel Changes" ng-click="bact.edit_data_cancel()" ng-if="!bact.disabled">
+					<ng-md-icon icon="cancel"></ng-md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
+		<md-card-content ng-if="!bact.disabled">
 			<div layout="column">
 				<md-input-container flex>
-					<label>strain</label>
-					<input disabled ng-model="bacteria.strain">
-				</md-input-container>
-				<md-input-container flex>
 					<label>genus</label>
-					<input disabled ng-model="bacteria.genus">
+					<input ng-disabled="bact.disabled" ng-model="bact.data.genus">
 				</md-input-container>
+
 				<md-input-container flex>
 					<label>species</label>
-					<input disabled ng-model="bacteria.species">
+					<input ng-disabled="bact.disabled" ng-model="bact.data.species">
 				</md-input-container>
+
+				<md-input-container flex>
+					<label>strain</label>
+					<input ng-disabled="bact.disabled" ng-model="bact.data.strain">
+				</md-input-container>
+
 			</div>
+		</md-card-content>
+	</md-card>
+
+	<md-card flex="70">
+		<md-card-title>
+			<md-card-title-text flex layout="row">
+				<span class="md-headline">Phages</span>
+				<span flex></span>
+				<md-input-container md-no-float>
+					<ng-md-icon icon="search"></ng-md-icon>
+					<input style="" ng-model="search_input" placeholder="Search" ng-change="updateData(search_input)" ng-model-options="{debounce: 500}">
+				</md-input-container>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content>
+			<md-table-container>
+				<table md-table md-progress="promise">
+					<thead md-head md-order="ordering" md-on-reorder="updateData">
+						<tr md-row>
+							<th md-column><span>ID</span></th>
+							<th md-column><span>Name</span></th>
+							<th md-column><span>Historical names</span></th>
+						</tr>
+					</thead>
+					<tbody md-body>
+						<tr md-row ng-repeat="phage in data" ng-click="go(phage.id)">
+							<td md-cell>
+								P{{phage.id}}
+								<img src="https://cpt.tamu.edu/barcodes/i/code128/CPT:P{{ phage.id }}.png?w=140&h=20">
+							</td>
+							<td md-cell>{{phage.primary_name}}</td>
+							<td md-cell>{{phage.historical_names}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</md-table-container>
+			<md-table-pagination
+				md-limit="query.limit"
+				md-page="query.page"
+				md-total="{{data.meta.count}}"
+				md-page-select="options.pageSelect"
+				md-on-paginate="updateData">
+			</md-table-pagination>
 		</md-card-content>
 	</md-card>
 </div>
