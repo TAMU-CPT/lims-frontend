@@ -4,8 +4,10 @@
  */
 export default function(base) {
 	base.controller("SequencingRunRequestCtrl", [
-		"$scope", "$location", "$routeParams", "Restangular", "GLOBAL_PAGINATION_LIMIT","$mdDialog", "$mdToast",
-		function($scope, $location, $routeParams, Restangular, GLOBAL_PAGINATION_LIMIT, $mdDialog, $mdToast) {
+		"$scope", "$location", "$routeParams", "Restangular", "GLOBAL_PAGINATION_LIMIT","$mdDialog", "$mdToast", "$go",
+		function($scope, $location, $routeParams, Restangular, GLOBAL_PAGINATION_LIMIT, $mdDialog, $mdToast, $go) {
+			$scope.go = $go;
+
 			Restangular.one("lims/phagednapreps", $routeParams.dnaPrepID).get().then(function(data) {
 				$scope.dnaprep = data;
 			});
