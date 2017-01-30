@@ -49,10 +49,19 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 			"default": "mm",  // Mystery (wo)man as default for missing avatars
 		};
 		gravatarServiceProvider.secure = true;
-		gravatarServiceProvider.protocol = "my-protocol";
+
 		$mdThemingProvider.theme("default")
 			.primaryPalette("blue")
 			.accentPalette("pink");
+
+		$mdThemingProvider.theme('forest')
+			.primaryPalette('brown')
+			.accentPalette('green');
+
+		$mdThemingProvider.theme('forest')
+			.dark();
+
+
 
 
 		lkGoogleSettingsProvider.configure({
@@ -233,11 +242,10 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 					config.headers = config.headers || {};
 					if ($localStorage.jwtToken) {
 						config.headers.Authorization = "JWT " + $localStorage.jwtToken;
-                        Raven.setUserContext({
-                            id: $localStorage.jwtData.user_id,
-                            username: $localStorage.jwtData.username,
-                            email: $localStorage.jwtData.email
-                        });
+						Raven.setUser({
+							id: $localStorage.jwtData.user_id,
+							email: $localStorage.jwtData.email
+						});
 					}
 					return config;
 				},
