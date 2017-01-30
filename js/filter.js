@@ -37,14 +37,17 @@ export default function(base) {
 
 	base.filter("host_formatter", ["$sce", function($sce) {
 		return function(input) {
+			var data;
 			if (input) {
-				var data = "<i>" + input.genus +" " + (input.species ? input.species : "??")+ "</i>";
+				data = "<i>" + input.genus +" " + (input.species ? input.species : "??")+ "</i>";
 				if(input.strain){
 					data += " " + input.strain;
 				}
-				return $sce.trustAs("html",  data);
+			} else {
+				data = "Unknown";
 			}
-			return;
+
+			return $sce.trustAs("html",  data);
 		};
 	}]);
 
