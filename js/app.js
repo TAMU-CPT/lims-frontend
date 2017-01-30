@@ -178,6 +178,10 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 				templateUrl: "partials/annotation/detail.html",
 				controller: "AnnotationDetailCtrl",
 			}).
+			when("/test", {
+				templateUrl: "partials/test.html",
+				controller: "TestCtrl",
+			}).
 // LOAD ROUTES
 			when("/login", {
 				templateUrl: "partials/login.html",
@@ -286,4 +290,5 @@ require("./ctrl/annotation/list.js")(base);
 require("./ctrl/annotation/detail.js")(base);
 require("./ctrl/storage/add.js")(base);
 require("./ctrl/storage/inventory.js")(base);
+require("./ctrl/test.js")(base);
 // REQUIRE

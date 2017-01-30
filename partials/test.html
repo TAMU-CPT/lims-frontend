@@ -1,0 +1,20 @@
+<h3>Hosts</h3>
+
+<md-chips
+	ng-model="phage.data.host_lims"
+	readonly="phage.disabled"
+	md-transform-chip="ctrl.transformChip($chip)"
+	md-require-match="false">
+	<md-autocomplete
+		md-search-text="ctrl.searchText"
+		md-items="item in ctrl.querySearch(ctrl.searchText)"
+		md-item-text="item.genus"
+		placeholder="Search for a Host">
+		<span md-highlight-text="ctrl.searchText">{{item.genus}} {{item.species}} {{item.strain}}</span>
+	</md-autocomplete>
+	<md-chip-template>
+		<span>
+			{{ $chip }}
+		</span>
+	</md-chip-template>
+</md-chips>
