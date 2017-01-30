@@ -92,7 +92,11 @@ export default function(base) {
 
 	base.service('$go', ['$location', function($location){
 		return {
-			sequencing: function(id) {
+			sequencing: function(id, fragment) {
+				//var path = "/sequencing/" + id;
+				//if(fragment){
+					//path += "#frag=" + fragment;
+				//}
 				$location.path("/sequencing/" + id);
 			},
 

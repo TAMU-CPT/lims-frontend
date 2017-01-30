@@ -51,6 +51,23 @@ export default function(base) {
 					$scope.phage.disabled = true;
 					$scope.phage.data = angular.copy($scope.phage.original_data);
 				},
+
+				is_sequenced: function(){
+					// Exit early if no dnapreps.
+					if(!$scope.phage.data.phagednaprep_set){
+						return false;
+					}
+					// Otherwise, loop over every prep
+					for(var i = 0; i < $scope.phage.data.phagednaprep_set.length; i++){
+						var prep = $scope.phage.data.phagednaprep_set[i];
+						// And check if it was in one or more runs.
+						if(prep.sequencingrunpoolitem_set && prep.sequencingrunpoolitem_set.length > 0){
+							 return true;
+						}
+					}
+					// Lastly, failover.
+					return false;
+				},
 			};
 
 			$scope.ctrl = {

@@ -10,12 +10,14 @@
 				<table md-table md-progress="promise">
 					<thead md-head md-order="ordering" md-on-reorder="updateData">
 						<tr md-row>
-							<th md-column><span>Bacteria</span></th>
+							<th md-column>Bacteria</th>
+							<th md-column>Phages</th>
 						</tr>
 					</thead>
 					<tbody md-body>
 						<tr md-row ng-repeat="bacteria in data" ng-click="go(bacteria.id)">
 							<td md-cell><div ng-bind-html="bacteria | host_formatter"></div></td>
+							<td md-cell>{{bacteria.phages}}</td>
 						</tr>
 					</tbody>
 				</table>

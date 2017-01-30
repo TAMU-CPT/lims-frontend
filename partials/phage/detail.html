@@ -115,10 +115,10 @@
 
 		<progress-arrow></progress-arrow>
 
-		<md-button ng-disabled="true" class="md-raised md-primary">
+		<md-button class="md-raised md-primary" ng-if="!phage.is_sequenced()">
 			Sequencing
 		</md-button>
-		<md-card class="dnaprep-card" ng-if="false">
+		<md-card class="dnaprep-card" ng-if="phage.is_sequenced()">
 			<md-toolbar layout="row" class="md-hue-2">
 				<div class="md-toolbar-tools" flex>
 					<span class="md-title">Sequencing Data</span>
@@ -127,11 +127,34 @@
 			<md-card-content>
 				<md-table-container>
 					<table md-table>
+						<thead md-head>
+							<tr md-row>
+								<th md-column>DNA Prep</th>
+								<th md-column>Run Name</th>
+								<th md-column>Run Date</th>
+								<th md-column>MID Pool</th>
+							</tr>
+						</thead>
 						<tbody md-body>
 							<tr md-row ng-repeat="dnaprep in phage.data.phagednaprep_set">
-								<td md-cell>{{ dnaprep.added | human_time_abs }}</td>
 								<td md-cell>
+									{{ dnaprep.added | human_time_abs }}
 									<storage-badge location="dnaprep.storage"></storage-badge>
+								</td>
+								<td md-cell>
+									<div ng-repeat="srpi in dnaprep.sequencingrunpoolitem_set" ng-click="go.sequencing(srpi.run.id, srpi.pool.id)">
+										{{ srpi.run.name }}
+									</div>
+								</td>
+								<td md-cell>
+									<div ng-repeat="srpi in dnaprep.sequencingrunpoolitem_set" ng-click="go.sequencing(srpi.run.id, srpi.pool.id)">
+										{{ srpi.run.date }}
+									</div>
+								</td>
+								<td md-cell>
+									<div ng-repeat="srpi in dnaprep.sequencingrunpoolitem_set" ng-click="go.sequencing(srpi.run.id, srpi.pool.id)">
+										{{ srpi.pool.pool }}
+									</div>
 								</td>
 							</tr>
 						</tbody>
@@ -273,5 +296,17 @@
 			Environmental Sample Data Missing
 		</md-button>
 
+		<md-card style="max-width: 500px; overflow:scroll">
+			<md-toolbar layout="row" class="md-hue-1">
+				<div class="md-toolbar-tools media--card" flex>
+					<span class="md-title">DEBUG</span>
+				</div>
+			</md-toolbar>
+			<md-card-content style="overflow-x: scroll">
+<pre>
+{{ phage.data | json }}
+</pre>
+			</md-card-content>
+		</md-card>
 	</div>
 </div>

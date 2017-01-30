@@ -61,6 +61,9 @@ base.config(["$routeProvider", "$httpProvider", "$mdThemingProvider", "gravatarS
 		$mdThemingProvider.theme('forest')
 			.dark();
 
+		//$mdThemingProvider.setDefaultTheme('forest');
+
+
 
 
 

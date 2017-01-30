@@ -3,17 +3,17 @@
 	- [x] create
 	- [x] edit
 	- [x] share
-	- [ ] add env sample
+	- [x] add env sample
 - Sample pipeline
 	- [x] create sample
 		- [x] sample storage area
-		- [ ] nags about sample storage?
+		- [x] nags about sample storage?
 	- [x] isolate lysate from sample
 		- [x] sample storage
 	- [x] lysate
 		- [x] create dummy phage object
 	- [x] phage
-		- [ ] notes field?
+		- [x] notes field?
 	- [x] phage dna prep
 	- [ ] TEM
 		- [ ] exp evidence for this
