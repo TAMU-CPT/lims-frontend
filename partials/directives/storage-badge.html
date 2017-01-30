@@ -1,4 +1,4 @@
-<div layout-align="center start">
+<div layout-align="center start" ng-if="data">
 	<i class="mdi mdi-test-tube" style="font-size: 160%">
 		<md-tooltip>
 			Storage Location
@@ -15,3 +15,14 @@
 	{{ data.sample_label }}
 	</span>
 </div>
+<div layout-align="center start" ng-if="!data">
+	<md-button class="md-raised" ng-click="save()">
+		<i class="mdi mdi-test-tube" style="font-size: 160%">
+		</i>
+		<md-tooltip>
+			Storage Location
+		</md-tooltip>
+		Missing
+	</md-button>
+</div>
+
