@@ -30,7 +30,7 @@ export default function(base) {
 							url: "#/lysates",
 						},
 						{
-							title: "Bacterias",
+							title: "Bacteria",
 							url: "#/bacteria",
 						},
 					],

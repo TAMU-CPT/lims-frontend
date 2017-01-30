@@ -59,10 +59,10 @@
 
 
 
-					<h3>Hosts</h3>
+					<h3 ng-if="phage.data.host">Hosts</h3>
 
 					<md-chips
-						ng-model="phage.data.host_lims"
+						ng-model="phage.data.host"
 						readonly="phage.disabled"
 						md-transform-chip="ctrl.transformChip($chip)"
 						md-require-match="false">

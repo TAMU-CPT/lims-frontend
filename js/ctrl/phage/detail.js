@@ -35,12 +35,12 @@ export default function(base) {
 						$scope.phage.data.historical_names = hist_names.join(", ");
 					}
 
-					if($scope.phage.data.host_lims != $scope.phage.original_data.host_lims) {
+					if($scope.phage.data.host != $scope.phage.original_data.host) {
 						console.log("New host");
 					}
 
 					$scope.phage.data.save().then(function(resp) {
-						$scope.phage.data.host_lims = resp.host_lims;
+						$scope.phage.data.host = resp.host;
 						// Only do on success
 						$scope.phage.original_data = angular.copy($scope.phage.data);
 						$scope.phage.disabled = true;
