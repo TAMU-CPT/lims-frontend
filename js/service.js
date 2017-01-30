@@ -155,8 +155,18 @@ export default function(base) {
 		return {
 			calculateMap: function(data) {
 				let markers = {};
+				data = data.filter(function(sample){
+					if(!sample.location_xy){
+						return;
+					} else {
+						return sample;
+					}
+				})
 				// Create markers
 				data.forEach(function(sample) {
+					if(!sample.location_xy){
+						return;
+					}
 					var collected_by = "Unknown";
 					if(sample.collected_by){
 						collected_by = '<a href="#/accounts/' + sample.collected_by.id + '">' + sample.collected_by.name + '</a>';
@@ -172,6 +182,7 @@ export default function(base) {
 						};
 					}
 				});
+
 				// Grab all points
 				let points = data.map(function(e) {
 					if(e.location_xy){
@@ -197,7 +208,7 @@ export default function(base) {
 						lng: (lon_max + lon_min) / 2,
 						zoom: 2,
 					};
-				} else {
+				} else if (points.length == 1){
 					center = {
 						lat: points[0][0],
 						lng: points[0][1],
@@ -205,6 +216,13 @@ export default function(base) {
 					};
 					// If only one marker, focus on that.
 					markers[Object.keys(markers)[0]].focus = true;
+				} else {
+					// no points
+					center = {
+						lat: 0,
+						lng: 0,
+						zoom: 1,
+					};
 				}
 
 				return {
