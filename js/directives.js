@@ -101,4 +101,21 @@ export default function(base) {
 			templateUrl: 'partials/directives/arrow.html'
 		};
 	});
+
+
+	/*
+	 * How to send MULTIPLE properties through to your directive.
+.directive('userCard', function () {
+    return {
+      restrict: 'E',
+      templateUrl: 'userCard.tmpl.html',
+      scope: {
+        name: '@',
+        theme: '@'
+      },
+      controller: function ($scope) {
+        $scope.theme = $scope.theme || 'default';
+      }
+    }
+	 */
 }
