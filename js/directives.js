@@ -75,6 +75,16 @@ export default function(base) {
 		};
 	}]);
 
+	base.directive('bactBadge', function(){
+		return {
+			restrict: 'E',
+			scope: {
+				data: '=data',
+			},
+			templateUrl: 'partials/directives/bact-badge.html'
+		};
+	});
+
 	base.directive('storageBadge', function(){
 		return {
 			restrict: 'E',

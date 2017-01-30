@@ -7,7 +7,11 @@ var moment = require('moment');
 export default function(base) {
 	base.filter('human_time_abs', function(){
 		return function(input) {
-			return moment(input).format('lll');
+			if(input){
+				return moment(input).format('lll');
+			}else {
+				return "Unknown";
+			}
 			//return moment(input).calendar();
 		}
 	});
@@ -33,10 +37,14 @@ export default function(base) {
 
 	base.filter("host_formatter", ["$sce", function($sce) {
 		return function(input) {
-            if (input) {
-                return $sce.trustAs("html", "<i>" + input.genus +" " + input.species + "</i> " + input.strain);
-            }
-            return;
+			if (input) {
+				var data = "<i>" + input.genus +" " + (input.species ? input.species : "??")+ "</i>";
+				if(input.strain){
+					data += " " + input.strain;
+				}
+				return $sce.trustAs("html",  data);
+			}
+			return;
 		};
 	}]);
 
@@ -92,4 +100,13 @@ export default function(base) {
             } else { return input; }
 		};
 	});
+
+
+	// http://stackoverflow.com/questions/11540157/using-comma-as-list-separator-with-angularjs/18773958#18773958
+	base.filter('joinBy', function () {
+		return function (input,delimiter) {
+			return (input || []).join(delimiter || ',');
+		};
+	});
+
 }

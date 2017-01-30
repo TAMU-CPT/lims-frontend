@@ -247,6 +247,8 @@
 								<td md-cell>{{ env_sample.collection | human_time_abs }}</td>
 								<td md-cell>{{ env_sample.location_xy || "Unknown"}}</td>
 								<td md-cell>{{ env_sample.description }}</td>
+								<!--Something like ...-->
+								<!--<td md-cell ng-if="$first" colspan="phage.data.lysate.env_sample_collection.env_sample.length">{{ env_sample.description }}</td>-->
 							</tr>
 						</tbody>
 					</table>

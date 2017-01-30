@@ -3,8 +3,9 @@
  * @param {object} base Base angular application object
  */
 export default function(base) {
-	base.controller("BacteriaDetailCtrl", ["$scope", "$location", "$routeParams", "Restangular",
-		function($scope, $location, $routeParams, Restangular) {
+	base.controller("BacteriaDetailCtrl", ["$scope", "$location", "$routeParams", "Restangular", "$go",
+		function($scope, $location, $routeParams, Restangular, $go) {
+			$scope.go = $go;
 
 			$scope.bact = {
 				data: {},

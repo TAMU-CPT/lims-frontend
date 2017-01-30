@@ -43,7 +43,7 @@
 			<md-card-title-text flex layout="row">
 				<span class="md-headline">Phages</span>
 				<span flex></span>
-				<md-input-container md-no-float>
+				<md-input-container md-no-float class="fix-search">
 					<ng-md-icon icon="search"></ng-md-icon>
 					<input style="" ng-model="search_input" placeholder="Search" ng-change="updateData(search_input)" ng-model-options="{debounce: 500}">
 				</md-input-container>
@@ -60,7 +60,7 @@
 						</tr>
 					</thead>
 					<tbody md-body>
-						<tr md-row ng-repeat="phage in data" ng-click="go(phage.id)">
+						<tr md-row ng-repeat="phage in data" ng-click="go.phage(phage.id)">
 							<td md-cell>
 								P{{phage.id}}
 								<img src="https://cpt.tamu.edu/barcodes/i/code128/CPT:P{{ phage.id }}.png?w=140&h=20">
